@@ -1,0 +1,571 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{75A42B62-6C2E-4EF8-9D79-4D1DB7A11BBA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AntServiceStack.Client</RootNamespace>
+    <AssemblyName>AntServiceStack.Client</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\GlobalAssemblyInfo.cs">
+      <Link>Properties\GlobalAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="CAT\CatConstants.cs" />
+    <Compile Include="CAT\CatFakeTransaction.cs" />
+    <Compile Include="CAT\CatForkedTransaction.cs" />
+    <Compile Include="CAT\CatTransaction.cs" />
+    <Compile Include="CAT\CatTransactionBase.cs" />
+    <Compile Include="CAT\CatFabricTransaction.cs" />
+    <Compile Include="CAT\CommonCatConstants.cs" />
+    <Compile Include="Configuration\FxConfigWebServiceUtils.cs" />
+    <Compile Include="Config\AppSettingsConfiguration.cs" />
+    <Compile Include="Config\IConfiguration.cs" />
+    <Compile Include="Config\ObjectFactory.cs" />
+    <Compile Include="Consul\ConsulClient.cs" />
+    <Compile Include="Consul\ConsulHealthResponse.cs" />
+    <Compile Include="Consul\ConsulRegisterCheck.cs" />
+    <Compile Include="Consul\ConsulServiceRegistration.cs" />
+    <Compile Include="Consul\ConsulServiceResponse.cs" />
+    <Compile Include="Consul\ConsulUris.cs" />
+    <Compile Include="Consul\Discovery\ConsulService.cs" />
+    <Compile Include="Consul\Discovery\ConsulServiceId.cs" />
+    <Compile Include="Consul\Discovery\TagExtensions.cs" />
+    <Compile Include="Consul\Dtos\GetServiceResponse.cs" />
+    <Compile Include="Consul\Dtos\GetServicesResponse.cs" />
+    <Compile Include="Consul\Dtos\HealthCheck.cs" />
+    <Compile Include="Consul\Dtos\Heartbeat.cs" />
+    <Compile Include="Consul\Dtos\ServiceHealth.cs" />
+    <Compile Include="Consul\Dtos\ServiceRegistration.cs" />
+    <Compile Include="Consul\Exceptions\GatewayServiceDiscoveryException.cs" />
+    <Compile Include="Consul\Validators\ConsulRegisterCheckValidator.cs" />
+    <Compile Include="Consul\Validators\ConsulRegisterServiceValidator.cs" />
+    <Compile Include="Extensions\MethodInfoExtensions.cs" />
+    <Compile Include="Execution\ExecutionContext.cs" />
+    <Compile Include="Execution\ExecutionModes.cs" />
+    <Compile Include="Hystrix\Atomic\AtomicBoolean.cs" />
+    <Compile Include="Hystrix\Atomic\AtomicInteger.cs" />
+    <Compile Include="Hystrix\Atomic\AtomicIntegerArray.cs" />
+    <Compile Include="Hystrix\Atomic\AtomicLong.cs" />
+    <Compile Include="Hystrix\Atomic\AtomicReference.cs" />
+    <Compile Include="Hystrix\Atomic\AtomicReferenceArray.cs" />
+    <Compile Include="Hystrix\CHystrix\BadRequestException.cs" />
+    <Compile Include="Hystrix\CHystrix\CircuitBreaker\CircuitBreaker.cs" />
+    <Compile Include="Hystrix\CHystrix\CommandComponents.cs" />
+    <Compile Include="Hystrix\CHystrix\CommandDomains.cs" />
+    <Compile Include="Hystrix\CHystrix\CommandExecutionEventEnum.cs" />
+    <Compile Include="Hystrix\CHystrix\CommandExecutionHealthSnapshot.cs" />
+    <Compile Include="Hystrix\CHystrix\CommandInfo.cs" />
+    <Compile Include="Hystrix\CHystrix\CommandStatusEnum.cs" />
+    <Compile Include="Hystrix\CHystrix\ComponentFactory.cs" />
+    <Compile Include="Hystrix\CHystrix\Config\CHystrixApplication.cs" />
+    <Compile Include="Hystrix\CHystrix\Config\CHystrixCommand.cs" />
+    <Compile Include="Hystrix\CHystrix\Config\CHystrixCommandConfig.cs" />
+    <Compile Include="Hystrix\CHystrix\Config\CHystrixCommandDefaultConfig.cs" />
+    <Compile Include="Hystrix\CHystrix\Config\CommandConfigSet.cs" />
+    <Compile Include="Hystrix\CHystrix\Config\CommandConfigSyncManager.cs" />
+    <Compile Include="Hystrix\CHystrix\Config\ConfigWebServiceConfigItem.cs" />
+    <Compile Include="Hystrix\CHystrix\Config\GetApplicationConfigRequestType.cs" />
+    <Compile Include="Hystrix\CHystrix\Config\GetApplicationConfigResponseType.cs" />
+    <Compile Include="Hystrix\CHystrix\Config\HystrixConfigSyncManager.cs" />
+    <Compile Include="Hystrix\CHystrix\Config\LookupServiceUrlRequest.cs" />
+    <Compile Include="Hystrix\CHystrix\Config\LookupServiceUrlResponse.cs" />
+    <Compile Include="Hystrix\CHystrix\CustomBadRequestExceptionChecker.cs" />
+    <Compile Include="Hystrix\CHystrix\FailureTypeEnum.cs" />
+    <Compile Include="Hystrix\CHystrix\GenericSemaphoreIsolationCommand!1.cs" />
+    <Compile Include="Hystrix\CHystrix\GenericThreadIsolationCommand!1.cs" />
+    <Compile Include="Hystrix\CHystrix\HandleConfigChangeDelegate.cs" />
+    <Compile Include="Hystrix\CHystrix\HystrixCommandBase!1.cs" />
+    <Compile Include="Hystrix\CHystrix\HystrixCommandBase.cs" />
+    <Compile Include="Hystrix\CHystrix\HystrixException.cs" />
+    <Compile Include="Hystrix\CHystrix\ICircuitBreaker.cs" />
+    <Compile Include="Hystrix\CHystrix\ICommand.cs" />
+    <Compile Include="Hystrix\CHystrix\ICommandConfigSet.cs" />
+    <Compile Include="Hystrix\CHystrix\ICommandMetrics.cs" />
+    <Compile Include="Hystrix\CHystrix\IConfigChangeEvent.cs" />
+    <Compile Include="Hystrix\CHystrix\IFallback!1.cs" />
+    <Compile Include="Hystrix\CHystrix\ILog.cs" />
+    <Compile Include="Hystrix\CHystrix\ISemaphoreIsolation!1.cs" />
+    <Compile Include="Hystrix\CHystrix\IsolationModeEnum.cs" />
+    <Compile Include="Hystrix\CHystrix\IThreadIsolation!1.cs" />
+    <Compile Include="Hystrix\CHystrix\LogLevelEnum.cs" />
+    <Compile Include="Hystrix\CHystrix\Log\CLog.cs" />
+    <Compile Include="Hystrix\CHystrix\Metrics\CommandMetrics.cs" />
+    <Compile Include="Hystrix\CHystrix\Metrics\MetricsReporter.cs" />
+    <Compile Include="Hystrix\CHystrix\Metrics\SemaphoreIsolationCommandMetrics.cs" />
+    <Compile Include="Hystrix\CHystrix\Metrics\ThreadIsolationCommandMetrics.cs" />
+    <Compile Include="Hystrix\CHystrix\Registration\RegisterAppRequest.cs" />
+    <Compile Include="Hystrix\CHystrix\Registration\RegisterCommandInfo.cs" />
+    <Compile Include="Hystrix\CHystrix\Registration\SelfRegistrationManager.cs" />
+    <Compile Include="Hystrix\CHystrix\SemaphoreIsolationCommand!1.cs" />
+    <Compile Include="Hystrix\CHystrix\Threading\CTaskStatus.cs" />
+    <Compile Include="Hystrix\CHystrix\Threading\CThread.cs" />
+    <Compile Include="Hystrix\CHystrix\Threading\CThreadCompleteException.cs" />
+    <Compile Include="Hystrix\CHystrix\Threading\CThreadPool.cs" />
+    <Compile Include="Hystrix\CHystrix\Threading\CThreadWorkCompleteCallback.cs" />
+    <Compile Include="Hystrix\CHystrix\Threading\CWorkItem!1.cs" />
+    <Compile Include="Hystrix\CHystrix\Threading\CWorkItemCompleteCallback.cs" />
+    <Compile Include="Hystrix\CHystrix\Threading\ICThreadPool.cs" />
+    <Compile Include="Hystrix\CHystrix\Threading\ICWorkItem.cs" />
+    <Compile Include="Hystrix\CHystrix\Threading\StatusChangeEventArgs.cs" />
+    <Compile Include="Hystrix\CHystrix\ThreadIsolationCommand!1.cs" />
+    <Compile Include="Hystrix\CHystrix\Utils\Atomic\AtomicBoolean.cs" />
+    <Compile Include="Hystrix\CHystrix\Utils\Atomic\AtomicInteger.cs" />
+    <Compile Include="Hystrix\CHystrix\Utils\Atomic\AtomicIntegerArray.cs" />
+    <Compile Include="Hystrix\CHystrix\Utils\Atomic\AtomicLong.cs" />
+    <Compile Include="Hystrix\CHystrix\Utils\Atomic\AtomicReference!1.cs" />
+    <Compile Include="Hystrix\CHystrix\Utils\Atomic\AtomicReferenceArray!1.cs" />
+    <Compile Include="Hystrix\CHystrix\Utils\Buffer\Bucket.cs" />
+    <Compile Include="Hystrix\CHystrix\Utils\Buffer\CircularBuffer!1.cs" />
+    <Compile Include="Hystrix\CHystrix\Utils\Buffer\CounterBucket!1.cs" />
+    <Compile Include="Hystrix\CHystrix\Utils\Buffer\CounterBuffer!1.cs" />
+    <Compile Include="Hystrix\CHystrix\Utils\Buffer\IntegerPercentileBuffer.cs" />
+    <Compile Include="Hystrix\CHystrix\Utils\Buffer\PercentileBucket!1.cs" />
+    <Compile Include="Hystrix\CHystrix\Utils\Buffer\PercentileBuffer!1.cs" />
+    <Compile Include="Hystrix\CHystrix\Utils\CFX\CommonAssemblies.cs" />
+    <Compile Include="Hystrix\CHystrix\Utils\CFX\CommonReflectionUtil.cs" />
+    <Compile Include="Hystrix\CHystrix\Utils\CFX\DynamicModuleReflectionUtil.cs" />
+    <Compile Include="Hystrix\CHystrix\Utils\CFX\DynamicModuleRegistryEntry.cs" />
+    <Compile Include="Hystrix\CHystrix\Utils\CFX\DynamicModuleUtility.cs" />
+    <Compile Include="Hystrix\CHystrix\Utils\CFX\IntegratedDynamicModule.cs" />
+    <Compile Include="Hystrix\CHystrix\Utils\CommonUtils.cs" />
+    <Compile Include="Hystrix\CHystrix\Utils\CThreadPoolFactory.cs" />
+    <Compile Include="Hystrix\CHystrix\Utils\Extensions\StreamExtensions.cs" />
+    <Compile Include="Hystrix\CHystrix\Utils\Extensions\StringExtensions.cs" />
+    <Compile Include="Hystrix\CHystrix\Utils\Extensions\WebRequestExtensions.cs" />
+    <Compile Include="Hystrix\CHystrix\Utils\IsolationSemaphore.cs" />
+    <Compile Include="Hystrix\CHystrix\Utils\SemaphoreIsolation.cs" />
+    <Compile Include="Hystrix\CHystrix\Utils\Web\CrossDomainFilter.cs" />
+    <Compile Include="Hystrix\CHystrix\Utils\Web\HttpContentTypes.cs" />
+    <Compile Include="Hystrix\CHystrix\Utils\Web\HttpHeaders.cs" />
+    <Compile Include="Hystrix\CHystrix\Utils\Web\HttpMethods.cs" />
+    <Compile Include="Hystrix\CHystrix\Web\CHystrixConfigInfo.cs" />
+    <Compile Include="Hystrix\CHystrix\Web\CommandConfigInfo.cs" />
+    <Compile Include="Hystrix\CHystrix\Web\HystrixCommandHandler.cs" />
+    <Compile Include="Hystrix\CHystrix\Web\HystrixCommandInfo.cs" />
+    <Compile Include="Hystrix\CHystrix\Web\HystrixConfigHandler.cs" />
+    <Compile Include="Hystrix\CHystrix\Web\HystrixMetricsHandler.cs" />
+    <Compile Include="Hystrix\CHystrix\Web\HystrixModule.cs" />
+    <Compile Include="Hystrix\CHystrix\Web\HystrixRouteHandler.cs" />
+    <Compile Include="Hystrix\CHystrix\Web\HystrixStreamHandler.cs" />
+    <Compile Include="Hystrix\CHystrix\Web\HystrixThreadPoolInfo.cs" />
+    <Compile Include="Hystrix\CHystrix\Web\Initializer.cs" />
+    <Compile Include="Hystrix\CHystrix\Web\MetricsInfo.cs" />
+    <Compile Include="Hystrix\CHystrix\Web\PercentileInfo.cs" />
+    <Compile Include="Hystrix\CircuitBreaker\HystrixCircuitBreakerFactory.cs" />
+    <Compile Include="Hystrix\CircuitBreaker\HystrixCircuitBreakerImpl.cs" />
+    <Compile Include="Hystrix\CircuitBreaker\IHystrixCircuitBreaker.cs" />
+    <Compile Include="Hystrix\CircuitBreaker\NoOpCircuitBreaker.cs" />
+    <Compile Include="Hystrix\ConcurrentDictionaryExtensions.cs" />
+    <Compile Include="Hystrix\HealthCounts.cs" />
+    <Compile Include="Hystrix\HystrixCommand.cs" />
+    <Compile Include="Hystrix\HystrixCommandGroupKey.cs" />
+    <Compile Include="Hystrix\HystrixCommandKey.cs" />
+    <Compile Include="Hystrix\HystrixCommandMetrics.cs" />
+    <Compile Include="Hystrix\HystrixCommandPropertiesSetter.cs" />
+    <Compile Include="Hystrix\HystrixEventType.cs" />
+    <Compile Include="Hystrix\HystrixKey.cs" />
+    <Compile Include="Hystrix\HystrixPropertyFactory.cs" />
+    <Compile Include="Hystrix\IHystrixCommandProperties.cs" />
+    <Compile Include="Hystrix\IHystrixDynamicProperty.cs" />
+    <Compile Include="Hystrix\IHystrixProperty.cs" />
+    <Compile Include="Hystrix\Strategy\HystrixMetricsPublisherFactory.cs" />
+    <Compile Include="Hystrix\Strategy\HystrixPlugins.cs" />
+    <Compile Include="Hystrix\Strategy\HystrixPropertiesFactory.cs" />
+    <Compile Include="Hystrix\Strategy\Metrics\Default\HystrixMetricsPublisherCommandDefault.cs" />
+    <Compile Include="Hystrix\Strategy\Metrics\Default\HystrixMetricsPublisherDefault.cs" />
+    <Compile Include="Hystrix\Strategy\Metrics\HystrixDelegateMetricsPublisherCommand.cs" />
+    <Compile Include="Hystrix\Strategy\Metrics\IHystrixMetricsPublisher.cs" />
+    <Compile Include="Hystrix\Strategy\Metrics\IHystrixMetricsPublisherCommand.cs" />
+    <Compile Include="Hystrix\Strategy\Properties\Default\HystrixPropertiesCommandDefault.cs" />
+    <Compile Include="Hystrix\Strategy\Properties\Default\HystrixPropertiesStrategyDefault.cs" />
+    <Compile Include="Hystrix\Strategy\Properties\IHystrixPropertiesStrategy.cs" />
+    <Compile Include="Hystrix\Util\BucketCircularArray.cs" />
+    <Compile Include="Hystrix\Util\HystrixCircularBuffer.cs" />
+    <Compile Include="Hystrix\Util\HystrixIntegerCircularBuffer.cs" />
+    <Compile Include="Hystrix\Util\HystrixRollingNumber.cs" />
+    <Compile Include="Hystrix\Util\HystrixRollingNumberEvent.cs" />
+    <Compile Include="Hystrix\Util\HystrixRollingNumberEventExtensions.cs" />
+    <Compile Include="Hystrix\Util\HystrixRollingPercentile.cs" />
+    <Compile Include="Hystrix\Util\LongAdder.cs" />
+    <Compile Include="Hystrix\Util\LongMaxUpdater.cs" />
+    <Compile Include="Configuration\AppSettings.cs" />
+    <Compile Include="Configuration\AppSettingsBase.cs" />
+    <Compile Include="Configuration\ConfigUtils.cs" />
+    <Compile Include="Configuration\DictionarySettings.cs" />
+    <Compile Include="Configuration\ISettings.cs" />
+    <Compile Include="CThreadPool\CallerThreadContext.cs" />
+    <Compile Include="CThreadPool\CanceledWorkItemGroup.cs" />
+    <Compile Include="CThreadPool\CThreadPool.cs" />
+    <Compile Include="CThreadPool\CThreadPool.ThreadEntry.cs" />
+    <Compile Include="CThreadPool\CTPEventWaitHandle.cs" />
+    <Compile Include="CThreadPool\CTPPerformanceCounter.cs" />
+    <Compile Include="CThreadPool\CTPStartInfo.cs" />
+    <Compile Include="CThreadPool\EventWaitHandleFactory.cs" />
+    <Compile Include="CThreadPool\Exceptions.cs" />
+    <Compile Include="CThreadPool\Interfaces.cs" />
+    <Compile Include="CThreadPool\InternalInterface.cs" />
+    <Compile Include="CThreadPool\PriorityQueue.cs" />
+    <Compile Include="CThreadPool\SynchronizedDictionary.cs" />
+    <Compile Include="CThreadPool\WIGStartInfo.cs" />
+    <Compile Include="CThreadPool\WorkItem.cs" />
+    <Compile Include="CThreadPool\WorkItem.WorlItemResult.cs" />
+    <Compile Include="CThreadPool\WorkItemFactory.cs" />
+    <Compile Include="CThreadPool\WorkItemInfo.cs" />
+    <Compile Include="CThreadPool\WorkItemResultTWrapper.cs" />
+    <Compile Include="CThreadPool\WorkItemsGroup.cs" />
+    <Compile Include="CThreadPool\WorkItemsGroupBase.cs" />
+    <Compile Include="CThreadPool\WorkItemsQueue.cs" />
+    <Compile Include="CTripCommonTypes_V1\AckCodeType.cs" />
+    <Compile Include="CTripCommonTypes_V1\CheckHealthRequestType.cs" />
+    <Compile Include="CTripCommonTypes_V1\CheckHealthResponseType.cs" />
+    <Compile Include="CTripCommonTypes_V1\CommonRequestType.cs" />
+    <Compile Include="CTripCommonTypes_V1\ErrorClassificationCodeType.cs" />
+    <Compile Include="CTripCommonTypes_V1\ErrorDataType.cs" />
+    <Compile Include="CTripCommonTypes_V1\ErrorFieldType.cs" />
+    <Compile Include="CTripCommonTypes_V1\ExtensionType.cs" />
+    <Compile Include="CTripCommonTypes_V1\GenericErrorResponseType.cs" />
+    <Compile Include="CTripCommonTypes_V1\PaginationInputType.cs" />
+    <Compile Include="CTripCommonTypes_V1\PaginationOutputType.cs" />
+    <Compile Include="CTripCommonTypes_V1\ResponseStatusType.cs" />
+    <Compile Include="CTripCommonTypes_V1\SeverityCodeType.cs" />
+    <Compile Include="CTripCommonTypes_V1\SimpleRequestType.cs" />
+    <Compile Include="CTripCommonTypes_V1\SimpleResponseType.cs" />
+    <Compile Include="CTripMobileCommonTypes_V1\ExtensionFieldType.cs" />
+    <Compile Include="CTripMobileCommonTypes_V1\IHasMobileRequestHead.cs" />
+    <Compile Include="CTripMobileCommonTypes_V1\MobileRequestHead.cs" />
+    <Compile Include="CTripMobileCommonTypes_V1\SimpleH5RequestType.cs" />
+    <Compile Include="Extensions\AssertExtensions.cs" />
+    <Compile Include="Extensions\ByteArrayExtensions.cs" />
+    <Compile Include="CryptUtils.cs" />
+    <Compile Include="Extensions\DictionaryExtensions.cs" />
+    <Compile Include="Extensions\EnumerableExtensions.cs" />
+    <Compile Include="Extensions\EnumExtensions.cs" />
+    <Compile Include="Extensions\IntExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="FluentValidation\AbstractValidator.cs" />
+    <Compile Include="FluentValidation\AssemblyScanner.cs" />
+    <Compile Include="FluentValidation\Attributes\AttributedValidatorFactory.cs" />
+    <Compile Include="FluentValidation\Attributes\ValidatorAttribute.cs" />
+    <Compile Include="FluentValidation\CNLanguageResource.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FluentValidation\CollectionValidatorExtensions.cs" />
+    <Compile Include="FluentValidation\DefaultValidatorExtensions.cs" />
+    <Compile Include="FluentValidation\DefaultValidatorOptions.cs" />
+    <Compile Include="FluentValidation\Enums.cs" />
+    <Compile Include="FluentValidation\InlineValidator.cs" />
+    <Compile Include="FluentValidation\Internal\DefaultValidatorSelector.cs" />
+    <Compile Include="FluentValidation\Internal\DelegateValidator.cs" />
+    <Compile Include="FluentValidation\Internal\Extensions.cs" />
+    <Compile Include="FluentValidation\Internal\IConfigurable.cs" />
+    <Compile Include="FluentValidation\Internal\IFluentInterface.cs" />
+    <Compile Include="FluentValidation\Internal\InstanceCache.cs" />
+    <Compile Include="FluentValidation\Internal\IValidatorSelector.cs" />
+    <Compile Include="FluentValidation\Internal\MemberNameValidatorSelector.cs" />
+    <Compile Include="FluentValidation\Internal\MessageFormatter.cs" />
+    <Compile Include="FluentValidation\Internal\PropertyChain.cs" />
+    <Compile Include="FluentValidation\Internal\PropertyRule.cs" />
+    <Compile Include="FluentValidation\Internal\RuleBuilder.cs" />
+    <Compile Include="FluentValidation\Internal\RulesetValidatorSelector.cs" />
+    <Compile Include="FluentValidation\Internal\TrackingCollection.cs" />
+    <Compile Include="FluentValidation\IValidationRule.cs" />
+    <Compile Include="FluentValidation\IValidator.cs" />
+    <Compile Include="FluentValidation\IValidatorDescriptor.cs" />
+    <Compile Include="FluentValidation\IValidatorFactory.cs" />
+    <Compile Include="FluentValidation\Resources\IResourceAccessorBuilder.cs" />
+    <Compile Include="FluentValidation\Resources\IStringSource.cs" />
+    <Compile Include="FluentValidation\Resources\LocalizedStringSource.cs" />
+    <Compile Include="FluentValidation\Resources\Messages.Designer.cs" />
+    <Compile Include="FluentValidation\Resources\StaticStringSource.cs" />
+    <Compile Include="FluentValidation\Results\ValidationFailure.cs" />
+    <Compile Include="FluentValidation\Results\ValidationResult.cs" />
+    <Compile Include="FluentValidation\Syntax.cs" />
+    <Compile Include="FluentValidation\TestHelper\ValidationTestException.cs" />
+    <Compile Include="FluentValidation\TestHelper\ValidatorTester.cs" />
+    <Compile Include="FluentValidation\TestHelper\ValidatorTestExtensions.cs" />
+    <Compile Include="FluentValidation\ValidationContext.cs" />
+    <Compile Include="FluentValidation\ValidationErrors.cs" />
+    <Compile Include="FluentValidation\ValidationException.cs" />
+    <Compile Include="FluentValidation\ValidatorDescriptor.cs" />
+    <Compile Include="FluentValidation\ValidatorFactoryBase.cs" />
+    <Compile Include="FluentValidation\ValidatorOptions.cs" />
+    <Compile Include="FluentValidation\Validators\AbstractComparisonValidator.cs" />
+    <Compile Include="FluentValidation\Validators\ChildCollectionValidatorAdaptor.cs" />
+    <Compile Include="FluentValidation\Validators\ChildValidatorAdaptor.cs" />
+    <Compile Include="FluentValidation\Validators\CreditCardValidator.cs" />
+    <Compile Include="FluentValidation\Validators\DelegatingValidator.cs" />
+    <Compile Include="FluentValidation\Validators\EmailValidator.cs" />
+    <Compile Include="FluentValidation\Validators\EqualValidator.cs" />
+    <Compile Include="FluentValidation\Validators\ExclusiveBetweenValidator.cs" />
+    <Compile Include="FluentValidation\Validators\GreaterThanOrEqualValidator.cs" />
+    <Compile Include="FluentValidation\Validators\GreaterThanValidator.cs" />
+    <Compile Include="FluentValidation\Validators\InclusiveBetweenValidator.cs" />
+    <Compile Include="FluentValidation\Validators\IPropertyValidator.cs" />
+    <Compile Include="FluentValidation\Validators\LengthValidator.cs" />
+    <Compile Include="FluentValidation\Validators\LessThanOrEqualValidator.cs" />
+    <Compile Include="FluentValidation\Validators\LessThanValidator.cs" />
+    <Compile Include="FluentValidation\Validators\NoopPropertyValidator.cs" />
+    <Compile Include="FluentValidation\Validators\NotEmptyValidator.cs" />
+    <Compile Include="FluentValidation\Validators\NotEqualValidator.cs" />
+    <Compile Include="FluentValidation\Validators\NotNullValidator.cs" />
+    <Compile Include="FluentValidation\Validators\PredicateValidator.cs" />
+    <Compile Include="FluentValidation\Validators\PropertyValidator.cs" />
+    <Compile Include="FluentValidation\Validators\PropertyValidatorContext.cs" />
+    <Compile Include="FluentValidation\Validators\RegularExpressionValidator.cs" />
+    <Compile Include="HostContext.cs" />
+    <Compile Include="Hystrix\Util\ActualTime.cs" />
+    <Compile Include="Hystrix\Util\ITime.cs" />
+    <Compile Include="Interface\CacheAccess\ICacheClient.cs" />
+    <Compile Include="Interface\CacheAccess\IDeflateProvider.cs" />
+    <Compile Include="Interface\CacheAccess\IGZipProvider.cs" />
+    <Compile Include="Interface\CacheAccess\IRemoveByPattern.cs" />
+    <Compile Include="Interface\Configuration\IContainerAdapter.cs" />
+    <Compile Include="Interface\Configuration\IFactoryProvider.cs" />
+    <Compile Include="Interface\Configuration\IRelease.cs" />
+    <Compile Include="Interface\Configuration\IResourceManager.cs" />
+    <Compile Include="Interface\Configuration\ITypeFactory.cs" />
+    <Compile Include="Interface\DesignPatterns\Model\IHasGuidId.cs" />
+    <Compile Include="Interface\DesignPatterns\Model\IHasId.cs" />
+    <Compile Include="Interface\DesignPatterns\Model\IHasIntId.cs" />
+    <Compile Include="Interface\DesignPatterns\Model\IHasLongId.cs" />
+    <Compile Include="Interface\DesignPatterns\Model\IHasNamed.cs" />
+    <Compile Include="Interface\DesignPatterns\Model\IHasNamedCollection.cs" />
+    <Compile Include="Interface\DesignPatterns\Model\IHasNamedList.cs" />
+    <Compile Include="Interface\DesignPatterns\Model\IHasStringId.cs" />
+    <Compile Include="Interface\DesignPatterns\Model\IHasUserId.cs" />
+    <Compile Include="Interface\DesignPatterns\Model\IHasUserSession.cs" />
+    <Compile Include="Interface\ISyncReply.cs" />
+    <Compile Include="Interface\ServiceHost\ApiAllowableValuesAttribute.cs" />
+    <Compile Include="Interface\ServiceHost\ApiAttribute.cs" />
+    <Compile Include="Interface\ServiceHost\ApiMemberAttribute.cs" />
+    <Compile Include="Interface\ServiceHost\ApiResponse.cs" />
+    <Compile Include="Interface\ServiceHost\CServiceAttribute.cs" />
+    <Compile Include="Interface\ServiceHost\EndpointAttributes.cs" />
+    <Compile Include="Interface\ServiceHost\HystrixAttribute.cs" />
+    <Compile Include="Interface\ServiceHost\ICheckHealth.cs" />
+    <Compile Include="Interface\ServiceHost\IExecutionResult.cs" />
+    <Compile Include="Interface\ServiceHost\Feature.cs" />
+    <Compile Include="Interface\ServiceHost\IContentTypeFilter.cs" />
+    <Compile Include="Interface\ServiceHost\IContentTypeReader.cs" />
+    <Compile Include="Interface\ServiceHost\IContentTypeWriter.cs" />
+    <Compile Include="Interface\ServiceHost\ICookies.cs" />
+    <Compile Include="Interface\ServiceHost\IFile.cs" />
+    <Compile Include="Interface\ServiceHost\IHasCommonRequest.cs" />
+    <Compile Include="Interface\ServiceHost\IHasOptions.cs" />
+    <Compile Include="Interface\ServiceHost\IHasRequestFilter.cs" />
+    <Compile Include="Interface\ServiceHost\IHasResponseFilter.cs" />
+    <Compile Include="Interface\ServiceHost\IHasResponseStatus.cs" />
+    <Compile Include="Interface\ServiceHost\IHttpRequest.cs" />
+    <Compile Include="Interface\ServiceHost\IHttpResponse.cs" />
+    <Compile Include="Interface\ServiceHost\IRequestAttributes.cs" />
+    <Compile Include="Interface\ServiceHost\IRequestContext.cs" />
+    <Compile Include="Interface\ServiceHost\IRequiresHttpRequest.cs" />
+    <Compile Include="Interface\ServiceHost\IRequiresHttpResponse.cs" />
+    <Compile Include="Interface\ServiceHost\IRequiresRequestContext.cs" />
+    <Compile Include="Interface\ServiceHost\IRequiresRequestStream.cs" />
+    <Compile Include="Interface\ServiceHost\IResolver.cs" />
+    <Compile Include="Interface\ServiceHost\IRestPath.cs" />
+    <Compile Include="Interface\ServiceHost\IServiceController.cs" />
+    <Compile Include="Interface\ServiceHost\IServiceRoutes.cs" />
+    <Compile Include="Interface\ServiceHost\IServiceRunner.cs" />
+    <Compile Include="Interface\ServiceHost\RestrictAttribute.cs" />
+    <Compile Include="Interface\ServiceHost\RouteAttribute.cs" />
+    <Compile Include="Interface\ServiceClient\IClientCallFormat.cs" />
+    <Compile Include="Extensions\IPAddressExtensions.cs" />
+    <Compile Include="Message\MessageSensitivityAttribute.cs" />
+    <Compile Include="Message\SensitivityMode.cs" />
+    <Compile Include="Execution\ExecutionMetrics.cs" />
+    <Compile Include="Net30\ConcurrentDictionary.cs" />
+    <Compile Include="Net30\ObjectPool.cs" />
+    <Compile Include="Net30\SplitOrderedList.cs" />
+    <Compile Include="Net30\Tuple.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Extensions\ReflectionExtensions.cs" />
+    <Compile Include="Reflection\StaticAccessor.cs" />
+    <Compile Include="Extensions\RequestContextExtensions.cs" />
+    <Compile Include="Interface\ApplyTo.cs" />
+    <Compile Include="Interface\RequestFilterAttribute.cs" />
+    <Compile Include="ServiceModel\DictionaryExtensions.cs" />
+    <Compile Include="ServiceModel\MetadataTypes.cs" />
+    <Compile Include="ServiceModel\Serialization\WrappedBaijiBinarySerializer.cs" />
+    <Compile Include="ServiceModel\Serialization\WrappedBaijiJsonSerializer.cs" />
+    <Compile Include="ServiceModel\Serialization\WrappedJsonDeserializer.cs" />
+    <Compile Include="ServiceModel\Serialization\WrappedJsonSerializer.cs" />
+    <Compile Include="ServiceModel\Serialization\KeyValueDeserializer.cs" />
+    <Compile Include="ServiceModel\Serialization\StringMapTypeDeserializer.cs" />
+    <Compile Include="Extensions\StreamExtensions.cs" />
+    <Compile Include="ServiceModel\Validation\ValidationError.cs" />
+    <Compile Include="ServiceModel\Validation\ValidationErrorField.cs" />
+    <Compile Include="ServiceModel\Validation\ValidationErrorResult.cs" />
+    <Compile Include="Soap11\Body.cs" />
+    <Compile Include="Soap11\detail.cs" />
+    <Compile Include="Soap11\Envelope.cs" />
+    <Compile Include="Soap11\Fault.cs" />
+    <Compile Include="Soap11\Header.cs" />
+    <Compile Include="Support\AssignmentDefinition.cs" />
+    <Compile Include="Support\NetDeflateProvider.cs" />
+    <Compile Include="Support\NetGZipProvider.cs" />
+    <Compile Include="Support\PropertyInvoker.cs" />
+    <Compile Include="Interface\ServiceHost\IErrorDataConvertable.cs" />
+    <Compile Include="Trace\SpanWrapper.cs" />
+    <Compile Include="UrnId.cs" />
+    <Compile Include="Utils\ArtemisConstants.cs" />
+    <Compile Include="Utils\BadRequestException.cs" />
+    <Compile Include="Utils\CatSerializationTypes.cs" />
+    <Compile Include="Utils\DataFormat.cs" />
+    <Compile Include="Utils\EnvUtils.cs" />
+    <Compile Include="Utils\GeneralSerializer.cs" />
+    <Compile Include="Utils\GeneralServiceClient.cs" />
+    <Compile Include="Utils\AppIdExtensions.cs" />
+    <Compile Include="Utils\HostUtility.cs" />
+    <Compile Include="Utils\HttpMethodEnum.cs" />
+    <Compile Include="Utils\IdUtil.cs" />
+    <Compile Include="Utils\InternalServiceUtils.cs" />
+    <Compile Include="Utils\PathUtils.cs" />
+    <Compile Include="Utils\RateLimitingException.cs" />
+    <Compile Include="Utils\ReflectionUtils.cs" />
+    <Compile Include="Utils\ServiceInternalException.cs" />
+    <Compile Include="Utils\ServiceUtils.cs" />
+    <Compile Include="Web\WebUtils.cs" />
+    <Compile Include="Web\CompressionTypes.cs" />
+    <Compile Include="Web\ContentType.cs" />
+    <Compile Include="Web\HttpHeaders.cs" />
+    <Compile Include="Web\HttpMethods.cs" />
+    <Compile Include="Web\HttpResponseFilter.cs" />
+    <Compile Include="Web\HttpResponseStreamWrapper.cs" />
+    <Compile Include="Web\MimeTypes.cs" />
+    <Compile Include="Web\SerializationContext.cs" />
+    <Compile Include="Web\WebRequestExtensions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AntServiceStack.Log\AntServiceStack.Log.csproj">
+      <Project>{9618ceba-95d0-4fc2-b6a5-d8b86208d565}</Project>
+      <Name>AntServiceStack.Log</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AntServiceStack.Baiji\AntServiceStack.Baiji.csproj">
+      <Project>{3C3EDF84-FDD6-4C56-A9FD-F7141E53C708}</Project>
+      <Name>AntServiceStack.Baiji</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AntServiceStack.ProtoBuf\AntServiceStack.ProtoBuf.csproj">
+      <Project>{8374E4D7-2A91-48F1-9360-09B09CF27C3F}</Project>
+      <Name>AntServiceStack.ProtoBuf</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AntServiceStack.Text\AntServiceStack.Text.csproj">
+      <Project>{9084E0D2-AAF8-45D9-B747-EDF3C276FB51}</Project>
+      <Name>AntServiceStack.Text</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CTripCommonTypes_V1\CTripSOACommonTypes_V1.0.0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="CTripCommonTypes_V1\CTripSOACommonTypes_V1.1.0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="CTripMobileCommonTypes_V1\CTripSOAMobileCommonTypes_V1.0.0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="CTripMobileCommonTypes_V1\CTripSOAMobileCommonTypes_V1.1.0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Soap11\soap11.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FluentValidation\Resources\Messages.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

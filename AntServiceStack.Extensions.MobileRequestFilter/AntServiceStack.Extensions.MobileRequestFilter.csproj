@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5BA0C5A9-1247-48A6-AEBD-0FE9B8F88B2A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AntServiceStack.Extensions.MobileRequestFilter</RootNamespace>
+    <AssemblyName>AntServiceStack.Extensions.MobileRequestFilter</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\GlobalAssemblyInfo.cs">
+      <Link>Properties\GlobalAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="AuthenticationModeEnum.cs" />
+    <Compile Include="BUEnum.cs" />
+    <Compile Include="MobileRequestFilterAttribute.Authenticate.cs" />
+    <Compile Include="MobileAuthServiceClient\MobileAuthServiceClient.cs" />
+    <Compile Include="MobileRequestFilterAttribute.cs" />
+    <Compile Include="MobileRequestFilterException.cs" />
+    <Compile Include="MobileRequestFilterNonMemberAuthException.cs" />
+    <Compile Include="MobileRequestUtils.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SecondAuthServiceClient\AuthorizationClient.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AntServiceStack.Baiji\AntServiceStack.Baiji.csproj">
+      <Project>{3C3EDF84-FDD6-4C56-A9FD-F7141E53C708}</Project>
+      <Name>AntServiceStack.Baiji</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AntServiceStack.Client\AntServiceStack.Client.csproj">
+      <Project>{AF60B12F-0D50-4EC0-A69B-712E3B6E5255}</Project>
+      <Name>AntServiceStack.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AntServiceStack.Common\AntServiceStack.Common.csproj">
+      <Project>{75A42B62-6C2E-4EF8-9D79-4D1DB7A11BBA}</Project>
+      <Name>AntServiceStack.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AntServiceStack.ProtoBuf\AntServiceStack.ProtoBuf.csproj">
+      <Project>{8374E4D7-2A91-48F1-9360-09B09CF27C3F}</Project>
+      <Name>AntServiceStack.ProtoBuf</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AntServiceStack.Text\AntServiceStack.Text.csproj">
+      <Project>{9084E0D2-AAF8-45D9-B747-EDF3C276FB51}</Project>
+      <Name>AntServiceStack.Text</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AntServiceStack\AntServiceStack.csproj">
+      <Project>{31F8E14C-DC3D-4BB4-8BEE-2150611A4FAE}</Project>
+      <Name>AntServiceStack</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="MobileAuthServiceClient\CTripSOACommonTypes_V1.0.0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="MobileAuthServiceClient\CTripSOAMobileCommonTypes_V1.0.0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="MobileAuthServiceClient\MobileAuthService.wsdl">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="MobileAuthServiceClient\MobileAuthService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="SecondAuthServiceClient\Authorization.wsdl" />
+    <None Include="SecondAuthServiceClient\Authorization.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="SecondAuthServiceClient\CTripSOACommonTypes_V1.0.0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="SecondAuthServiceClient\CTripSOAMobileCommonTypes_V1.0.0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

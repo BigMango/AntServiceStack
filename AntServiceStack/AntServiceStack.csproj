@@ -1,0 +1,328 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{31F8E14C-DC3D-4BB4-8BEE-2150611A4FAE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AntServiceStack</RootNamespace>
+    <AssemblyName>AntServiceStack</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Web.Administration, Version=7.9.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\Framework\Microsoft.Web.Administration.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\GlobalAssemblyInfo.cs">
+      <Link>Properties\GlobalAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="CacheAccess.Providers\MemoryCacheClient.cs" />
+    <Compile Include="EnvironmentUtility.cs" />
+    <Compile Include="Funq\Action.cs" />
+    <Compile Include="Funq\Container.Adapter.cs" />
+    <Compile Include="Funq\Container.cs" />
+    <Compile Include="Funq\Container.Overloads.cs" />
+    <Compile Include="Funq\Func.cs" />
+    <Compile Include="Funq\IFluentInterface.cs" />
+    <Compile Include="Funq\IFunqlet.cs" />
+    <Compile Include="Funq\Owner.cs" />
+    <Compile Include="Funq\ResolutionException.cs" />
+    <Compile Include="Funq\ReuseScope.cs" />
+    <Compile Include="Funq\ServiceEntry.cs" />
+    <Compile Include="Funq\ServiceEntry.Generic.cs" />
+    <Compile Include="Funq\ServiceKey.cs" />
+    <Compile Include="Funq\Syntax.cs" />
+    <Compile Include="HttpExtensions.cs" />
+    <Compile Include="HystrixCommandHelper.cs" />
+    <Compile Include="HystrixInfoFeature.cs" />
+    <Compile Include="MetadataFeature.cs" />
+    <Compile Include="Plugins\BlackList\AppIdBlackListPlugin.cs" />
+    <Compile Include="Plugins\BlackList\IPBlackListPlugin.cs" />
+    <Compile Include="Plugins\BlackList\BlackListPlugin.cs" />
+    <Compile Include="Plugins\Consul\ConsulDiscovery.cs" />
+    <Compile Include="Plugins\Consul\ConsulFeature.cs" />
+    <Compile Include="Plugins\Consul\ConsulFeatureSettings.cs" />
+    <Compile Include="Plugins\Consul\HostHealthCheck.cs" />
+    <Compile Include="Plugins\Consul\IServiceDiscovery.cs" />
+    <Compile Include="Plugins\Consul\Services\ConsulHeartbeatHandler.cs" />
+    <Compile Include="Plugins\Consul\TypeExtensions.cs" />
+    <Compile Include="Plugins\CrossDomain\CrossDomainPlugin.cs" />
+    <Compile Include="Plugins\CustomOperation\CustomOperationHandler.cs" />
+    <Compile Include="Plugins\CustomOperation\CustomOperationPlugin.cs" />
+    <Compile Include="Plugins\CustomOperation\ICustomOperation.cs" />
+    <Compile Include="Plugins\DynamicPolicy\DynamicPolicyPlugin.cs" />
+    <Compile Include="Plugins\DynamicPolicy\PolicyServiceClient.cs" />
+    <Compile Include="Plugins\RateLimiting\RateLimitingWithMapPlugin.cs" />
+    <Compile Include="Plugins\RequestCounter\AsyncRequestCounterPlugin.cs" />
+    <Compile Include="Plugins\SimpleAuth\SimpleAuthFilter.cs" />
+    <Compile Include="Plugins\SimpleAuth\ISimpleAuthProvider.cs" />
+    <Compile Include="Plugins\SimpleAuth\SimpleAuthPlugin.cs" />
+    <Compile Include="WebHost.Endpoints\Config\FrameworkFoundationConfiguration.cs" />
+    <Compile Include="WebHost.Endpoints\Config\ServiceConfig.cs" />
+    <Compile Include="WebHost.Endpoints\Registry\ArtemisServiceRegistry.cs" />
+    <Compile Include="ServiceHost\SampleMessage.cs" />
+    <Compile Include="ServiceHost\SampleObjects.cs" />
+    <Compile Include="ServiceHost\ServiceCatConstants.cs" />
+    <Compile Include="ServiceHost\MessageLogConfig.cs" />
+    <Compile Include="Plugins\Baiji\BaijiBinaryFormat.cs" />
+    <Compile Include="Plugins\Baiji\BaijiJsonFormat.cs" />
+    <Compile Include="WebHost.Endpoints\PostResponseFilterArgs.cs" />
+    <Compile Include="WebHost.Endpoints\Registry\ArtemisServiceConstants.cs" />
+    <Compile Include="WebHost.Endpoints\Registry\HealthCheckContext.cs" />
+    <Compile Include="WebHost.Endpoints\Registry\HealthCheckRegistryFilter.cs" />
+    <Compile Include="WebHost.Endpoints\Registry\Tools\ArgumentDictionary.cs" />
+    <Compile Include="WebHost.Endpoints\Registry\Tools\AssignmentRule.cs" />
+    <Compile Include="WebHost.Endpoints\Registry\Tools\CheckingRule.cs" />
+    <Compile Include="WebHost.Endpoints\Registry\Tools\CommandLineArgumentException.cs" />
+    <Compile Include="WebHost.Endpoints\Registry\Tools\CommandLineException.cs" />
+    <Compile Include="WebHost.Endpoints\Registry\Tools\CommandParser.cs" />
+    <Compile Include="WebHost.Endpoints\Registry\Tools\CommandRule.cs" />
+    <Compile Include="WebHost.Endpoints\Registry\Tools\CommandSwitch.cs" />
+    <Compile Include="WebHost.Endpoints\Support\HystrixGlobalStreamHandler.cs" />
+    <Compile Include="Plugins\OperationInfo\OperationInfoHandler.cs" />
+    <Compile Include="Plugins\OperationInfo\OperationInfoPlugin.cs" />
+    <Compile Include="Plugins\RateLimiting\AppIdRateLimitingPlugin.cs" />
+    <Compile Include="Plugins\RateLimiting\IPRateLimitingPlugin.cs" />
+    <Compile Include="Plugins\RateLimiting\OperationRateLimitingPlugin.cs" />
+    <Compile Include="Plugins\RateLimiting\RateLimitingBucket.cs" />
+    <Compile Include="Plugins\RateLimiting\RateLimitingBuffer.cs" />
+    <Compile Include="Plugins\RateLimiting\RateLimitingPlugin.cs" />
+    <Compile Include="Plugins\RateLimiting\ServiceRateLimitingPlugin.cs" />
+    <Compile Include="Plugins\RouteInfo\RouteInfoHandler.cs" />
+    <Compile Include="Plugins\RouteInfo\RouteInfoPlugin.cs" />
+    <Compile Include="Plugins\WhiteList\AppIdWhiteListPlugin.cs" />
+    <Compile Include="Plugins\WhiteList\IPWhiteListPlugin.cs" />
+    <Compile Include="Plugins\ConfigInfo\IHasConfigInfo.cs" />
+    <Compile Include="Plugins\ConfigInfo\ConfigInfoHandler.cs" />
+    <Compile Include="Plugins\ConfigInfo\ConfigInfoPlugin.cs" />
+    <Compile Include="Plugins\WhiteList\WhiteListPlugin.cs" />
+    <Compile Include="PredefinedRoutesFeature.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs" />
+    <Compile Include="RequestInfoFeature.cs" />
+    <Compile Include="ServiceHost\ContainerResolveCache.cs" />
+    <Compile Include="ServiceHost\ContainerTypeExtensions.cs" />
+    <Compile Include="ServiceHost\Cookies.cs" />
+    <Compile Include="ServiceHost\ErrorUtils.cs" />
+    <Compile Include="ServiceHost\FileExtensions.cs" />
+    <Compile Include="ServiceHost\HttpFile.cs" />
+    <Compile Include="ServiceHost\HttpRequestAuthentication.cs" />
+    <Compile Include="ServiceHost\HttpRequestContext.cs" />
+    <Compile Include="ServiceHost\HttpRequestExtensions.cs" />
+    <Compile Include="ServiceHost\HttpResponseExtensions.cs" />
+    <Compile Include="ServiceHost\IRequiresSoapMessage.cs" />
+    <Compile Include="ServiceHost\MetadataPagesConfig.cs" />
+    <Compile Include="ServiceHost\RequestAttributes.cs" />
+    <Compile Include="ServiceHost\RestPath.cs" />
+    <Compile Include="ServiceHost\ServiceBase.cs" />
+    <Compile Include="ServiceHost\ServiceController.cs" />
+    <Compile Include="ServiceHost\ServiceManager.cs" />
+    <Compile Include="ServiceHost\ServiceMetadata.cs" />
+    <Compile Include="ServiceHost\ServiceRoutes.cs" />
+    <Compile Include="Validation\MultiRuleSetValidatorSelector.cs" />
+    <Compile Include="Validation\ValidationFeature.cs" />
+    <Compile Include="Validation\ValidationFilters.cs" />
+    <Compile Include="Validation\ValidationResultExtensions.cs" />
+    <Compile Include="Validation\ValidatorCache.cs" />
+    <Compile Include="WebHost.Endpoints\AsyncOperation.cs" />
+    <Compile Include="WebHost.Endpoints\ExecutionResult.cs" />
+    <Compile Include="WebHost.Endpoints\Extensions\LengthObservableResponseStream.cs" />
+    <Compile Include="WebHost.Endpoints\Metadata\BaseSoapMetadataHandler.cs" />
+    <Compile Include="WebHost.Endpoints\Metadata\Soap11Metadatahandler.cs" />
+    <Compile Include="WebHost.Endpoints\Soap11Handler.cs" />
+    <Compile Include="WebHost.Endpoints\Support\HystrixInfoHandler.cs" />
+    <Compile Include="WebHost.Endpoints\Metadata\MultiServiceMetadataHandler.cs" />
+    <Compile Include="WebHost.Endpoints\Support\IServiceStackHttpAsyncHandler.cs" />
+    <Compile Include="WebHost.Endpoints\Support\Metadata\Controls\IndexServicesControl.cs" />
+    <Compile Include="WebHost.Endpoints\Support\Metadata\Controls\Soap11OperationControl.cs" />
+    <Compile Include="WebHost.Endpoints\Support\Testing\BasicAppHost.cs" />
+    <Compile Include="WebHost.Endpoints\Support\Testing\TestAppHost.cs" />
+    <Compile Include="WebHost.Endpoints\ActionHandler.cs" />
+    <Compile Include="WebHost.Endpoints\AppDelegates.cs" />
+    <Compile Include="WebHost.Endpoints\AppHostBase.cs" />
+    <Compile Include="WebHost.Endpoints\AppHostExtensions.cs" />
+    <Compile Include="WebHost.Endpoints\AppHostHttpListenerBase.cs" />
+    <Compile Include="WebHost.Endpoints\AppHostHttpListenerLongRunningBase.cs" />
+    <Compile Include="WebHost.Endpoints\EndpointHost.cs" />
+    <Compile Include="WebHost.Endpoints\EndpointHostConfig.cs" />
+    <Compile Include="WebHost.Endpoints\Extensions\HttpListenerRequestWrapper.cs" />
+    <Compile Include="WebHost.Endpoints\Extensions\HttpListenerResponseWrapper.cs" />
+    <Compile Include="WebHost.Endpoints\Extensions\HttpRequestExtensions.cs" />
+    <Compile Include="WebHost.Endpoints\Extensions\HttpRequestWrapper.cs" />
+    <Compile Include="WebHost.Endpoints\Extensions\HttpResponseStreamExtensions.cs" />
+    <Compile Include="WebHost.Endpoints\Extensions\HttpResponseWrapper.cs" />
+    <Compile Include="WebHost.Endpoints\Extensions\IHttpResponseExtensions.cs" />
+    <Compile Include="WebHost.Endpoints\Formats\HtmlFormat.cs" />
+    <Compile Include="WebHost.Endpoints\GenericHandler.cs" />
+    <Compile Include="WebHost.Endpoints\IAppHost.cs" />
+    <Compile Include="WebHost.Endpoints\IPlugin.cs" />
+    <Compile Include="WebHost.Endpoints\JsonSyncReplyHandler.cs" />
+    <Compile Include="WebHost.Endpoints\JsvSyncReplyHandler.cs" />
+    <Compile Include="WebHost.Endpoints\Metadata\Config\MetadataConfig.cs" />
+    <Compile Include="WebHost.Endpoints\Metadata\BaseMetadataHandler.cs" />
+    <Compile Include="WebHost.Endpoints\Metadata\CustomMetadataHandler.cs" />
+    <Compile Include="WebHost.Endpoints\Metadata\IndexMetadataHandler.cs" />
+    <Compile Include="WebHost.Endpoints\Metadata\JsonMetadataHandler.cs" />
+    <Compile Include="WebHost.Endpoints\Metadata\JsvMetadataHandler.cs" />
+    <Compile Include="WebHost.Endpoints\Metadata\XmlMetadataHandler.cs" />
+    <Compile Include="WebHost.Endpoints\RequestBindingException.cs" />
+    <Compile Include="WebHost.Endpoints\RestHandler.cs" />
+    <Compile Include="WebHost.Endpoints\Metadata\Config\ServiceEndpointsMetadataConfig.cs" />
+    <Compile Include="WebHost.Endpoints\CServiceStackHttpHandlerFactory.cs" />
+    <Compile Include="WebHost.Endpoints\Support\EndpointHandlerBase.cs" />
+    <Compile Include="WebHost.Endpoints\Support\ForbiddenHttpHandler.cs" />
+    <Compile Include="WebHost.Endpoints\Support\GzipOptimizationTest.cs" />
+    <Compile Include="WebHost.Endpoints\Support\HttpHandlerBase.cs" />
+    <Compile Include="WebHost.Endpoints\Support\HttpListenerBase.cs" />
+    <Compile Include="WebHost.Endpoints\Support\IndexPageHttpHandler.cs" />
+    <Compile Include="WebHost.Endpoints\Support\IServiceStackHttpHandler.cs" />
+    <Compile Include="WebHost.Endpoints\Support\Metadata\Controls\IndexOperationsControl.cs" />
+    <Compile Include="WebHost.Endpoints\Support\Metadata\Controls\OperationControl.cs" />
+    <Compile Include="WebHost.Endpoints\Support\Metadata\Controls\OperationsControl.cs" />
+    <Compile Include="WebHost.Endpoints\Support\Mocks\HttpRequestMock.cs" />
+    <Compile Include="WebHost.Endpoints\Support\Mocks\HttpResponseMock.cs" />
+    <Compile Include="WebHost.Endpoints\Support\NotFoundHttpHandler.cs" />
+    <Compile Include="WebHost.Endpoints\Support\RedirectHttpHandler.cs" />
+    <Compile Include="WebHost.Endpoints\Support\RequestInfoHandler.cs" />
+    <Compile Include="WebHost.Endpoints\Support\Templates\HtmlTemplates.cs" />
+    <Compile Include="WebHost.Endpoints\Support\Templates\ListTemplate.cs" />
+    <Compile Include="WebHost.Endpoints\Support\Templates\TableTemplate.cs" />
+    <Compile Include="WebHost.Endpoints\Utils\ConnectionRequestCounterCache.cs" />
+    <Compile Include="WebHost.Endpoints\Utils\FilterAttributeCache.cs" />
+    <Compile Include="WebHost.Endpoints\XmlSyncReplyHandler.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Funq\Container.xdoc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Funq\License.txt" />
+    <EmbeddedResource Include="WebHost.Endpoints\Support\Templates\Html\IndexServices.html" />
+    <EmbeddedResource Include="WebHost.Endpoints\Formats\HtmlFormat.html" />
+    <EmbeddedResource Include="WebHost.Endpoints\Support\Templates\Html\IndexOperations.html" />
+    <EmbeddedResource Include="WebHost.Endpoints\Support\Templates\Html\OperationControl.html" />
+    <EmbeddedResource Include="WebHost.Endpoints\Support\Templates\Html\OperationsControl.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AntServiceStack.Baiji\AntServiceStack.Baiji.csproj">
+      <Project>{3c3edf84-fdd6-4c56-a9fd-f7141e53c708}</Project>
+      <Name>AntServiceStack.Baiji</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AntServiceStack.Client\AntServiceStack.Client.csproj">
+      <Project>{af60b12f-0d50-4ec0-a69b-712e3b6e5255}</Project>
+      <Name>AntServiceStack.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AntServiceStack.Common\AntServiceStack.Common.csproj">
+      <Project>{75a42b62-6c2e-4ef8-9d79-4d1db7a11bba}</Project>
+      <Name>AntServiceStack.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AntServiceStack.Log\AntServiceStack.Log.csproj">
+      <Project>{9618ceba-95d0-4fc2-b6a5-d8b86208d565}</Project>
+      <Name>AntServiceStack.Log</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AntServiceStack.ProtoBuf\AntServiceStack.ProtoBuf.csproj">
+      <Project>{8374e4d7-2a91-48f1-9360-09b09cf27c3f}</Project>
+      <Name>AntServiceStack.ProtoBuf</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AntServiceStack.Text\AntServiceStack.Text.csproj">
+      <Project>{9084e0d2-aaf8-45d9-b747-edf3c276fb51}</Project>
+      <Name>AntServiceStack.Text</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

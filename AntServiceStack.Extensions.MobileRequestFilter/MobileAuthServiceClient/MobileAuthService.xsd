@@ -1,0 +1,143 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:ns="http://soa.ctrip.com/common/types/v1" xmlns="http://soa.ctrip.com/platform/crm/mobileauthservice/v1" xmlns:mobileCommon="http://soa.ctrip.com/mobile/common/types/v1" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://soa.ctrip.com/platform/crm/mobileauthservice/v1" id="MobileAuthServiceTypes" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="CTripSOACommonTypes_V1.0.0.xsd" id="SOACommonTypes" namespace="http://soa.ctrip.com/common/types/v1" />
+  <xs:import schemaLocation="CTripSOAMobileCommonTypes_V1.0.0.xsd" id="SOAMobileCommonTypes" namespace="http://soa.ctrip.com/mobile/common/types/v1" />
+  <xs:complexType name="ValidateAndGetNewTokenRequest">
+    <xs:annotation>
+      <xs:documentation>验证Token并获取新的Token请求</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Token" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Auth令牌</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="head" type="mobileCommon:MobileRequestHead">
+        <xs:annotation />
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ValidateAndGetNewTokenRequest" type="ValidateAndGetNewTokenRequest" />
+  <xs:complexType name="ValidateAndGetNewTokenResponse">
+    <xs:annotation>
+      <xs:documentation>验证Token并获取新的Token响应</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ReturnCode" type="xs:int">
+        <xs:annotation>
+          <xs:documentation>返回码：
+            0-成功
+            1001-Token为空
+            2001-Token无效
+            9000-内部异常</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="Message" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>返回消息</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="NewToken" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>新的Token</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="UserID" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>UserID</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="LoginType" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>登录类型</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="LoginName" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>登录名</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="Version" type="xs:int">
+        <xs:annotation>
+          <xs:documentation>AuthenticationVersion对象的版本</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="Expiration" type="xs:dateTime">
+        <xs:annotation>
+          <xs:documentation>过期时间</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ResponseStatus" type="ns:ResponseStatusType">
+        <xs:annotation />
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ValidateAndGetNewTokenResponse" type="ValidateAndGetNewTokenResponse" />
+  <xs:complexType name="GetNewTokenRequest">
+    <xs:annotation>
+      <xs:documentation>获取新的Token请求</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="LoginName" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>登录名，可以为手机号码，Email，UID</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="Password" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Password</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="head" type="mobileCommon:MobileRequestHead">
+        <xs:annotation />
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetNewTokenRequest" type="GetNewTokenRequest" />
+  <xs:complexType name="GetNewTokenResponse">
+    <xs:annotation>
+      <xs:documentation>获取新的Token响应</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ReturnCode" type="xs:int">
+        <xs:annotation>
+          <xs:documentation>返回码：
+            0-成功
+            1001-登录名为空
+            1002-密码为空
+            2001-身份验证失败
+            9000-内部异常</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="Message" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>返回消息</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="UID" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>UID</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="Token" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Token</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="Version" type="xs:int">
+        <xs:annotation>
+          <xs:documentation>AuthenticationVersion对象的版本</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="Expiration" type="xs:dateTime">
+        <xs:annotation>
+          <xs:documentation>过期时间</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ResponseStatus" type="ns:ResponseStatusType">
+        <xs:annotation />
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetNewTokenResponse" type="GetNewTokenResponse" />
+</xs:schema>

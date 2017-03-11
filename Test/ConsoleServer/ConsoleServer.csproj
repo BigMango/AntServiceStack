@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{32C256B5-DACC-416F-82D0-03493594A824}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ConsoleServer</RootNamespace>
+    <AssemblyName>ConsoleServer</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class1.cs" />
+    <Compile Include="ConsoleSoaController.cs" />
+    <Compile Include="Host.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\AntServiceStack.Baiji\AntServiceStack.Baiji.csproj">
+      <Project>{3c3edf84-fdd6-4c56-a9fd-f7141e53c708}</Project>
+      <Name>AntServiceStack.Baiji</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\AntServiceStack.Client\AntServiceStack.Client.csproj">
+      <Project>{af60b12f-0d50-4ec0-a69b-712e3b6e5255}</Project>
+      <Name>AntServiceStack.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\AntServiceStack.Common\AntServiceStack.Common.csproj">
+      <Project>{75a42b62-6c2e-4ef8-9d79-4d1db7a11bba}</Project>
+      <Name>AntServiceStack.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\AntServiceStack.Plugins.ProtoBuf\AntServiceStack.Plugins.ProtoBuf.csproj">
+      <Project>{d35376c3-5fab-4ddf-b964-c6edcfa5df9b}</Project>
+      <Name>AntServiceStack.Plugins.ProtoBuf</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\AntServiceStack.ProtoBuf\AntServiceStack.ProtoBuf.csproj">
+      <Project>{8374e4d7-2a91-48f1-9360-09b09cf27c3f}</Project>
+      <Name>AntServiceStack.ProtoBuf</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\AntServiceStack.Text\AntServiceStack.Text.csproj">
+      <Project>{9084e0d2-aaf8-45d9-b747-edf3c276fb51}</Project>
+      <Name>AntServiceStack.Text</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\AntServiceStack\AntServiceStack.csproj">
+      <Project>{31f8e14c-dc3d-4bb4-8bee-2150611a4fae}</Project>
+      <Name>AntServiceStack</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\AntServiceStack.Log\AntServiceStack.Log.csproj">
+      <Project>{9618ceba-95d0-4fc2-b6a5-d8b86208d565}</Project>
+      <Name>AntServiceStack.Log</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestContract\TestContract.csproj">
+      <Project>{148dd38a-420a-4df4-8254-c0348068fc36}</Project>
+      <Name>TestContract</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

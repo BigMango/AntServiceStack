@@ -1,0 +1,367 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:ns="http://soa.ctrip.com/common/types/v1" xmlns="http://soa.ctrip.com/platform/account/authorization/v1" xmlns:mobileCommon="http://soa.ctrip.com/mobile/common/types/v1" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://soa.ctrip.com/platform/account/authorization/v1" id="AuthorizationTypes" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="CTripSOACommonTypes_V1.0.0.xsd" id="SOACommonTypes" namespace="http://soa.ctrip.com/common/types/v1" />
+  <xs:import schemaLocation="CTripSOAMobileCommonTypes_V1.0.0.xsd" id="SOAMobileCommonTypes" namespace="http://soa.ctrip.com/mobile/common/types/v1" />
+  <xs:simpleType name="LoginType">
+    <xs:annotation>
+      <xs:documentation>登陆类型</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="MemberLogin">
+        <xs:annotation>
+          <xs:documentation>普通登录</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ThirdPart">
+        <xs:annotation>
+          <xs:documentation>第三方登录</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Union">
+        <xs:annotation>
+          <xs:documentation>联合登录</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Card">
+        <xs:annotation>
+          <xs:documentation>合作卡登录</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="TempUser">
+        <xs:annotation>
+          <xs:documentation>临时用户登录</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DynamicPwd">
+        <xs:annotation>
+          <xs:documentation>动态密码登录</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Other">
+        <xs:annotation>
+          <xs:documentation>其他</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="GetOrder">
+        <xs:annotation>
+          <xs:documentation>查单用户登录</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="LoginType" type="LoginType" />
+  <xs:complexType name="KeyValueString">
+    <xs:annotation>
+      <xs:documentation>KeyValue字符串</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Key" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Key</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="Value" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Value</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="KeyValueString" type="KeyValueString" />
+  <xs:complexType name="ValidateTicketRequest">
+    <xs:annotation>
+      <xs:documentation>验证Ticket状态请求</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Ticket" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Ticket</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="head" type="mobileCommon:MobileRequestHead">
+        <xs:annotation />
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ValidateTicketRequest" type="ValidateTicketRequest" />
+  <xs:complexType name="ValidateTicketResponse">
+    <xs:annotation>
+      <xs:documentation>验证Ticket状态响应</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="UID" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>UID</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="LoginName" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>登录名</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="LoginType" type="LoginType">
+        <xs:annotation>
+          <xs:documentation>登录类型</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="ReturnCode" type="xs:int">
+        <xs:annotation>
+          <xs:documentation>返回码
+            0:成功
+            101:Ticket为空
+            201:Ticket无效
+            202:Ticket已被强制下线 
+            900:内部异常</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="Message" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>返回消息</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ResponseStatus" type="ns:ResponseStatusType">
+        <xs:annotation />
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ValidateTicketResponse" type="ValidateTicketResponse" />
+  <xs:complexType name="GetLoginSessionByTicketRequest">
+    <xs:annotation>
+      <xs:documentation>获取会话信息</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Ticket" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Ticket</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="head" type="mobileCommon:MobileRequestHead">
+        <xs:annotation />
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetLoginSessionByTicketRequest" type="GetLoginSessionByTicketRequest" />
+  <xs:complexType name="GetLoginSessionByTicketResponse">
+    <xs:annotation>
+      <xs:documentation>获取会话信息</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ReturnCode" type="xs:int">
+        <xs:annotation>
+          <xs:documentation>返回码
+            0:成功
+            101:Ticket为空
+            201:Ticket无效
+            202:Ticket已被强制下线 
+            900:内部异常</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="Message" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>返回消息</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="UID" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>UID</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="LoginName" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>登录名</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="LoginType" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>登录类型</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="LoginEntrance" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>登录入口</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="LoginWay" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>登录站点</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="LoginTime" type="xs:dateTime">
+        <xs:annotation>
+          <xs:documentation>登录时间</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="Expiration" type="xs:dateTime">
+        <xs:annotation>
+          <xs:documentation>过期时间</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="ClientIP" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>登录IP</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="IsAutoLogin" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>是否自动登录</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SessionInfo" type="KeyValueString">
+        <xs:annotation>
+          <xs:documentation>扩展会话信息</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ResponseStatus" type="ns:ResponseStatusType">
+        <xs:annotation />
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetLoginSessionByTicketResponse" type="GetLoginSessionByTicketResponse" />
+  <xs:simpleType name="SecondTokenSceneType">
+    <xs:annotation>
+      <xs:documentation>二级授权场景</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="InternalMessage">
+        <xs:annotation>
+          <xs:documentation>站内信</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ThirdPartInfo">
+        <xs:annotation>
+          <xs:documentation>第三方会员信息</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Other">
+        <xs:annotation>
+          <xs:documentation>其他</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="SecondTokenSceneType" type="SecondTokenSceneType" />
+  <xs:complexType name="GenSecondAuthorizationTokenRequest">
+    <xs:annotation>
+      <xs:documentation>创建二级授权token请求</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="SceneType" type="SecondTokenSceneType">
+        <xs:annotation>
+          <xs:documentation>验证场景</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="Auth" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Auth</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="head" type="mobileCommon:MobileRequestHead">
+        <xs:annotation />
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GenSecondAuthorizationTokenRequest" type="GenSecondAuthorizationTokenRequest" />
+  <xs:complexType name="GenSecondAuthorizationTokenResponse">
+    <xs:annotation>
+      <xs:documentation>创建二级授权token响应</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Token" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Token</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="Uid" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>UID</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="ExpiredTime" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>过期时间</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="ReturnCode" type="xs:int">
+        <xs:annotation>
+          <xs:documentation>返回码
+            0:成功
+            101:Ticket为空
+            201:Ticket无效
+            202:Ticket已被强制下线 
+            900:内部异常</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="Message" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>返回消息</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ResponseStatus" type="ns:ResponseStatusType">
+        <xs:annotation />
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GenSecondAuthorizationTokenResponse" type="GenSecondAuthorizationTokenResponse" />
+  <xs:complexType name="CheckSecondTokenRequest">
+    <xs:annotation>
+      <xs:documentation>验证二级授权请求</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Token" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>验证token</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="Auth" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>一级auth</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="head" type="mobileCommon:MobileRequestHead">
+        <xs:annotation />
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CheckSecondTokenRequest" type="CheckSecondTokenRequest" />
+  <xs:complexType name="CheckSecondTokenResponse">
+    <xs:annotation>
+      <xs:documentation>验证二级授权响应</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Uid" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>UID</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="ReturnCode" type="xs:int">
+        <xs:annotation>
+          <xs:documentation>返回码
+            0:成功
+            101:Token为空
+            102：auth为空
+            201:验证失败
+            900:内部异常</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="Message" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>返回消息</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="IsNew" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>Token是否新生成</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="Token" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Token</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ResponseStatus" type="ns:ResponseStatusType">
+        <xs:annotation />
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CheckSecondTokenResponse" type="CheckSecondTokenResponse" />
+</xs:schema>
