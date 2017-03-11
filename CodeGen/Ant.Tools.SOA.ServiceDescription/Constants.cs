@@ -1,4 +1,4 @@
-﻿namespace CTrip.Tools.SOA.ServiceDescription
+﻿namespace Ant.Tools.SOA.ServiceDescription
 {
     internal class Constants
     {

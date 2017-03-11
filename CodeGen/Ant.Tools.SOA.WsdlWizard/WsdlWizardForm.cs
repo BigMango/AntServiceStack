@@ -10,13 +10,14 @@ using System.IO;
 using System.Text;
 using System.Reflection;
 using System.Net;
-using CTrip.Tools.SOA.ServiceDescription;
+using Ant.Tools.SOA.ServiceDescription;
 using WizardControl;
 using WRM.Windows.Forms;
-using Message = CTrip.Tools.SOA.ServiceDescription.Message;
-using CTrip.Tools.SOA.Util;
+using Message = Ant.Tools.SOA.ServiceDescription.Message;
+using Ant.Tools.SOA.Util;
+using Ant.Tools.SOA;
 
-namespace CTrip.Tools.SOA.WsdlWizard
+namespace Ant.Tools.SOA.WsdlWizard
 {
     /// <summary>
     /// Represents the user interface handler for WsdlWizardForm.
@@ -68,12 +69,12 @@ namespace CTrip.Tools.SOA.WsdlWizard
         private WRM.Windows.Forms.PropertyTree ptvServiceOperations;
         private WizardControl.WizardPage wizardPageSchemaImports;
         private System.Windows.Forms.GroupBox groupBox2;
-        private CTrip.Tools.SOA.WsdlWizard.EditableListView importsListView;
+        private WsdlWizard.EditableListView importsListView;
         private System.Windows.Forms.LinkLabel llAddImport;
         private System.Windows.Forms.LinkLabel llRemoveImport;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private WizardControl.WizardPage wizardPageAlternativeXSDPaths;
-        private CTrip.Tools.SOA.WsdlWizard.EditableListView xsdpathsListView;
+        private WsdlWizard.EditableListView xsdpathsListView;
         private System.Windows.Forms.ToolTip toolTipPath;
         private System.Windows.Forms.CheckBox cbInfer;
         private OperationsCollection inferOperations = new OperationsCollection(10);
@@ -294,10 +295,10 @@ namespace CTrip.Tools.SOA.WsdlWizard
             this.llAddFolder = new System.Windows.Forms.LinkLabel();
             this.llRemoveImport = new System.Windows.Forms.LinkLabel();
             this.llAddImport = new System.Windows.Forms.LinkLabel();
-            this.importsListView = new CTrip.Tools.SOA.WsdlWizard.EditableListView();
+            this.importsListView = new WsdlWizard.EditableListView();
             this.wizardPageOperationsList = new WizardControl.WizardPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.operationsListView = new CTrip.Tools.SOA.WsdlWizard.EditableListView();
+            this.operationsListView = new WsdlWizard.EditableListView();
             this.llAddOperation = new System.Windows.Forms.LinkLabel();
             this.llRemoveOperation = new System.Windows.Forms.LinkLabel();
             this.cbInfer = new System.Windows.Forms.CheckBox();
@@ -312,7 +313,7 @@ namespace CTrip.Tools.SOA.WsdlWizard
             this.cbNeedsServiceElement = new System.Windows.Forms.CheckBox();
             this.cbCodeGenDialog = new System.Windows.Forms.CheckBox();
             this.wizardPageAlternativeXSDPaths = new WizardControl.WizardPage();
-            this.xsdpathsListView = new CTrip.Tools.SOA.WsdlWizard.EditableListView();
+            this.xsdpathsListView = new WsdlWizard.EditableListView();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.toolTipPath = new System.Windows.Forms.ToolTip(this.components);

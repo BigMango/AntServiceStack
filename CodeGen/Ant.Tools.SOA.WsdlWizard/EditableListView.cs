@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Collections;
 
-namespace CTrip.Tools.SOA.WsdlWizard
+namespace Ant.Tools.SOA.WsdlWizard
 {
 	#region EditableListView class
 

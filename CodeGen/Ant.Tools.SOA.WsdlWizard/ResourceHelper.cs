@@ -2,7 +2,7 @@
 using System.Resources;
 using System.Reflection;
 
-namespace CTrip.Tools.SOA.Util
+namespace Ant.Tools.SOA.Util
 {
     /// <summary>
     /// This is a helper class which allows to read the resource file entries.

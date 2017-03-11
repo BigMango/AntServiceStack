@@ -1,4 +1,4 @@
-namespace CTrip.Tools.SOA.WsdlWizard
+namespace Ant.Tools.SOA.WsdlWizard
 {
 	#region CodeConstants class
 

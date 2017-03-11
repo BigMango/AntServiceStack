@@ -18,7 +18,7 @@ using System.Text;
 
 using Binding = System.Web.Services.Description.Binding;
 
-namespace CTrip.Tools.SOA.ServiceDescription
+namespace Ant.Tools.SOA.ServiceDescription
 {
     #region ServiceDescriptionEngine class
 

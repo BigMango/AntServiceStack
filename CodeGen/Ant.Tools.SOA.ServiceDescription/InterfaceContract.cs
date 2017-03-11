@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace CTrip.Tools.SOA.ServiceDescription
+namespace Ant.Tools.SOA.ServiceDescription
 {
     #region InterfaceContract class
 

@@ -5,7 +5,7 @@ using System.ServiceModel.Description;
 using System.Xml;
 using System.IO;
 
-namespace CTrip.Tools.SOA.ServiceDescription
+namespace Ant.Tools.SOA.ServiceDescription
 {
     internal sealed class WsdlWorkshop
     {

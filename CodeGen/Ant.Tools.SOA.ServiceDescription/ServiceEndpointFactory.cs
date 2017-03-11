@@ -4,7 +4,7 @@ using System.Text;
 using System.ServiceModel.Description;
 using System.ServiceModel.Channels;
 
-namespace CTrip.Tools.SOA.ServiceDescription
+namespace Ant.Tools.SOA.ServiceDescription
 {
     internal class ServiceEndpointFactory<T> where T : class
     {

@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace CTrip.Tools.SOA.WsdlWizard
+namespace Ant.Tools.SOA.WsdlWizard
 {
 	#region WsdlFileLoadException class
 

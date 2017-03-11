@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace CTrip.Tools.SOA
+namespace Ant.Tools.SOA
 {
     #region WsdlGenerationException class
 

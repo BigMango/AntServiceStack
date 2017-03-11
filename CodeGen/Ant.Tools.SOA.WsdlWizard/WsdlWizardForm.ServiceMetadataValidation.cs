@@ -10,15 +10,15 @@ using System.IO;
 using System.Text;
 using System.Reflection;
 using System.Net;
-using CTrip.Tools.SOA.ServiceDescription;
+using Ant.Tools.SOA.ServiceDescription;
 using WizardControl;
 using WRM.Windows.Forms;
-using Message = CTrip.Tools.SOA.ServiceDescription.Message;
-using CTrip.Tools.SOA.Util;
+using Message = Ant.Tools.SOA.ServiceDescription.Message;
+using Ant.Tools.SOA;
 using AntServiceStack.Text;
 using System.Xml.Serialization;
 
-namespace CTrip.Tools.SOA.WsdlWizard
+namespace Ant.Tools.SOA.WsdlWizard
 {
     public partial class WsdlWizardForm
     {
