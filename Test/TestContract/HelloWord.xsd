@@ -6,10 +6,10 @@
     xmlns="http://tempuri.org/HelloWord.xsd"
     xmlns:mstns="http://tempuri.org/HelloWord.xsd"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:common="http://soa.ctrip.com/common/types/v1"
+    xmlns:common="http://soa.ant.com/common/types/v1"
 >
-  <xs:import id="SOACommonTypes" schemaLocation="CTripSOACommonTypes_V1.0.0.xsd"
-  namespace="http://soa.ctrip.com/common/types/v1"/>
+  <xs:import id="SOACommonTypes" schemaLocation="AntSOACommonTypes_V1.0.0.xsd"
+  namespace="http://soa.ant.com/common/types/v1"/>
 
   
   <xs:element name="HelloWorldRequest" type="HelloWorldRequestType" />

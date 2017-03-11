@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema id="CTripSOACommonTypes"
-    targetNamespace="http://soa.ctrip.com/common/types/v1"
+<xs:schema id="AntSOACommonTypes"
+    targetNamespace="http://soa.ant.com/common/types/v1"
     elementFormDefault="qualified"
     attributeFormDefault="unqualified"
-    xmlns="http://soa.ctrip.com/common/types/v1"
-    xmlns:ns="http://soa.ctrip.com/common/types/v1"
+    xmlns="http://soa.ant.com/common/types/v1"
+    xmlns:ns="http://soa.ant.com/common/types/v1"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
 >
   <xs:complexType name="CommonRequestType">
@@ -610,7 +610,7 @@
     </xs:sequence>
   </xs:complexType>
 
-  <xs:element name="CheckHealthRequest" type="ns:CheckHealthRequestType"/>
+<!--   <xs:element name="CheckHealthRequest" type="ns:CheckHealthRequestType"/>
   <xs:complexType name="CheckHealthRequestType">
     <xs:annotation>
       <xs:documentation>
@@ -634,7 +634,7 @@
       <xs:element name="ResponseStatus" type="ns:ResponseStatusType"/>
     </xs:sequence>
   </xs:complexType>
-
+ -->
   <xs:complexType name="GenericErrorResponseType">
     <xs:annotation>
       <xs:documentation>

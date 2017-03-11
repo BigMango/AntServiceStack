@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema id="CTripSOAMobileCommonTypes"
-    targetNamespace="http://soa.ctrip.com/mobile/common/types/v1"
+<xs:schema id="AntSOAMobileCommonTypes"
+    targetNamespace="http://soa.ant.com/mobile/common/types/v1"
     elementFormDefault="qualified"
     attributeFormDefault="unqualified"
-    xmlns="http://soa.ctrip.com/mobile/common/types/v1"
+    xmlns="http://soa.ant.com/mobile/common/types/v1"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
 >
   <xs:complexType name="MobileRequestHead">
