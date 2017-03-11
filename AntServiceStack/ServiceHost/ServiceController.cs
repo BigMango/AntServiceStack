@@ -110,10 +110,10 @@ namespace AntServiceStack.ServiceHost
             foreach (var serviceIntf in serviceType.GetInterfaces())
             {
                 // Is this service supported by AntServiceStack
-                if (!serviceIntf.HasAttribute<CServiceInterfaceAttribute>()) continue;
+                if (!serviceIntf.HasAttribute<AntServiceInterfaceAttribute>()) continue;
 
                 // Copy service name and namespace from CServiceInterface attribute 只拿第一个
-                var cserviceAttribute = serviceIntf.AttributesOfType<CServiceInterfaceAttribute>().First();
+                var cserviceAttribute = serviceIntf.AttributesOfType<AntServiceInterfaceAttribute>().First();
 
                 //拿到服务名称 服务的命名空间 和 CodeGen的版本号
                 ServiceMetadata serviceMetadata = new ServiceMetadata(

@@ -235,7 +235,7 @@ namespace TestContract
     /// 
     /// 
     /// </summary>
-    [CServiceInterface("CloudBagRestFulApi", "http://soa.ctrip.com/innovationwork/CloudBag/v1", "2.0.9.2")]
+    [AntServiceInterface("CloudBagRestFulApi", "http://soa.ctrip.com/innovationwork/CloudBag/v1", "2.0.9.2")]
     public interface ICloudBagRestFulApi
     {
         

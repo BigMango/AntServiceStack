@@ -11,9 +11,18 @@ namespace TestClient
 {
     class Program
     {
-        static CloudBagRestFulApiClient client = CloudBagRestFulApiClient.GetInstance();
+        static CloudBagRestFulApiClient client = CloudBagRestFulApiClient.GetInstance("http://localhost/WebApplication");
         static void Main(string[] args)
         {
+            //TestConsul();
+            //TestHystrix();
+
+            Console.ReadLine();
+        }
+
+        static void TestConsul()
+        {
+
             HelloWorldRequestType hystrixIn = new HelloWorldRequestType();
             try
             {
@@ -22,16 +31,14 @@ namespace TestClient
                     var hystrixOut = client.StartIOCPTaskOfHelloWorld(hystrixIn).Result;
                     Console.WriteLine(hystrixOut.Response);
                 }
-                
+
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message + e.InnerException?.Message);
             }
 
-            Console.ReadLine();
         }
-
         static void TestHystrix()
         {
             int threadcnt = 50;

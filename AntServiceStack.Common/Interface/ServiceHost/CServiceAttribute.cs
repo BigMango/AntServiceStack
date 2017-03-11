@@ -9,7 +9,7 @@ namespace AntServiceStack.ServiceHost
     /// Mark a AntServiceStack supported service
     /// </summary>
     [AttributeUsage(AttributeTargets.Interface, AllowMultiple = false, Inherited = false)]
-    public class CServiceInterfaceAttribute : Attribute
+    public class AntServiceInterfaceAttribute : Attribute
     {
         internal const string DefaultCodeGeneratorVersion = "1.0.0.0";
 
@@ -31,7 +31,7 @@ namespace AntServiceStack.ServiceHost
         /// <summary>
         /// Mark a AntServiceStack supported service
         /// </summary>
-        public CServiceInterfaceAttribute()
+        public AntServiceInterfaceAttribute()
         {
             CodeGeneratorVersion = DefaultCodeGeneratorVersion;
         }
@@ -41,7 +41,7 @@ namespace AntServiceStack.ServiceHost
         /// </summary>
         /// <param name="serviceName">service name</param>
         /// <param name="serviceNamespace">service name space</param>
-        public CServiceInterfaceAttribute(string serviceName, string serviceNamespace)
+        public AntServiceInterfaceAttribute(string serviceName, string serviceNamespace)
             : this(serviceName, serviceNamespace, DefaultCodeGeneratorVersion)
         {
         }
@@ -52,7 +52,7 @@ namespace AntServiceStack.ServiceHost
         /// <param name="serviceName">service name</param>
         /// <param name="serviceNamespace">service name space</param>
         /// <param name="version">The version of CTrip Code Generator used to generate this service</param>
-        public CServiceInterfaceAttribute(string serviceName, string serviceNamespace, string version)
+        public AntServiceInterfaceAttribute(string serviceName, string serviceNamespace, string version)
         {
             ServiceName = serviceName;
             ServiceNamespace = serviceNamespace;

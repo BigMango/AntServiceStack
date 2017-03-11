@@ -150,7 +150,7 @@ namespace AntServiceStack.Common.Utils
         {
             foreach (Type intf in type.GetInterfaces())
             {
-                if (intf.HasAttribute<CServiceInterfaceAttribute>())
+                if (intf.HasAttribute<AntServiceInterfaceAttribute>())
                 {
                     return true;
                 }

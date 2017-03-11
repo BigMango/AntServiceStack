@@ -99,6 +99,10 @@
       <Project>{75a42b62-6c2e-4ef8-9d79-4d1db7a11bba}</Project>
       <Name>AntServiceStack.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\AntServiceStack.Log\AntServiceStack.Log.csproj">
+      <Project>{9618ceba-95d0-4fc2-b6a5-d8b86208d565}</Project>
+      <Name>AntServiceStack.Log</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\AntServiceStack.Plugins.ProtoBuf\AntServiceStack.Plugins.ProtoBuf.csproj">
       <Project>{d35376c3-5fab-4ddf-b964-c6edcfa5df9b}</Project>
       <Name>AntServiceStack.Plugins.ProtoBuf</Name>
@@ -114,10 +118,6 @@
     <ProjectReference Include="..\..\AntServiceStack\AntServiceStack.csproj">
       <Project>{31f8e14c-dc3d-4bb4-8bee-2150611a4fae}</Project>
       <Name>AntServiceStack</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\AntServiceStack.Log\AntServiceStack.Log.csproj">
-      <Project>{9618ceba-95d0-4fc2-b6a5-d8b86208d565}</Project>
-      <Name>AntServiceStack.Log</Name>
     </ProjectReference>
     <ProjectReference Include="..\TestContract\TestContract.csproj">
       <Project>{148dd38a-420a-4df4-8254-c0348068fc36}</Project>

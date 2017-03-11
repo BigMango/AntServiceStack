@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestContract", "Test\TestCo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication", "Test\WebApplication\WebApplication.csproj", "{DC055283-1237-42FC-9D6A-EED163BEB7EE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CodeGen", "CodeGen", "{1FB70AD3-206F-4A03-8FC6-BB57D691C6B4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CoreOnly|Any CPU = CoreOnly|Any CPU

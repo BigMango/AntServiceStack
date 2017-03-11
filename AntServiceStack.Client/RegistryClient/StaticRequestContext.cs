@@ -12,11 +12,16 @@ namespace AntServiceStack.Client.RegistryClient
         {
             Server = new[]
             {
-                new ConsulServiceResponse
+                ConsulServiceResponse.Create(new ConsulHealthResponse
                 {
-                    ServiceID = serverKey,
-                    ServiceAddress = address
-                }
+                    Node = new Node(),
+                    Service = new ConsulHealthService
+                        {
+                            Service = serverKey,
+                            Address = address,
+                            ID = serverKey
+                        }
+                })
             };
         }
         public ConsulServiceResponse[] Server { get; }

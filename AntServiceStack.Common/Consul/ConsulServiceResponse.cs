@@ -11,13 +11,13 @@ namespace AntServiceStack.Common.Consul
     {
         public string Node { get; private set; }
 
-        public string ServiceID { get;  set; }
+        public string ServiceID { get; private set; }
 
         public string ServiceName { get; private set; }
 
         public string[] ServiceTags { get; private set; }
 
-        public string ServiceAddress { get;  set; }
+        public string ServiceAddress { get; private set; }
 
         public int ServicePort { get; private set; }
 

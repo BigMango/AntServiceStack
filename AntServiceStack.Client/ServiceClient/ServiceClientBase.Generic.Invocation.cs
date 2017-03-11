@@ -371,8 +371,6 @@ namespace AntServiceStack.ServiceClient
                     addHeaders = new NameValueCollection();
                 addHeaders[ServiceUtils.AppIdHttpHeaderKey] = AppId;
             }
-
-            BaseUri = context.ServiceUrl;
             string requestUri;
             if (IsSLBService)
                 requestUri = context.ServiceUrl.WithTrailingSlash() + context.Operation + "." + context.Format;
