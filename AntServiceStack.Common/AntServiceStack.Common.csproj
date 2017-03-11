@@ -8,8 +8,8 @@
     <ProjectGuid>{75A42B62-6C2E-4EF8-9D79-4D1DB7A11BBA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AntServiceStack.Client</RootNamespace>
-    <AssemblyName>AntServiceStack.Client</AssemblyName>
+    <RootNamespace>AntServiceStack.Common</RootNamespace>
+    <AssemblyName>AntServiceStack.Common</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <PublishUrl>publish\</PublishUrl>

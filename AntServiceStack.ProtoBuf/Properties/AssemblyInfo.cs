@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("AntServiceStack.ProtoBuf")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyProduct("AntServiceStack")]
+[assembly: AssemblyProduct("AntServiceStack.ProtoBuf")]
 [assembly: AssemblyCopyright("Copyright © CTrip 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

@@ -7,8 +7,8 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("AntServiceStack.Text")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyProduct("AntServiceStack")]
-[assembly: AssemblyCopyright("Copyright © CTrip 2013")]
+[assembly: AssemblyProduct("AntServiceStack.Text")]
+[assembly: AssemblyCopyright("Copyright © 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

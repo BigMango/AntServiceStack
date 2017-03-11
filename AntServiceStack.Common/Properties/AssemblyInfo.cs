@@ -10,7 +10,7 @@ using System.Runtime.Serialization;
 [assembly: AssemblyTitle("AntServiceStack.Common")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyProduct("AntServiceStack")]
+[assembly: AssemblyProduct("AntServiceStack.Common")]
 [assembly: AssemblyCopyright("Copyright © 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

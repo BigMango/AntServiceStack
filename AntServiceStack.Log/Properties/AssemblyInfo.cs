@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("AntServiceStack.Extensions.MobileRequestFilter")]
+[assembly: AssemblyTitle("AntServiceStack.Log")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("AntServiceStack.Extensions.MobileRequestFilter")]
-[assembly: AssemblyCopyright("Copyright © ")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("AntServiceStack.Log")]
+[assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,4 +20,15 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("bbb3f07b-e0fd-42a1-a3e7-bda53c11c5ee")]
+[assembly: Guid("9618ceba-95d0-4fc2-b6a5-d8b86208d565")]
+
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Build and Revision Numbers 
+// by using the '*' as shown below:
+

@@ -2,7 +2,7 @@
 using AntServiceStack.ProtoBuf.Meta;
 using System;
 using System.IO;
-using AntServiceStack.ServiceClient;
+using AntServiceStack.Common.ServiceClient;
 
 namespace AntServiceStack.Plugins.ProtoBuf
 {

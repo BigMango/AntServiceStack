@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Data;
 using AntServiceStack.WebHost.Endpoints;
-using AntServiceStack.OrmLite;
 using AntServiceStack.CacheAccess;
 using AntServiceStack.Common.Types;
 using AntServiceStack.Common.Interface.ServiceHost;
@@ -46,16 +45,9 @@ namespace AntServiceStack.ServiceHost
             }
         }
 
-        private IDbConnection db;
-        public virtual IDbConnection Db
-        {
-            get { return db ?? (db = TryResolve<IDbConnectionFactory>().OpenDbConnection()); }
-        }
-
         public virtual void Dispose()
         {
-            if (db != null)
-                db.Dispose();
+         
         }
 
         public virtual CheckHealthResponseType CheckHealth(CheckHealthRequestType request)

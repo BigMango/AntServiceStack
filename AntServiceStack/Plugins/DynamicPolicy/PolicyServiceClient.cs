@@ -21,10 +21,10 @@ namespace AntServiceStack.Plugins.DynamicPolicy
     using System.Collections.Generic;
     using AntServiceStack.ProtoBuf;
     using AntServiceStack.ServiceHost;
+    using AntServiceStack.ServiceClient;
     using System.Threading;
     using System.Threading.Tasks;
     using AntServiceStack.Common.Types;
-    using AntServiceStack.se
 
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1026")]
     [System.SerializableAttribute()]

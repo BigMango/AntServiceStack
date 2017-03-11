@@ -119,6 +119,10 @@
     <Compile Include="Trace\IOCPResponseSpanWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AntServiceStack.Common\AntServiceStack.Common.csproj">
+      <Project>{75a42b62-6c2e-4ef8-9d79-4d1db7a11bba}</Project>
+      <Name>AntServiceStack.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AntServiceStack.Log\AntServiceStack.Log.csproj">
       <Project>{9618ceba-95d0-4fc2-b6a5-d8b86208d565}</Project>
       <Name>AntServiceStack.Log</Name>
@@ -126,10 +130,6 @@
     <ProjectReference Include="..\AntServiceStack.Baiji\AntServiceStack.Baiji.csproj">
       <Project>{3C3EDF84-FDD6-4C56-A9FD-F7141E53C708}</Project>
       <Name>AntServiceStack.Baiji</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AntServiceStack.Common\AntServiceStack.Common.csproj">
-      <Project>{75A42B62-6C2E-4EF8-9D79-4D1DB7A11BBA}</Project>
-      <Name>AntServiceStack.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\AntServiceStack.ProtoBuf\AntServiceStack.ProtoBuf.csproj">
       <Project>{8374E4D7-2A91-48F1-9360-09B09CF27C3F}</Project>
