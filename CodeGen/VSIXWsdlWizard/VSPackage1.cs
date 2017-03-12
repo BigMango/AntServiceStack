@@ -10,11 +10,14 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Runtime.InteropServices;
+using EnvDTE;
+using EnvDTE80;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.OLE.Interop;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.Win32;
+using VSIXWsdlWizard;
 
 namespace VSIXProject2
 {
@@ -42,6 +45,17 @@ namespace VSIXProject2
     [ProvideMenuResource("Menus.ctmenu", 1)]
     public sealed class VSPackage1 : Package
     {
+        private static DTE2 _dte;
+        internal static DTE2 DTE
+        {
+            get
+            {
+                if (_dte == null)
+                    _dte = ServiceProvider.GlobalProvider.GetService(typeof(DTE)) as DTE2;
+
+                return _dte;
+            }
+        }
         /// <summary>
         /// VSPackage1 GUID string.
         /// </summary>
@@ -67,9 +81,21 @@ namespace VSIXProject2
         protected override void Initialize()
         {
             base.Initialize();
+            OleMenuCommandService mcs = GetService(typeof(IMenuCommandService)) as OleMenuCommandService;
+            if (null != mcs)
+            {
+                AddIntellisenseFileMenu intellisenseFile = new AddIntellisenseFileMenu(DTE, mcs, ItemToHandle);
+                intellisenseFile.SetupCommands();
+            }
             FirstCommand.Initialize(this);
         }
+        private bool ItemToHandle()
+        {
 
+            DTE2 Application = (DTE2)GetService(typeof(DTE));
+
+            return ((Application.SelectedItems.Count == 1) && (Application.SelectedItems.Item(1).ProjectItem != null) && (Application.SelectedItems.Item(1).ProjectItem.Name.Contains(".cs")));
+        }
         #endregion
     }
 }

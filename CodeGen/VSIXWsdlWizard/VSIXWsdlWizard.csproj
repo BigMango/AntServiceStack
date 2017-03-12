@@ -51,6 +51,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AddIntellisenseFileMenu.cs" />
+    <Compile Include="CommandConstants.cs" />
     <Compile Include="FirstCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VSPackage1.cs" />
