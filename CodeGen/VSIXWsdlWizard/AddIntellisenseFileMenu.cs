@@ -8,6 +8,8 @@
 
 using System.ComponentModel.Design;
 using System.IO;
+using System.Windows.Forms;
+using Ant.Tools.SOA.WsdlWizard;
 using EnvDTE;
 using EnvDTE80;
 using Microsoft.VisualStudio.Shell;
@@ -62,6 +64,39 @@ namespace VSIXWsdlWizard
             {
                 var _file = items.ElementAt(0);
                 var fileInfo = new FileInfo(_file);
+                var folder = fileInfo.Directory?.FullName;
+                var project = ProjectHelpers.GetActiveProject().FullName;
+                var projectInfo = new FileInfo(project);
+                var folderproject = projectInfo.Directory?.FullName;
+                if (!string.IsNullOrEmpty(folder))
+                {
+                    WsdlWizardForm wizard = null;
+                    try
+                    {
+                      
+                        wizard = new WsdlWizardForm(_file);
+                        wizard.WsdlLocation = folder;
+                        wizard.DefaultPathForImports = "";
+                        wizard.ProjectRootDirectory = folderproject;
+                        wizard.ShowDialog();
+
+                        string wsdlFile = "";
+                        if (wizard.DialogResult == DialogResult.OK)
+                        {
+                            if (wizard.WsdlLocation.Length > 0)
+                            {
+                                wsdlFile = wizard.WsdlLocation;
+                                ProjectHelpers.AddFileToActiveProject(wsdlFile);
+                                //ProcessCodeGenerationRequest(wsdlFile);
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message,"WSDL Wizard", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        if (wizard != null) wizard.Close();
+                    }
+                }
             }
 
         }

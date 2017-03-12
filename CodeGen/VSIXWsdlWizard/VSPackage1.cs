@@ -43,6 +43,7 @@ namespace VSIXProject2
     [Guid(VSPackage1.PackageGuidString)]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "pkgdef, VS and vsixmanifest are valid VS terms")]
     [ProvideMenuResource("Menus.ctmenu", 1)]
+    [ProvideAutoLoad(UIContextGuids80.SolutionExists)]
     public sealed class VSPackage1 : Package
     {
         private static DTE2 _dte;
@@ -87,7 +88,6 @@ namespace VSIXProject2
                 AddIntellisenseFileMenu intellisenseFile = new AddIntellisenseFileMenu(DTE, mcs, ItemToHandle);
                 intellisenseFile.SetupCommands();
             }
-            FirstCommand.Initialize(this);
         }
 
         /// <summary>
