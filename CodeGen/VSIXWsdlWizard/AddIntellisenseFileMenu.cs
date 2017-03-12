@@ -7,9 +7,11 @@
 //-----------------------------------------------------------------------
 
 using System.ComponentModel.Design;
+using System.IO;
 using EnvDTE;
 using EnvDTE80;
 using Microsoft.VisualStudio.Shell;
+using VSIXWsdlWizard.Common;
 
 namespace VSIXWsdlWizard
 {
@@ -27,9 +29,8 @@ namespace VSIXWsdlWizard
     {
         private DTE2 _dte;
         private OleMenuCommandService _mcs;
-        private string _file;
-        private Func<bool> _itemToHandleFunc;
-        public AddIntellisenseFileMenu(DTE2 dte, OleMenuCommandService mcs,Func<bool> itemToHandleFunc)
+        private Func<string, bool> _itemToHandleFunc;
+        public AddIntellisenseFileMenu(DTE2 dte, OleMenuCommandService mcs,Func<string,bool> itemToHandleFunc)
         {
             _dte = dte;
             _mcs = mcs;
@@ -38,33 +39,55 @@ namespace VSIXWsdlWizard
         public void SetupCommands()
         {
             CommandID JsId = new CommandID(CommandGuids.guidDiffCmdSet, (int)CommandId.CreateJavaScriptIntellisenseFile);
-            OleMenuCommand jsCommand = new OleMenuCommand(CommandInvoke, JsId);
+            OleMenuCommand jsCommand = new OleMenuCommand(XsdCommandInvoke, JsId);
             jsCommand.BeforeQueryStatus += JavaScript_BeforeQueryStatus;
             _mcs.AddCommand(jsCommand);
 
             CommandID tsId = new CommandID(CommandGuids.guidDiffCmdSet, (int)CommandId.CreateTypeScriptIntellisenseFile);
-            OleMenuCommand tsCommand = new OleMenuCommand(CommandInvoke, tsId);
+            OleMenuCommand tsCommand = new OleMenuCommand(WsdlCommandInvoke, tsId);
             tsCommand.BeforeQueryStatus += TypeScript_BeforeQueryStatus;
             _mcs.AddCommand(tsCommand);
         }
 
-        private void CommandInvoke(object sender, EventArgs e)
+        /// <summary>
+        /// xsd生成wsdl
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void XsdCommandInvoke(object sender, EventArgs e)
         {
+            var items = ProjectHelpers.GetSelectedItemPaths(_dte);
+            if (items.Count() == 1 &&
+                (items.ElementAt(0).ToLower().EndsWith(".xsd", StringComparison.OrdinalIgnoreCase)))
+            {
+                var _file = items.ElementAt(0);
+                var fileInfo = new FileInfo(_file);
+            }
 
+        }
+
+        private void WsdlCommandInvoke(object sender, EventArgs e)
+        {
+            var items = ProjectHelpers.GetSelectedItemPaths(_dte);
+            if (items.Count() == 1 &&
+                (items.ElementAt(0).ToLower().EndsWith(".wsdl", StringComparison.OrdinalIgnoreCase)))
+            {
+               var _file = items.ElementAt(0);
+            }
         }
 
         void JavaScript_BeforeQueryStatus(object sender, System.EventArgs e)
         {
             OleMenuCommand oCommand = (OleMenuCommand)sender;
 
-            oCommand.Visible = _itemToHandleFunc();
+            oCommand.Visible = _itemToHandleFunc(".xsd");
         }
 
         void TypeScript_BeforeQueryStatus(object sender, System.EventArgs e)
         {
             OleMenuCommand oCommand = (OleMenuCommand)sender;
 
-            oCommand.Visible = _itemToHandleFunc();
+            oCommand.Visible = _itemToHandleFunc(".wsdl");
         }
 
        

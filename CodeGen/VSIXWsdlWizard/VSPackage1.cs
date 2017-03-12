@@ -89,12 +89,18 @@ namespace VSIXProject2
             }
             FirstCommand.Initialize(this);
         }
-        private bool ItemToHandle()
+
+        /// <summary>
+        /// 判断是否是想要的类型
+        /// </summary>
+        /// <param name="extention"></param>
+        /// <returns></returns>
+        private bool ItemToHandle(string extention)
         {
 
             DTE2 Application = (DTE2)GetService(typeof(DTE));
 
-            return ((Application.SelectedItems.Count == 1) && (Application.SelectedItems.Item(1).ProjectItem != null) && (Application.SelectedItems.Item(1).ProjectItem.Name.Contains(".cs")));
+            return ((Application.SelectedItems.Count == 1) && (Application.SelectedItems.Item(1).ProjectItem != null) && (Application.SelectedItems.Item(1).ProjectItem.Name.ToLower().EndsWith(extention)));
         }
         #endregion
     }
