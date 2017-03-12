@@ -1510,6 +1510,10 @@ namespace Ant.Tools.SOA.WsdlWizard
                     //    importsListView.Items.Add(lvItem);
                 }
             }
+            else if (e.Page == wizardPageOperationsList)
+            {
+                cbInfer.Checked = true;
+            }
             else if (e.Page == wizardPageAdditionalOptions)
             {
                 if (ptvServiceOperations.PaneNodes.Count > 0)
