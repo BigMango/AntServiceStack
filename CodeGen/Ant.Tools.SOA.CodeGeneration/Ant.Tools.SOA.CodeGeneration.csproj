@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{565DFE9E-CC95-4096-B4E8-19BD30CE2D26}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Ant.Tools.SOA.CodeGeneration</RootNamespace>
+    <AssemblyName>Ant.Tools.SOA.CodeGeneration</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.5\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\SolutionInfo.cs">
+      <Link>Properties\SolutionInfo.cs</Link>
+    </Compile>
+    <Compile Include="CodeGenerationContext.cs" />
+    <Compile Include="CodeGenerator.cs" />
+    <Compile Include="CodeWriter\CodeWriter.cs" />
+    <Compile Include="CodeWriter\CodeWriterOutput.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="CtripDiscoveryClientProtocol.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataContractGenerator.cs" />
+    <Compile Include="Exceptions\ClientServiceGenerationException.cs" />
+    <Compile Include="Exceptions\CodeWriterException.cs" />
+    <Compile Include="Exceptions\MetadataFactoryExceptions.cs" />
+    <Compile Include="Exceptions\SOAPolicyViolationException.cs" />
+    <Compile Include="Extensions\BaijiExtension.cs" />
+    <Compile Include="Extensions\CodeExtension.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Helpers\CodeDomHelper.cs" />
+    <Compile Include="Helpers\Enforce.cs" />
+    <Compile Include="ICodeExtension.cs" />
+    <Compile Include="ICodeGeneratorContext.cs" />
+    <Compile Include="ICodeGenerator.cs" />
+    <Compile Include="InterfaceContractGenerator.cs" />
+    <Compile Include="MetadataFactory.cs" />
+    <Compile Include="Options\CodeGenOptions.cs" />
+    <Compile Include="Options\CodeGenOptionsParser.cs" />
+    <Compile Include="Options\CodeWriterOptions.cs" />
+    <Compile Include="Options\Enums\CodeGeneratorMode.cs" />
+    <Compile Include="Options\Enums\CodeLanguage.cs" />
+    <Compile Include="Options\Enums\SerializerMode.cs" />
+    <Compile Include="Options\MetadataResolverOptions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ant.Tools.SOA.ServiceDescription\Ant.Tools.SOA.ServiceDescription.csproj">
+      <Project>{7B883661-E2B9-40A5-81FE-652871C37758}</Project>
+      <Name>Ant.Tools.SOA.ServiceDescription</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

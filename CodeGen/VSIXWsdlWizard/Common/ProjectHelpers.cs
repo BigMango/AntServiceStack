@@ -18,7 +18,9 @@ using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Editor;
 using Microsoft.VisualStudio.TextManager.Interop;
+using VsWebSite;
 using VSIXProject2;
+using VSLangProj80;
 
 namespace VSIXWsdlWizard.Common
 {
@@ -142,7 +144,56 @@ namespace VSIXWsdlWizard.Common
                 return string.Empty;
             }
         }
+        public static string GetDefaultDestinationFilename(string fileName)
+        {
+            string baseFileName = Path.GetFileNameWithoutExtension(fileName);
+            string extension = "cs";
+            return Path.ChangeExtension(baseFileName, extension);
+        }
 
+        public static string GetProjectProperty(this Project project, string key)
+        {
+            try
+            {
+                return (string)project.Properties.Item(key).Value;
+            }
+            catch (Exception)
+            {
+                return string.Empty;
+            }
+        }
+        public static bool IsWebProject2(Project prj)
+        {
+             return prj.Object is VSWebSite;
+        }
+
+        public static void AddAssemblyReferences(Project prj)
+        {
+            if (prj.IsWebProject())
+            {
+                VSWebSite website = prj.Object as VSWebSite;
+                if (website==null)
+                {
+                    return;
+                }
+                website.References.AddFromGAC("System");
+                website.References.AddFromGAC("System.Xml");
+                website.References.AddFromGAC("System.Runtime.Serialization");
+                website.References.AddFromGAC("System.ServiceModel");
+                website.References.AddFromGAC("System.Configuration");
+                return;
+            }
+            var project = prj.Object as VSProject2;
+            if (project == null)
+            {
+                return;
+            }
+            project.References.Add("System");
+            project.References.Add("System.Xml");
+            project.References.Add("System.Runtime.Serialization");
+            project.References.Add("System.ServiceModel");
+            project.References.Add("System.Configuration");
+        }
         public static void AddFileToActiveProject(string fileName, string itemType = null)
         {
             Project project = GetActiveProject();

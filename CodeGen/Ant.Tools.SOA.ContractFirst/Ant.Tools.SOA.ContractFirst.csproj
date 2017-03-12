@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{68265BB4-E452-460E-9723-75C3FE3592B8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Ant.Tools.SOA.ContractFirst</RootNamespace>
+    <AssemblyName>Ant.Tools.SOA.ContractFirst</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RegisterForComInterop>true</RegisterForComInterop>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Extensibility, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\SolutionInfo.cs">
+      <Link>Properties\SolutionInfo.cs</Link>
+    </Compile>
+    <Compile Include="AppLog.cs" />
+    <Compile Include="ConfigurationManager.cs" />
+    <Compile Include="EditableListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LogHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\Win32Utility.cs" />
+    <Compile Include="Util\ValidationHelper.cs" />
+    <Compile Include="WebServiceCodeGenDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XsdCodeGenDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XsdCodeGenDialog.Designer.cs">
+      <DependentUpon>XsdCodeGenDialog.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ant.Tools.SOA.CodeGeneration\Ant.Tools.SOA.CodeGeneration.csproj">
+      <Project>{565DFE9E-CC95-4096-B4E8-19BD30CE2D26}</Project>
+      <Name>Ant.Tools.SOA.CodeGeneration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ant.Tools.SOA.WsdlWizard\Ant.Tools.SOA.WsdlWizard.csproj">
+      <Project>{5887F56F-1CF8-4311-9986-31F867310669}</Project>
+      <Name>Ant.Tools.SOA.WsdlWizard</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="pics\AStep.bmp" />
+    <Content Include="pics\tt.bmp" />
+    <EmbeddedResource Include="pics\wsdl.bmp" />
+    <Content Include="Wizard.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="EditableListView.resx">
+      <DependentUpon>EditableListView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WebServiceCodeGenDialog.resx">
+      <DependentUpon>WebServiceCodeGenDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XsdCodeGenDialog.resx">
+      <DependentUpon>XsdCodeGenDialog.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
