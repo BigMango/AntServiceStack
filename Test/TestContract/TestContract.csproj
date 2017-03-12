@@ -47,13 +47,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="AntSOACommonTypes_V1.0.0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="AntSOAMobileCommonTypes_V1.1.0.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="CloudBagRestFulApi.wsdl" />
-    <None Include="CTripSOACommonTypes_V1.0.0.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="CTripSOAMobileCommonTypes_V1.1.0.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="HelloWord.xsd">
       <SubType>Designer</SubType>
     </None>

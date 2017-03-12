@@ -972,7 +972,10 @@ namespace CTrip.Tools.SOA.ContractFirst
         public string DestinationNamespace
         {
             get { return tbDestinationNamespace.Text; }
-            set { tbDestinationNamespace.Text = value; }
+            set
+            {
+                tbDestinationNamespace.Text = value;
+            }
         }
 
         public string WsdlLocation
@@ -1091,6 +1094,7 @@ namespace CTrip.Tools.SOA.ContractFirst
                 this.tbDestinationFilename.Text = fileName + extension;
             else
                 this.tbDestinationFilename.Text = fileName + "Client" + extension;
+            DestinationNamespace = DestinationNamespace + ".Client";
         }
 
         private void rbClientForTest_Click(object sender, EventArgs e)
@@ -1116,6 +1120,7 @@ namespace CTrip.Tools.SOA.ContractFirst
                 this.tbDestinationFilename.Text = fileName + extension;
             else
                 this.tbDestinationFilename.Text = fileName + "Service" + extension;
+            DestinationNamespace = DestinationNamespace.Replace(".Client","");
         }
 
         private void cbMultipleFiles_Click(object sender, EventArgs e)
