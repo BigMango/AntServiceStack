@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web;
 using System.Collections.Generic;
+using AntServiceStack.Common;
 using AntServiceStack.WebHost.Endpoints;
 using AntServiceStack.WebHost.Endpoints.Metadata;
 
@@ -9,6 +10,14 @@ namespace AntServiceStack
     public class MetadataFeature : IPlugin
     {
         private static Dictionary<string, Dictionary<string, IHttpHandler>> MetadataHandlers = new Dictionary<string, Dictionary<string, IHttpHandler>>();
+        public Dictionary<string, string> PluginLinks { get; set; }
+        public string PluginLinksTitle { get; set; }
+
+        public MetadataFeature()
+        {
+            this.PluginLinksTitle = "Plugin Links:";
+            this.PluginLinks = new Dictionary<string, string>();
+        }
 
         private static IHttpHandler GetMetadataHandler(string servicePath, string metadataType)
         {
@@ -108,5 +117,28 @@ namespace AntServiceStack
             }
             return null;
         }
+    }
+
+    public static class MetadataFeatureExtensions
+    {
+        public static MetadataFeature AddPluginLink(this MetadataFeature metadata, string href, string title)
+        {
+            if (metadata != null)
+            {
+                if (EndpointHost.Config.ServiceStackHandlerFactoryPath!= null && href[0] == '/')
+                    href = "/" + EndpointHost.Config.ServiceStackHandlerFactoryPath + href;
+
+                metadata.PluginLinks[href] = title;
+            }
+            return metadata;
+        }
+
+        public static MetadataFeature RemovePluginLink(this MetadataFeature metadata, string href)
+        {
+            metadata.PluginLinks.Remove(href);
+            return metadata;
+        }
+
+      
     }
 }

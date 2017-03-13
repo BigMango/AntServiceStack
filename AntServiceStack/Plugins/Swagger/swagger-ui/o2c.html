@@ -1,0 +1,39 @@
+<script>
+var qp = null;
+if(window.location.hash) {
+  qp = location.hash.substring(1);
+}
+else {
+  qp = location.search.substring(1);
+}
+qp = qp ? JSON.parse('{"' + qp.replace(/&/g, '","').replace(/=/g,'":"') + '"}',
+  function(key, value) {
+    return key===""?value:decodeURIComponent(value) }
+  ):{}
+
+var ticket = getCookie('cticket');
+if (ticket) {
+    window.opener.onOauth(ticket);
+} else {
+    alert('Cticket ªÒ»° ß∞‹!');
+}
+
+
+if (window.opener.swaggerUi.tokenUrl)
+    window.opener.processOAuthCode(qp);
+else
+    window.opener.onOAuthComplete(qp);
+    
+window.close();
+
+
+function getCookie(name) {
+    var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+    if (arr = document.cookie.match(reg))
+        return unescape(arr[2]);
+    else
+        return null;
+}
+
+
+</script>

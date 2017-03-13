@@ -28,6 +28,7 @@ using AntServiceStack.Plugins.BlackList;
 using AntServiceStack.Plugins.Baiji;
 using AntServiceStack.Plugins.Consul;
 using AntServiceStack.Plugins.RequestCounter;
+using AntServiceStackSwagger;
 
 namespace AntServiceStack.WebHost.Endpoints
 {
@@ -178,6 +179,9 @@ namespace AntServiceStack.WebHost.Endpoints
 
             if (Config.UseConsulDiscovery && !Plugins.Exists(p => p is ConsulFeature))
                 Plugins.Add(new ConsulFeature());
+
+            if (!Plugins.Exists(p => p is SwaggerServicePlugin))
+                Plugins.Add(new SwaggerServicePlugin());
 
             if (FxConfigWebServiceUtils.Enabled)
             {

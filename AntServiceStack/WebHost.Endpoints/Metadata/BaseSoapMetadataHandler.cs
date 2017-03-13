@@ -59,7 +59,7 @@ namespace AntServiceStack.WebHost.Endpoints.Metadata
                 MetadataConfig = EndpointHost.Config.CreateMetadataPagesConfig(metadata),
                 Title = metadata.FullServiceName,
                 AntServiceStackVersion = metadata.AntServiceStackVersion,
-                CCodeGenVersion = metadata.CCodeGenVersion,
+                AntCodeGenVersion = metadata.AntCodeGenVersion,
                 OperationNames = metadata.GetAllOperationNames()
             };
 

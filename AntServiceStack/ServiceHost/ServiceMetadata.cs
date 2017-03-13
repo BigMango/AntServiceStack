@@ -128,7 +128,7 @@ namespace AntServiceStack.ServiceHost
         /// <summary>
         /// Codegen工具的版本号
         /// </summary>
-        public string CCodeGenVersion { get; private set; }//Codegen工具的版本号
+        public string AntCodeGenVersion { get; private set; }//Codegen工具的版本号
 
         /// <summary>
         /// metric前缀 soa.service
@@ -145,8 +145,8 @@ namespace AntServiceStack.ServiceHost
 
         /// <summary>
         /// 服务名称 格式为：servicename + "." + namespace经过改造
-        /// 例如 namespace为 http://soa.ctrip.com/innovationwork/CloudBag/v1  servicename为 CloudBagRestFulApi 
-        /// 变成  cloudbagrestfulapi.soa.ctrip.com.innovationwork.CloudBag.v1
+        /// 例如 namespace为 http://soa.ant.com/innovationwork/CloudBag/v1  servicename为 CloudBagRestFulApi 
+        /// 变成  cloudbagrestfulapi.soa.ant.com.innovationwork.CloudBag.v1
         /// </summary>
         public string RefinedFullServiceName { get; private set; }
         /// <summary>
@@ -227,12 +227,12 @@ namespace AntServiceStack.ServiceHost
             this.Routes = new ServiceRoutes();
             this.ServiceTypes = new List<Type>() { serviceType };
             this.ServiceName = string.IsNullOrWhiteSpace(serviceName) ? AnonymousServiceName : serviceName;
-            this.ServiceNamespace = string.IsNullOrWhiteSpace(serviceNamespace) ? "http://soa.ctrip.com/anonymous" : serviceNamespace;
+            this.ServiceNamespace = string.IsNullOrWhiteSpace(serviceNamespace) ? "http://soa.ant.com/anonymous" : serviceNamespace;
             this.FullServiceName = ServiceName + "{" + ServiceNamespace + "}";
             this.RefinedFullServiceName = ServiceUtils.RefineServiceName(ServiceNamespace, ServiceName);
             this.ServiceMetricPrefix = "soa.service";
             this.AntServiceStackVersion = typeof(ServiceMetadata).Assembly.GetName().Version.ToString();
-            this.CCodeGenVersion = codeGeneratorVersion;
+            this.AntCodeGenVersion = codeGeneratorVersion;
 
             //判断appseting里面是否设置了特殊的访问前缀的 key
             //如果没有就默认为空的

@@ -30,9 +30,9 @@ namespace AntServiceStack.Plugins.DynamicPolicy
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://soa.ctrip.com/framework/soa/policyservice/v1")]
-    [System.Xml.Serialization.XmlRootAttribute("GetServiceSettingsRequest", Namespace = "http://soa.ctrip.com/framework/soa/policyservice/v1", IsNullable = false)]
-    [DataContract(Name = "GetServiceSettingsRequest", Namespace = "http://soa.ctrip.com/framework/soa/policyservice/v1")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://soa.ant.com/framework/soa/policyservice/v1")]
+    [System.Xml.Serialization.XmlRootAttribute("GetServiceSettingsRequest", Namespace = "http://soa.ant.com/framework/soa/policyservice/v1", IsNullable = false)]
+    [DataContract(Name = "GetServiceSettingsRequest", Namespace = "http://soa.ant.com/framework/soa/policyservice/v1")]
     [ProtoContract()]
     public partial class GetServiceSettingsRequestType
     {
@@ -74,9 +74,9 @@ namespace AntServiceStack.Plugins.DynamicPolicy
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://soa.ctrip.com/framework/soa/policyservice/v1")]
-    [System.Xml.Serialization.XmlRootAttribute("GetServiceSettingsResponse", Namespace = "http://soa.ctrip.com/framework/soa/policyservice/v1", IsNullable = false)]
-    [DataContract(Name = "GetServiceSettingsResponse", Namespace = "http://soa.ctrip.com/framework/soa/policyservice/v1")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://soa.ant.com/framework/soa/policyservice/v1")]
+    [System.Xml.Serialization.XmlRootAttribute("GetServiceSettingsResponse", Namespace = "http://soa.ant.com/framework/soa/policyservice/v1", IsNullable = false)]
+    [DataContract(Name = "GetServiceSettingsResponse", Namespace = "http://soa.ant.com/framework/soa/policyservice/v1")]
     [ProtoContract()]
     public partial class GetServiceSettingsResponseType : IHasResponseStatus
     {
@@ -118,9 +118,9 @@ namespace AntServiceStack.Plugins.DynamicPolicy
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://soa.ctrip.com/framework/soa/policyservice/v1")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://soa.ctrip.com/framework/soa/policyservice/v1", IsNullable = true)]
-    [DataContract(Namespace = "http://soa.ctrip.com/framework/soa/policyservice/v1")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://soa.ant.com/framework/soa/policyservice/v1")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://soa.ant.com/framework/soa/policyservice/v1", IsNullable = true)]
+    [DataContract(Namespace = "http://soa.ant.com/framework/soa/policyservice/v1")]
     [ProtoContract()]
     public partial class ServiceSettingsDTO
     {
@@ -538,9 +538,9 @@ namespace AntServiceStack.Plugins.DynamicPolicy
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://soa.ctrip.com/framework/soa/policyservice/v1")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://soa.ctrip.com/framework/soa/policyservice/v1", IsNullable = true)]
-    [DataContract(Namespace = "http://soa.ctrip.com/framework/soa/policyservice/v1")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://soa.ant.com/framework/soa/policyservice/v1")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://soa.ant.com/framework/soa/policyservice/v1", IsNullable = true)]
+    [DataContract(Namespace = "http://soa.ant.com/framework/soa/policyservice/v1")]
     [ProtoContract()]
     public partial class OperationTimeoutSettingDTO
     {
@@ -582,9 +582,9 @@ namespace AntServiceStack.Plugins.DynamicPolicy
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://soa.ctrip.com/framework/soa/policyservice/v1")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://soa.ctrip.com/framework/soa/policyservice/v1", IsNullable = true)]
-    [DataContract(Namespace = "http://soa.ctrip.com/framework/soa/policyservice/v1")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://soa.ant.com/framework/soa/policyservice/v1")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://soa.ant.com/framework/soa/policyservice/v1", IsNullable = true)]
+    [DataContract(Namespace = "http://soa.ant.com/framework/soa/policyservice/v1")]
     [ProtoContract()]
     public partial class OperationRateLimitSettingDTO
     {
@@ -626,9 +626,9 @@ namespace AntServiceStack.Plugins.DynamicPolicy
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://soa.ctrip.com/framework/soa/policyservice/v1")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://soa.ctrip.com/framework/soa/policyservice/v1", IsNullable = true)]
-    [DataContract(Namespace = "http://soa.ctrip.com/framework/soa/policyservice/v1")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://soa.ant.com/framework/soa/policyservice/v1")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://soa.ant.com/framework/soa/policyservice/v1", IsNullable = true)]
+    [DataContract(Namespace = "http://soa.ant.com/framework/soa/policyservice/v1")]
     [ProtoContract()]
     public partial class IPRateLimitSettingDTO
     {
@@ -670,9 +670,9 @@ namespace AntServiceStack.Plugins.DynamicPolicy
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://soa.ctrip.com/framework/soa/policyservice/v1")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://soa.ctrip.com/framework/soa/policyservice/v1", IsNullable = true)]
-    [DataContract(Namespace = "http://soa.ctrip.com/framework/soa/policyservice/v1")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://soa.ant.com/framework/soa/policyservice/v1")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://soa.ant.com/framework/soa/policyservice/v1", IsNullable = true)]
+    [DataContract(Namespace = "http://soa.ant.com/framework/soa/policyservice/v1")]
     [ProtoContract()]
     public partial class AppIdRateLimitSettingDTO
     {
@@ -714,9 +714,9 @@ namespace AntServiceStack.Plugins.DynamicPolicy
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://soa.ctrip.com/framework/soa/policyservice/v1")]
-    [System.Xml.Serialization.XmlRootAttribute("GetSnapshotRequest", Namespace = "http://soa.ctrip.com/framework/soa/policyservice/v1", IsNullable = false)]
-    [DataContract(Name = "GetSnapshotRequest", Namespace = "http://soa.ctrip.com/framework/soa/policyservice/v1")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://soa.ant.com/framework/soa/policyservice/v1")]
+    [System.Xml.Serialization.XmlRootAttribute("GetSnapshotRequest", Namespace = "http://soa.ant.com/framework/soa/policyservice/v1", IsNullable = false)]
+    [DataContract(Name = "GetSnapshotRequest", Namespace = "http://soa.ant.com/framework/soa/policyservice/v1")]
     [ProtoContract()]
     public partial class GetSnapshotRequestType
     {
@@ -726,9 +726,9 @@ namespace AntServiceStack.Plugins.DynamicPolicy
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://soa.ctrip.com/framework/soa/policyservice/v1")]
-    [System.Xml.Serialization.XmlRootAttribute("GetSnapshotResponse", Namespace = "http://soa.ctrip.com/framework/soa/policyservice/v1", IsNullable = false)]
-    [DataContract(Name = "GetSnapshotResponse", Namespace = "http://soa.ctrip.com/framework/soa/policyservice/v1")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://soa.ant.com/framework/soa/policyservice/v1")]
+    [System.Xml.Serialization.XmlRootAttribute("GetSnapshotResponse", Namespace = "http://soa.ant.com/framework/soa/policyservice/v1", IsNullable = false)]
+    [DataContract(Name = "GetSnapshotResponse", Namespace = "http://soa.ant.com/framework/soa/policyservice/v1")]
     [ProtoContract()]
     public partial class GetSnapshotResponseType : IHasResponseStatus
     {
@@ -999,9 +999,9 @@ namespace AntServiceStack.Plugins.DynamicPolicy
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://soa.ctrip.com/framework/soa/policyservice/v1")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://soa.ctrip.com/framework/soa/policyservice/v1", IsNullable = true)]
-    [DataContract(Namespace = "http://soa.ctrip.com/framework/soa/policyservice/v1")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://soa.ant.com/framework/soa/policyservice/v1")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://soa.ant.com/framework/soa/policyservice/v1", IsNullable = true)]
+    [DataContract(Namespace = "http://soa.ant.com/framework/soa/policyservice/v1")]
     [ProtoContract()]
     public partial class ServiceSettingsCacheDTO
     {
@@ -1051,7 +1051,7 @@ namespace AntServiceStack.Plugins.DynamicPolicy
 
         public const string OriginalServiceName = "PolicyService";
 
-        public const string OriginalServiceNamespace = "http://soa.ctrip.com/framework/soa/policyservice/v1";
+        public const string OriginalServiceNamespace = "http://soa.ant.com/framework/soa/policyservice/v1";
 
         public const string OriginalServiceType = "NonSLB";
 

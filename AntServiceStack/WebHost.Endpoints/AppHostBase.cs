@@ -198,8 +198,8 @@ namespace AntServiceStack.WebHost.Endpoints
 
                         var tagMap = new Dictionary<string, string>();
                         tagMap["webservice"] = (ServiceUtils.ConvertNamespaceToMetricPrefix(metadata.ServiceNamespace) + "." + metadata.ServiceName)
-                                .ToLower().Replace("soa.ctrip.com.", string.Empty);
-                        tagMap["frameworkversion"] = string.Format("SS-{0} CG-{1}", metadata.AntServiceStackVersion, metadata.CCodeGenVersion);
+                                .ToLower().Replace("soa.ant.com.", string.Empty);
+                        tagMap["frameworkversion"] = string.Format("SS-{0} CG-{1}", metadata.AntServiceStackVersion, metadata.AntCodeGenVersion);
                         var now = DateTime.Now;
                         Action<HystrixCommandMetrics, long, string, string> logEventDistribution = (m, c, tn, tv) =>
                         {

@@ -121,7 +121,7 @@
 //                Port = _port,
 //                MachineName = ServiceUtils.MachineName,
 //                HealthCheckUrl = serviceUrl.WithTrailingSlash() + "checkhealth.json",
-//                Status = Com.Ctrip.Soa.Artemis.Common.Instance.STATUS.UP,
+//                Status = Com.ant.Soa.Artemis.Common.Instance.STATUS.UP,
 //                Metadata = metadata,
 //            };
 //        }

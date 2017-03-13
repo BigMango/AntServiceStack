@@ -2,8 +2,8 @@
 //using System.Collections.Generic;
 //using System.Linq;
 //using System.Text;
-//using Com.Ctrip.Soa.Caravan.Metric;
-//using Com.Ctrip.Soa.Caravan.Metric.Ctrip;
+//using Com.ant.Soa.Caravan.Metric;
+//using Com.ant.Soa.Caravan.Metric.ant;
 
 //namespace AntServiceStack.WebHost.Endpoints.Registry
 //{

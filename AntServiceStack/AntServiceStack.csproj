@@ -119,6 +119,28 @@
     <Compile Include="Plugins\SimpleAuth\SimpleAuthFilter.cs" />
     <Compile Include="Plugins\SimpleAuth\ISimpleAuthProvider.cs" />
     <Compile Include="Plugins\SimpleAuth\SimpleAuthPlugin.cs" />
+    <Compile Include="Plugins\Swagger\AttributeExt\SwaggerFileAttribute.cs" />
+    <Compile Include="Plugins\Swagger\AttributeExt\SwaggerHeaderAttribute.cs" />
+    <Compile Include="Plugins\Swagger\AttributeExt\SwaggerParamAttribute.cs" />
+    <Compile Include="Plugins\Swagger\BadRequestSwaggerHandler.cs" />
+    <Compile Include="Plugins\Swagger\Extentions\AttributeExtensions.cs" />
+    <Compile Include="Plugins\Swagger\Extentions\IOrderedDictionary.cs" />
+    <Compile Include="Plugins\Swagger\Extentions\OrderedDictionary.cs" />
+    <Compile Include="Plugins\Swagger\Extentions\PlatformExtensions.cs" />
+    <Compile Include="Plugins\Swagger\Extentions\TranslateListWithElements.cs" />
+    <Compile Include="Plugins\Swagger\Extentions\TypeConstants.cs" />
+    <Compile Include="Plugins\Swagger\Extentions\TypeConverter.cs" />
+    <Compile Include="Plugins\Swagger\NotFoundSwaggerServiceHandler.cs" />
+    <Compile Include="Plugins\Swagger\SwaggerApiService.cs" />
+    <Compile Include="Plugins\Swagger\SwaggerResourcesService.cs" />
+    <Compile Include="Plugins\Swagger\SwaggerServicePlugin.cs" />
+    <Compile Include="Plugins\Swagger\SwaggerUi\EmbeddedAssetDescriptor.cs" />
+    <Compile Include="Plugins\Swagger\SwaggerUi\EmbeddedAssetProvider.cs" />
+    <Compile Include="Plugins\Swagger\SwaggerUi\IAssetProvider.cs" />
+    <Compile Include="Plugins\Swagger\SwaggerUi\StreamExtensions.cs" />
+    <Compile Include="Plugins\Swagger\SwaggerUi\SwaggerType.cs" />
+    <Compile Include="Plugins\Swagger\SwaggerUi\SwaggerUiConfig.cs" />
+    <Compile Include="Plugins\Swagger\SwaggerUi\SwaggerUiHandler.cs" />
     <Compile Include="WebHost.Endpoints\Config\FrameworkFoundationConfiguration.cs" />
     <Compile Include="WebHost.Endpoints\Config\ServiceConfig.cs" />
     <Compile Include="WebHost.Endpoints\Registry\ArtemisServiceRegistry.cs" />
@@ -255,14 +277,58 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Funq\Container.xdoc" />
+    <None Include="Plugins\Swagger\swagger-ui\fonts\droid-sans-v6-latin-700.eot" />
+    <None Include="Plugins\Swagger\swagger-ui\fonts\droid-sans-v6-latin-700.ttf" />
+    <None Include="Plugins\Swagger\swagger-ui\fonts\droid-sans-v6-latin-700.woff" />
+    <None Include="Plugins\Swagger\swagger-ui\fonts\droid-sans-v6-latin-700.woff2" />
+    <None Include="Plugins\Swagger\swagger-ui\fonts\droid-sans-v6-latin-regular.eot" />
+    <None Include="Plugins\Swagger\swagger-ui\fonts\droid-sans-v6-latin-regular.ttf" />
+    <None Include="Plugins\Swagger\swagger-ui\fonts\droid-sans-v6-latin-regular.woff" />
+    <None Include="Plugins\Swagger\swagger-ui\fonts\droid-sans-v6-latin-regular.woff2" />
+    <None Include="Plugins\Swagger\swagger-ui\lib\underscore-min.map" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Funq\License.txt" />
+    <Content Include="Plugins\Swagger\swagger-ui\css\reset.css" />
+    <Content Include="Plugins\Swagger\swagger-ui\css\screen.css" />
+    <Content Include="Plugins\Swagger\swagger-ui\css\typography.css" />
+    <Content Include="Plugins\Swagger\swagger-ui\fonts\droid-sans-v6-latin-700.svg" />
+    <Content Include="Plugins\Swagger\swagger-ui\fonts\droid-sans-v6-latin-regular.svg" />
+    <Content Include="Plugins\Swagger\swagger-ui\images\explorer_icons.png" />
+    <Content Include="Plugins\Swagger\swagger-ui\images\logo-24.png" />
+    <Content Include="Plugins\Swagger\swagger-ui\images\logo_small.png" />
+    <Content Include="Plugins\Swagger\swagger-ui\images\pet_store_api.png" />
+    <Content Include="Plugins\Swagger\swagger-ui\images\throbber.gif" />
+    <Content Include="Plugins\Swagger\swagger-ui\images\wordnik_api.png" />
+    <Content Include="Plugins\Swagger\swagger-ui\index.html" />
+    <Content Include="Plugins\Swagger\swagger-ui\lib\backbone-min.js" />
+    <Content Include="Plugins\Swagger\swagger-ui\lib\handlebars-2.0.0.js" />
+    <Content Include="Plugins\Swagger\swagger-ui\lib\highlight.7.3.pack.js" />
+    <Content Include="Plugins\Swagger\swagger-ui\lib\jquery-1.8.0.min.js" />
+    <Content Include="Plugins\Swagger\swagger-ui\lib\jquery.ba-bbq.min.js" />
+    <Content Include="Plugins\Swagger\swagger-ui\lib\jquery.slideto.min.js" />
+    <Content Include="Plugins\Swagger\swagger-ui\lib\jquery.wiggle.min.js" />
+    <Content Include="Plugins\Swagger\swagger-ui\lib\marked.js" />
+    <Content Include="Plugins\Swagger\swagger-ui\lib\shred.bundle.js" />
+    <Content Include="Plugins\Swagger\swagger-ui\lib\shred\content.js" />
+    <Content Include="Plugins\Swagger\swagger-ui\lib\swagger-client.js" />
+    <Content Include="Plugins\Swagger\swagger-ui\lib\swagger-oauth.js" />
+    <Content Include="Plugins\Swagger\swagger-ui\lib\underscore-min.js" />
+    <Content Include="Plugins\Swagger\swagger-ui\o2c.html" />
+    <Content Include="Plugins\Swagger\swagger-ui\patch.js" />
+    <Content Include="Plugins\Swagger\swagger-ui\swagger-ui.js" />
+    <Content Include="Plugins\Swagger\swagger-ui\swagger-ui.min.js" />
     <EmbeddedResource Include="WebHost.Endpoints\Support\Templates\Html\IndexServices.html" />
     <EmbeddedResource Include="WebHost.Endpoints\Formats\HtmlFormat.html" />
     <EmbeddedResource Include="WebHost.Endpoints\Support\Templates\Html\IndexOperations.html" />
     <EmbeddedResource Include="WebHost.Endpoints\Support\Templates\Html\OperationControl.html" />
     <EmbeddedResource Include="WebHost.Endpoints\Support\Templates\Html\OperationsControl.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Plugins\Swagger\swagger-ui\**\*.*">
+      <LogicalName>%(RecursiveDir)%(FileName)%(Extension)</LogicalName>
+      <InProject>false</InProject>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -317,6 +383,7 @@
       <Name>AntServiceStack.Text</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

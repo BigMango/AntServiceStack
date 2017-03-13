@@ -13,7 +13,7 @@ namespace AntServiceStack.WebHost.Endpoints.Support.Metadata.Controls
         public IHttpRequest HttpRequest { get; set; }
         public string Title { get; set; }
         public string AntServiceStackVersion { get; set; }
-        public string CCodeGenVersion { get; set; }
+        public string AntCodeGenVersion { get; set; }
         public List<string> OperationNames { get; set; }
         public MetadataPagesConfig MetadataConfig { get; set; }
 
@@ -49,6 +49,16 @@ namespace AntServiceStack.WebHost.Endpoints.Support.Metadata.Controls
                 ForEachItem = RenderRow
             }.ToString();
 
+            var metadata = EndpointHost.AppHost.GetPlugin<MetadataFeature>();
+            var pluginLinks = metadata != null && metadata.PluginLinks.Count > 0
+               ? new ListTemplate
+               {
+                   Title = metadata.PluginLinksTitle,
+                   ListItemsMap = metadata.PluginLinks,
+                   ListItemTemplate = @"<li><a href=""{0}"">{1}</a></li>"
+               }.ToString()
+               : "";
+
             var debugOnlyInfo = new StringBuilder();
             if (EndpointHost.DebugMode)
             {
@@ -64,7 +74,7 @@ namespace AntServiceStack.WebHost.Endpoints.Support.Metadata.Controls
                 operationsPart,
                 debugOnlyInfo,
                 AntServiceStackVersion,
-                CCodeGenVersion);
+                AntCodeGenVersion, pluginLinks);
 
             output.Write(renderedTemplate);
         }

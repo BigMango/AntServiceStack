@@ -2,8 +2,8 @@
 //using System.Collections.Generic;
 //using System.Linq;
 //using System.Text;
-//using Com.Ctrip.Soa.Caravan.Configuration;
-//using Com.Ctrip.Soa.Caravan.Utility;
+//using Com.ant.Soa.Caravan.Configuration;
+//using Com.ant.Soa.Caravan.Utility;
 //using AntServiceStack.ServiceHost;
 
 //namespace AntServiceStack.Common.Configuration

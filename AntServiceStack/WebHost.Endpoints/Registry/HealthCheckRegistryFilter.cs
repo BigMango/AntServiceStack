@@ -1,12 +1,12 @@
 ﻿//using System.Collections.Generic;
 //using System.Collections.Concurrent;
 //using System.Linq;
-//using Com.Ctrip.Soa.Artemis.Client;
-//using Com.Ctrip.Soa.Artemis.Common;
+//using Com.ant.Soa.Artemis.Client;
+//using Com.ant.Soa.Artemis.Common;
 //using AntServiceStack.ServiceHost;
 //using Freeway.Logging;
-//using Com.Ctrip.Soa.Caravan.Utility;
-//using Com.Ctrip.Soa.Caravan.Configuration;
+//using Com.ant.Soa.Caravan.Utility;
+//using Com.ant.Soa.Caravan.Configuration;
 //using AntServiceStack.WebHost.Endpoints.Config;
 
 //namespace AntServiceStack.WebHost.Endpoints.Registry

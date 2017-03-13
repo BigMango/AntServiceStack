@@ -65,7 +65,7 @@
 //        {
 //            var defaultValueConfiguration = new MemoryConfiguration();
 //            defaultValueConfiguration[ServiceMetadata.SERVICE_REGISTRY_ENV_KEY] = "dev";
-//            defaultValueConfiguration[ArtemisServiceConstants.ArtemisUrlPropertyKey] = "http://artemis.soa.fx.fws.qa.nt.ctripcorp.com/artemis-service/";
+//            defaultValueConfiguration[ArtemisServiceConstants.ArtemisUrlPropertyKey] = "http://artemis.soa.fx.fws.qa.nt.antcorp.com/artemis-service/";
 //            return defaultValueConfiguration;
 //        }
 
@@ -73,7 +73,7 @@
 //        {
 //            var defaultValueConfiguration = new MemoryConfiguration();
 //            defaultValueConfiguration[ServiceMetadata.SERVICE_REGISTRY_ENV_KEY] = "uat";
-//            defaultValueConfiguration[ArtemisServiceConstants.ArtemisUrlPropertyKey] = "http://artemis.soa.fx.uat.qa.nt.ctripcorp.com/artemis-service/";
+//            defaultValueConfiguration[ArtemisServiceConstants.ArtemisUrlPropertyKey] = "http://artemis.soa.fx.uat.qa.nt.antcorp.com/artemis-service/";
 //            return defaultValueConfiguration;
 //        }
 
@@ -81,7 +81,7 @@
 //        {
 //            var defaultValueConfiguration = new MemoryConfiguration();
 //            defaultValueConfiguration[ServiceMetadata.SERVICE_REGISTRY_ENV_KEY] = "prod";
-//            defaultValueConfiguration[ArtemisServiceConstants.ArtemisUrlPropertyKey] = "http://artemis.soa.fx.ctripcorp.com/artemis-service/";
+//            defaultValueConfiguration[ArtemisServiceConstants.ArtemisUrlPropertyKey] = "http://artemis.soa.fx.antcorp.com/artemis-service/";
 //            return defaultValueConfiguration;
 //        }
 //    }

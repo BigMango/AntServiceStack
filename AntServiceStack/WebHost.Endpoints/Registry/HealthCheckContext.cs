@@ -5,7 +5,7 @@
 //using AntServiceStack.Common.Types;
 //using System.Reflection;
 //using System.Linq.Expressions;
-//using Com.Ctrip.Soa.Caravan.Metric;
+//using Com.ant.Soa.Caravan.Metric;
 //using AntServiceStack.Common.Utils;
 //using System.Diagnostics;
 //using AntServiceStack.ServiceHost;
