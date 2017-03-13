@@ -94,6 +94,7 @@ namespace Ant.Tools.SOA.WsdlWizard
         private Button btnSyncServiceRegistryData;
         private LinkLabel llAddFolder;
         private CheckBox cbGenerateAsyncOperations;
+        private TextBox textOpToadd;
         private OperationsCollection oldOperations =
             new OperationsCollection(); // Holds a list of old operations configured by the user.
 
@@ -295,10 +296,11 @@ namespace Ant.Tools.SOA.WsdlWizard
             this.llAddFolder = new System.Windows.Forms.LinkLabel();
             this.llRemoveImport = new System.Windows.Forms.LinkLabel();
             this.llAddImport = new System.Windows.Forms.LinkLabel();
-            this.importsListView = new WsdlWizard.EditableListView();
+            this.importsListView = new Ant.Tools.SOA.WsdlWizard.EditableListView();
             this.wizardPageOperationsList = new WizardControl.WizardPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.operationsListView = new WsdlWizard.EditableListView();
+            this.textOpToadd = new System.Windows.Forms.TextBox();
+            this.operationsListView = new Ant.Tools.SOA.WsdlWizard.EditableListView();
             this.llAddOperation = new System.Windows.Forms.LinkLabel();
             this.llRemoveOperation = new System.Windows.Forms.LinkLabel();
             this.cbInfer = new System.Windows.Forms.CheckBox();
@@ -313,7 +315,7 @@ namespace Ant.Tools.SOA.WsdlWizard
             this.cbNeedsServiceElement = new System.Windows.Forms.CheckBox();
             this.cbCodeGenDialog = new System.Windows.Forms.CheckBox();
             this.wizardPageAlternativeXSDPaths = new WizardControl.WizardPage();
-            this.xsdpathsListView = new WsdlWizard.EditableListView();
+            this.xsdpathsListView = new Ant.Tools.SOA.WsdlWizard.EditableListView();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.toolTipPath = new System.Windows.Forms.ToolTip(this.components);
@@ -680,6 +682,7 @@ namespace Ant.Tools.SOA.WsdlWizard
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.textOpToadd);
             this.groupBox1.Controls.Add(this.operationsListView);
             this.groupBox1.Controls.Add(this.llAddOperation);
             this.groupBox1.Controls.Add(this.llRemoveOperation);
@@ -690,6 +693,13 @@ namespace Ant.Tools.SOA.WsdlWizard
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Operations:";
+            // 
+            // textOpToadd
+            // 
+            this.textOpToadd.Location = new System.Drawing.Point(10, 198);
+            this.textOpToadd.Name = "textOpToadd";
+            this.textOpToadd.Size = new System.Drawing.Size(206, 21);
+            this.textOpToadd.TabIndex = 5;
             // 
             // operationsListView
             // 
@@ -711,23 +721,23 @@ namespace Ant.Tools.SOA.WsdlWizard
             // llAddOperation
             // 
             this.llAddOperation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.llAddOperation.Location = new System.Drawing.Point(8, 203);
+            this.llAddOperation.Location = new System.Drawing.Point(222, 202);
             this.llAddOperation.Name = "llAddOperation";
-            this.llAddOperation.Size = new System.Drawing.Size(98, 16);
+            this.llAddOperation.Size = new System.Drawing.Size(25, 14);
             this.llAddOperation.TabIndex = 1;
             this.llAddOperation.TabStop = true;
-            this.llAddOperation.Text = "Add operation";
+            this.llAddOperation.Text = "Add";
             this.llAddOperation.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llAddItem_LinkClicked);
             // 
             // llRemoveOperation
             // 
             this.llRemoveOperation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.llRemoveOperation.Location = new System.Drawing.Point(114, 203);
+            this.llRemoveOperation.Location = new System.Drawing.Point(253, 201);
             this.llRemoveOperation.Name = "llRemoveOperation";
-            this.llRemoveOperation.Size = new System.Drawing.Size(120, 17);
+            this.llRemoveOperation.Size = new System.Drawing.Size(53, 15);
             this.llRemoveOperation.TabIndex = 2;
             this.llRemoveOperation.TabStop = true;
-            this.llRemoveOperation.Text = "Remove operation";
+            this.llRemoveOperation.Text = "Remove";
             this.llRemoveOperation.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llRemoveItem_LinkClicked);
             // 
             // cbInfer
@@ -920,6 +930,7 @@ namespace Ant.Tools.SOA.WsdlWizard
             this.groupBox2.PerformLayout();
             this.wizardPageOperationsList.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.wizardPageMessageMapping.ResumeLayout(false);
@@ -940,18 +951,29 @@ namespace Ant.Tools.SOA.WsdlWizard
         /// <param name="e">An instance of <see cref="LinkLabelLinkClickedEventArgs"/> class with Event data.</param>
         private void llAddItem_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            ListViewItem listViewItem1 =
-                new ListViewItem(new string[] {
-					"Operation" + operationCount,
-					"Request/Response",
-					"",
-					""},
-                    -1);
+            //       ListViewItem listViewItem1 =
+            //           new ListViewItem(new string[] {
+            //"Operation" + operationCount,
+            //"Request/Response",
+            //"",
+            //""},
+            //               -1);
 
-            operationsListView.Items.AddRange(
-                new ListViewItem[] { listViewItem1 });
+            //       operationsListView.Items.AddRange(
+            //           new ListViewItem[] { listViewItem1 });
 
-            operationCount++;
+            //       operationCount++;
+
+            //从已有的列表中筛选一个出来
+            if (!allowedStatorTypes.Contains(this.textOpToadd.Text))
+            {
+                return;
+            }
+            if (operationsListView.Items.Cast<ListViewItem>().Any(r => r.Text.Equals(this.textOpToadd.Text)))
+            {
+                return;
+            }
+            InferOperations(this.textOpToadd.Text);
         }
 
         /// <summary>
@@ -1513,6 +1535,7 @@ namespace Ant.Tools.SOA.WsdlWizard
             else if (e.Page == wizardPageOperationsList)
             {
                 cbInfer.Checked = true;
+                this.textOpToadd.Text = "";
             }
             else if (e.Page == wizardPageAdditionalOptions)
             {
@@ -2269,11 +2292,11 @@ namespace Ant.Tools.SOA.WsdlWizard
                 this.messageSchemas.AddRange(importedContract.Types);
             }
         }
-
+        AutoCompleteStringCollection allowedStatorTypes = new AutoCompleteStringCollection();
         /// <summary>
         /// Infers the operations according to the message name patterns in the message contracts.
         /// </summary>
-        private void InferOperations()
+        private void InferOperations(string opDefaultName = null)
         {
             // Define a hash table with list of request/response patterns.
             Dictionary<string, string> patterns = new Dictionary<string, string>();
@@ -2346,6 +2369,14 @@ namespace Ant.Tools.SOA.WsdlWizard
                                 break;
                             }
 
+                            if (!string.IsNullOrEmpty(opDefaultName))
+                            {
+                                //有默认值
+                                if (!operationName.Equals(opDefaultName))
+                                {
+                                    continue;
+                                }
+                            }
                             // Add the operation to the list.
                             Operation op = new Operation();
                             op.Name = operationName;
@@ -2375,7 +2406,11 @@ namespace Ant.Tools.SOA.WsdlWizard
                             op.Output = output;
 
                             // Add the operation to the inferred operations collection.
-                            inferOperations.Add(op);
+                            if (!inferOperations.Cast<Operation>().Any(r=>r.Name.Equals(op.Name)))
+                            {
+                                inferOperations.Add(op);
+                            }
+                          
 
                             // Add the operation to the list view.
                             ListViewItem listViewItem1 =
@@ -2387,8 +2422,16 @@ namespace Ant.Tools.SOA.WsdlWizard
                                 -1);
 
                             listViewItem1.Tag = op.Name;
-                            operationsListView.Items.AddRange(
-                                new ListViewItem[] { listViewItem1 });
+                            if (!allowedStatorTypes.Contains(op.Name))
+                            {
+                                allowedStatorTypes.Add(op.Name);
+                            }
+
+                            if (!operationsListView.Items.Cast<ListViewItem>().Any(r=>r.Text.Equals(op.Name)))
+                            {
+                                operationsListView.Items.AddRange(new ListViewItem[] { listViewItem1 });
+                            }
+                     
 
                             usedElements.Add(melement);
                             usedElements.Add(responseElement);
@@ -2397,6 +2440,9 @@ namespace Ant.Tools.SOA.WsdlWizard
                         }
                     }
                 }
+                textOpToadd.AutoCompleteMode = AutoCompleteMode.Suggest;
+                textOpToadd.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                textOpToadd.AutoCompleteCustomSource = allowedStatorTypes;
             }
 
             /*

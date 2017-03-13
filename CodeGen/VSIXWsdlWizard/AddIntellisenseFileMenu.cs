@@ -174,7 +174,17 @@ namespace VSIXWsdlWizard
                 startInfo.Arguments = "/t:library /out:" + baseFileName + ".dll " + baseFileName + ".cs /r:System.dll /r:System.Configuration.dll /r:System.Core.dll /r:System.Runtime.Serialization.dll /r:System.ServiceModel.dll /r:System.Xml.Linq.dll /r:System.Data.DataSetExtensions.dll /r:Microsoft.CSharp.dll /r:System.Data.dll /r:System.Xml.dll" + (refDll.Count > 0 ? " /r:" +  string.Join(" /r:", refDll) : "");
                 process.StartInfo = startInfo;
                 process.Start();
-                MessageBox.Show("compile is over,please check dll file is exist",
+                process.WaitForExit(10000);// 10 seconds timeout
+                int result = process.ExitCode;
+                if (result == -1)
+                {
+                    ProjectHelpers.AddError(_package,"cs compile err :" + startInfo.Arguments);
+                    MessageBox.Show("Error happens" ,
+                        "Cs Dll Conversion", MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation);
+                    return;
+                }
+                MessageBox.Show("compile is success",
                         "Cs Dll Conversion", MessageBoxButtons.OK,
                         MessageBoxIcon.Exclamation);
                 System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo()
