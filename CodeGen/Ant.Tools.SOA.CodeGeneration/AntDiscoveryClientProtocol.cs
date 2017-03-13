@@ -10,7 +10,7 @@ using System.Runtime.Serialization;
 
 namespace Ant.Tools.SOA.CodeGeneration
 {
-    public class CtripDiscoveryClientProtocol : DiscoveryClientProtocol
+    public class AntDiscoveryClientProtocol : DiscoveryClientProtocol
     {
         protected override WebResponse GetWebResponse(WebRequest request)
         {
@@ -19,19 +19,19 @@ namespace Ant.Tools.SOA.CodeGeneration
             if (webResponse == null)
                 return response;
 
-            return new CtripFileWebResponse(webResponse);
+            return new AntFileWebResponse(webResponse);
         }
     }
 
-    public class CtripFileWebResponse : WebResponse
+    public class AntFileWebResponse : WebResponse
     {
         FileWebResponse _webResponse;
 
-        public CtripFileWebResponse()
+        public AntFileWebResponse()
         {
         }
 
-        public CtripFileWebResponse(FileWebResponse webResponse) : this()
+        public AntFileWebResponse(FileWebResponse webResponse) : this()
         {
             _webResponse = webResponse;
         }

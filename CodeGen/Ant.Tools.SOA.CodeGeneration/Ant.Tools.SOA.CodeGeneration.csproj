@@ -61,7 +61,7 @@
     <Compile Include="CodeWriter\CodeWriter.cs" />
     <Compile Include="CodeWriter\CodeWriterOutput.cs" />
     <Compile Include="Constants.cs" />
-    <Compile Include="CtripDiscoveryClientProtocol.cs">
+    <Compile Include="AntDiscoveryClientProtocol.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="DataContractGenerator.cs" />

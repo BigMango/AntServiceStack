@@ -67,7 +67,7 @@ namespace Ant.Tools.SOA.CodeGeneration
                 DownloadContract(options);
 
                 // Resolve metadata using a CtripDiscoveryClientProtocol.
-                CtripDiscoveryClientProtocol dcp = new CtripDiscoveryClientProtocol();
+                AntDiscoveryClientProtocol dcp = new AntDiscoveryClientProtocol();
                 dcp.Credentials = GetCredentials(options);
                 dcp.AllowAutoRedirect = true;
                 dcp.DiscoverAny(options.MetadataLocation);
@@ -168,7 +168,7 @@ namespace Ant.Tools.SOA.CodeGeneration
                 }
                 else if (lowext == ".wsdl") // This is a WSDL file.
                 {
-                    CtripDiscoveryClientProtocol dcp = new CtripDiscoveryClientProtocol();
+                    AntDiscoveryClientProtocol dcp = new AntDiscoveryClientProtocol();
                     dcp.AllowAutoRedirect = true;
                     dcp.Credentials = CredentialCache.DefaultCredentials;
                     dcp.DiscoverAny(options.DataContractFiles[fi]);
