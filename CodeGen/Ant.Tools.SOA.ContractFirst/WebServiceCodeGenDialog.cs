@@ -603,7 +603,7 @@ namespace CTrip.Tools.SOA.ContractFirst
             this.MinimizeBox = false;
             this.Name = "WebServiceCodeGenDialogNew";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "CTrip SOA Code Generation ";
+            this.Text = "Ant SOA Code Generation ";
             this.Closed += new System.EventHandler(this.WebServiceCodeGenOptions_Closed);
             this.Load += new System.EventHandler(this.WebServiceCodeGenOptions_Load);
             this.groupBox2.ResumeLayout(false);

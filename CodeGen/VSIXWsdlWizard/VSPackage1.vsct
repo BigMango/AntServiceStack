@@ -50,6 +50,24 @@
         </Strings>
       </Button>
       
+      <Button guid="guidDiffCmdSet" id="cmdModelIntellisense" priority="0x0109" type="Button">
+        <Parent guid="guidDiffCmdSet" id="MyMenuGroup" />
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <CommandFlag>DefaultDisabled</CommandFlag>
+        <Strings>
+          <ButtonText>xsd→model</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="guidDiffCmdSet" id="cmdXsdUtf8Intellisense" priority="0x0110" type="Button">
+        <Parent guid="guidDiffCmdSet" id="MyMenuGroup" />
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <CommandFlag>DefaultDisabled</CommandFlag>
+        <Strings>
+          <ButtonText>xsd→utf8</ButtonText>
+        </Strings>
+      </Button>
+      
     </Buttons>
 
     
@@ -98,6 +116,8 @@
       <IDSymbol name="MyMenuGroup" value="0x1040" />
       <IDSymbol name="cmdJavaScriptIntellisense" value="0x1047" />
       <IDSymbol name="cmdTypeScriptIntellisense" value="0x1048" />
+      <IDSymbol name="cmdModelIntellisense" value="0x1049" />
+      <IDSymbol name="cmdXsdUtf8Intellisense" value="0x1050" />
     </GuidSymbol>
 
     <GuidSymbol name="guidSolutionExplorerCmdSet" value="{e396b698-e00e-444b-9f5f-3dcb1ef74e62}">

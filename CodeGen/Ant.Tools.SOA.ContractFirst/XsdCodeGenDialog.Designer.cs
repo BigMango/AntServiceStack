@@ -423,7 +423,7 @@ namespace CTrip.Tools.SOA.ContractFirst
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "XsdCodeGenDialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "CTrip SOA Data Contract Code Generation Options ";
+            this.Text = "Ant SOA Data Contract Code Generation Options ";
             this.Load += new System.EventHandler(this.XsdCodeGenDialog_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbWscf)).EndInit();

@@ -35,6 +35,8 @@ namespace VSIXWsdlWizard
     {
         CreateJavaScriptIntellisenseFile = 0x1047,
         CreateTypeScriptIntellisenseFile = 0x1048,
+        cmdModelIntellisense = 0x1049,
+        cmdXsdUtf8Intellisense = 0x1050,
        
     }
 }

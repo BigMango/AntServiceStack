@@ -54,7 +54,160 @@ namespace VSIXWsdlWizard
             OleMenuCommand tsCommand = new OleMenuCommand(WsdlCommandInvoke, tsId);
             tsCommand.BeforeQueryStatus += TypeScript_BeforeQueryStatus;
             _mcs.AddCommand(tsCommand);
+
+            CommandID csId = new CommandID(CommandGuids.guidDiffCmdSet, (int)CommandId.cmdModelIntellisense);
+            OleMenuCommand csCommand = new OleMenuCommand(ModelCommandInvoke, csId);
+            csCommand.BeforeQueryStatus += JavaScript_BeforeQueryStatus;
+            _mcs.AddCommand(csCommand);
+
+            CommandID utf8Id = new CommandID(CommandGuids.guidDiffCmdSet, (int)CommandId.cmdXsdUtf8Intellisense);
+            OleMenuCommand utf8Command = new OleMenuCommand(Utf8CommandInvoke, utf8Id);
+            utf8Command.BeforeQueryStatus += JavaScript_BeforeQueryStatus;
+            _mcs.AddCommand(utf8Command);
         }
+
+
+        /// <summary>
+        /// xsd转成utf8编码
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Utf8CommandInvoke(object sender, EventArgs e)
+        {
+            var items = ProjectHelpers.GetSelectedItemPaths(_dte);
+            if (items.Count() != 1 ||
+                !(items.ElementAt(0).ToLower().EndsWith(".xsd", StringComparison.OrdinalIgnoreCase)))
+            {
+                return;
+            }
+            string xsdFileFullPath = items.ElementAt(0);
+           
+            if (!File.Exists(xsdFileFullPath))
+            {
+                MessageBox.Show("Selected item is no longer existing.",
+                        "XSD Encoding Conversion", MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            FileInfo fileInfo = new FileInfo(xsdFileFullPath);
+            if (fileInfo.IsReadOnly)
+            {
+                MessageBox.Show("Selected item is readonly.",
+                        "XSD Encoding Conversion", MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation);
+                return;
+            }
+            string xsdFile = fileInfo.Name;
+            try
+            {
+                string contentOfUTF8 = string.Empty;
+                using (StreamReader reader = new StreamReader(xsdFileFullPath))
+                {
+                    byte[] fileContent = reader.CurrentEncoding.GetBytes(reader.ReadToEnd());
+                    fileContent = Encoding.Convert(reader.CurrentEncoding, Encoding.UTF8, fileContent);
+                    contentOfUTF8 = Encoding.UTF8.GetString(fileContent);
+                }
+                using (StreamWriter writer = new StreamWriter(xsdFile, false, Encoding.UTF8))
+                {
+                    writer.Write(contentOfUTF8);
+                }
+
+                MessageBox.Show("Selected item is converted to UTF-8 format.",
+                        "XSD Encoding Conversion", MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error happens: " + ex,
+                        "XSD Encoding Conversion", MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation);
+            }
+        }
+
+
+        /// <summary>
+        /// 根据xsd生成model
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ModelCommandInvoke(object sender, EventArgs e)
+        {
+            //可以选多个
+            var items = ProjectHelpers.GetSelectedItemPaths(_dte);
+            if (items!=null && items.Any(r=>!r.ToLower().EndsWith(".xsd", StringComparison.OrdinalIgnoreCase)))
+            {
+                return;
+            }
+           
+            var _file = items.ElementAt(0);
+            var project = ProjectHelpers.GetActiveProject();
+            var projectFullName = ProjectHelpers.GetActiveProject().FullName;
+            var projectInfo = new FileInfo(projectFullName);
+            var folderproject = projectInfo.Directory?.FullName;
+            try
+            {
+                string[] dataContractFiles = items.ToArray();
+                XsdCodeGenDialog dialogForm = new XsdCodeGenDialog(dataContractFiles);
+                if (!project.IsWebProject())
+                {
+                    dialogForm.Namespace = project.GetProjectProperty("DefaultNamespace");
+                }
+                dialogForm.TargetFileName = ProjectHelpers.GetDefaultDestinationFilename(_file);
+                if (dialogForm.ShowDialog() == DialogResult.Cancel)
+                {
+                    return;
+                }
+
+                CodeGenOptions options = new CodeGenOptions();
+                options.GenerateDataContractsOnly = true;
+                options.DataContractFiles = dataContractFiles;
+                options.GenerateSeparateFiles = dialogForm.GenerateMultipleFiles;
+                options.GenerateSeparateFilesEachNamespace = dialogForm.GenerateMultipleFilesEachNamespace;
+                options.GenerateSeparateFilesEachXsd = dialogForm.GenerateSeparateFilesEachXsd;
+                options.AscendingClassByName = dialogForm.AscendingClassByName;
+                options.OnlyUseDataContractSerializer = dialogForm.OnlyUseDataContractSerializer;
+                options.OverwriteExistingFiles = dialogForm.OverwriteFiles;
+                options.EnableDataBinding = dialogForm.DataBinding;
+                options.EnableSummaryComment = dialogForm.Comment;
+                options.GenerateCollections = dialogForm.Collections;
+                options.GenerateTypedLists = dialogForm.TypedList;
+                options.EnableLazyLoading = dialogForm.LazyLoading;
+                options.OutputFileName = dialogForm.TargetFileName;
+                options.OutputLocation = folderproject;
+                options.ProjectDirectory = project.FullName;
+                options.Language = CodeLanguage.CSharp;
+                options.ClrNamespace = dialogForm.Namespace;
+                options.EnableSummaryComment = dialogForm.Comment;
+                options.ProjectName = project.Name;
+                options.EnableBaijiSerialization = dialogForm.EnableBaijiSerialization;
+                options.AddCustomRequestInterface = dialogForm.AddCustomRequestInterface;
+                options.CustomRequestInterface = dialogForm.CustomRequestInterface;
+                options.ForceElementName = dialogForm.ForceElementName;
+                options.ForceElementNamespace = dialogForm.ForceElementNamespace;
+                options.GenerateAsyncOperations = dialogForm.GenerateAsyncOperations;
+                options.EnableInitializeFields = true;
+
+               
+
+
+                CodeGenerator codeGenerator = new CodeGenerator();
+                CodeWriterOutput output = codeGenerator.GenerateCode(options);
+
+                AddGeneratedFilesToProject(output);
+
+                // Finally add the project references.
+                ProjectHelpers.AddAssemblyReferences(project);
+
+                MessageBox.Show("Model generation successfully completed.", "Ant.SOA.CodeGen", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                AppLog.LogMessage(ex.ToString());
+                MessageBox.Show(ex.Message, "CodeGeneration", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+       
 
         /// <summary>
         /// xsd生成wsdl
@@ -196,6 +349,8 @@ namespace VSIXWsdlWizard
                 MessageBox.Show(ex.Message, "CodeGeneration", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
 
         void JavaScript_BeforeQueryStatus(object sender, System.EventArgs e)
         {
