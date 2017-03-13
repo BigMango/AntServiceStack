@@ -18,6 +18,13 @@
       <xs:documentation>Helloworld Request</xs:documentation>
     </xs:annotation>
     <xs:sequence>
+      <xs:element name="AckEnum" type="TestEnum">
+        <xs:annotation>
+          <xs:documentation>
+            返回类型
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
     </xs:sequence>
   </xs:complexType>
   <xs:element name="HelloWorldResponse" type="HelloWorldResponseType" />
@@ -38,4 +45,34 @@
       </xs:element>
     </xs:sequence>
   </xs:complexType>
+  <xs:simpleType name="TestEnum">
+    <xs:annotation>
+      <xs:documentation>
+        测试enum类型
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="Success">
+        <xs:annotation>
+          <xs:documentation>
+            成功
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Failure">
+        <xs:annotation>
+          <xs:documentation>
+            失败
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Warning">
+        <xs:annotation>
+          <xs:documentation>
+            警告
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
 </xs:schema>
