@@ -13,8 +13,6 @@ namespace WebApplication
 
         protected void Application_Start(object sender, EventArgs e)
         {
-            //序列化日期
-            JsConfig.UseStandardLongDateTime();
             new ServerHost().Init();
         }
 

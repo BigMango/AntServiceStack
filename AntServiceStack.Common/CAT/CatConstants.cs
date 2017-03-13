@@ -36,7 +36,6 @@ namespace AntServiceStack
         public const int TCP_REBALANCE_INTERVAL = 600000;
         public const int TCP_CHECK_INTERVAL = 60000;
         public const int TCP_QUEUE_POLL_INTERVAL = 10;
-        public const string CAT_FILE_DIR = "D:\\WebSites\\AntAppTemp\\cat";
         public const string ROOT_MESSAGE_ID = "RootMessageId";
         public const string CURRENT_MESSAGE_ID = "CurrentMessageId";
         public const string SERVER_MESSAGE_ID = "ServerMessageId";

@@ -163,6 +163,10 @@ namespace AntServiceStack.WebHost.Endpoints
                 mTimer.Elapsed += new ElapsedEventHandler(sendMetrics);
 
                 StartUpTime = DateTime.Now;
+
+                //序列化日期
+                JsConfig.UseStandardLongDateTime();
+
                 log.Info("SOA 2.0 Service Initialization", "SOA 2.0 Service has been initialized.",
                     new Dictionary<string, string> 
                 { 

@@ -54,6 +54,7 @@
     <Compile Include="AddIntellisenseFileMenu.cs" />
     <Compile Include="CommandConstants.cs" />
     <Compile Include="Common\ProjectHelpers.cs" />
+    <Compile Include="Common\Vsix.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VSPackage1.cs" />
   </ItemGroup>
@@ -64,9 +65,21 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="index.html" />
+    <Content Include="index.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="LICENSE.txt" />
     <Content Include="Resources\FirstCommand.png" />
+    <Content Include="Resources\Source.extension.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="Resources\VSPackage1.ico" />
+    <Content Include="Resources\__TemplateIcon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="stylesheet.css" />
     <VSCTCompile Include="VSPackage1.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>
