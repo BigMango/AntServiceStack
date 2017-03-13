@@ -773,7 +773,7 @@ namespace Ant.Tools.SOA.CodeGeneration.Extensions
                         {
                             if (member.Name.Equals(xmlAttrib.QualifiedName.Name))
                             {
-                                this.CreateCommentFromAnnotation(xmlAttrib.Annotation, member.Comments);
+                                this.CreateDescriptionEnumAttribute(member,this.CreateCommentFromAnnotation(xmlAttrib.Annotation, member.Comments));
                                 foundInAttributes = true;
                             }
                         }
@@ -793,7 +793,7 @@ namespace Ant.Tools.SOA.CodeGeneration.Extensions
                                 if (currentItem != null)
                                 {
                                     if (member.Name.Equals(currentItem.QualifiedName.Name))
-                                        this.CreateCommentFromAnnotation(currentItem.Annotation, member.Comments);
+                                        this.CreateDescriptionEnumAttribute(member,this.CreateCommentFromAnnotation(currentItem.Annotation, member.Comments));
                                 }
                             }
                         }
@@ -1105,7 +1105,7 @@ namespace Ant.Tools.SOA.CodeGeneration.Extensions
                 if (messageName.EndsWith("AsyncRequest") || messageName.EndsWith("AsyncResponse"))
                 {
                     var asyncMessageNamespace = codeGeneratorContext.ElementName2TargetNamespaceMapping[messageName];
-                    messageName = messageName.Remove(messageName.LastIndexOf('A'), 5);
+                    messageName = messageName.Remove(messageName.LastIndexOf('A'), 5) + "Async";
                     codeGeneratorContext.ElementName2TargetNamespaceMapping[messageName] = asyncMessageNamespace;
                 }
             }
@@ -1166,7 +1166,7 @@ namespace Ant.Tools.SOA.CodeGeneration.Extensions
                         {
                             if (messageName.EndsWith("AsyncRequest") || messageName.EndsWith("AsyncResponse"))
                             {
-                                messageName = messageName.Remove(messageName.LastIndexOf('A'), 5);
+                                messageName = messageName.Remove(messageName.LastIndexOf('A'), 5) + "Async";
                                 xmlRootElementNameArgument.Value = new CodePrimitiveExpression(messageName); 
                             }
                         }
@@ -1250,6 +1250,16 @@ namespace Ant.Tools.SOA.CodeGeneration.Extensions
             }
         }
 
+        protected virtual void CreateDescriptionEnumAttribute(CodeTypeMember member, string comment)
+        {
+            member.CustomAttributes.Add(new CodeAttributeDeclaration("Description", new CodeAttributeArgument(new CodePrimitiveExpression(comment))));
+        }
+
+        protected virtual void CreateDescriptionMemberAttribute(CodeMemberProperty property, string desc)
+        {
+            property.CustomAttributes.Add(new CodeAttributeDeclaration("Description", new CodeAttributeArgument(new CodePrimitiveExpression(desc))));
+        }
+
         /// <summary>
         /// Creates the proto member attribute.
         /// </summary>
@@ -1273,7 +1283,7 @@ namespace Ant.Tools.SOA.CodeGeneration.Extensions
                 {
                     var xmlDoc = item as XmlSchemaDocumentation;
                     if (xmlDoc == null) continue;
-                    this.CreateCommentStatement(codeTypeDeclaration.Comments, xmlDoc);
+                    this.CreateDescriptionEnumAttribute(codeTypeDeclaration,this.CreateCommentStatement(codeTypeDeclaration.Comments, xmlDoc));
                 }
             }
         }
@@ -1293,7 +1303,7 @@ namespace Ant.Tools.SOA.CodeGeneration.Extensions
                 {
                     var xmlDoc = item as XmlSchemaDocumentation;
                     if (xmlDoc == null) continue;
-                    this.CreateCommentStatement(enumTypeDeclaration.Comments, xmlDoc);
+                    this.CreateDescriptionEnumAttribute(enumTypeDeclaration,this.CreateCommentStatement(enumTypeDeclaration.Comments, xmlDoc));
                 }
 
                 // comment on enum members
@@ -1312,7 +1322,7 @@ namespace Ant.Tools.SOA.CodeGeneration.Extensions
                                 {
                                     if (member.Name.Equals(facet.Value))
                                     {
-                                        this.CreateCommentFromAnnotation(facet.Annotation, member.Comments);
+                                        this.CreateDescriptionEnumAttribute(member, this.CreateCommentFromAnnotation(facet.Annotation, member.Comments));
                                     }
                                 }
                             }
@@ -1327,8 +1337,9 @@ namespace Ant.Tools.SOA.CodeGeneration.Extensions
         /// </summary>
         /// <param name="xmlSchemaAnnotation">XmlSchemaAnnotation from XmlSchemaType</param>
         /// <param name="codeCommentStatementCollection">codeCommentStatementCollection from member</param>
-        protected virtual void CreateCommentFromAnnotation(XmlSchemaAnnotation xmlSchemaAnnotation, CodeCommentStatementCollection codeCommentStatementCollection)
+        protected virtual string CreateCommentFromAnnotation(XmlSchemaAnnotation xmlSchemaAnnotation, CodeCommentStatementCollection codeCommentStatementCollection)
         {
+            var lines = new List<string>();
             if (xmlSchemaAnnotation != null)
             {
                 foreach (XmlSchemaObject annotation in xmlSchemaAnnotation.Items)
@@ -1336,10 +1347,26 @@ namespace Ant.Tools.SOA.CodeGeneration.Extensions
                     var xmlDoc = annotation as XmlSchemaDocumentation;
                     if (xmlDoc != null)
                     {
-                        this.CreateCommentStatement(codeCommentStatementCollection, xmlDoc);
+                        lines.Add(this.CreateCommentStatement(codeCommentStatementCollection, xmlDoc));
                     }
                 }
             }
+            return string.Join(",", lines.ToArray());
+        }
+
+        protected virtual string GetAppInfo(XmlSchemaAppInfo xmlInfo)
+        {
+            if (xmlInfo.Markup == null) return string.Empty;
+
+            foreach (XmlNode itemDoc in xmlInfo.Markup)
+            {
+                var textLine = itemDoc.InnerText.Trim();
+                if (textLine.Length > 0)
+                {
+                    return textLine;
+                }
+            }
+            return String.Empty;
         }
 
         /// <summary>
@@ -1347,12 +1374,12 @@ namespace Ant.Tools.SOA.CodeGeneration.Extensions
         /// </summary>
         /// <param name="codeStatementColl">CodeCommentStatementCollection collection</param>
         /// <param name="xmlDoc">Schema documentation</param>
-        protected virtual void CreateCommentStatement(
+        protected virtual string CreateCommentStatement(
             CodeCommentStatementCollection codeStatementColl,
             XmlSchemaDocumentation xmlDoc)
         {
-            if (xmlDoc.Markup == null) return;
-
+            if (xmlDoc.Markup == null) return "";
+            var lines = new List<string>();
             codeStatementColl.Clear();
             foreach (XmlNode itemDoc in xmlDoc.Markup)
             {
@@ -1360,8 +1387,10 @@ namespace Ant.Tools.SOA.CodeGeneration.Extensions
                 if (textLine.Length > 0)
                 {
                     CodeDomHelper.CreateSummaryComment(codeStatementColl, textLine);
+                    lines.Add(textLine);
                 }
             }
+            return string.Join(",",lines.ToArray());
         }
 
         protected virtual string GetAliasFromAppInfo(XmlSchemaAnnotation annotation)
