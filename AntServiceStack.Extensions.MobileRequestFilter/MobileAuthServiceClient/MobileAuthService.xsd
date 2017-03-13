@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
-<xs:schema xmlns:ns="http://soa.ctrip.com/common/types/v1" xmlns="http://soa.ctrip.com/platform/crm/mobileauthservice/v1" xmlns:mobileCommon="http://soa.ctrip.com/mobile/common/types/v1" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://soa.ctrip.com/platform/crm/mobileauthservice/v1" id="MobileAuthServiceTypes" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="CTripSOACommonTypes_V1.0.0.xsd" id="SOACommonTypes" namespace="http://soa.ctrip.com/common/types/v1" />
-  <xs:import schemaLocation="CTripSOAMobileCommonTypes_V1.0.0.xsd" id="SOAMobileCommonTypes" namespace="http://soa.ctrip.com/mobile/common/types/v1" />
+<xs:schema xmlns:ns="http://soa.ant.com/common/types/v1" xmlns="http://soa.ant.com/platform/crm/mobileauthservice/v1" xmlns:mobileCommon="http://soa.ant.com/mobile/common/types/v1" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://soa.ant.com/platform/crm/mobileauthservice/v1" id="MobileAuthServiceTypes" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="AntSOACommonTypes_V1.0.0.xsd" id="SOACommonTypes" namespace="http://soa.ant.com/common/types/v1" />
+  <xs:import schemaLocation="AntSOAMobileCommonTypes_V1.0.0.xsd" id="SOAMobileCommonTypes" namespace="http://soa.ant.com/mobile/common/types/v1" />
   <xs:complexType name="ValidateAndGetNewTokenRequest">
     <xs:annotation>
       <xs:documentation>验证Token并获取新的Token请求</xs:documentation>

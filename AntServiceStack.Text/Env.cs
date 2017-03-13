@@ -26,7 +26,7 @@ namespace AntServiceStack.Text
 
 			SupportsExpressions = SupportsEmit = !IsMonoTouch;
 
-            ServerUserAgent = "CTrip/SOA2.0 "
+            ServerUserAgent = "Ant/SOA2.0 "
                 + platformName
                 + (IsMono ? "/Mono" : "/.NET")
                 + (IsMonoTouch ? " MonoTouch" : "")

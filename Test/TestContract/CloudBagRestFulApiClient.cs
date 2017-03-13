@@ -237,7 +237,7 @@ namespace TestContract.Client
         
         public const string OriginalServiceName = "CloudBagRestFulApi";
         
-        public const string OriginalServiceNamespace = "http://soa.ctrip.com/innovationwork/CloudBag/v1";
+        public const string OriginalServiceNamespace = "http://soa.ant.com/innovationwork/CloudBag/v1";
         
         public const string OriginalServiceType = "NonSLB";
         

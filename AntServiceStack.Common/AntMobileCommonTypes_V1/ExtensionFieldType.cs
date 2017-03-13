@@ -19,28 +19,56 @@ namespace AntServiceStack.Common.Types
     using System.Runtime.Serialization;
     using System.Collections.Generic;
     using AntServiceStack.ProtoBuf;
-    using AntServiceStack.ServiceHost;
     using AntServiceStack.Baiji.Specific;
     using System.Linq;
     
     
-    /// <summary>
-    /// Check the health of the service. Per CTrip SOA policy,
-    /// CheckHealth API must be implemented by service implementation.
-    /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1026")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://soa.ctrip.com/common/types/v1")]
-    [System.Xml.Serialization.XmlRootAttribute("CheckHealthRequest", Namespace="http://soa.ctrip.com/common/types/v1", IsNullable=false)]
-    [DataContract(Name="CheckHealthRequest", Namespace="http://soa.ctrip.com/common/types/v1")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://soa.ant.com/mobile/common/types/v1")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://soa.ant.com/mobile/common/types/v1", IsNullable=true)]
+    [DataContract(Namespace="http://soa.ant.com/mobile/common/types/v1")]
     [ProtoContract()]
-    public partial class CheckHealthRequestType : ISpecificRecord
+    public partial class ExtensionFieldType : ISpecificRecord
     {
         
-        public static readonly Baiji.Schema.Schema SCHEMA = Baiji.Schema.Schema.Parse((("{\"type\":\"record\",\"name\":\"CheckHealthRequestType\",\"namespace\":\"" + typeof(CheckHealthRequestType).Namespace) 
-                        + "\",\"doc\":null,\"fields\":[]}"));
+        private string nameField;
+        
+        private string valueField;
+        
+        public static readonly AntServiceStack.Baiji.Schema.Schema SCHEMA = AntServiceStack.Baiji.Schema.Schema.Parse((("{\"type\":\"record\",\"name\":\"ExtensionFieldType\",\"namespace\":\"" + typeof(ExtensionFieldType).Namespace) 
+                        + "\",\"doc\":null,\"fields\":[{\"name\":\"name\",\"type\":[\"string\",\"null\"]},{\"name\":\"value\",\"" +
+                            "type\":[\"string\",\"null\"]}]}"));
+        
+        [DataMember()]
+        [ProtoMember(1)]
+        public string name
+        {
+            get
+            {
+                return this.nameField;
+            }
+            set
+            {
+                this.nameField = value;
+            }
+        }
+        
+        [DataMember()]
+        [ProtoMember(2)]
+        public string value
+        {
+            get
+            {
+                return this.valueField;
+            }
+            set
+            {
+                this.valueField = value;
+            }
+        }
         
         public virtual AntServiceStack.Baiji.Schema.Schema GetSchema()
         {
@@ -51,6 +79,8 @@ namespace AntServiceStack.Common.Types
         {
             switch(fieldPos)
             {
+                case 0: return this.name;
+                case 1: return this.value;
                 default: throw new AntServiceStack.Baiji.Exceptions.BaijiRuntimeException("Bad index " + fieldPos + " in Get()");
             }
         }
@@ -59,6 +89,8 @@ namespace AntServiceStack.Common.Types
         {
             switch(fieldPos)
             {
+                case 0: this.name = (System.String)fieldValue; break;
+                case 1: this.value = (System.String)fieldValue; break;
                 default: throw new AntServiceStack.Baiji.Exceptions.BaijiRuntimeException("Bad index " + fieldPos + " in Put()");
             }
         }

@@ -117,7 +117,7 @@ namespace AntServiceStack.Threading.Internal
 					new CTPPerformanceCounter("% overhead threads", "The current number of threads that are active, but are not in use in percents.", PerformanceCounterType.RawFraction), 
 					new CTPPerformanceCounter("% overhead threads base", "The current number of threads that are active, but are not in use in percents.", PerformanceCounterType.RawBase), 
 
-					new CTPPerformanceCounter("Work Items", "The number of work items in the CTrip Thread Pool. Both queued and processed.", PerformanceCounterType.NumberOfItems32), 
+					new CTPPerformanceCounter("Work Items", "The number of work items in the Ant Thread Pool. Both queued and processed.", PerformanceCounterType.NumberOfItems32), 
 					new CTPPerformanceCounter("Work Items in queue", "The current number of work items in the queue", PerformanceCounterType.NumberOfItems32), 
 					new CTPPerformanceCounter("Work Items processed", "The number of work items already processed", PerformanceCounterType.NumberOfItems32), 
 
@@ -130,7 +130,7 @@ namespace AntServiceStack.Threading.Internal
 					new CTPPerformanceCounter("Avg. Work Item process time(sec)", "The average time it takes to process a work item.", PerformanceCounterType.AverageCount64), 
 					new CTPPerformanceCounter("Avg. Work Item process time base", "The average time it takes to process a work item.", PerformanceCounterType.AverageBase), 
 
-					new CTPPerformanceCounter("Work Items Groups", "The current number of work item groups associated with the CTrip Thread Pool.", PerformanceCounterType.NumberOfItems32), 
+					new CTPPerformanceCounter("Work Items Groups", "The current number of work item groups associated with the Ant Thread Pool.", PerformanceCounterType.NumberOfItems32), 
 				};
 
             _ctpPerformanceCounters = ctpPerformanceCounters;

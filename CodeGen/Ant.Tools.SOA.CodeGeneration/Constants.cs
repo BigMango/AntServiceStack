@@ -16,8 +16,8 @@ namespace Ant.Tools.SOA.CodeGeneration
         public const string COMMON_TYPE_NAMESPACE_NAME = "soa.ant.com.common.types.v1";
         public const string MOBILE_COMMON_TYPE_NAMESPACE_NAME = "soa.ant.com.mobile.common.types.v1";
 
-        public const string CTRIP_SOA_COMMON_TYPE_NAMESPACE = "http://soa.ant.com/common/types/v1";
-        public const string CTRIP_SOA_MOBILE_COMMON_TYPE_NAMESPACE = "http://soa.ant.com/mobile/common/types/v1";
+        public const string ANT_SOA_COMMON_TYPE_NAMESPACE = "http://soa.ant.com/common/types/v1";
+        public const string ANT_SOA_MOBILE_COMMON_TYPE_NAMESPACE = "http://soa.ant.com/mobile/common/types/v1";
 
         public const string C_SERVICE_STACK_COMMON_TYPES_NAMESPACE = "AntServiceStack.Common.Types";
         public const string RESPONSE_STATUS_PROPERTY_NAME = "ResponseStatus";

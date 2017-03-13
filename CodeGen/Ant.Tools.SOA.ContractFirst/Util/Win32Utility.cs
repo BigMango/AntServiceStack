@@ -5,7 +5,7 @@ using System.Text;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
-namespace CTrip.Tools.SOA.ContractFirst.Util
+namespace Ant.Tools.SOA.ContractFirst.Util
 {
     public static class Win32Utility
     {

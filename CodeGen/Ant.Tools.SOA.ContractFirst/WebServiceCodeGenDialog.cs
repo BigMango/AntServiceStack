@@ -4,10 +4,10 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using System.Collections;
 using System.IO;
-using CTrip.Tools.SOA.Util;
-using CTrip.Tools.SOA.ContractFirst.Util;
+using Ant.Tools.SOA.Util;
+using Ant.Tools.SOA.ContractFirst.Util;
 
-namespace CTrip.Tools.SOA.ContractFirst
+namespace Ant.Tools.SOA.ContractFirst
 {
     /// <summary>
     /// Summary description for WebServiceCodeGenOptions.
@@ -252,7 +252,7 @@ namespace CTrip.Tools.SOA.ContractFirst
             this.pbWscf.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbWscf.TabIndex = 11;
             this.pbWscf.TabStop = false;
-            this.cfTooltip.SetToolTip(this.pbWscf, "http://www.ctrip.com/");
+            this.cfTooltip.SetToolTip(this.pbWscf, "http://www.soa.com/");
             this.pbWscf.Click += new System.EventHandler(this.pbWscf_Click);
             // 
             // cbMultipleFiles
@@ -626,10 +626,10 @@ namespace CTrip.Tools.SOA.ContractFirst
         {
             if (cbAddCustomRequestInterface.Checked)
             {
-                if (tbCustomRequestInterface.Text.Length == 0 || !CTrip.Tools.SOA.Util.ValidationHelper.IsIdentifier(tbCustomRequestInterface.Text))
+                if (tbCustomRequestInterface.Text.Length == 0 || !Tools.SOA.Util.ValidationHelper.IsIdentifier(tbCustomRequestInterface.Text))
                 {
                     MessageBox.Show("Please enter a valid name for the interface",
-                                          "CTrip SOA code generation",
+                                          "Ant SOA code generation",
                                   MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
                     this.DialogResult = DialogResult.None;
@@ -648,7 +648,7 @@ namespace CTrip.Tools.SOA.ContractFirst
                     button1.DialogResult = DialogResult.None;
 
                     MessageBox.Show("Sorry, please enter valid values.",
-                        "CTrip SOA code generation", MessageBoxButtons.OK,
+                        "Ant SOA code generation", MessageBoxButtons.OK,
                                     MessageBoxIcon.Exclamation);
                 }
                 else
@@ -663,7 +663,7 @@ namespace CTrip.Tools.SOA.ContractFirst
                 button1.DialogResult = DialogResult.None;
 
                 MessageBox.Show("Please choose code generation options.",
-                    "CTrip SOA code generation", MessageBoxButtons.OK,
+                    "Ant SOA code generation", MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation);
             }
         }
@@ -687,7 +687,7 @@ namespace CTrip.Tools.SOA.ContractFirst
 
         private void ttPicBox_Click(object sender, EventArgs e)
         {
-            Process.Start("http://www.ctrip.com/");
+            Process.Start("http://www.ant.com/");
         }
 
         private void bnBrowse_Click(object sender, EventArgs e)
@@ -876,7 +876,7 @@ namespace CTrip.Tools.SOA.ContractFirst
         /// </summary>
         /// <param name="path">Path of the wsdl file to add.</param>
         /// <returns>A string indicating the name of the wsdl file.</returns>
-        /// <author>William - ctrip</author>
+        /// <author>William - ant</author>
         private string AddWsdlFileToCache(string path)
         {
             if (path.LastIndexOf("\\") > 0 && path.ToLower().EndsWith(".wsdl"))
@@ -913,7 +913,7 @@ namespace CTrip.Tools.SOA.ContractFirst
                 {
                     if (MessageBox.Show(this,
                         "This will overwrite the existing files in the project. Are you sure you want to enable this option anyway?",
-                        "CTrip SOA code generation",
+                        "Ant SOA code generation",
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question) == DialogResult.No)
                     {
@@ -925,7 +925,7 @@ namespace CTrip.Tools.SOA.ContractFirst
 
         private void pbWscf_Click(object sender, System.EventArgs e)
         {
-            Process.Start("http://www.ctrip.com/");
+            Process.Start("http://www.ant.com/");
         }
 
         public bool ServiceCode

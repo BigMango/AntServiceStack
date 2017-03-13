@@ -8,7 +8,7 @@
     using System.Runtime.Serialization;
     using System.Xml.Serialization;
 
-    [Serializable, DebuggerStepThrough, DataContract(Namespace="http://soa.ctrip.com/framework/chystrix/configservice/v1"), XmlType(Namespace="http://soa.ctrip.com/framework/chystrix/configservice/v1"), GeneratedCode("System.Xml", "4.0.30319.1026"), XmlRoot(Namespace="http://soa.ctrip.com/framework/chystrix/configservice/v1", IsNullable=true), DesignerCategory("code")]
+    [Serializable, DebuggerStepThrough, DataContract(Namespace="http://soa.ant.com/framework/chystrix/configservice/v1"), XmlType(Namespace="http://soa.ant.com/framework/chystrix/configservice/v1"), GeneratedCode("System.Xml", "4.0.30319.1026"), XmlRoot(Namespace="http://soa.ant.com/framework/chystrix/configservice/v1", IsNullable=true), DesignerCategory("code")]
     internal class CHystrixApplication
     {
         private string appNameField;

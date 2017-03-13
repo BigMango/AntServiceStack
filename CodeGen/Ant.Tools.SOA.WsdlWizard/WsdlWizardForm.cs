@@ -227,7 +227,7 @@ namespace Ant.Tools.SOA.WsdlWizard
             catch (Exception ex)
             {
                 throw new WsdlFileLoadException(
-                    "System could not import the specified WSDL file for round triping.\nThis file is either modified or not a valid WSDL file created using CTrip SOA Code Generator. " + ex, ex);
+                    "System could not import the specified WSDL file for round triping.\nThis file is either modified or not a valid WSDL file created using Ant SOA Code Generator. " + ex, ex);
             }
 
             this.UpdateCurrentFolder(wsdlLocation);

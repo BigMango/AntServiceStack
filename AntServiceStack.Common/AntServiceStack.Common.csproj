@@ -275,25 +275,25 @@
     <Compile Include="CThreadPool\WorkItemsGroup.cs" />
     <Compile Include="CThreadPool\WorkItemsGroupBase.cs" />
     <Compile Include="CThreadPool\WorkItemsQueue.cs" />
-    <Compile Include="CTripCommonTypes_V1\AckCodeType.cs" />
-    <Compile Include="CTripCommonTypes_V1\CheckHealthRequestType.cs" />
-    <Compile Include="CTripCommonTypes_V1\CheckHealthResponseType.cs" />
-    <Compile Include="CTripCommonTypes_V1\CommonRequestType.cs" />
-    <Compile Include="CTripCommonTypes_V1\ErrorClassificationCodeType.cs" />
-    <Compile Include="CTripCommonTypes_V1\ErrorDataType.cs" />
-    <Compile Include="CTripCommonTypes_V1\ErrorFieldType.cs" />
-    <Compile Include="CTripCommonTypes_V1\ExtensionType.cs" />
-    <Compile Include="CTripCommonTypes_V1\GenericErrorResponseType.cs" />
-    <Compile Include="CTripCommonTypes_V1\PaginationInputType.cs" />
-    <Compile Include="CTripCommonTypes_V1\PaginationOutputType.cs" />
-    <Compile Include="CTripCommonTypes_V1\ResponseStatusType.cs" />
-    <Compile Include="CTripCommonTypes_V1\SeverityCodeType.cs" />
-    <Compile Include="CTripCommonTypes_V1\SimpleRequestType.cs" />
-    <Compile Include="CTripCommonTypes_V1\SimpleResponseType.cs" />
-    <Compile Include="CTripMobileCommonTypes_V1\ExtensionFieldType.cs" />
-    <Compile Include="CTripMobileCommonTypes_V1\IHasMobileRequestHead.cs" />
-    <Compile Include="CTripMobileCommonTypes_V1\MobileRequestHead.cs" />
-    <Compile Include="CTripMobileCommonTypes_V1\SimpleH5RequestType.cs" />
+    <Compile Include="AntCommonTypes_V1\AckCodeType.cs" />
+    <Compile Include="AntCommonTypes_V1\CheckHealthRequestType.cs" />
+    <Compile Include="AntCommonTypes_V1\CheckHealthResponseType.cs" />
+    <Compile Include="AntCommonTypes_V1\CommonRequestType.cs" />
+    <Compile Include="AntCommonTypes_V1\ErrorClassificationCodeType.cs" />
+    <Compile Include="AntCommonTypes_V1\ErrorDataType.cs" />
+    <Compile Include="AntCommonTypes_V1\ErrorFieldType.cs" />
+    <Compile Include="AntCommonTypes_V1\ExtensionType.cs" />
+    <Compile Include="AntCommonTypes_V1\GenericErrorResponseType.cs" />
+    <Compile Include="AntCommonTypes_V1\PaginationInputType.cs" />
+    <Compile Include="AntCommonTypes_V1\PaginationOutputType.cs" />
+    <Compile Include="AntCommonTypes_V1\ResponseStatusType.cs" />
+    <Compile Include="AntCommonTypes_V1\SeverityCodeType.cs" />
+    <Compile Include="AntCommonTypes_V1\SimpleRequestType.cs" />
+    <Compile Include="AntCommonTypes_V1\SimpleResponseType.cs" />
+    <Compile Include="AntMobileCommonTypes_V1\ExtensionFieldType.cs" />
+    <Compile Include="AntMobileCommonTypes_V1\IHasMobileRequestHead.cs" />
+    <Compile Include="AntMobileCommonTypes_V1\MobileRequestHead.cs" />
+    <Compile Include="AntMobileCommonTypes_V1\SimpleH5RequestType.cs" />
     <Compile Include="Extensions\AssertExtensions.cs" />
     <Compile Include="Extensions\ByteArrayExtensions.cs" />
     <Compile Include="CryptUtils.cs" />
@@ -516,16 +516,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="CTripCommonTypes_V1\CTripSOACommonTypes_V1.0.0.xsd">
+    <None Include="AntCommonTypes_V1\AntSOACommonTypes_V1.0.0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="CTripCommonTypes_V1\CTripSOACommonTypes_V1.1.0.xsd">
+    <None Include="AntCommonTypes_V1\AntSOACommonTypes_V1.1.0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="CTripMobileCommonTypes_V1\CTripSOAMobileCommonTypes_V1.0.0.xsd">
+    <None Include="AntMobileCommonTypes_V1\AntSOAMobileCommonTypes_V1.0.0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="CTripMobileCommonTypes_V1\CTripSOAMobileCommonTypes_V1.1.0.xsd">
+    <None Include="AntMobileCommonTypes_V1\AntSOAMobileCommonTypes_V1.1.0.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Soap11\soap11.xsd">

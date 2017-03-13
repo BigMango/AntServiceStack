@@ -48,7 +48,7 @@
             instanceKey = string.IsNullOrWhiteSpace(instanceKey) ? null : instanceKey.Trim();
             commandKey = commandKey.Trim();
             groupKey = groupKey ?? "DefaultGroup";
-            domain = domain ?? "CTrip";
+            domain = domain ?? "Ant";
             if (valueFactory == null)
             {
                 valueFactory = key => HystrixCommandBase.CreateCommandComponents(this.Key, instanceKey, commandKey, groupKey, domain, IsolationModeEnum.SemaphoreIsolation, config, typeof(SemaphoreIsolation));

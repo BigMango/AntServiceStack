@@ -31,9 +31,9 @@ namespace AntServiceStack.Common.Types
     /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1026")]
     [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://soa.ctrip.com/common/types/v1")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://soa.ctrip.com/common/types/v1", IsNullable=false)]
-    [DataContract(Namespace="http://soa.ctrip.com/common/types/v1")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://soa.ant.com/common/types/v1")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://soa.ant.com/common/types/v1", IsNullable=false)]
+    [DataContract(Namespace="http://soa.ant.com/common/types/v1")]
     [ProtoContract()]
     public enum SeverityCodeType
     {
@@ -49,8 +49,8 @@ namespace AntServiceStack.Common.Types
         
         /// <summary>
         /// (out) The request was processed successfully, but something occurred
-        /// that may affect your application or the user. For example, ctrip service may have
-        /// changed a value the user sent in. In this case, ctrip service returns a normal,
+        /// that may affect your application or the user. For example, ant service may have
+        /// changed a value the user sent in. In this case, ant service returns a normal,
         /// successful response and also returns the warning.
         /// </summary>
         [EnumMember()]

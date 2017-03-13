@@ -118,7 +118,7 @@
             this._instanceKey = string.IsNullOrWhiteSpace(instanceKey) ? null : instanceKey.Trim();
             this._commandKey = string.IsNullOrWhiteSpace(commandKey) ? null : commandKey.Trim();
             this._groupKey = string.IsNullOrWhiteSpace(groupKey) ? "DefaultGroup" : groupKey.Trim();
-            this._domain = string.IsNullOrWhiteSpace(domain) ? "CTrip" : domain.Trim();
+            this._domain = string.IsNullOrWhiteSpace(domain) ? "Ant" : domain.Trim();
             this._config = config;
             Type type = base.GetType();
             if ((string.IsNullOrWhiteSpace(this.Key) && string.IsNullOrWhiteSpace(this.CommandKey)) && string.IsNullOrWhiteSpace(this._commandKey))

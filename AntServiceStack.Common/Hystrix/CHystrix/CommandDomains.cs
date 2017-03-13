@@ -9,7 +9,7 @@
         public const string Car = "Car";
         public const string Corp = "Corp";
         public const string Cruise = "Cruise";
-        public const string Default = "CTrip";
+        public const string Default = "Ant";
         public const string Destination = "Destination";
         public const string Finance = "Finance";
         public const string Flight = "Flight";

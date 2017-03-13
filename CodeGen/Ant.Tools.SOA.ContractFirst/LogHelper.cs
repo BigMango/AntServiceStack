@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Text;
 
-namespace CTrip.Tools.SOA.ContractFirst
+namespace Ant.Tools.SOA.ContractFirst
 {
 	/// <summary>
 	/// Summary description for LogHelper.

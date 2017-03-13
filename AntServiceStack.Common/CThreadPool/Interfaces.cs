@@ -553,7 +553,7 @@ namespace AntServiceStack.Threading
         /// If the work item is completed, it will remain completed
         /// If the work item is in progress then the user can check the CThreadPool.IsWorkItemCanceled
         ///   property to check if the work item has been cancelled. If the abortExecution is set to true then
-        ///   the CTrip Thread Pool will send an AbortException to the running thread to stop the execution 
+        ///   the ANT Thread Pool will send an AbortException to the running thread to stop the execution 
         ///   of the work item. When an in progress work item is canceled its GetResult will throw WorkItemCancelException.
         /// If the work item is already cancelled it will remain cancelled
         /// </summary>

@@ -34,9 +34,9 @@ namespace AntServiceStack.Common.Types
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://soa.ctrip.com/common/types/v1")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://soa.ctrip.com/common/types/v1", IsNullable=true)]
-    [DataContract(Namespace="http://soa.ctrip.com/common/types/v1")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace= "http://soa.ant.com/common/types/v1")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace= "http://soa.ant.com/common/types/v1", IsNullable=true)]
+    [DataContract(Namespace= "http://soa.ant.com/common/types/v1")]
     [ProtoContract()]
     public partial class PaginationOutputType : ISpecificRecord
     {
@@ -53,7 +53,7 @@ namespace AntServiceStack.Common.Types
                         + "\",\"doc\":null,\"fields\":[{\"name\":\"PageNumber\",\"type\":\"int\"},{\"name\":\"EntriesPerPage" +
                             "\",\"type\":\"int\"},{\"name\":\"TotalPages\",\"type\":\"int\"},{\"name\":\"TotalEntries\",\"type\"" +
                             ":\"int\"}]}"));
-        
+
         /// <summary>
         /// The subset of item data returned in the current response. Search results
         /// are divided into sets, or "pages," of item data. The number of pages is
@@ -69,7 +69,7 @@ namespace AntServiceStack.Common.Types
         /// <br> <br>
         /// The value of pageNumber is normally equal to the value input for
         /// paginationInput.pageNumber. However, if the number input for pageNumber
-        /// is greater than the total possible pages of output, ctrip returns the last
+        /// is greater than the total possible pages of output, ant returns the last
         /// page of item data in the result set, and the value for pageNumber is set
         /// to the respective (last) page number.
         /// </summary>

@@ -26,16 +26,16 @@ namespace AntServiceStack.Common.Types
     
     /// <summary>
     /// AckCodeType - Type declaration to be used by other schema. This code identifies
-    /// the acknowledgement code types that ctrip could use to communicate the status of
+    /// the acknowledgement code types that ANT could use to communicate the status of
     /// processing a (request) message to a client. This code would be used as part
     /// of a response message that contains a framework, validation or service-level
     /// acknowledgement element.
     /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1026")]
     [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://soa.ctrip.com/common/types/v1")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://soa.ctrip.com/common/types/v1", IsNullable=false)]
-    [DataContract(Namespace="http://soa.ctrip.com/common/types/v1")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://soa.ant.com/common/types/v1")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace= "http://soa.ant.com/common/types/v1", IsNullable=false)]
+    [DataContract(Namespace= "http://soa.ant.com/common/types/v1")]
     [ProtoContract()]
     public enum AckCodeType
     {

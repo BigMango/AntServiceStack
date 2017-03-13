@@ -66,7 +66,6 @@ namespace Ant.Tools.SOA.CodeGeneration
                 // First download the contracts if they are accessed over the web.
                 DownloadContract(options);
 
-                // Resolve metadata using a CtripDiscoveryClientProtocol.
                 AntDiscoveryClientProtocol dcp = new AntDiscoveryClientProtocol();
                 dcp.Credentials = GetCredentials(options);
                 dcp.AllowAutoRedirect = true;

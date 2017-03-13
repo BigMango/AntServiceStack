@@ -26,7 +26,6 @@ namespace Ant.Tools.SOA.CodeGeneration
         static readonly string SYSTEM_THREADING_TASKS_NAMESPACE = "System.Threading.Tasks";
         static readonly string C_SERVICE_STACK_SERVICE_CLIENT_NAMESPACE = "AntServiceStack.ServiceClient";
         static readonly string C_SERVICE_STACK_AUTOMATION_TEST_CLIENT_NAMESPACE = "Ant.Automation.Framework.Lib";
-        //static readonly string CTRIP_SOA_COMMON_BASE_RESPONSE_TYPE_NAME = "AbstractResponseType";
         static readonly string HEALTH_CHECK_OPERATION_NAME = "CheckHealth";
         static readonly string MOBILE_REQUEST_HEAD_PROPERTY_NAME = "head";
         static readonly string MOBILE_REQUEST_HEAD_TYPE_NAME = "MobileRequestHead";
@@ -833,29 +832,5 @@ namespace Ant.Tools.SOA.CodeGeneration
             }
         }
 
-        /*
-        private bool IsExtendingCommonBaseResponseType(CodeTypeDeclaration codeType, IDictionary<string, CodeTypeDeclaration> CodeTypeMap)
-        {
-            if (codeType.BaseTypes == null || codeType.BaseTypes.Count == 0) return false;
-            foreach (CodeTypeReference baseTypeRef in codeType.BaseTypes)
-            {
-                if (CTRIP_SOA_COMMON_BASE_RESPONSE_TYPE_NAME.Equals(baseTypeRef.BaseType))
-                {
-                    return true;
-                }
-                else
-                {
-                    CodeTypeDeclaration baseCodeType = null;
-                    CodeTypeMap.TryGetValue(baseTypeRef.BaseType, out baseCodeType);
-                    if (baseCodeType != null && baseCodeType.IsClass)
-                    {
-                        return IsExtendingCommonBaseResponseType(baseCodeType, CodeTypeMap);
-                    }
-                }
-            }
-
-            return false;
-        }
-        */
     }
 }

@@ -25,84 +25,21 @@ namespace AntServiceStack.Common.Types
     
     
     /// <summary>
-    /// A variable that contains specific information about the context of this error.
-    /// For example, in request validation failure case,
-    /// the problematic field name might be returned as an error field.
-    /// Use error fields to flag fields that users need to correct.
-    /// Also use error fields to distinguish between errors when multiple
-    /// errors are returned.
+    /// Simplest request type without request data.
     /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1026")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://soa.ctrip.com/common/types/v1")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://soa.ctrip.com/common/types/v1", IsNullable=true)]
-    [DataContract(Namespace="http://soa.ctrip.com/common/types/v1")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://soa.ant.com/common/types/v1")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://soa.ant.com/common/types/v1", IsNullable=true)]
+    [DataContract(Namespace="http://soa.ant.com/common/types/v1")]
     [ProtoContract()]
-    public partial class ErrorFieldType : ISpecificRecord
+    public partial class SimpleRequestType : ISpecificRecord
     {
         
-        private string fieldNameField;
-        
-        private string errorCodeField;
-        
-        private string messageField;
-        
-        public static readonly AntServiceStack.Baiji.Schema.Schema SCHEMA = AntServiceStack.Baiji.Schema.Schema.Parse((("{\"type\":\"record\",\"name\":\"ErrorFieldType\",\"namespace\":\"" + typeof(ErrorFieldType).Namespace) 
-                        + "\",\"doc\":null,\"fields\":[{\"name\":\"FieldName\",\"type\":[\"string\",\"null\"]},{\"name\":\"Err" +
-                            "orCode\",\"type\":[\"string\",\"null\"]},{\"name\":\"Message\",\"type\":[\"string\",\"null\"]}]}"));
-        
-        /// <summary>
-        /// The name of the field caused the error.
-        /// </summary>
-        [DataMember()]
-        [ProtoMember(1)]
-        public string FieldName
-        {
-            get
-            {
-                return this.fieldNameField;
-            }
-            set
-            {
-                this.fieldNameField = value;
-            }
-        }
-        
-        /// <summary>
-        /// Error code
-        /// </summary>
-        [DataMember()]
-        [ProtoMember(2)]
-        public string ErrorCode
-        {
-            get
-            {
-                return this.errorCodeField;
-            }
-            set
-            {
-                this.errorCodeField = value;
-            }
-        }
-        
-        /// <summary>
-        /// Error message
-        /// </summary>
-        [DataMember()]
-        [ProtoMember(3)]
-        public string Message
-        {
-            get
-            {
-                return this.messageField;
-            }
-            set
-            {
-                this.messageField = value;
-            }
-        }
+        public static readonly AntServiceStack.Baiji.Schema.Schema SCHEMA = AntServiceStack.Baiji.Schema.Schema.Parse((("{\"type\":\"record\",\"name\":\"SimpleRequestType\",\"namespace\":\"" + typeof(SimpleRequestType).Namespace) 
+                        + "\",\"doc\":null,\"fields\":[]}"));
         
         public virtual AntServiceStack.Baiji.Schema.Schema GetSchema()
         {
@@ -113,9 +50,6 @@ namespace AntServiceStack.Common.Types
         {
             switch(fieldPos)
             {
-                case 0: return this.FieldName;
-                case 1: return this.ErrorCode;
-                case 2: return this.Message;
                 default: throw new AntServiceStack.Baiji.Exceptions.BaijiRuntimeException("Bad index " + fieldPos + " in Get()");
             }
         }
@@ -124,9 +58,6 @@ namespace AntServiceStack.Common.Types
         {
             switch(fieldPos)
             {
-                case 0: this.FieldName = (System.String)fieldValue; break;
-                case 1: this.ErrorCode = (System.String)fieldValue; break;
-                case 2: this.Message = (System.String)fieldValue; break;
                 default: throw new AntServiceStack.Baiji.Exceptions.BaijiRuntimeException("Bad index " + fieldPos + " in Put()");
             }
         }

@@ -27,9 +27,9 @@ namespace AntServiceStack.Common.Types
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://soa.ctrip.com/mobile/common/types/v1")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://soa.ctrip.com/mobile/common/types/v1", IsNullable=true)]
-    [DataContract(Namespace="http://soa.ctrip.com/mobile/common/types/v1")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://soa.ant.com/mobile/common/types/v1")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://soa.ant.com/mobile/common/types/v1", IsNullable=true)]
+    [DataContract(Namespace="http://soa.ant.com/mobile/common/types/v1")]
     [ProtoContract()]
     public partial class MobileRequestHead : ISpecificRecord
     {

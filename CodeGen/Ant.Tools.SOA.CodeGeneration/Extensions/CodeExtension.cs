@@ -186,12 +186,12 @@ namespace Ant.Tools.SOA.CodeGeneration.Extensions
 
         public static bool IsSOACommonType(CodeTypeDeclaration codeType)
         {
-            return IsTypeOfNamespace(codeType, Constants.CTRIP_SOA_COMMON_TYPE_NAMESPACE);
+            return IsTypeOfNamespace(codeType, Constants.ANT_SOA_COMMON_TYPE_NAMESPACE);
         }
 
         public static bool IsSOAMobileCommonType(CodeTypeDeclaration codeType)
         {
-            return IsTypeOfNamespace(codeType, Constants.CTRIP_SOA_MOBILE_COMMON_TYPE_NAMESPACE);
+            return IsTypeOfNamespace(codeType, Constants.ANT_SOA_MOBILE_COMMON_TYPE_NAMESPACE);
         }
 
         public static bool IsTypeOfNamespace(CodeTypeDeclaration codeType, string typeNamespace)

@@ -28,9 +28,9 @@ namespace Ant.Tools.SOA.WsdlWizard
         public const string ServiceNamespaceKey = "ServiceNamespace";
         public const string ServiceDocumentationKey = "ServiceDocumentation";
         public const string CacheFolderPathEnvironmentVariableName = "USERPROFILE";
-        public const string ConfigFileName = "CTrip.Tools.SOA.CodeGeneration.Config.xml";
-        public const string CachedServiceRegistryFileName = "CTrip.Tools.SOA.CodeGeneration.ServiceRegistry.json";
-        public const string LogFileName = "CTrip.Tools.SOA.CodeGeneration.log";
+        public const string ConfigFileName = "Ant.Tools.SOA.CodeGeneration.Config.xml";
+        public const string CachedServiceRegistryFileName = "Ant.Tools.SOA.CodeGeneration.ServiceRegistry.json";
+        public const string LogFileName = "Ant.Tools.SOA.CodeGeneration.log";
         public const string ServiceRegistrySyncFailMessage = @"Sync Registry failed. Repositry Service Lookup Uri: {0}. Please check the network connectivity or contact the framework SOA team.";
 
         public enum ServiceStateEnum
@@ -39,7 +39,7 @@ namespace Ant.Tools.SOA.WsdlWizard
             Unregistered
         }
 
-        private string RepositryRegisteredServiceInterfaceUrl = "http://repository.soa.ctripcorp.com/servicelookup";
+        private string RepositryRegisteredServiceInterfaceUrl = "http://repository.soa.ant.com/servicelookup";
         private Dictionary<string, Dictionary<string, List<string>>> _serviceRegistryData;
         private CodeGenerationConfig _config;
 

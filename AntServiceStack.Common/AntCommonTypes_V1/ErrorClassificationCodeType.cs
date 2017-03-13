@@ -26,9 +26,9 @@ namespace AntServiceStack.Common.Types
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1026")]
     [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://soa.ctrip.com/common/types/v1")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://soa.ctrip.com/common/types/v1", IsNullable=false)]
-    [DataContract(Namespace="http://soa.ctrip.com/common/types/v1")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace= "http://soa.ant.com/common/types/v1")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace= "http://soa.ant.com/common/types/v1", IsNullable=false)]
+    [DataContract(Namespace= "http://soa.ant.com/common/types/v1")]
     [ProtoContract()]
     public enum ErrorClassificationCodeType
     {
@@ -48,16 +48,16 @@ namespace AntServiceStack.Common.Types
         [EnumMember()]
         [ProtoEnum()]
         ValidationError,
-        
+
         /// <summary>
-        /// Indicates that an error has occurred in the ctrip soa framework(AntServiceStack), such as a serialization/descrialization failure.
+        /// Indicates that an error has occurred in the ant soa framework(AntServiceStack), such as a serialization/descrialization failure.
         /// </summary>
         [EnumMember()]
         [ProtoEnum()]
         FrameworkError,
-        
+
         /// <summary>
-        /// Indicates that a ctrip service is unable to meet a specified service level agreement.
+        /// Indicates that a ant service is unable to meet a specified service level agreement.
         /// typical cases that will cause this error including: 1) continues high service call latency;
         /// 2) continues high service call error rate, in these cases, to avoid further service deterioration,
         /// the service framework will enter into a self-protecting mode, by tripping the service call circuit

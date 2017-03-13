@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace CTrip.Tools.SOA.Util
+namespace Ant.Tools.SOA.Util
 {
     public static class ValidationHelper
     {

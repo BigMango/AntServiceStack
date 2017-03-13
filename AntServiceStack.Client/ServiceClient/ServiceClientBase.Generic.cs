@@ -790,7 +790,6 @@ namespace AntServiceStack.ServiceClient
 
         private string InitializeCallFormat(IConfiguration configuration, string settingKey, string defaultFormat, Func<string, bool> predicate)
         {
-            //SOA.CallFormat:CloudBagRestFulApi{http://soa.ctrip.com/innovationwork/CloudBag/v1}
             string callFormatSettingKey = GetServiceSettingKey(settingKey, ServiceName, ServiceNamespace);
             string specificCallFormat = configuration[callFormatSettingKey];
             if (!string.IsNullOrWhiteSpace(specificCallFormat))

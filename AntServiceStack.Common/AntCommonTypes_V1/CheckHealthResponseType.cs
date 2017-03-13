@@ -22,25 +22,26 @@ namespace AntServiceStack.Common.Types
     using AntServiceStack.ServiceHost;
     using AntServiceStack.Baiji.Specific;
     using System.Linq;
-    
-    
+
+
     /// <summary>
-    /// Simplest response type without response data except response status.
+    /// The health status of the serivce. Per ant SOA policy,
+    /// CheckHealth API must be implemented by service implementation.
     /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1026")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://soa.ctrip.com/common/types/v1")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://soa.ctrip.com/common/types/v1", IsNullable=true)]
-    [DataContract(Namespace="http://soa.ctrip.com/common/types/v1")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace= "http://soa.ant.com/common/types/v1")]
+    [System.Xml.Serialization.XmlRootAttribute("CheckHealthResponse", Namespace= "http://soa.ant.com/common/types/v1", IsNullable=false)]
+    [DataContract(Name="CheckHealthResponse", Namespace= "http://soa.ant.com/common/types/v1")]
     [ProtoContract()]
-    public partial class SimpleResponseType : ISpecificRecord, IHasResponseStatus
+    public partial class CheckHealthResponseType : ISpecificRecord, IHasResponseStatus
     {
         
         private ResponseStatusType responseStatusField;
         
-        public static readonly AntServiceStack.Baiji.Schema.Schema SCHEMA = AntServiceStack.Baiji.Schema.Schema.Parse(((("{\"type\":\"record\",\"name\":\"SimpleResponseType\",\"namespace\":\"" + typeof(SimpleResponseType).Namespace) 
+        public static readonly AntServiceStack.Baiji.Schema.Schema SCHEMA = AntServiceStack.Baiji.Schema.Schema.Parse(((("{\"type\":\"record\",\"name\":\"CheckHealthResponseType\",\"namespace\":\"" + typeof(CheckHealthResponseType).Namespace) 
                         + (("\",\"doc\":null,\"fields\":[{\"name\":\"ResponseStatus\",\"type\":{\"type\":\"record\",\"name\":\"R" +
                             "esponseStatusType\",\"namespace\":\"" + typeof(ResponseStatusType).Namespace) 
                         + (("\",\"doc\":null,\"fields\":[{\"name\":\"Timestamp\",\"type\":\"datetime\"},{\"name\":\"Ack\",\"type" +

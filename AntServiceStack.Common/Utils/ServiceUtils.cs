@@ -21,7 +21,7 @@ namespace AntServiceStack.Common.Utils
     {
         private static ILog log = LogManager.GetLogger(typeof(ServiceUtils));
 
-        public const string ServiceNamespacePrefix = "soa.ctrip.com.";
+        public const string ServiceNamespacePrefix = "soa.ant.com.";
 
         public const string TRACE_ID_HTTP_HEADER = "CLOGGING_TRACE_ID";
         public const string SPAN_ID_HTTP_HEADER = "CLOGGING_SPAN_ID";
@@ -110,7 +110,7 @@ namespace AntServiceStack.Common.Utils
         }
 
         /// <summary>
-        /// http://soa.ctrip.com/innovationwork/CloudBag/v1 变成  soa.ctrip.com.innovationwork.CloudBag.v1
+        /// http://soa.ant.com/innovationwork/CloudBag/v1 变成  soa.ant.com.innovationwork.CloudBag.v1
         /// </summary>
         /// <param name="serviceNamespace"></param>
         /// <returns></returns>
@@ -126,7 +126,7 @@ namespace AntServiceStack.Common.Utils
         }
 
         /// <summary>
-        ///  http://soa.ctrip.com/innovationwork/CloudBag/v1 变成  cloudbagrestfulapi.soa.ctrip.com.innovationwork.CloudBag.v1
+        ///  http://soa.ant.com/innovationwork/CloudBag/v1 变成  cloudbagrestfulapi.soa.ant.com.innovationwork.CloudBag.v1
         ///  
         /// </summary>
         /// <param name="serviceNamespace"></param>

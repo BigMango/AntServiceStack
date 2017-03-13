@@ -132,7 +132,7 @@ namespace Ant.Tools.SOA
     #region WsdlNotCompatibleForRoundTrippingException class
 
     /// <summary>
-    /// The exception that is thrown when attempting to loading a WSDL file incompatible with CTrip SOA Policy
+    /// The exception that is thrown when attempting to loading a WSDL file incompatible with ant SOA Policy
     /// </summary>
     /// <remarks>This class is serializable.</remarks>
     [Serializable]

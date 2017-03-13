@@ -1,12 +1,3 @@
-//
-// ServiceStack.Text: .NET C# POCO JSON, JSV and CSV Text Serializers.
-//
-// Authors:
-//   William Yang (b.yang@ctrip.com)
-//
-// Copyright 2012 CTrip Ltd.
-//
-//
 
 using System;
 

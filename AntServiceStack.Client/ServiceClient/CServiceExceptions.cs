@@ -33,7 +33,7 @@ namespace AntServiceStack.ServiceClient
         internal SLAErrorCServiceException() { }
         internal SLAErrorCServiceException(string message) : base(InternalServiceUtils.SLAErrorTitle + message) 
         {
-            this.HelpLink = "http://conf.ctripcorp.com/pages/viewpage.action?pageId=67227657";
+            //this.HelpLink = "";
         }
     }
 }

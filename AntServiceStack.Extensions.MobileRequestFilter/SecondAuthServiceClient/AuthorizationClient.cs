@@ -31,9 +31,9 @@ namespace AntServiceStack.Extensions.MobileRequestFilter.SecondAuthServiceClient
     /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1026")]
     [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://soa.ctrip.com/platform/account/authorization/v1")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://soa.ctrip.com/platform/account/authorization/v1", IsNullable=false)]
-    [DataContract(Namespace="http://soa.ctrip.com/platform/account/authorization/v1")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://soa.ant.com/platform/account/authorization/v1")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://soa.ant.com/platform/account/authorization/v1", IsNullable=false)]
+    [DataContract(Namespace="http://soa.ant.com/platform/account/authorization/v1")]
     [ProtoContract()]
     public enum LoginType
     {
@@ -102,9 +102,9 @@ namespace AntServiceStack.Extensions.MobileRequestFilter.SecondAuthServiceClient
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://soa.ctrip.com/platform/account/authorization/v1")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://soa.ctrip.com/platform/account/authorization/v1", IsNullable=false)]
-    [DataContract(Namespace="http://soa.ctrip.com/platform/account/authorization/v1")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://soa.ant.com/platform/account/authorization/v1")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://soa.ant.com/platform/account/authorization/v1", IsNullable=false)]
+    [DataContract(Namespace="http://soa.ant.com/platform/account/authorization/v1")]
     [ProtoContract()]
     public partial class KeyValueString
     {
@@ -155,9 +155,9 @@ namespace AntServiceStack.Extensions.MobileRequestFilter.SecondAuthServiceClient
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://soa.ctrip.com/platform/account/authorization/v1")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://soa.ctrip.com/platform/account/authorization/v1", IsNullable=false)]
-    [DataContract(Namespace="http://soa.ctrip.com/platform/account/authorization/v1")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://soa.ant.com/platform/account/authorization/v1")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://soa.ant.com/platform/account/authorization/v1", IsNullable=false)]
+    [DataContract(Namespace="http://soa.ant.com/platform/account/authorization/v1")]
     [ProtoContract()]
     public partial class ValidateTicketRequest
     {
@@ -205,9 +205,9 @@ namespace AntServiceStack.Extensions.MobileRequestFilter.SecondAuthServiceClient
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://soa.ctrip.com/platform/account/authorization/v1")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://soa.ctrip.com/platform/account/authorization/v1", IsNullable=false)]
-    [DataContract(Namespace="http://soa.ctrip.com/platform/account/authorization/v1")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://soa.ant.com/platform/account/authorization/v1")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://soa.ant.com/platform/account/authorization/v1", IsNullable=false)]
+    [DataContract(Namespace="http://soa.ant.com/platform/account/authorization/v1")]
     [ProtoContract()]
     public partial class ValidateTicketResponse
     {
@@ -336,9 +336,9 @@ namespace AntServiceStack.Extensions.MobileRequestFilter.SecondAuthServiceClient
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://soa.ctrip.com/platform/account/authorization/v1")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://soa.ctrip.com/platform/account/authorization/v1", IsNullable=false)]
-    [DataContract(Namespace="http://soa.ctrip.com/platform/account/authorization/v1")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://soa.ant.com/platform/account/authorization/v1")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://soa.ant.com/platform/account/authorization/v1", IsNullable=false)]
+    [DataContract(Namespace="http://soa.ant.com/platform/account/authorization/v1")]
     [ProtoContract()]
     public partial class GetLoginSessionByTicketRequest
     {
@@ -386,9 +386,9 @@ namespace AntServiceStack.Extensions.MobileRequestFilter.SecondAuthServiceClient
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://soa.ctrip.com/platform/account/authorization/v1")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://soa.ctrip.com/platform/account/authorization/v1", IsNullable=false)]
-    [DataContract(Namespace="http://soa.ctrip.com/platform/account/authorization/v1")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://soa.ant.com/platform/account/authorization/v1")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://soa.ant.com/platform/account/authorization/v1", IsNullable=false)]
+    [DataContract(Namespace="http://soa.ant.com/platform/account/authorization/v1")]
     [ProtoContract()]
     public partial class GetLoginSessionByTicketResponse
     {
@@ -653,9 +653,9 @@ namespace AntServiceStack.Extensions.MobileRequestFilter.SecondAuthServiceClient
     /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1026")]
     [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://soa.ctrip.com/platform/account/authorization/v1")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://soa.ctrip.com/platform/account/authorization/v1", IsNullable=false)]
-    [DataContract(Namespace="http://soa.ctrip.com/platform/account/authorization/v1")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://soa.ant.com/platform/account/authorization/v1")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://soa.ant.com/platform/account/authorization/v1", IsNullable=false)]
+    [DataContract(Namespace="http://soa.ant.com/platform/account/authorization/v1")]
     [ProtoContract()]
     public enum SecondTokenSceneType
     {
@@ -689,9 +689,9 @@ namespace AntServiceStack.Extensions.MobileRequestFilter.SecondAuthServiceClient
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://soa.ctrip.com/platform/account/authorization/v1")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://soa.ctrip.com/platform/account/authorization/v1", IsNullable=false)]
-    [DataContract(Namespace="http://soa.ctrip.com/platform/account/authorization/v1")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://soa.ant.com/platform/account/authorization/v1")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://soa.ant.com/platform/account/authorization/v1", IsNullable=false)]
+    [DataContract(Namespace="http://soa.ant.com/platform/account/authorization/v1")]
     [ProtoContract()]
     public partial class GenSecondAuthorizationTokenRequest : IHasMobileRequestHead
     {
@@ -758,9 +758,9 @@ namespace AntServiceStack.Extensions.MobileRequestFilter.SecondAuthServiceClient
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://soa.ctrip.com/platform/account/authorization/v1")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://soa.ctrip.com/platform/account/authorization/v1", IsNullable=false)]
-    [DataContract(Namespace="http://soa.ctrip.com/platform/account/authorization/v1")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://soa.ant.com/platform/account/authorization/v1")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://soa.ant.com/platform/account/authorization/v1", IsNullable=false)]
+    [DataContract(Namespace="http://soa.ant.com/platform/account/authorization/v1")]
     [ProtoContract()]
     public partial class GenSecondAuthorizationTokenResponse : IHasResponseStatus
     {
@@ -889,9 +889,9 @@ namespace AntServiceStack.Extensions.MobileRequestFilter.SecondAuthServiceClient
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://soa.ctrip.com/platform/account/authorization/v1")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://soa.ctrip.com/platform/account/authorization/v1", IsNullable=false)]
-    [DataContract(Namespace="http://soa.ctrip.com/platform/account/authorization/v1")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://soa.ant.com/platform/account/authorization/v1")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://soa.ant.com/platform/account/authorization/v1", IsNullable=false)]
+    [DataContract(Namespace="http://soa.ant.com/platform/account/authorization/v1")]
     [ProtoContract()]
     public partial class CheckSecondTokenRequest : IHasMobileRequestHead
     {
@@ -958,9 +958,9 @@ namespace AntServiceStack.Extensions.MobileRequestFilter.SecondAuthServiceClient
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://soa.ctrip.com/platform/account/authorization/v1")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://soa.ctrip.com/platform/account/authorization/v1", IsNullable=false)]
-    [DataContract(Namespace="http://soa.ctrip.com/platform/account/authorization/v1")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://soa.ant.com/platform/account/authorization/v1")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://soa.ant.com/platform/account/authorization/v1", IsNullable=false)]
+    [DataContract(Namespace="http://soa.ant.com/platform/account/authorization/v1")]
     [ProtoContract()]
     public partial class CheckSecondTokenResponse : IHasResponseStatus
     {
@@ -1094,7 +1094,7 @@ namespace AntServiceStack.Extensions.MobileRequestFilter.SecondAuthServiceClient
         
         public const string OriginalServiceName = "Authorization";
         
-        public const string OriginalServiceNamespace = "http://soa.ctrip.com/platform/account/authorization/v1";
+        public const string OriginalServiceNamespace = "http://soa.ant.com/platform/account/authorization/v1";
         
         public const string OriginalServiceType = "NonSLB";
         

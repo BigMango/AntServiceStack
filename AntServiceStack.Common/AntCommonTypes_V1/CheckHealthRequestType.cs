@@ -19,47 +19,28 @@ namespace AntServiceStack.Common.Types
     using System.Runtime.Serialization;
     using System.Collections.Generic;
     using AntServiceStack.ProtoBuf;
+    using AntServiceStack.ServiceHost;
     using AntServiceStack.Baiji.Specific;
     using System.Linq;
-    
-    
+
+
     /// <summary>
-    /// Simplest H5 request type without request data except H5 request head.
+    /// Check the health of the service. Per ant SOA policy,
+    /// CheckHealth API must be implemented by service implementation.
     /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1026")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://soa.ctrip.com/mobile/common/types/v1")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://soa.ctrip.com/mobile/common/types/v1", IsNullable=true)]
-    [DataContract(Namespace="http://soa.ctrip.com/mobile/common/types/v1")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace= "http://soa.ant.com/common/types/v1")]
+    [System.Xml.Serialization.XmlRootAttribute("CheckHealthRequest", Namespace= "http://soa.ant.com/common/types/v1", IsNullable=false)]
+    [DataContract(Name="CheckHealthRequest", Namespace= "http://soa.ant.com/common/types/v1")]
     [ProtoContract()]
-    public partial class SimpleH5RequestType : ISpecificRecord, IHasMobileRequestHead
+    public partial class CheckHealthRequestType : ISpecificRecord
     {
         
-        private MobileRequestHead headField;
-        
-        public static readonly AntServiceStack.Baiji.Schema.Schema SCHEMA = AntServiceStack.Baiji.Schema.Schema.Parse(((("{\"type\":\"record\",\"name\":\"SimpleH5RequestType\",\"namespace\":\"" + typeof(SimpleH5RequestType).Namespace) 
-                        + (("\",\"doc\":null,\"fields\":[{\"name\":\"head\",\"type\":{\"type\":\"record\",\"name\":\"MobileReque" +
-                            "stHead\",\"namespace\":\"" + typeof(MobileRequestHead).Namespace) 
-                        + (@""",""doc"":null,""fields"":[{""name"":""syscode"",""type"":[""string"",""null""]},{""name"":""lang"",""type"":[""string"",""null""]},{""name"":""auth"",""type"":[""string"",""null""]},{""name"":""cid"",""type"":[""string"",""null""]},{""name"":""ctok"",""type"":[""string"",""null""]},{""name"":""cver"",""type"":[""string"",""null""]},{""name"":""sid"",""type"":[""string"",""null""]},{""name"":""extension"",""type"":[{""type"":""array"",""items"":{""type"":""record"",""name"":""ExtensionFieldType"",""namespace"":""" + typeof(ExtensionFieldType).Namespace))) 
-                        + "\",\"doc\":null,\"fields\":[{\"name\":\"name\",\"type\":[\"string\",\"null\"]},{\"name\":\"value\",\"" +
-                            "type\":[\"string\",\"null\"]}]}},\"null\"]},{\"name\":\"pauth\",\"type\":[\"string\",\"null\"]},{" +
-                            "\"name\":\"sauth\",\"type\":[\"string\",\"null\"]}]}}]}"));
-        
-        [DataMember()]
-        [ProtoMember(1)]
-        public MobileRequestHead head
-        {
-            get
-            {
-                return this.headField;
-            }
-            set
-            {
-                this.headField = value;
-            }
-        }
+        public static readonly Baiji.Schema.Schema SCHEMA = Baiji.Schema.Schema.Parse((("{\"type\":\"record\",\"name\":\"CheckHealthRequestType\",\"namespace\":\"" + typeof(CheckHealthRequestType).Namespace) 
+                        + "\",\"doc\":null,\"fields\":[]}"));
         
         public virtual AntServiceStack.Baiji.Schema.Schema GetSchema()
         {
@@ -70,7 +51,6 @@ namespace AntServiceStack.Common.Types
         {
             switch(fieldPos)
             {
-                case 0: return this.head;
                 default: throw new AntServiceStack.Baiji.Exceptions.BaijiRuntimeException("Bad index " + fieldPos + " in Get()");
             }
         }
@@ -79,7 +59,6 @@ namespace AntServiceStack.Common.Types
         {
             switch(fieldPos)
             {
-                case 0: this.head = (MobileRequestHead)fieldValue; break;
                 default: throw new AntServiceStack.Baiji.Exceptions.BaijiRuntimeException("Bad index " + fieldPos + " in Put()");
             }
         }

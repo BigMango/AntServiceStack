@@ -19,54 +19,78 @@ namespace AntServiceStack.Common.Types
     using System.Runtime.Serialization;
     using System.Collections.Generic;
     using AntServiceStack.ProtoBuf;
+    using AntServiceStack.ServiceHost;
     using AntServiceStack.Baiji.Specific;
     using System.Linq;
     
     
+    /// <summary>
+    /// Controls the pagination of the result set. Child elements specify the maximum
+    /// number of items to return per call and which page of data to return.
+    /// Controls which items are returned in the response, but does not control
+    /// the details associated with the returned items.
+    /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1026")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://soa.ctrip.com/mobile/common/types/v1")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://soa.ctrip.com/mobile/common/types/v1", IsNullable=true)]
-    [DataContract(Namespace="http://soa.ctrip.com/mobile/common/types/v1")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace= "http://soa.ant.com/common/types/v1")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace= "http://soa.ant.com/common/types/v1", IsNullable=true)]
+    [DataContract(Namespace= "http://soa.ant.com/common/types/v1")]
     [ProtoContract()]
-    public partial class ExtensionFieldType : ISpecificRecord
+    public partial class PaginationInputType : ISpecificRecord
     {
         
-        private string nameField;
+        private int pageNumberField;
         
-        private string valueField;
+        private int entriesPerPageField;
         
-        public static readonly AntServiceStack.Baiji.Schema.Schema SCHEMA = AntServiceStack.Baiji.Schema.Schema.Parse((("{\"type\":\"record\",\"name\":\"ExtensionFieldType\",\"namespace\":\"" + typeof(ExtensionFieldType).Namespace) 
-                        + "\",\"doc\":null,\"fields\":[{\"name\":\"name\",\"type\":[\"string\",\"null\"]},{\"name\":\"value\",\"" +
-                            "type\":[\"string\",\"null\"]}]}"));
+        public static readonly AntServiceStack.Baiji.Schema.Schema SCHEMA = AntServiceStack.Baiji.Schema.Schema.Parse((("{\"type\":\"record\",\"name\":\"PaginationInputType\",\"namespace\":\"" + typeof(PaginationInputType).Namespace) 
+                        + "\",\"doc\":null,\"fields\":[{\"name\":\"PageNumber\",\"type\":\"int\"},{\"name\":\"EntriesPerPage" +
+                            "\",\"type\":\"int\"}]}"));
         
+        /// <summary>
+        /// Specifies which subset of data (or "page") to return in the call
+        /// response. The number of data pages is determined by the total number of
+        /// items matching the request search criteria (returned in
+        /// paginationOutput.totalEntries) divided by the number of entries to
+        /// display in each response (entriesPerPage). You can return max number of
+        /// pages of the result set by issuing multiple requests and specifying,
+        /// in sequence, the pages to return.
+        /// Specify a positive value equal to or lower than the number of pages available (which you
+        /// determine by examining the results of your initial request).
+        /// </summary>
         [DataMember()]
         [ProtoMember(1)]
-        public string name
+        public int PageNumber
         {
             get
             {
-                return this.nameField;
+                return this.pageNumberField;
             }
             set
             {
-                this.nameField = value;
+                this.pageNumberField = value;
             }
         }
         
+        /// <summary>
+        /// Specifies the maximum number of entries to return in a single call. If
+        /// the number of entries found on the specified pageNumber is less than the
+        /// value specified here, the number of items returned will be less than the
+        /// value of entriesPerPage. This indicates the end of the result set.
+        /// </summary>
         [DataMember()]
         [ProtoMember(2)]
-        public string value
+        public int EntriesPerPage
         {
             get
             {
-                return this.valueField;
+                return this.entriesPerPageField;
             }
             set
             {
-                this.valueField = value;
+                this.entriesPerPageField = value;
             }
         }
         
@@ -79,8 +103,8 @@ namespace AntServiceStack.Common.Types
         {
             switch(fieldPos)
             {
-                case 0: return this.name;
-                case 1: return this.value;
+                case 0: return this.PageNumber;
+                case 1: return this.EntriesPerPage;
                 default: throw new AntServiceStack.Baiji.Exceptions.BaijiRuntimeException("Bad index " + fieldPos + " in Get()");
             }
         }
@@ -89,8 +113,8 @@ namespace AntServiceStack.Common.Types
         {
             switch(fieldPos)
             {
-                case 0: this.name = (System.String)fieldValue; break;
-                case 1: this.value = (System.String)fieldValue; break;
+                case 0: this.PageNumber = (int)fieldValue; break;
+                case 1: this.EntriesPerPage = (int)fieldValue; break;
                 default: throw new AntServiceStack.Baiji.Exceptions.BaijiRuntimeException("Bad index " + fieldPos + " in Put()");
             }
         }

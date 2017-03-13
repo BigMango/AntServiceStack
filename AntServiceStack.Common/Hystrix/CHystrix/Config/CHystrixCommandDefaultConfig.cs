@@ -7,7 +7,7 @@
     using System.Runtime.Serialization;
     using System.Xml.Serialization;
 
-    [Serializable, XmlType(Namespace="http://soa.ctrip.com/framework/chystrix/configservice/v1"), XmlRoot(Namespace="http://soa.ctrip.com/framework/chystrix/configservice/v1", IsNullable=true), DataContract(Namespace="http://soa.ctrip.com/framework/chystrix/configservice/v1"), DesignerCategory("code"), GeneratedCode("System.Xml", "4.0.30319.1026"), DebuggerStepThrough]
+    [Serializable, XmlType(Namespace="http://soa.ant.com/framework/chystrix/configservice/v1"), XmlRoot(Namespace="http://soa.ant.com/framework/chystrix/configservice/v1", IsNullable=true), DataContract(Namespace="http://soa.ant.com/framework/chystrix/configservice/v1"), DesignerCategory("code"), GeneratedCode("System.Xml", "4.0.30319.1026"), DebuggerStepThrough]
     internal class CHystrixCommandDefaultConfig
     {
         private int? circuitBreakerErrorThresholdPercentageField;

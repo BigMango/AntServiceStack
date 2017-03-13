@@ -33,9 +33,9 @@ namespace AntServiceStack.Extensions.MobileRequestFilter
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://soa.ctrip.com/platform/crm/mobileauthservice/v1")]
-    [System.Xml.Serialization.XmlRootAttribute("ValidateAndGetNewTokenRequest", Namespace="http://soa.ctrip.com/platform/crm/mobileauthservice/v1", IsNullable=false)]
-    [DataContract(Name="ValidateAndGetNewTokenRequest", Namespace="http://soa.ctrip.com/platform/crm/mobileauthservice/v1")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://soa.ant.com/platform/crm/mobileauthservice/v1")]
+    [System.Xml.Serialization.XmlRootAttribute("ValidateAndGetNewTokenRequest", Namespace="http://soa.ant.com/platform/crm/mobileauthservice/v1", IsNullable=false)]
+    [DataContract(Name="ValidateAndGetNewTokenRequest", Namespace="http://soa.ant.com/platform/crm/mobileauthservice/v1")]
     [ProtoContract()]
     public partial class ValidateAndGetNewTokenRequest : IHasMobileRequestHead
     {
@@ -83,9 +83,9 @@ namespace AntServiceStack.Extensions.MobileRequestFilter
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://soa.ctrip.com/platform/crm/mobileauthservice/v1")]
-    [System.Xml.Serialization.XmlRootAttribute("ValidateAndGetNewTokenResponse", Namespace="http://soa.ctrip.com/platform/crm/mobileauthservice/v1", IsNullable=false)]
-    [DataContract(Name="ValidateAndGetNewTokenResponse", Namespace="http://soa.ctrip.com/platform/crm/mobileauthservice/v1")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://soa.ant.com/platform/crm/mobileauthservice/v1")]
+    [System.Xml.Serialization.XmlRootAttribute("ValidateAndGetNewTokenResponse", Namespace="http://soa.ant.com/platform/crm/mobileauthservice/v1", IsNullable=false)]
+    [DataContract(Name="ValidateAndGetNewTokenResponse", Namespace="http://soa.ant.com/platform/crm/mobileauthservice/v1")]
     [ProtoContract()]
     public partial class ValidateAndGetNewTokenResponse : IHasResponseStatus
     {
@@ -270,9 +270,9 @@ namespace AntServiceStack.Extensions.MobileRequestFilter
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://soa.ctrip.com/platform/crm/mobileauthservice/v1")]
-    [System.Xml.Serialization.XmlRootAttribute("GetNewTokenRequest", Namespace="http://soa.ctrip.com/platform/crm/mobileauthservice/v1", IsNullable=false)]
-    [DataContract(Name="GetNewTokenRequest", Namespace="http://soa.ctrip.com/platform/crm/mobileauthservice/v1")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://soa.ant.com/platform/crm/mobileauthservice/v1")]
+    [System.Xml.Serialization.XmlRootAttribute("GetNewTokenRequest", Namespace="http://soa.ant.com/platform/crm/mobileauthservice/v1", IsNullable=false)]
+    [DataContract(Name="GetNewTokenRequest", Namespace="http://soa.ant.com/platform/crm/mobileauthservice/v1")]
     [ProtoContract()]
     public partial class GetNewTokenRequest
     {
@@ -339,9 +339,9 @@ namespace AntServiceStack.Extensions.MobileRequestFilter
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://soa.ctrip.com/platform/crm/mobileauthservice/v1")]
-    [System.Xml.Serialization.XmlRootAttribute("GetNewTokenResponse", Namespace="http://soa.ctrip.com/platform/crm/mobileauthservice/v1", IsNullable=false)]
-    [DataContract(Name="GetNewTokenResponse", Namespace="http://soa.ctrip.com/platform/crm/mobileauthservice/v1")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://soa.ant.com/platform/crm/mobileauthservice/v1")]
+    [System.Xml.Serialization.XmlRootAttribute("GetNewTokenResponse", Namespace="http://soa.ant.com/platform/crm/mobileauthservice/v1", IsNullable=false)]
+    [DataContract(Name="GetNewTokenResponse", Namespace="http://soa.ant.com/platform/crm/mobileauthservice/v1")]
     [ProtoContract()]
     public partial class GetNewTokenResponse
     {
@@ -494,7 +494,7 @@ namespace AntServiceStack.Extensions.MobileRequestFilter
         
         public const string OriginalServiceName = "MobileAuthService";
         
-        public const string OriginalServiceNamespace = "http://soa.ctrip.com/platform/crm/mobileauthservice/v1";
+        public const string OriginalServiceNamespace = "http://soa.ant.com/platform/crm/mobileauthservice/v1";
         
         public const string OriginalServiceType = "NonSLB";
         

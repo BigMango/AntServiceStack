@@ -22,10 +22,10 @@ namespace AntServiceStack.Common.Types
     using AntServiceStack.ServiceHost;
     using AntServiceStack.Baiji.Specific;
     using System.Linq;
-    
-    
+
+
     /// <summary>
-    /// Response status type definition of a response payload. Per ctrip SOA policy, all
+    /// Response status type definition of a response payload. Per ant SOA policy, all
     /// concrete response types must include this response status type as a root element with element name 'ResponseStatus'.
     /// This is requreied for unified response status/error handling at framework level.
     /// The recommended naming convention we use for the concrete type names is the name
@@ -35,9 +35,9 @@ namespace AntServiceStack.Common.Types
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://soa.ctrip.com/common/types/v1")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://soa.ctrip.com/common/types/v1", IsNullable=true)]
-    [DataContract(Namespace="http://soa.ctrip.com/common/types/v1")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace= "http://soa.ant.com/common/types/v1")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace= "http://soa.ant.com/common/types/v1", IsNullable=true)]
+    [DataContract(Namespace= "http://soa.ant.com/common/types/v1")]
     [ProtoContract()]
     public partial class ResponseStatusType : ISpecificRecord
     {
@@ -73,7 +73,7 @@ namespace AntServiceStack.Common.Types
                             ":\"Value\",\"type\":[\"string\",\"null\"]}]}},\"null\"]}]}"));
         
         /// <summary>
-        /// This value represents the date and time when a ctrip service processed the
+        /// This value represents the date and time when a ant service processed the
         /// request. The value of this element is set by framework automatically,
         /// value set by serivce implementation will be overwritten.
         /// </summary>
@@ -92,7 +92,7 @@ namespace AntServiceStack.Common.Types
         }
         
         /// <summary>
-        /// Indicates whether the call was successfully processed by ctrip.
+        /// Indicates whether the call was successfully processed by ant.
         /// </summary>
         [DataMember()]
         [ProtoMember(2)]
@@ -110,7 +110,7 @@ namespace AntServiceStack.Common.Types
         
         /// <summary>
         /// A list of framework, validation or service-level errors or warnings (if any) that were raised
-        /// when a ctrip service processed the request.
+        /// when a ant service processed the request.
         /// Only returned if there were warnings or errors.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute("Errors")]
@@ -133,7 +133,7 @@ namespace AntServiceStack.Common.Types
         }
         
         /// <summary>
-        /// This refers to the particular software build that ctrip service used when
+        /// This refers to the particular software build that ant service used when
         /// processing the request and generating the response. This includes the
         /// version number plus additional information.
         /// </summary>

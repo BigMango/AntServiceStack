@@ -4,7 +4,7 @@ using System.IO.IsolatedStorage;
 using System.Xml;
 using System.Text;
 
-namespace CTrip.Tools.SOA.ContractFirst
+namespace Ant.Tools.SOA.ContractFirst
 {
 	public sealed class ConfigurationManager 
 	{

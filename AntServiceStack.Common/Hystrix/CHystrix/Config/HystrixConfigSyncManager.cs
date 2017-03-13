@@ -14,9 +14,9 @@
         private static string _chystrixConfigWebServiceUrl;
         private static Timer _timer;
         private const string CHystrixConfigServiceName = "CHystrixConfigService";
-        private const string CHystrixConfigServiceNamespace = "http://soa.ctrip.com/framework/chystrix/configservice/v1";
+        private const string CHystrixConfigServiceNamespace = "http://soa.ant.com/framework/chystrix/configservice/v1";
         private const string CHystrixRegistryServiceName = "CHystrixRegistryService";
-        private const string CHystrixRegistryServiceNamespace = "http://soa.ctrip.com/framework/soa/chystrix/registryservice/v1";
+        private const string CHystrixRegistryServiceNamespace = "http://soa.ant.com/framework/soa/chystrix/registryservice/v1";
         private const string ConfigWebServiceCHystrixConfigServiceUrlName = "CHystrix_ConfigService_Url";
         private const string ConfigWebServiceSettingKey = "FxConfigServiceUrl";
         private const string ConfigWebServiceSOARegistryServiceUrlName = "SOA_RegistryService_Url";
@@ -58,7 +58,7 @@
                 if (_timer == null)
                 {
                     SyncFXConfigWebServiceSettings();
-                    string str = SyncSOAServiceUrl("CHystrixRegistryService", "http://soa.ctrip.com/framework/soa/chystrix/registryservice/v1");
+                    string str = SyncSOAServiceUrl("CHystrixRegistryService", "http://soa.ant.com/framework/soa/chystrix/registryservice/v1");
                     if (!string.IsNullOrWhiteSpace(str))
                     {
                         HystrixCommandBase.RegistryServiceUrl = str;
@@ -82,12 +82,12 @@
                 {
                     SyncFXConfigWebServiceSettings();
                 }
-                string str = SyncSOAServiceUrl("CHystrixConfigService", "http://soa.ctrip.com/framework/chystrix/configservice/v1");
+                string str = SyncSOAServiceUrl("CHystrixConfigService", "http://soa.ant.com/framework/chystrix/configservice/v1");
                 if (!string.IsNullOrWhiteSpace(str))
                 {
                     HystrixCommandBase.ConfigServiceUrl = str;
                 }
-                str = SyncSOAServiceUrl("CHystrixRegistryService", "http://soa.ctrip.com/framework/soa/chystrix/registryservice/v1");
+                str = SyncSOAServiceUrl("CHystrixRegistryService", "http://soa.ant.com/framework/soa/chystrix/registryservice/v1");
                 if (!string.IsNullOrWhiteSpace(str))
                 {
                     HystrixCommandBase.RegistryServiceUrl = str;

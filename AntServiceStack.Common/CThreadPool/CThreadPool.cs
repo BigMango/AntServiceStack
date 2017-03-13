@@ -1,6 +1,5 @@
 ﻿#region Release History
 
-// CTrip Thread Pool
 // Adapted from Smart Thread Pool
 // http://www.codeproject.com/Articles/7933/Smart-Thread-Pool
 
@@ -20,7 +19,7 @@ namespace AntServiceStack.Threading
 {
     #region CThreadPool class
     /// <summary>
-    /// CTrip thread pool class.
+    ///  thread pool class.
     /// </summary>
     public partial class CThreadPool : WorkItemsGroupBase, IDisposable
     {
@@ -172,7 +171,7 @@ namespace AntServiceStack.Threading
         private ManualResetEvent _shuttingDownEvent = EventWaitHandleFactory.CreateManualResetEvent(false);
 
         /// <summary>
-        /// A flag to indicate if the CTrip Thread Pool is now suspended.
+        /// A flag to indicate if the  Thread Pool is now suspended.
         /// </summary>
         private bool _isSuspended;
 

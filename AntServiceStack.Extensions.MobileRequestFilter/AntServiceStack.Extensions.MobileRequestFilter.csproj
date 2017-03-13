@@ -93,10 +93,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="MobileAuthServiceClient\CTripSOACommonTypes_V1.0.0.xsd">
+    <None Include="MobileAuthServiceClient\AntSOACommonTypes_V1.0.0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="MobileAuthServiceClient\CTripSOAMobileCommonTypes_V1.0.0.xsd">
+    <None Include="MobileAuthServiceClient\AntSOAMobileCommonTypes_V1.0.0.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="MobileAuthServiceClient\MobileAuthService.wsdl">
@@ -109,10 +109,10 @@
     <None Include="SecondAuthServiceClient\Authorization.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="SecondAuthServiceClient\CTripSOACommonTypes_V1.0.0.xsd">
+    <None Include="SecondAuthServiceClient\AntSOACommonTypes_V1.0.0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="SecondAuthServiceClient\CTripSOAMobileCommonTypes_V1.0.0.xsd">
+    <None Include="SecondAuthServiceClient\AntSOAMobileCommonTypes_V1.0.0.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>

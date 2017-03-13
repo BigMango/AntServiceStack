@@ -7,7 +7,7 @@
     using System.Runtime.Serialization;
     using System.Xml.Serialization;
 
-    [Serializable, DebuggerStepThrough, DesignerCategory("code"), GeneratedCode("System.Xml", "4.0.30319.1026"), XmlRoot(Namespace="http://soa.ctrip.com/framework/chystrix/configservice/v1", IsNullable=true), DataContract(Namespace="http://soa.ctrip.com/framework/chystrix/configservice/v1"), XmlType(Namespace="http://soa.ctrip.com/framework/chystrix/configservice/v1")]
+    [Serializable, DebuggerStepThrough, DesignerCategory("code"), GeneratedCode("System.Xml", "4.0.30319.1026"), XmlRoot(Namespace="http://soa.ant.com/framework/chystrix/configservice/v1", IsNullable=true), DataContract(Namespace="http://soa.ant.com/framework/chystrix/configservice/v1"), XmlType(Namespace="http://soa.ant.com/framework/chystrix/configservice/v1")]
     internal class CHystrixCommand
     {
         private CHystrixCommandConfig configField;

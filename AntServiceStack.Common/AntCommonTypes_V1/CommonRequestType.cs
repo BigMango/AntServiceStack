@@ -34,9 +34,9 @@ namespace AntServiceStack.Common.Types
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://soa.ctrip.com/common/types/v1")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://soa.ctrip.com/common/types/v1", IsNullable=true)]
-    [DataContract(Namespace="http://soa.ctrip.com/common/types/v1")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace= "http://soa.ant.com/common/types/v1")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace= "http://soa.ant.com/common/types/v1", IsNullable=true)]
+    [DataContract(Namespace= "http://soa.ant.com/common/types/v1")]
     [ProtoContract()]
     public partial class CommonRequestType : ISpecificRecord
     {
@@ -67,10 +67,10 @@ namespace AntServiceStack.Common.Types
                 this.versionField = value;
             }
         }
-        
+
         /// <summary>
         /// You can use the OutputSelector field to restrict the data returned by this call.
-        /// When you make a call such as GetItem that retrieves data from ctrip service,
+        /// When you make a call such as GetItem that retrieves data from ant service,
         /// the OutputSelector field is useful for restricting the data returned.
         /// This field makes the call response easier to use, especially when a large payload
         /// would be returned. If you use the OutputSelector field, the output data

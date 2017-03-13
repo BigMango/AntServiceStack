@@ -1,4 +1,4 @@
-namespace CTrip.Tools.SOA.ContractFirst
+namespace Ant.Tools.SOA.ContractFirst
 {
     partial class XsdCodeGenDialog
     {

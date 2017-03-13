@@ -60,7 +60,7 @@
         private static object GetPluginImplementationViaConfiguration(Type pluginType)
         {
             string pluginTypeName = pluginType.Name;
-            string implementationTypeName = ConfigurationManager.AppSettings["CTrip.SOA.AntServiceStack.Common.Hystrix.Plugin." + pluginTypeName + ".Implementation"];
+            string implementationTypeName = ConfigurationManager.AppSettings["Ant.SOA.AntServiceStack.Common.Hystrix.Plugin." + pluginTypeName + ".Implementation"];
             if (String.IsNullOrEmpty(implementationTypeName))
                 return null;
 

@@ -8,9 +8,9 @@ using System.Windows.Forms;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Diagnostics;
-using CTrip.Tools.SOA.ContractFirst.Util;
+using Ant.Tools.SOA.ContractFirst.Util;
 
-namespace CTrip.Tools.SOA.ContractFirst
+namespace Ant.Tools.SOA.ContractFirst
 {
     public partial class XsdCodeGenDialog : Form
     {
@@ -53,7 +53,7 @@ namespace CTrip.Tools.SOA.ContractFirst
                 tbTargetFileName.Text.IndexOfAny(Path.GetInvalidFileNameChars()) > -1)
             {
                 MessageBox.Show("Please enter a valid name for the target file name",
-                                "CTrip SOA code generation",
+                                "Ant SOA code generation",
                                 MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
@@ -61,7 +61,7 @@ namespace CTrip.Tools.SOA.ContractFirst
                 !IsMatchingPattern(@"^(?:(?:((?![0-9_])[a-zA-Z0-9_]+)\.?)+)(?<!\.)$", tbNamespace.Text))
             {
                 MessageBox.Show("Please enter a valid name for the namespace",
-                                "CTrip SOA code generation",
+                                "Ant SOA code generation",
                                 MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
@@ -69,10 +69,10 @@ namespace CTrip.Tools.SOA.ContractFirst
             if (cbAddCustomRequestInterface.Checked)
             {
                 if (tbCustomRequestInterface.Text.Length == 0 ||
-                    !CTrip.Tools.SOA.Util.ValidationHelper.IsIdentifier(tbCustomRequestInterface.Text))
+                    !Ant.Tools.SOA.Util.ValidationHelper.IsIdentifier(tbCustomRequestInterface.Text))
                 {
                     MessageBox.Show("Please enter a valid name for the interface",
-                                                   "CTrip SOA code generation",
+                                                   "Ant SOA code generation",
                                                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
@@ -195,7 +195,7 @@ namespace CTrip.Tools.SOA.ContractFirst
 
         private void pbWscf_Click(object sender, EventArgs e)
         {
-            Process.Start("http://www.ctrip.com/");
+            Process.Start("http://www.ant.com/");
         }
 
         /// <summary>

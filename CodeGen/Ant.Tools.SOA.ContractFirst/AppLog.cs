@@ -10,7 +10,7 @@ using System.Reflection;
 using System.Xml;
 using ConfigurationManager = System.Configuration.ConfigurationManager;
 
-namespace CTrip.Tools.SOA.ContractFirst
+namespace Ant.Tools.SOA.ContractFirst
 {
     internal class WscfConfiguration
     {

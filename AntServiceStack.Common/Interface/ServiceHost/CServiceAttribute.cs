@@ -14,7 +14,7 @@ namespace AntServiceStack.ServiceHost
         internal const string DefaultCodeGeneratorVersion = "1.0.0.0";
 
         /// <summary>
-        /// The version of CTrip Code Generator used to generate this service
+        /// The version of ant Code Generator used to generate this service
         /// </summary>
         public string CodeGeneratorVersion { get; set; }
 
@@ -51,7 +51,7 @@ namespace AntServiceStack.ServiceHost
         /// </summary>
         /// <param name="serviceName">service name</param>
         /// <param name="serviceNamespace">service name space</param>
-        /// <param name="version">The version of CTrip Code Generator used to generate this service</param>
+        /// <param name="version">The version of ant Code Generator used to generate this service</param>
         public AntServiceInterfaceAttribute(string serviceName, string serviceNamespace, string version)
         {
             ServiceName = serviceName;
