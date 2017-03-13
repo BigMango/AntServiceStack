@@ -8,6 +8,7 @@
 
 using System.ComponentModel.Design;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using Ant.Tools.SOA.CodeGeneration;
 using Ant.Tools.SOA.CodeGeneration.CodeWriter;
@@ -34,14 +35,16 @@ namespace VSIXWsdlWizard
     /// </summary>
     public class AddIntellisenseFileMenu
     {
-        private DTE2 _dte;
-        private OleMenuCommandService _mcs;
-        private Func<string, bool> _itemToHandleFunc;
-        public AddIntellisenseFileMenu(DTE2 dte, OleMenuCommandService mcs,Func<string,bool> itemToHandleFunc)
+        private readonly DTE2 _dte;
+        private readonly OleMenuCommandService _mcs;
+        private readonly Func<string[], bool> _itemToHandleFunc;
+        private Package _package;
+        public AddIntellisenseFileMenu(DTE2 dte, OleMenuCommandService mcs,Func<string[],bool> itemToHandleFunc, Package package)
         {
             _dte = dte;
             _mcs = mcs;
             _itemToHandleFunc = itemToHandleFunc;
+            _package = package;
         }
         public void SetupCommands()
         {
@@ -64,6 +67,132 @@ namespace VSIXWsdlWizard
             OleMenuCommand utf8Command = new OleMenuCommand(Utf8CommandInvoke, utf8Id);
             utf8Command.BeforeQueryStatus += JavaScript_BeforeQueryStatus;
             _mcs.AddCommand(utf8Command);
+
+            CommandID csDllId = new CommandID(CommandGuids.guidDiffCmdSet, (int)CommandId.cmdClientDll);
+            OleMenuCommand csDllIdCommand = new OleMenuCommand(CsDllCommandInvoke, csDllId);
+            csDllIdCommand.BeforeQueryStatus += CS_BeforeQueryStatus;
+            _mcs.AddCommand(csDllIdCommand);
+        }
+
+        /// <summary>
+        /// css生成dll
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CsDllCommandInvoke(object sender, EventArgs e)
+        {
+            var items = ProjectHelpers.GetSelectedItemPaths(_dte);
+            if (items.Count() != 1)
+            {
+                ProjectHelpers.AddError(_package, "no cs was selected");
+                return;
+            }
+            try
+            {
+                //System.IServiceProvider oServiceProvider = new Microsoft.VisualStudio.Shell.ServiceProvider((Microsoft.VisualStudio.OLE.Interop.IServiceProvider)_dte);
+                //EnvDTE.ProjectItem oProjectItem = _dte.SelectedItems.Item(1).ProjectItem;
+                //Microsoft.Build.Evaluation.Project oBuildProject = Microsoft.Build.Evaluation.ProjectCollection.GlobalProjectCollection.GetLoadedProjects(oProjectItem.ContainingProject.FullName).SingleOrDefault();
+                //Microsoft.Build.Evaluation.ProjectProperty oGUID = oBuildProject.AllEvaluatedProperties.SingleOrDefault(oProperty => oProperty.Name == "ProjectGuid");
+                //Microsoft.VisualStudio.Shell.Interop.IVsHierarchy oVsHierarchy = VsShellUtilities.GetHierarchy(oServiceProvider, new Guid(oGUID.EvaluatedValue));
+                //Microsoft.VisualStudio.Shell.Interop.IVsBuildPropertyStorage oVsBuildPropertyStorage = (Microsoft.VisualStudio.Shell.Interop.IVsBuildPropertyStorage)oVsHierarchy;
+
+                //string szItemPath = (string)oProjectItem.Properties.Item("FullPath").Value;
+                string szItemPath = ProjectHelpers.GetActiveProject().FullName;
+                string folder = new FileInfo(szItemPath).DirectoryName;
+                var refDll = new List<string>();
+                var csprojText = File.ReadAllLines(szItemPath).Where(r=>r.Contains(@"<ProjectReference Include=") 
+                || (r.Contains("<HintPath>")));
+                var serviceStack = csprojText.Where(r => r.Contains("AntServiceStack"));
+                foreach (var s in serviceStack)
+                {
+                    if (s.Trim().EndsWith(".csproj\">"))
+                    {
+                        var s1 = s.Split('"')[1];
+                        var s2 = s1.Split('\\');
+                        var dotCount = s2.Count(r => r.Equals(".."));
+                        for (int i = 0; i < dotCount; i++)
+                        {
+                            folder = Directory.GetParent(folder).FullName;
+                        }
+
+                        for (int i = 0; i < s2.Length - 1; i++)
+                        {
+                            var ss = s2[i];
+                            if (ss.Equals(".."))
+                            {
+                                continue;
+                            }
+                            folder = Path.Combine(folder, ss);
+                        }
+                        folder = Path.Combine(folder, "bin", "Debug");
+                        if (!Directory.Exists(folder))
+                        {
+                            ProjectHelpers.AddError(_package, folder + " not found");
+                            return;
+                        }
+                        var dllname = s2[s2.Length - 1].Replace(".csproj", "dll");
+                        var dllPath = Path.Combine(folder, dllname);
+                        if (!File.Exists(dllPath))
+                        {
+                            ProjectHelpers.AddError(_package, dllPath + " not found");
+                            return;
+                        }
+                        refDll.Add(dllPath);
+                    }
+                    else if (s.Trim().Contains("<HintPath>") && s.Trim().Contains("AntServiceStack") && s.Trim().Contains("dll"))
+                    {
+                        var dllPath = s.Trim().Split('>')[1].Split('<')[0];
+                        refDll.Add(dllPath);
+                    }
+
+                }
+
+                //uint nItemId;
+                //oVsHierarchy.ParseCanonicalName(szItemPath, out nItemId);
+
+                //string szOut;
+                //oVsBuildPropertyStorage.GetItemAttribute(nItemId, "ClientDllVersion", out szOut);
+                //if (string.IsNullOrEmpty(szOut))
+                //{
+                //    //oVsBuildPropertyStorage.SetItemAttribute(nItemId, "ItemColor", );
+                //}
+
+
+                string file = items.ElementAt(0);
+                string baseFileName = Path.GetFileNameWithoutExtension(file);
+                FileInfo fileInfo = new FileInfo(file);
+                var frameworkPath = RuntimeEnvironment.GetRuntimeDirectory();
+
+                var cscPath = Path.Combine(frameworkPath, "csc.exe");
+                //C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\csc.exe /t:library /out:MyCScode.dll *.cs /debug /r:System.dll /r:System.Web.dll /r:System.Data.dll /r:System.Xml.dll
+                System.Diagnostics.Process process = new System.Diagnostics.Process();
+                System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
+                startInfo.UseShellExecute = true;
+                startInfo.WorkingDirectory = fileInfo.DirectoryName;
+                startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+                startInfo.FileName = cscPath;
+                startInfo.Arguments = "/t:library /out:" + baseFileName + ".dll " + baseFileName + ".cs /r:System.dll /r:System.Configuration.dll /r:System.Core.dll /r:System.Runtime.Serialization.dll /r:System.ServiceModel.dll /r:System.Xml.Linq.dll /r:System.Data.DataSetExtensions.dll /r:Microsoft.CSharp.dll /r:System.Data.dll /r:System.Xml.dll" + (refDll.Count > 0 ? " /r:" +  string.Join(" /r:", refDll) : "");
+                process.StartInfo = startInfo;
+                process.Start();
+                MessageBox.Show("compile is over,please check dll file is exist",
+                        "Cs Dll Conversion", MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation);
+                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo()
+                {
+                    FileName = fileInfo.DirectoryName,
+                    UseShellExecute = true,
+                    Verb = "open"
+                });
+            }
+            catch (Exception ex)
+            {
+
+                ProjectHelpers.AddError(_package, ex.ToString());
+                MessageBox.Show("Error happens: " + ex,
+                        "Cs Dll Conversion", MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation);
+            }
+
         }
 
 
@@ -74,10 +203,13 @@ namespace VSIXWsdlWizard
         /// <param name="e"></param>
         private void Utf8CommandInvoke(object sender, EventArgs e)
         {
+            
+
             var items = ProjectHelpers.GetSelectedItemPaths(_dte);
             if (items.Count() != 1 ||
                 !(items.ElementAt(0).ToLower().EndsWith(".xsd", StringComparison.OrdinalIgnoreCase)))
             {
+                ProjectHelpers.AddError(_package,"no xsd was selected");
                 return;
             }
             string xsdFileFullPath = items.ElementAt(0);
@@ -119,6 +251,7 @@ namespace VSIXWsdlWizard
             }
             catch (Exception ex)
             {
+                ProjectHelpers.AddError(_package,ex.ToString());
                 MessageBox.Show("Error happens: " + ex,
                         "XSD Encoding Conversion", MessageBoxButtons.OK,
                         MessageBoxIcon.Exclamation);
@@ -137,6 +270,7 @@ namespace VSIXWsdlWizard
             var items = ProjectHelpers.GetSelectedItemPaths(_dte);
             if (items!=null && items.Any(r=>!r.ToLower().EndsWith(".xsd", StringComparison.OrdinalIgnoreCase)))
             {
+                ProjectHelpers.AddError(_package,"select file is not xsd file");
                 return;
             }
            
@@ -203,7 +337,7 @@ namespace VSIXWsdlWizard
             }
             catch (Exception ex)
             {
-                AppLog.LogMessage(ex.ToString());
+                ProjectHelpers.AddError(_package, ex.ToString());
                 MessageBox.Show(ex.Message, "CodeGeneration", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -251,6 +385,7 @@ namespace VSIXWsdlWizard
                     }
                     catch (Exception ex)
                     {
+                        ProjectHelpers.AddError(_package, ex.ToString());
                         MessageBox.Show(ex.Message,"WSDL Wizard", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         if (wizard != null) wizard.Close();
                     }
@@ -345,25 +480,30 @@ namespace VSIXWsdlWizard
             }
             catch (Exception ex)
             {
-                AppLog.LogMessage(ex.ToString());
+                ProjectHelpers.AddError(_package, ex.ToString());
                 MessageBox.Show(ex.Message, "CodeGeneration", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
 
+        void CS_BeforeQueryStatus(object sender, System.EventArgs e)
+        {
+            OleMenuCommand oCommand = (OleMenuCommand)sender;
 
+            oCommand.Visible = _itemToHandleFunc(new []{"apiclient.cs","serviceclient.cs"});
+        }
         void JavaScript_BeforeQueryStatus(object sender, System.EventArgs e)
         {
             OleMenuCommand oCommand = (OleMenuCommand)sender;
 
-            oCommand.Visible = _itemToHandleFunc(".xsd");
+            oCommand.Visible = _itemToHandleFunc(new[] { ".xsd"});
         }
 
         void TypeScript_BeforeQueryStatus(object sender, System.EventArgs e)
         {
             OleMenuCommand oCommand = (OleMenuCommand)sender;
 
-            oCommand.Visible = _itemToHandleFunc(".wsdl");
+            oCommand.Visible = _itemToHandleFunc(new[] { ".wsdl"});
         }
 
         private void AddGeneratedFilesToProject(CodeWriterOutput output)

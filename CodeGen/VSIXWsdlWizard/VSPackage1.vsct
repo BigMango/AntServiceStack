@@ -68,6 +68,14 @@
         </Strings>
       </Button>
       
+      <Button guid="guidDiffCmdSet" id="cmdClientDll" priority="0x0111" type="Button">
+        <Parent guid="guidDiffCmdSet" id="MyMenuGroup" />
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <CommandFlag>DefaultDisabled</CommandFlag>
+        <Strings>
+          <ButtonText>cs→dll</ButtonText>
+        </Strings>
+      </Button>    
     </Buttons>
 
     
@@ -118,6 +126,7 @@
       <IDSymbol name="cmdTypeScriptIntellisense" value="0x1048" />
       <IDSymbol name="cmdModelIntellisense" value="0x1049" />
       <IDSymbol name="cmdXsdUtf8Intellisense" value="0x1050" />
+      <IDSymbol name="cmdClientDll" value="0x1051" />
     </GuidSymbol>
 
     <GuidSymbol name="guidSolutionExplorerCmdSet" value="{e396b698-e00e-444b-9f5f-3dcb1ef74e62}">

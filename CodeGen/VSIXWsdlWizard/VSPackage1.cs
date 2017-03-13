@@ -9,6 +9,7 @@ using System.ComponentModel.Design;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
+using System.Linq;
 using System.Runtime.InteropServices;
 using EnvDTE;
 using EnvDTE80;
@@ -85,7 +86,7 @@ namespace VSIXProject2
             OleMenuCommandService mcs = GetService(typeof(IMenuCommandService)) as OleMenuCommandService;
             if (null != mcs)
             {
-                AddIntellisenseFileMenu intellisenseFile = new AddIntellisenseFileMenu(DTE, mcs, ItemToHandle);
+                AddIntellisenseFileMenu intellisenseFile = new AddIntellisenseFileMenu(DTE, mcs, ItemToHandle,this);
                 intellisenseFile.SetupCommands();
             }
         }
@@ -95,12 +96,13 @@ namespace VSIXProject2
         /// </summary>
         /// <param name="extention"></param>
         /// <returns></returns>
-        private bool ItemToHandle(string extention)
+        private bool ItemToHandle(params string[] extention)
         {
 
             DTE2 Application = (DTE2)GetService(typeof(DTE));
 
-            return ((Application.SelectedItems.Count == 1) && (Application.SelectedItems.Item(1).ProjectItem != null) && (Application.SelectedItems.Item(1).ProjectItem.Name.ToLower().EndsWith(extention)));
+            return ((Application.SelectedItems.Count == 1) && (Application.SelectedItems.Item(1).ProjectItem != null) &&
+              extention.Any(r=> (Application.SelectedItems.Item(1).ProjectItem.Name.ToLower().EndsWith(r))));
         }
         #endregion
     }

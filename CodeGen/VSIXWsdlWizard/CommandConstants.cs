@@ -37,6 +37,7 @@ namespace VSIXWsdlWizard
         CreateTypeScriptIntellisenseFile = 0x1048,
         cmdModelIntellisense = 0x1049,
         cmdXsdUtf8Intellisense = 0x1050,
+        cmdClientDll = 0x1051,
        
     }
 }

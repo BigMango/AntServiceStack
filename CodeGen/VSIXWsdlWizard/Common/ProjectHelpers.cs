@@ -15,6 +15,7 @@ using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.ComponentModelHost;
 using Microsoft.VisualStudio.Editor;
 using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Editor;
 using Microsoft.VisualStudio.TextManager.Interop;
@@ -34,6 +35,40 @@ namespace VSIXWsdlWizard.Common
     internal static class ProjectHelpers
     {
         public const string SolutionItemsFolder = "Solution Items";
+
+        public static void AddError(Package package,string errorText)
+        {
+            var ivsSolution = (IVsSolution)Package.GetGlobalService(typeof(IVsSolution));
+            var errorListProvider = new ErrorListProvider(package);
+            var errorCategory = TaskErrorCategory.Error;
+            IVsHierarchy hierarchyItem;
+            var proj = GetActiveProject();
+            var projectUniqueName = proj.FileName;
+            var firstFileInProject = ProjectHelpers.GetSelectedItemPaths(VSPackage1.DTE).FirstOrDefault();
+            ivsSolution.GetProjectOfUniqueName(projectUniqueName, out hierarchyItem);
+            var newError = new ErrorTask()
+            {
+                ErrorCategory = errorCategory,
+                Category = TaskCategory.BuildCompile,
+                Text = errorText,
+                Document = firstFileInProject,
+                Line = 1,
+                Column = 1,
+                HierarchyItem = hierarchyItem
+            };
+            newError.Navigate += (sender, e) =>
+            {
+                //there are two Bugs in the errorListProvider.Navigate method:
+                //    Line number needs adjusting
+                //    Column is not shown
+                newError.Line++;
+                errorListProvider.Navigate(newError, new Guid(EnvDTE.Constants.vsViewKindCode));
+                newError.Line--;
+            };
+            errorListProvider.Tasks.Clear();    // clear previously created
+            errorListProvider.Tasks.Add(newError);  // add item
+            errorListProvider.Show(); 		// make sure it is visible
+        }
 
         ///<summary>Gets the Solution Items solution folder in the current solution, creating it if it doesn't exist.</summary>
         public static Project GetSolutionItemsProject()
