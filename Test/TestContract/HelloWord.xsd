@@ -76,4 +76,8 @@
       </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
+
+
+  <xs:element name="HelloWorldAsyncRequest" type="HelloWorldRequestType" />
+  <xs:element name="HelloWorldAsyncResponse" type="HelloWorldResponseType" />
 </xs:schema>

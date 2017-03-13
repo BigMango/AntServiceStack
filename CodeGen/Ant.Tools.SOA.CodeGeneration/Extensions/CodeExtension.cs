@@ -1108,6 +1108,7 @@ namespace Ant.Tools.SOA.CodeGeneration.Extensions
                     messageName = messageName.Remove(messageName.LastIndexOf('A'), 5) + "Async";
                     codeGeneratorContext.ElementName2TargetNamespaceMapping[messageName] = asyncMessageNamespace;
                 }
+                
             }
 
             // 获取 XmlRootAttribute 和 XmlTypeAttribute
@@ -1167,8 +1168,9 @@ namespace Ant.Tools.SOA.CodeGeneration.Extensions
                             if (messageName.EndsWith("AsyncRequest") || messageName.EndsWith("AsyncResponse"))
                             {
                                 messageName = messageName.Remove(messageName.LastIndexOf('A'), 5) + "Async";
-                                xmlRootElementNameArgument.Value = new CodePrimitiveExpression(messageName); 
+                                xmlRootElementNameArgument.Value = new CodePrimitiveExpression(messageName);
                             }
+                          
                         }
                     }
                 }

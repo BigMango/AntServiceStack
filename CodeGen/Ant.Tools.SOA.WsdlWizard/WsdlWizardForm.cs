@@ -2316,7 +2316,7 @@ namespace Ant.Tools.SOA.WsdlWizard
                             {
                                 operationName =
                                     melement.ElementName.Substring(0,
-                                    melement.ElementName.LastIndexOf(requestPattern));
+                                    melement.ElementName.LastIndexOf(requestPattern)) + (requestPattern.StartsWith("Async")?"Async":"");
                                 responseElement.ElementName =
                                     melement.ElementName.Substring(0,
                                     melement.ElementName.LastIndexOf(requestPattern)) + responsePattern;
