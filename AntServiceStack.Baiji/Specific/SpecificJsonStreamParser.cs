@@ -266,6 +266,8 @@ namespace AntServiceStack.Baiji.Specific
                     return readItem = (jr) => ReadValue(jr, typeof(long), NumberTokenPredicate, value => Convert.ToInt64(value));
                 case SchemaType.Double:
                     return readItem = (jr) => ReadValue(jr, typeof(double), NumberTokenPredicate, value => Convert.ToDouble(value));
+                case SchemaType.Decimal:
+                    return readItem = (jr) => ReadValue(jr, typeof(decimal), NumberTokenPredicate, value => Convert.ToDecimal(value));
                 case SchemaType.Bytes:
                     return readItem = (jr) => ReadBytes(jr);
                 case SchemaType.DateTime:

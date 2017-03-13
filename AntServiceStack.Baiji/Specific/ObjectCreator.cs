@@ -224,6 +224,8 @@ namespace AntServiceStack.Baiji.Specific
                     return typeof(float);
                 case SchemaType.Double:
                     return typeof(double);
+                case SchemaType.Decimal:
+                    return typeof(decimal);
                 case SchemaType.Bytes:
                     return typeof(byte[]);
                 case SchemaType.String:

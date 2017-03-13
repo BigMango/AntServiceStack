@@ -19,6 +19,7 @@ namespace AntServiceStack.Baiji.Generic
             switch (type)
             {
                 case SchemaType.Double:
+                case SchemaType.Decimal:
                 case SchemaType.Boolean:
                 case SchemaType.Int:
                 case SchemaType.Long:

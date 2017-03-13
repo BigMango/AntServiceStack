@@ -179,6 +179,11 @@ namespace AntServiceStack.Baiji.Specific
                         readItem = (rec) => Convert.ToDouble(ReadValue(rec));
                         return readItem;
                     }
+                case SchemaType.Decimal:
+                    {
+                        readItem = (rec) => Convert.ToDecimal(ReadValue(rec));
+                        return readItem;
+                    }
                 case SchemaType.Boolean:
                 case SchemaType.String:
                     {

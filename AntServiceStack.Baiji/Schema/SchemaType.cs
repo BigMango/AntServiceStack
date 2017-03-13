@@ -18,6 +18,7 @@
         Enumeration,
         Array,
         Map,
-        Union
+        Union,
+        Decimal
     }
 }

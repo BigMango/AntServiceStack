@@ -61,6 +61,8 @@ namespace AntServiceStack.Baiji.Generic
                     return obj is float;
                 case SchemaType.Double:
                     return obj is double;
+                case SchemaType.Decimal:
+                    return obj is decimal;
                 case SchemaType.Bytes:
                     return obj is byte[];
                 case SchemaType.DateTime:
