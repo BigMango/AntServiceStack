@@ -7,6 +7,7 @@ using System.Web;
 using AntServiceStack.Common.Consul;
 using AntServiceStack.Common.Consul.Discovery;
 using AntServiceStack.Common.Consul.Dtos;
+using AntServiceStack.Common.Extensions;
 using AntServiceStack.Common.Web;
 using AntServiceStack.Plugins.Consul.Services;
 using AntServiceStack.ServiceHost;
@@ -56,8 +57,9 @@ namespace AntServiceStack.Plugins.Consul
             //appHost.RegisterService<DiscoveryService>();
 
             // register plugin link
-            //appHost.GetPlugin<MetadataFeature>()?.AddPluginLink(ConsulUris.LocalAgent.CombineWith("ui"), "Consul Agent WebUI");
-
+#if DEBUG
+            appHost.GetPlugin<MetadataFeature>()?.AddPluginLink(ConsulUris.LocalAgent.CombineWith("ui"), "Consul Agent WebUI");
+#endif
 
             //获取当前的服务器的内网IP Or 外网IP OR 外部指定的IP
             //当所有的init动作全部完成之后 开始注册服务ip到consul里面
