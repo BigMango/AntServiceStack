@@ -98,13 +98,13 @@ namespace VSIXWsdlWizard
 
                 //string szItemPath = (string)oProjectItem.Properties.Item("FullPath").Value;
                 string szItemPath = ProjectHelpers.GetActiveProject().FullName;
-                string folder = new FileInfo(szItemPath).DirectoryName;
                 var refDll = new List<string>();
                 var csprojText = File.ReadAllLines(szItemPath).Where(r=>r.Contains(@"<ProjectReference Include=") 
                 || (r.Contains("<HintPath>")));
                 var serviceStack = csprojText.Where(r => r.Contains("AntServiceStack"));
                 foreach (var s in serviceStack)
                 {
+                    string folder = new FileInfo(szItemPath).DirectoryName;
                     if (s.Trim().EndsWith(".csproj\">"))
                     {
                         var s1 = s.Split('"')[1];
@@ -130,7 +130,7 @@ namespace VSIXWsdlWizard
                             ProjectHelpers.AddError(_package, folder + " not found");
                             return;
                         }
-                        var dllname = s2[s2.Length - 1].Replace(".csproj", "dll");
+                        var dllname = s2[s2.Length - 1].Replace(".csproj", ".dll");
                         var dllPath = Path.Combine(folder, dllname);
                         if (!File.Exists(dllPath))
                         {

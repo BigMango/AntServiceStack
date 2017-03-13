@@ -31,7 +31,7 @@ namespace TestContract.Client
     /// <summary>
     /// Helloworld Request
     /// </summary>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -39,11 +39,35 @@ namespace TestContract.Client
     [System.Xml.Serialization.XmlRootAttribute("HelloWorldRequest", Namespace="http://tempuri.org/HelloWord.xsd", IsNullable=false)]
     [DataContract(Name="HelloWorldRequest", Namespace="http://tempuri.org/HelloWord.xsd")]
     [ProtoContract()]
+    [Description("Helloworld Request")]
     public partial class HelloWorldRequestType : ISpecificRecord
     {
         
-        public static readonly AntServiceStack.Baiji.Schema.Schema SCHEMA = AntServiceStack.Baiji.Schema.Schema.Parse((("{\"type\":\"record\",\"name\":\"HelloWorldRequestType\",\"namespace\":\"" + typeof(HelloWorldRequestType).Namespace) 
-                        + "\",\"doc\":null,\"fields\":[]}"));
+        private TestEnum ackEnumField;
+        
+        public static readonly AntServiceStack.Baiji.Schema.Schema SCHEMA = AntServiceStack.Baiji.Schema.Schema.Parse(((("{\"type\":\"record\",\"name\":\"HelloWorldRequestType\",\"namespace\":\"" + typeof(HelloWorldRequestType).Namespace) 
+                        + ("\",\"doc\":null,\"fields\":[{\"name\":\"AckEnum\",\"type\":{\"type\":\"enum\",\"name\":\"TestEnum\"," +
+                            "\"namespace\":\"" + typeof(TestEnum).Namespace)) 
+                        + "\",\"doc\":null,\"symbols\":[\"Success\",\"Failure\",\"Warning\"]}}]}"));
+        
+        /// <summary>
+        /// 返回类型
+        /// </summary>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [Description("返回类型")]
+        [DataMember()]
+        [ProtoMember(1)]
+        public TestEnum AckEnum
+        {
+            get
+            {
+                return this.ackEnumField;
+            }
+            set
+            {
+                this.ackEnumField = value;
+            }
+        }
         
         public virtual AntServiceStack.Baiji.Schema.Schema GetSchema()
         {
@@ -54,6 +78,7 @@ namespace TestContract.Client
         {
             switch(fieldPos)
             {
+                case 0: return this.AckEnum;
                 default: throw new AntServiceStack.Baiji.Exceptions.BaijiRuntimeException("Bad index " + fieldPos + " in Get()");
             }
         }
@@ -62,6 +87,7 @@ namespace TestContract.Client
         {
             switch(fieldPos)
             {
+                case 0: this.AckEnum = (TestEnum)fieldValue; break;
                 default: throw new AntServiceStack.Baiji.Exceptions.BaijiRuntimeException("Bad index " + fieldPos + " in Put()");
             }
         }
@@ -98,9 +124,47 @@ namespace TestContract.Client
     }
     
     /// <summary>
+    /// 测试enum类型
+    /// </summary>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/HelloWord.xsd")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/HelloWord.xsd", IsNullable=false)]
+    [Description("测试enum类型")]
+    [DataContract(Namespace="http://tempuri.org/HelloWord.xsd")]
+    [ProtoContract()]
+    public enum TestEnum
+    {
+        
+        /// <summary>
+        /// 成功
+        /// </summary>
+        [Description("成功")]
+        [EnumMember()]
+        [ProtoEnum()]
+        Success,
+        
+        /// <summary>
+        /// 失败
+        /// </summary>
+        [Description("失败")]
+        [EnumMember()]
+        [ProtoEnum()]
+        Failure,
+        
+        /// <summary>
+        /// 警告
+        /// </summary>
+        [Description("警告")]
+        [EnumMember()]
+        [ProtoEnum()]
+        Warning,
+    }
+    
+    /// <summary>
     /// Helloworld Response
     /// </summary>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -108,6 +172,7 @@ namespace TestContract.Client
     [System.Xml.Serialization.XmlRootAttribute("HelloWorldResponse", Namespace="http://tempuri.org/HelloWord.xsd", IsNullable=false)]
     [DataContract(Name="HelloWorldResponse", Namespace="http://tempuri.org/HelloWord.xsd")]
     [ProtoContract()]
+    [Description("Helloworld Response")]
     public partial class HelloWorldResponseType : ISpecificRecord, IHasResponseStatus
     {
         
@@ -138,6 +203,8 @@ namespace TestContract.Client
         /// <summary>
         /// 返回信息
         /// </summary>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [Description("返回信息")]
         [DataMember()]
         [ProtoMember(1)]
         public string Response
@@ -155,6 +222,8 @@ namespace TestContract.Client
         /// <summary>
         /// 框架公共Response
         /// </summary>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [Description("框架公共Response")]
         [DataMember()]
         [ProtoMember(2)]
         public ResponseStatusType ResponseStatus
@@ -188,7 +257,7 @@ namespace TestContract.Client
         {
             switch(fieldPos)
             {
-                case 0: this.Response = (System.String)fieldValue; break;
+                case 0: this.Response = (string)fieldValue; break;
                 case 1: this.ResponseStatus = (ResponseStatusType)fieldValue; break;
                 default: throw new AntServiceStack.Baiji.Exceptions.BaijiRuntimeException("Bad index " + fieldPos + " in Put()");
             }
@@ -233,7 +302,7 @@ namespace TestContract.Client
     public class CloudBagRestFulApiClient : ServiceClientBase<CloudBagRestFulApiClient>
     {
         
-        public const string CodeGeneratorVersion = "2.0.9.2";
+        public const string CodeGeneratorVersion = "2.3.0.0";
         
         public const string OriginalServiceName = "CloudBagRestFulApi";
         
@@ -251,24 +320,14 @@ namespace TestContract.Client
         {
         }
         
-        public virtual CheckHealthResponseType CheckHealth(CheckHealthRequestType checkHealthIn)
-        {
-            return base.Invoke<CheckHealthResponseType>("CheckHealth", checkHealthIn);
-        }
-        
-        public virtual Task<CheckHealthResponseType> CreateAsyncTaskOfCheckHealth(CheckHealthRequestType checkHealthIn, CancellationToken? cancellationToken = null, TaskCreationOptions? taskCreationOptions = null)
-        {
-            return base.CreateAsyncTask<CheckHealthRequestType, CheckHealthResponseType>("CheckHealth", checkHealthIn, cancellationToken, taskCreationOptions);
-        }
-        
-        public virtual Task<CheckHealthResponseType> StartIOCPTaskOfCheckHealth(CheckHealthRequestType checkHealthIn)
-        {
-            return base.StartIOCPTask<CheckHealthResponseType>("CheckHealth", checkHealthIn);
-        }
-        
         public virtual HelloWorldResponseType HelloWorld(HelloWorldRequestType helloWorldIn)
         {
             return base.Invoke<HelloWorldResponseType>("HelloWorld", helloWorldIn);
+        }
+        
+        public virtual HelloWorldResponseType HelloWorld(HelloWorldRequestType helloWorldIn, Func<HelloWorldResponseType> getFallback)
+        {
+            return base.Invoke<HelloWorldResponseType>("HelloWorld", helloWorldIn, getFallback);
         }
         
         public virtual Task<HelloWorldResponseType> CreateAsyncTaskOfHelloWorld(HelloWorldRequestType helloWorldIn, CancellationToken? cancellationToken = null, TaskCreationOptions? taskCreationOptions = null)
