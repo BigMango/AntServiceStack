@@ -1090,10 +1090,12 @@ namespace Ant.Tools.SOA.ContractFirst
             if (fileName.Length > 1 && fileName[0] == 'I' && char.IsUpper(fileName[1]))
                 fileName = fileName.Substring(1);
             string lowerCaseFileName = fileName.ToLower();
-            if (lowerCaseFileName.EndsWith("client"))
+            if (lowerCaseFileName.EndsWith("serviceclient"))
                 this.tbDestinationFilename.Text = fileName + extension;
-            else
+            else if (lowerCaseFileName.EndsWith("service"))
                 this.tbDestinationFilename.Text = fileName + "Client" + extension;
+            else
+                this.tbDestinationFilename.Text = fileName + "ServiceClient" + extension;
             DestinationNamespace = DestinationNamespace + ".Client";
         }
 
@@ -1111,9 +1113,9 @@ namespace Ant.Tools.SOA.ContractFirst
             if (fileName.Length > 0 && fileName[0] != 'I' || fileName.Length > 1 && fileName[0] == 'I' && char.IsLower(fileName[1]))
                 fileName = "I" + fileName;
             string lowerCaseFileName = fileName.ToLower();
-            if (lowerCaseFileName.EndsWith("client"))
+            if (lowerCaseFileName.EndsWith("serviceclient"))
             {
-                fileName = fileName.Substring(0, fileName.Length - "client".Length);
+                fileName = fileName.Substring(0, fileName.Length - "serviceclient".Length);
                 lowerCaseFileName = fileName.ToLower();
             }
             if (lowerCaseFileName.EndsWith("service"))
