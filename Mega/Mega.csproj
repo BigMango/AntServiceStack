@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{620A1D50-B1E0-4CDB-9DFD-4069939A54BD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Mega</RootNamespace>
+    <AssemblyName>AntServiceStack.Mega</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\GlobalAssemblyInfo.cs">
+      <Link>Properties\GlobalAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AntServiceStack.Baiji\AntServiceStack.Baiji.csproj">
+      <Project>{3c3edf84-fdd6-4c56-a9fd-f7141e53c708}</Project>
+      <Name>AntServiceStack.Baiji</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AntServiceStack.Client\AntServiceStack.Client.csproj">
+      <Project>{af60b12f-0d50-4ec0-a69b-712e3b6e5255}</Project>
+      <Name>AntServiceStack.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AntServiceStack.Common\AntServiceStack.Common.csproj">
+      <Project>{75a42b62-6c2e-4ef8-9d79-4d1db7a11bba}</Project>
+      <Name>AntServiceStack.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AntServiceStack.Log\AntServiceStack.Log.csproj">
+      <Project>{9618ceba-95d0-4fc2-b6a5-d8b86208d565}</Project>
+      <Name>AntServiceStack.Log</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AntServiceStack.Plugins.ProtoBuf\AntServiceStack.Plugins.ProtoBuf.csproj">
+      <Project>{d35376c3-5fab-4ddf-b964-c6edcfa5df9b}</Project>
+      <Name>AntServiceStack.Plugins.ProtoBuf</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AntServiceStack.ProtoBuf\AntServiceStack.ProtoBuf.csproj">
+      <Project>{8374e4d7-2a91-48f1-9360-09b09cf27c3f}</Project>
+      <Name>AntServiceStack.ProtoBuf</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AntServiceStack.Text\AntServiceStack.Text.csproj">
+      <Project>{9084e0d2-aaf8-45d9-b747-edf3c276fb51}</Project>
+      <Name>AntServiceStack.Text</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AntServiceStack\AntServiceStack.csproj">
+      <Project>{31f8e14c-dc3d-4bb4-8bee-2150611a4fae}</Project>
+      <Name>AntServiceStack</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>del /f /s /q merge* &amp; "$(SolutionDir)\Tools\ILMerge\ILMerge.exe" /target:library /targetplatform:v4 /log /out:AntServiceStack.Mega.Temp.dll AntServiceStack.Mega.dll AntServiceStack.dll AntServiceStack.Client.dll AntServiceStack.Log.dll AntServiceStack.Common.dll AntServiceStack.Text.dll AntServiceStack.ProtoBuf.dll AntServiceStack.Baiji.dll AntServiceStack.Plugins.ProtoBuf.dll &gt; merge.log &amp; del /f /s /q AntServiceStack.Mega.dll &amp; del /f /s /q AntServiceStack.Mega.pdb &amp; "$(SolutionDir)\Tools\ILMerge\ILMerge.exe" /target:library /targetplatform:v4 /Internalize /log /out:AntServiceStack.Mega.dll AntServiceStack.Mega.Temp.dll Newtonsoft.Json.dll &gt;&gt; merge.log &amp; del /f /s /q AntServiceStack.Mega.Temp*</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
