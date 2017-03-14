@@ -14,9 +14,25 @@ namespace TestClient
         static CloudBagRestFulApiClient client = CloudBagRestFulApiClient.GetInstance("http://localhost/WebApplication");
         static void Main(string[] args)
         {
+            TestCreateTask();
             //TestConsul();
-            TestHystrix();
+            //TestHystrix();
 
+            Console.ReadLine();
+        }
+
+        static void TestCreateTask()
+        {
+            var hystrixIn = new HelloWorldRequestType();
+            try
+            {
+                var hystrixOut = client.CreateAsyncTaskOfHelloWorld(hystrixIn).Result;
+                Console.WriteLine(hystrixOut.Response);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
             Console.ReadLine();
         }
 

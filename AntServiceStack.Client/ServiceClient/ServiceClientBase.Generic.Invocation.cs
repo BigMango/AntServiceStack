@@ -211,7 +211,7 @@ namespace AntServiceStack.ServiceClient
                 task = new Task<TResponse>(sendWebRequest, taskCreationOptions.Value);
             else
                 task = new Task<TResponse>(sendWebRequest, cancellationToken.Value, taskCreationOptions.Value);
-
+            task.Start();
             return TryAddFaultHandler(task);
         }
 
