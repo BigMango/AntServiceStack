@@ -194,7 +194,7 @@ namespace AntServiceStack.WebHost.Endpoints.Extensions
                     {
                         defaultAction(serializerCtx, result, response);
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         throw;
                     }
@@ -335,7 +335,7 @@ namespace AntServiceStack.WebHost.Endpoints.Extensions
                 {
                     serializer(serializationCtx, errorResponseDto, httpRes);
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     throw;
                 }

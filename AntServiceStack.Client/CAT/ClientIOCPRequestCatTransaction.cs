@@ -15,9 +15,9 @@ namespace AntServiceStack.Client.CAT
         private static readonly ILog _logger = LogManager.GetLogger(typeof(ClientIOCPRequestCatTransaction));
 
         private ExecutionContext _context;
-        private string _rootMessageId;
-        private string _clientMessageId;
-        private string _serviceMessageId;
+        //private string _rootMessageId;
+        //private string _clientMessageId;
+        //private string _serviceMessageId;
 
         public ClientIOCPRequestCatTransaction(ExecutionContext context)
             : base(ClientCatConstants.SOA2ClientIOCPRequestTransactionName, context.OperationKey)

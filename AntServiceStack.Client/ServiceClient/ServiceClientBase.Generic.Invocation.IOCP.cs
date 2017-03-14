@@ -198,7 +198,7 @@ namespace AntServiceStack.ServiceClient
                             {
                                 context.CallFormat.StreamSerializer(requestObject, requestStream);
                             }
-                            catch (Exception serializationException)
+                            catch (Exception )
                             {
                                 throw;
                             }
@@ -257,7 +257,7 @@ namespace AntServiceStack.ServiceClient
             {
                 httpRequest.BeginGetRequestStream(requestStreamCallback, null);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -269,7 +269,7 @@ namespace AntServiceStack.ServiceClient
             {
                 return httpRequest.EndGetRequestStream(asyncResult);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -281,7 +281,7 @@ namespace AntServiceStack.ServiceClient
             {
                 httpRequest.BeginGetResponse(responseCallback, null);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -294,7 +294,7 @@ namespace AntServiceStack.ServiceClient
                 WebResponse response = httpRequest.EndGetResponse(asyncResult);
                 return response;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }

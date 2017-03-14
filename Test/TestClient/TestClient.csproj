@@ -34,6 +34,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CloudBagRestFulApiServiceClient.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -80,10 +82,6 @@
     <ProjectReference Include="..\..\AntServiceStack.Log\AntServiceStack.Log.csproj">
       <Project>{9618ceba-95d0-4fc2-b6a5-d8b86208d565}</Project>
       <Name>AntServiceStack.Log</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TestContract\TestContract.csproj">
-      <Project>{148dd38a-420a-4df4-8254-c0348068fc36}</Project>
-      <Name>TestContract</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

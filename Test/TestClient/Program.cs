@@ -15,7 +15,7 @@ namespace TestClient
         static void Main(string[] args)
         {
             //TestConsul();
-            //TestHystrix();
+            TestHystrix();
 
             Console.ReadLine();
         }
@@ -35,7 +35,7 @@ namespace TestClient
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message + e.InnerException?.Message);
+                Console.WriteLine(e.Message);
             }
 
         }
@@ -99,7 +99,7 @@ namespace TestClient
             catch (Exception e)
             {
                 exceptions[i] = e;
-                Console.WriteLine(e.Message + e.InnerException?.Message + i);
+                Console.WriteLine(e.Message + e.InnerException.Message + i);
             }
         }
     }

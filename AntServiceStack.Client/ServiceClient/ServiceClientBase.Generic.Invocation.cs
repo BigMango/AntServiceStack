@@ -347,7 +347,7 @@ namespace AntServiceStack.ServiceClient
                     var webEx = ExceptionFactory.CreateWebException(ex);
                     throw webEx;
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     throw;
                 }
@@ -427,7 +427,7 @@ namespace AntServiceStack.ServiceClient
                     var webEx = ExceptionFactory.CreateWebException(ex);
                     throw webEx;
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     throw;
                 }

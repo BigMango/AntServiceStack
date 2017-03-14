@@ -22,7 +22,7 @@ namespace VSIXWsdlWizard
     /// </summary>
     public class CommandGuids
     {
-        public const string guidDiffCmdSetString = "e396b698-e00e-444b-9f5f-3dcb1ef74e59";
+        public const string guidDiffCmdSetString = "e396b698-e00e-444b-9f5f-3dcb1ef74e69";
 
 
         public static readonly Guid guidDiffCmdSet = new Guid(guidDiffCmdSetString);

@@ -120,7 +120,7 @@
     </GuidSymbol>
 
 
-    <GuidSymbol name="guidDiffCmdSet" value="{e396b698-e00e-444b-9f5f-3dcb1ef74e59}">
+    <GuidSymbol name="guidDiffCmdSet" value="{e396b698-e00e-444b-9f5f-3dcb1ef74e69}">
       <IDSymbol name="MyMenuGroup" value="0x1040" />
       <IDSymbol name="cmdJavaScriptIntellisense" value="0x1047" />
       <IDSymbol name="cmdTypeScriptIntellisense" value="0x1048" />

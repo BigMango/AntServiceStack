@@ -30,7 +30,11 @@ namespace AntServiceStack.Plugins.Consul
         public ConsulFeature(ConsulSettings settings = null)
         {
             Settings = new ConsulFeatureSettings();
-            settings?.Invoke(Settings);
+            if (settings!=null)
+            {
+                settings.Invoke(Settings);
+            }
+          
         }
         
         public void Register(IAppHost appHost)
@@ -58,7 +62,12 @@ namespace AntServiceStack.Plugins.Consul
 
             // register plugin link
 #if DEBUG
-            appHost.GetPlugin<MetadataFeature>()?.AddPluginLink(ConsulUris.LocalAgent.CombineWith("ui"), "Consul Agent WebUI");
+            var consulF = appHost.GetPlugin<MetadataFeature>();
+            if (consulF!=null)
+            {
+                consulF.AddPluginLink(ConsulUris.LocalAgent.CombineWith("ui"), "Consul Agent WebUI");
+            }
+            
 #endif
 
             //获取当前的服务器的内网IP Or 外网IP OR 外部指定的IP

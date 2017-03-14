@@ -110,7 +110,7 @@ namespace AntServiceStackSwagger.SwaggerUi
                     Password = password
                 };
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return new BasicAuthModel
                 {

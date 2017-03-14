@@ -34,7 +34,6 @@ namespace AntServiceStackSwagger
     {
         private readonly string _servicePath;
         private readonly Regex resourcePathCleanerRegex = new Regex(@"/[^\/\{]*", RegexOptions.Compiled);
-        internal static Regex resourceFilterRegex;
         internal static Action<SwaggerResourcesResponse> ResourcesResponseFilter { get; set; }
         internal const string RESOURCE_PATH = "swagger-resources";
         private readonly SwaggerUiConfig _config;

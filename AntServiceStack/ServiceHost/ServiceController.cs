@@ -486,7 +486,7 @@ namespace AntServiceStack.ServiceHost
                 {
                     response = serviceExec(requestContext, dto);
                 }
-                catch (Exception exception)
+                catch (Exception)
                 {
                     throw;
                 }
@@ -597,7 +597,7 @@ namespace AntServiceStack.ServiceHost
                 {
                     serviceTask = serviceExec(requestContext, dto) as Task;
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
 
                     object startTimeObject;

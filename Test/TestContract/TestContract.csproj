@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AntServiceStack.Merge">
+      <HintPath>..\..\Mega\bin\Debug\AntServiceStack.Merge.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -42,7 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CloudBagRestFulApiClient.cs" />
+    <Compile Include="CloudBagRestFulApiServiceClient.cs" />
     <Compile Include="ICloudBagRestFulApiService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -57,40 +60,6 @@
     <None Include="HelloWord.xsd">
       <SubType>Designer</SubType>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\AntServiceStack.Baiji\AntServiceStack.Baiji.csproj">
-      <Project>{3c3edf84-fdd6-4c56-a9fd-f7141e53c708}</Project>
-      <Name>AntServiceStack.Baiji</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\AntServiceStack.Client\AntServiceStack.Client.csproj">
-      <Project>{af60b12f-0d50-4ec0-a69b-712e3b6e5255}</Project>
-      <Name>AntServiceStack.Client</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\AntServiceStack.Common\AntServiceStack.Common.csproj">
-      <Project>{75a42b62-6c2e-4ef8-9d79-4d1db7a11bba}</Project>
-      <Name>AntServiceStack.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\AntServiceStack.Plugins.ProtoBuf\AntServiceStack.Plugins.ProtoBuf.csproj">
-      <Project>{d35376c3-5fab-4ddf-b964-c6edcfa5df9b}</Project>
-      <Name>AntServiceStack.Plugins.ProtoBuf</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\AntServiceStack.ProtoBuf\AntServiceStack.ProtoBuf.csproj">
-      <Project>{8374e4d7-2a91-48f1-9360-09b09cf27c3f}</Project>
-      <Name>AntServiceStack.ProtoBuf</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\AntServiceStack.Text\AntServiceStack.Text.csproj">
-      <Project>{9084e0d2-aaf8-45d9-b747-edf3c276fb51}</Project>
-      <Name>AntServiceStack.Text</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\AntServiceStack\AntServiceStack.csproj">
-      <Project>{31f8e14c-dc3d-4bb4-8bee-2150611a4fae}</Project>
-      <Name>AntServiceStack</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\AntServiceStack.Log\AntServiceStack.Log.csproj">
-      <Project>{9618ceba-95d0-4fc2-b6a5-d8b86208d565}</Project>
-      <Name>AntServiceStack.Log</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using AntServiceStack.Common.Types;
 using AntServiceStack.ServiceHost;
@@ -13,10 +14,7 @@ namespace WebApplication
     {
 
 
-        public CheckHealthResponseType CheckHealth(CheckHealthRequestType request)
-        {
-            throw new NotImplementedException();
-        }
+     
 
         [Route("/HelloWorld", Summary = "HelloWorld")]
         public HelloWorldResponseType HelloWorld(HelloWorldRequestType request)
@@ -27,9 +25,14 @@ namespace WebApplication
             //}
             return new HelloWorldResponseType
             {
-                Response = Environment.MachineName
+                Response = Environment.MachineName  
             };
 
+        }
+
+        public Task<HelloWorldResponseType> HelloWorldAsync(HelloWorldRequestType request)
+        {
+            throw new NotImplementedException();
         }
     }
 

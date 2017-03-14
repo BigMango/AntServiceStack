@@ -264,7 +264,7 @@ namespace AntServiceStack.WebHost.Endpoints.Support
                             ms.Flush();
                             ms.Seek(0, SeekOrigin.Begin);
                         }
-                        catch (Exception ex)
+                        catch (Exception)
                         {
                             throw;
                         }
@@ -357,7 +357,7 @@ namespace AntServiceStack.WebHost.Endpoints.Support
                     asyncOp.SendSyncSLAErrorResponse(HystrixEventType.ShortCircuited);
                     if (asyncOp.IsAsync)
                     {
-                        var message = "Circuit Breaker is open. Server entered into self-protecting mode";
+                       // var message = "Circuit Breaker is open. Server entered into self-protecting mode";
                     }
                     return asyncOp;
                 }
@@ -376,7 +376,7 @@ namespace AntServiceStack.WebHost.Endpoints.Support
 
                 return asyncOp;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }

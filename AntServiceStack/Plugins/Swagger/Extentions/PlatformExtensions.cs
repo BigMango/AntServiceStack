@@ -450,7 +450,7 @@ namespace AntServiceStackSwagger.Extentions
             {
                 return assembly is AssemblyBuilder || string.IsNullOrEmpty(assembly.Location);
             }
-            catch (NotSupportedException ex)
+            catch (NotSupportedException)
             {
                 return true;
             }

@@ -241,7 +241,7 @@ namespace AntServiceStackSwagger
             //    }
             //}
 
-            return null;
+           // return null;
         }
         private List<SwaggerParameter> ParseParameters(string verb, Type operationType, IDictionary<string, SwaggerModel> models, string route,RestPath restPath =null)
         {
