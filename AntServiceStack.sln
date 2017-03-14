@@ -37,7 +37,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ant.Tools.SOA.WsdlWizard", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ant.Tools.SOA.ServiceDescription", "CodeGen\Ant.Tools.SOA.ServiceDescription\Ant.Tools.SOA.ServiceDescription.csproj", "{7B883661-E2B9-40A5-81FE-652871C37758}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestWsdLCodeGen", "TestWsdLCodeGen\TestWsdLCodeGen.csproj", "{ABAB92D8-04D3-44AB-86F5-F9B0A01D3147}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestWsdLCodeGen", "Test\TestWsdLCodeGen\TestWsdLCodeGen.csproj", "{ABAB92D8-04D3-44AB-86F5-F9B0A01D3147}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{A6B6FFF2-AB2A-4FF9-8BE8-E028B4D6B881}"
 EndProject

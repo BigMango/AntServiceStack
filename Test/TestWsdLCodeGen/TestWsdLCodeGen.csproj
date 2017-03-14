@@ -76,7 +76,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CodeGen\Ant.Tools.SOA.WsdlWizard\Ant.Tools.SOA.WsdlWizard.csproj">
+    <ProjectReference Include="..\..\CodeGen\Ant.Tools.SOA.WsdlWizard\Ant.Tools.SOA.WsdlWizard.csproj">
       <Project>{5887f56f-1cf8-4311-9986-31f867310669}</Project>
       <Name>Ant.Tools.SOA.WsdlWizard</Name>
     </ProjectReference>
