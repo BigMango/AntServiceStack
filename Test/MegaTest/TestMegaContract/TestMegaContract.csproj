@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{97BD20D1-05C0-43C1-898E-2E6C6FCB84A5}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{A593B60D-6FD5-40CA-A229-1B1CAF84F9EA}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TestMega</RootNamespace>
-    <AssemblyName>TestMega</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <RootNamespace>TestMegaContract</RootNamespace>
+    <AssemblyName>TestMegaContract</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -34,11 +31,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AntServiceStack.Merge">
-      <HintPath>..\..\Mega\bin\Debug\AntServiceStack.Merge.dll</HintPath>
+      <HintPath>..\..\..\Mega\bin\Debug\AntServiceStack.Merge.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,11 +44,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CloudBagRestFulApiServiceClient.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="ICloudBagRestFulApiService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="AntSOACommonTypes_V1.0.0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="AntSOAMobileCommonTypes_V1.1.0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="CloudBagRestFulApi.wsdl" />
+    <None Include="HelloWord.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

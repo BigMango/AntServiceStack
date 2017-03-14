@@ -30,9 +30,12 @@ namespace WebApplication
 
         }
 
-        public Task<HelloWorldResponseType> HelloWorldAsync(HelloWorldRequestType request)
+        public async Task<HelloWorldResponseType> HelloWorldAsync(HelloWorldRequestType request)
         {
-            throw new NotImplementedException();
+            return new HelloWorldResponseType
+            {
+                Response = Environment.MachineName
+            };
         }
     }
 

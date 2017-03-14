@@ -252,7 +252,7 @@
     <Compile Include="WebHost.Endpoints\RequestBindingException.cs" />
     <Compile Include="WebHost.Endpoints\RestHandler.cs" />
     <Compile Include="WebHost.Endpoints\Metadata\Config\ServiceEndpointsMetadataConfig.cs" />
-    <Compile Include="WebHost.Endpoints\CServiceStackHttpHandlerFactory.cs" />
+    <Compile Include="WebHost.Endpoints\AntServiceStackHttpHandlerFactory.cs" />
     <Compile Include="WebHost.Endpoints\Support\EndpointHandlerBase.cs" />
     <Compile Include="WebHost.Endpoints\Support\ForbiddenHttpHandler.cs" />
     <Compile Include="WebHost.Endpoints\Support\GzipOptimizationTest.cs" />
