@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TestContract.Client;
-
+using Newtonsoft.Json.Bson;
 namespace TestMega
 {
     class Program
@@ -14,8 +14,9 @@ namespace TestMega
             var client = CloudBagRestFulApiClient.GetInstance("http://localhost/MegaApplication");
             var re = client.HelloWorld(new HelloWorldRequestType());
             re = client.StartIOCPTaskOfHelloWorld(new HelloWorldRequestType()).Result;
-            //re = client.CreateAsyncTaskOfHelloWorld(new HelloWorldRequestType()).Result;
+            re = client.CreateAsyncTaskOfHelloWorld(new HelloWorldRequestType()).Result;
             Console.WriteLine(re.Response);
+
         }
     }
 }
