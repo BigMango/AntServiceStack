@@ -1,0 +1,165 @@
+﻿/**
+ * @file jquery.ajaxComboBoxã�®ã�Ÿã‚�ã�®ã‚¹ã‚¿ã‚¤ãƒ«æŒ‡å®š
+ * @author Yuusaku Miyazaki <toumin.m7@gmail.com>
+ * @license MIT license
+ */
+
+@charset "UTF-8";
+
+/**
+ * Container
+ */
+.ac_container {
+	margin: 5px 10px 0 0;
+	padding: 0;
+	width: auto;
+	background: white;
+	border: none;
+	position: relative;
+	display: inline-block;
+}
+
+.ac_input {
+	border: 1px solid #d9d9d9;
+	border-right: none;
+	background-color: white;
+	display: block !important;
+	font-size: 14px;
+	padding: 4px;
+	margin: 0;
+	width: 160px;
+	float: left;
+}
+
+.ac_container_open .ac_input {
+	border-radius: 4px 0px 0px 0px !important;
+}
+
+/**
+ * "Get all" button
+ */
+.ac_button {
+	border: 1px solid #d9d9d9;
+	width: 32px;
+	text-align: center;
+	position: relative;
+	cursor: pointer;
+	float: left !important;
+	clear: none !important;
+	padding: 0px !important;
+}
+
+.ac_container_open .ac_button {
+	border-bottom-right-radius: 0 !important;
+}
+
+.ac_button img {
+	position: absolute;
+	height: 16px;
+	width: 16px;
+}
+
+.ac_btn_out {
+	background-color: #f3f3f3;
+}
+
+.ac_btn_on {
+	background-color: #eeeeee;
+}
+
+/**
+ * Results
+ */
+.ac_result_area {
+	background-color: transparent;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	position: absolute;
+	z-index: 101;
+	display: none;
+	border: 1px solid #d9d9d9;
+}
+
+.ac_results {
+	background-color: white;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+    max-height: 300px;
+    overflow: auto;
+}
+
+.ac_results li {
+	margin: 0;
+	height: auto !important;
+	padding: 3px 5px;
+	white-space: nowrap;
+	color: #000;
+	text-align: left;
+	overflow: hidden;
+	font-size: 14px;
+	line-height: 20px;
+	position: relative;
+}
+
+.ac_results li ul {
+	padding-left: 20px;
+}
+
+.ac_results li ul li a {
+	color: blue;
+	cursor: pointer;
+}
+
+
+.ac_selected {
+	background-color: #def;
+	font-weight: bold;
+}
+
+.ac_over {
+	cursor: pointer;
+	background-color: #0096d6;
+	color: #fff !important;
+}
+
+
+/**
+ * Navi
+ */
+.ac_navi {
+	background: #eee;
+	border-bottom: 1px solid #d9d9d9;
+	margin: 0;
+	padding: 4px;
+	text-align: right;
+	font-size: 13px;
+	font-weight: normal;
+	line-height: 1;
+}
+
+.ac_navi .current {
+	font-weight: bold;
+	font-size: 16px;
+	color: #00c;
+}
+
+.ac_navi .page_end {
+	color: gray;
+	margin: 0px 4px;
+	font-weight: normal;
+}
+
+.navi_page,
+.navi_first,
+.navi_prev,
+.navi_next,
+.navi_last {
+	margin: auto 4px !important;
+}
+
+.ac_navi .info {
+	margin: 0px !important;
+	padding: 0px !important;
+}

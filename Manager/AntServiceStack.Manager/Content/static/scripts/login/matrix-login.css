@@ -1,0 +1,80 @@
+#loginbox {
+    opacity: 0.7;
+    background-position: center;
+    background-repeat: repeat;
+    background-attachment: fixed;
+}
+
+#loginModal {
+    width: 0px;
+    margin-top: 5%;
+    -webkit-border-radius: 20px;
+    margin-left: -200px;
+    border: 0;
+}
+
+#saveid {
+    font-size: 12px;
+}
+
+.form-sign {
+    max-width: 350px;
+    padding: 15px;
+}
+
+input {
+    margin-bottom: 3px;
+}
+
+.modal-dialog {
+    width: 350px;
+    background-color: #ebebeb;
+    -webkit-border-radius: 20px;
+}
+
+body {
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+div {
+    text-align: left !important;
+}
+
+.form-group {
+    margin-left:50px;
+}
+
+label {
+    font-weight: bold;
+}
+.modal-footer{
+    -webkit-border-radius: 20px;
+}
+
+
+
+
+@media (max-width: 480px){
+    .modal-dialog {
+        width: 450px !important;
+        background-color: #ebebeb;
+        -webkit-border-radius: 20px;
+        height: 600px;
+        margin-top: -80px;
+        position: absolute;
+    }
+
+    .modal-footer {
+        margin-top: 220px;
+        margin-left: -50px;
+    }
+
+    body {
+        position: absolute !important;
+    }
+}
+
+@media (min-width: 481px){
+    #loginbox { overflow: hidden !important; z-index: 100;  text-align: center;  position: relative; }
+}
