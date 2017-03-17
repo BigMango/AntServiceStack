@@ -1289,6 +1289,7 @@
     <Content Include="Content\static\scripts\assets\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\static\scripts\assets\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Views\Home\DashBord.cshtml" />
+    <Content Include="Views\Shared\_NewLayout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
