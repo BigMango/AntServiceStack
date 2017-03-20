@@ -90,6 +90,7 @@
     <Compile Include="Consul\Discovery\ConsulService.cs" />
     <Compile Include="Consul\Discovery\ConsulServiceId.cs" />
     <Compile Include="Consul\Discovery\TagExtensions.cs" />
+    <Compile Include="Consul\Dtos\GetAllServicesResponse.cs" />
     <Compile Include="Consul\Dtos\GetServiceResponse.cs" />
     <Compile Include="Consul\Dtos\GetServicesResponse.cs" />
     <Compile Include="Consul\Dtos\HealthCheck.cs" />

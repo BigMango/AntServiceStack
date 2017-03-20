@@ -5,6 +5,7 @@
 using System;
 using System.Linq;
 using System.Net;
+using AntServiceStack.Common.Consul.Discovery;
 using AntServiceStack.Common.Consul.Dtos;
 using AntServiceStack.Common.Consul.Exceptions;
 using AntServiceStack.Common.Consul.Validators;
@@ -107,6 +108,25 @@ namespace AntServiceStack.Common.Consul
             }
         }
 
+        public static SimpleService[] GetAllService()
+        {
+            try
+            {
+                var response = ConsulUris.GetAllService().GetJsonFromUrl();
+
+                if (string.IsNullOrWhiteSpace(response))
+                    throw new GatewayServiceDiscoveryException("Expected json but received empty or null reponse from {0}".Fmt(ConsulUris.GetAllService()));
+
+                return GetConsulSimpleServiceResponses(response);
+            }
+            catch (Exception e)
+            {
+                const string message = "Unable to retrieve services from Consul";
+                LogManager.GetLogger(typeof(ConsulClient)).Error(message, e);
+                throw new GatewayServiceDiscoveryException(message, e);
+            }
+        }
+
         /// <summary>
         /// Gets the service 
         /// </summary>
@@ -189,6 +209,18 @@ namespace AntServiceStack.Common.Consul
         {
             var health = response.FromJson<ConsulHealthResponse[]>();
             return health.Select(ConsulServiceResponse.Create).ToArray();
+        }
+
+        private static SimpleService[] GetConsulSimpleServiceResponses(string response)
+        {
+            var health = response.FromJson<GetAllServicesResponse>();
+            if (health != null)
+            {
+                return health.SimpleServiceList;
+            }
+            return new SimpleService[0];
+
+
         }
     }
 }

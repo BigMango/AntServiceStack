@@ -39,5 +39,10 @@ namespace ConsoleServer
             };
 
         }
+
+        public Task<HelloWorldResponseType> HelloWorldAsync(HelloWorldRequestType request)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

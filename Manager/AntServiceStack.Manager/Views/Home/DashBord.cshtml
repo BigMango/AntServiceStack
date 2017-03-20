@@ -1,1 +1,382 @@
-﻿dash
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consul服务列表</title>
+    <link rel="shortcut icon" href="~/favicon.ico">
+    <link href="~/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="~/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="~/css/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+    <link href="~/css/animate.css" rel="stylesheet">
+    <link href="~/css/style.css?v=4.1.0" rel="stylesheet">
+    <link href="~/js/plugins/tipped-4.4.1-light/css/tipped/tipped.css" rel="stylesheet" />
+    <link href="~/css/plugins/dataTables/bootstrap-editable.css" rel="stylesheet" />
+    <link href="~/js/plugins/select2/select2.css" rel="stylesheet" />
+    <link href="~/js/plugins/comboTree/jquery.treeComboBox.css" rel="stylesheet" />
+    <link href="~/css/plugins/switchery/switchery.css" rel="stylesheet">
+
+</head>
+<body class="gray-bg">
+
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>Consul服务列表</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div>
+                            <div>
+                                <div class="btn-group hidden-xs" id="ConsulEventsToolbar" role="group">
+                                    <button type="button" class="btn btn-w-m btn-success" style="margin-right: 10px" v-on:click="_ConsulAdd">添加服务</button>
+                                    <button type="button"  class="btn btn-w-m btn-success" style="margin-right: 10px" v-on:click="_ConsulUpdate">修改服务</button>
+                                    <button type="button" class="btn btn-w-m btn-success" style="margin-right: 10px" v-on:click="_ConsulDelete">删除服务</button>
+                                </div>
+                                <table id="ConsulTable" data-side-pagination="server" data-sort-order="desc" data-mobile-responsive="true"></table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="modal inmodal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 v-if="add" class="modal-title">添加服务</h4>
+                    <h1 v-else class="modal-title" style="color: red">修改服务</h1>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label class="control-label">活动标题：</label>
+                        <input v-model="currentRow.Title" class="form-control" type="text" placeholder="请输入活动标题">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">描述：</label>
+                        <input v-model="currentRow.Description" class="form-control" type="text" placeholder="请输入描述">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">优惠策略ID：</label>
+                        <input v-model="currentRow.PromId" class="form-control" type="text" placeholder="请输入优惠策略ID">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">排序：</label>
+                        <input v-model="currentRow.OrderRule" class="form-control" type="number" placeholder="请输入排序">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">是否有效：&nbsp;&nbsp;&nbsp;</label>
+                        <input type="checkbox" class="js-switch" v-model="currentRow.IsActive" id="isActive" />&nbsp;&nbsp;{{currentRow.IsActive ? "是" : "否"}}
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-white" id="close-model" v-on:click="_Close">关闭</button>
+                    <button type="button" class="btn btn-primary" id="save-model" v-on:click="_Save">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 全局js -->
+    <script src="~/js/jquery.min.js?v=2.1.4"></script>
+    <script src="~/js/bootstrap.min.js?v=3.3.6"></script>
+
+    <!-- 自定义js -->
+    <script src="~/js/content.js?v=1.0.0"></script>
+
+    <!-- layerDate plugin javascript -->
+    <script src="~/js/plugins/layer/laydate/laydate.js"></script>
+
+    <script src="~/js/plugins/tipped-4.4.1-light/js/tipped/tipped.js"></script>
+    <!-- Bootstrap table -->
+    <script src="~/js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+    <script src="~/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+    <script src="~/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script src="~/js/plugins/select2/select2.min.js"></script>
+    <script src="~/js/plugins/select2/select2_locale_zh-CN.js"></script>
+    <script src="~/js/vue.min.js"></script>
+    <script src="~/js/underscore-1.8.2.js"></script>
+    <script src="~/js/plugins/bootstrap-table/bootstrap-editable.js"></script>
+    <script src="~/js/plugins/bootstrap-table/bootstrap-table-editable.min.js"></script>
+    <script src="~/js/plugins/comboTree/jquery.treeComboBox.0.1.js"></script>
+    <!-- Switchery -->
+    <script src="~/js/plugins/switchery/switchery.js"></script>
+    <script src="~/js/jquery.base64.min.js"></script>
+    <script type="text/javascript">
+
+    var vm = new Vue({
+        el: 'body',
+        data: {
+            add: true,
+            currentRow: {}
+        },
+        computed: {},
+        methods: {
+
+            _ConsulAdd: function () {
+                vm.add = true;
+                $('#myModal').modal({ backdrop: 'static', keyboard: false });
+                $('#myModal').modal('show');
+            },
+            _Close: function () {
+                vm.currentRow = {};
+                $('#myModal').modal('hide');
+                changeSwitcheryState('isActive', false);
+            },
+            _Save: function () {
+                if (!vm.currentRow.Title) {
+                    swal({
+                        title: "",
+                        text: "请输入活动标题！",
+                        type: "error"
+                    });
+                    return;
+                }
+                if (!vm.currentRow.Description) {
+                    swal({
+                        title: "",
+                        text: "请输入活动标题！",
+                        type: "error"
+                    });
+                    return;
+                }
+                if (!vm.currentRow.PromId) {
+                    swal({
+                        title: "",
+                        text: "请输入策略ID！",
+                        type: "error"
+                    });
+                    return;
+                }
+                if (!vm.currentRow.OrderRule) {
+                    swal({
+                        title: "",
+                        text: "请输入排序！",
+                        type: "error"
+                    });
+                    return;
+                }
+                vm.currentRow.Title = Base64.encode(vm.currentRow.Title);
+                vm.currentRow.Description = Base64.encode(vm.currentRow.Description);
+                QQT.ajax('/Consul/AddConsul', 'Post', vm.currentRow)
+                    .done(function (response) {
+                        $('#ConsulTable').bootstrapTable('refresh', { silent: true });
+                        swal("成功啦！", "操作成功!", "success");
+                        vm._Close();
+                    });
+            },
+            _ConsulUpdate: function () {
+                vm.add = false;
+                var selectRow = $('#ConsulTable').bootstrapTable('getSelections');
+                if (selectRow.length < 1) {
+                    swal({
+                        title: "",
+                        text: "请选择！",
+                        type: "error"
+                    });
+                    return;
+                }
+                vm.currentRow = selectRow[0];
+                changeSwitcheryState('isActive', vm.currentRow.IsActive);
+                $('#myModal').modal({ backdrop: 'static', keyboard: false });
+                $('#myModal').modal('show');
+            },
+            _ConsulDelete: function () {
+                var selectRow = $('#ConsulTable').bootstrapTable('getSelections');
+                if (selectRow.length < 1) {
+                    swal({
+                        title: "",
+                        text: "请选择！",
+                        type: "error"
+                    });
+                    return;
+                }
+                var tid = selectRow[0].Tid;
+                swal({
+                        title: "您确定要删除吗?",
+                        text: "请谨慎操作！",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "是的，朕决心已定！",
+                        cancelButtonText: "让朕再考虑一下…",
+                        closeOnConfirm: false,
+                        closeOnCancel: true,
+                        showLoaderOnConfirm: true
+                    },
+                    function (isConfirm) {
+                        if (isConfirm) {
+                            QQT.ajax('/Consul/DelConsul',
+                                    'Post',
+                                    {tid:tid})
+                                .done(function (response) {
+                                    $('#ConsulTable').bootstrapTable('refresh', { silent: true });
+                                    swal("成功啦！", "操作成功!", "success");
+                                });
+                        }
+                    });
+
+            }
+        }
+    });
+
+    $(function () {
+        $('#ConsulTable')
+            .bootstrapTable({
+                ajax: ajaxRequest,
+                pageNumber: 1,
+                pageSize: 10,
+                pageList: [10, 25, 50, 100],
+                resetOffset: true,
+                search: false,
+                sortable: true,
+                pagination: true,
+                height: $(window).height() - 150,
+                showRefresh: true,
+                showToggle: true,
+                showColumns: false,
+                striped: true,
+                sortOrder: 'desc',
+                clickToSelect: true,
+                singleSelect: true,
+                cache: false,
+                // showPaginationSwitch:true,
+                dataType: "json",
+                iconSize: 'outline',
+                toolbar: '#ConsulEventsToolbar',
+                icons: {
+                    refresh: 'glyphicon-repeat',
+                    toggle: 'glyphicon-list-alt',
+                    columns: 'glyphicon-list'
+                },
+                columns: [
+                    {
+                        field: 'state',
+                        title: '',
+                        checkbox: true
+                    },
+
+						{
+							field: 'Tid',
+							title: '主键',
+							sortable: true
+						},
+
+						{
+							field: 'Title',
+							title: '活动标题',
+						},
+
+						{
+							field: 'Description',
+							title: '描述',
+						},
+
+						{
+							field: 'IsActive',
+							title: '是否可用',
+							sortable: true
+						},
+                        {
+                            field: 'OrderRule',
+                            title: '排序',
+                            sortable: true
+                        },
+
+						{
+							field: 'CreateUser',
+							title: '最后更新者',
+							sortable: true
+						},
+
+						{
+							field: 'PromId',
+							title: '优惠策略ID',
+							sortable: true
+						},
+				        {
+				            field: 'CouponName',
+				            title: '优惠策略',
+				        },
+
+                ],
+                onLoadSuccess: function () {
+                    Tipped.create('.tip_infomation',
+                        function (element) {
+                            return "<strong>" + $(element).data('content') + "</strong>";
+                        });
+                },
+                onToggle: function () {
+                    tipReCreate();
+                },
+                onEditableSave: function (field, row, oldValue, $el) {
+
+                }
+            });
+        $(window).resize(function () {
+
+            tipReCreate();
+
+        });
+
+        initSwitchery();
+
+    });
+
+    function tipReCreate() {
+        setTimeout(function () {
+            Tipped.create('.tip_infomation',
+                function (element) {
+                    return "<strong>" + $(element).data('content') + "</strong>";
+                });
+        }, 200);
+    }
+
+    function LongStringFormatter(value, row, index) {
+        if (value.length <= 15) {
+            return value;
+        }
+        else {
+            return "<div class='tip_infomation' data-content='" + QQT.InsertEnter(value, 10) + "'>" + value.substring(0, 15) + "...</div>";
+        }
+    }
+
+
+    function ajaxRequest(params) {
+        var pageSize = params.data.limit;
+        var pageIndex = params.data.offset / params.data.limit + 1;
+        var orderBy = params.data.sort;
+        var orderSequence = params.data.order;
+        QQT.ajax('/Consul/GetConsulList',
+                'POST',
+                {
+                    pageIndex: pageIndex,
+                    pageSize: pageSize,
+                    orderBy: orderBy,
+                    orderSequence: orderSequence
+                })
+            .done(function (response) {
+                params.success({
+                    total: response.Total,
+                    rows: response.Rows
+                });
+            });
+
+    }
+
+
+    </script>
+</body>
+</html>

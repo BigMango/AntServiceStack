@@ -41,11 +41,11 @@ namespace ConsoleServer
         public override void Configure(Container container)
         {
             //根据域名
-            UpdateConfig(r => r.WebHostUrl, "http://192.168.1.2:8088/");
+            UpdateConfig(r => r.WebHostUrl, "http://10.32.122.130:8088/");
 
             //根据服务器IP
             
-            UpdateConfig(r => r.UseConsulDiscovery, false);
+            UpdateConfig(r => r.UseConsulDiscovery, true);
             //UpdateConfig(r => r.WebHostPort, "5683");
 
             Plugins.Add(new ProtoBufFormat());

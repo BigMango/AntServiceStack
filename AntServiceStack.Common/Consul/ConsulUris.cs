@@ -29,5 +29,10 @@ namespace AntServiceStack.Common.Consul
         /// Uri for retrieving active instances of a service
         /// </summary>
         public static readonly Func<string, string, string> GetService = (service, tagName) => $"{LocalAgent}/v1/health/service/{service}?near=_agent&passing&tag={tagName}";
+
+        /// <summary>
+        /// 获取所有的服务
+        /// </summary>
+        public static readonly Func<string> GetAllService = () => $"{LocalAgent}/v1//internal/ui/services";
     }
 }
