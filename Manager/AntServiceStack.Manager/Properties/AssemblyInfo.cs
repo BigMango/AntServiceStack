@@ -22,14 +22,3 @@ using System.Runtime.InteropServices;
 // 如果此项目向 COM 公开，则下列 GUID 用于 typelib 的 ID
 [assembly: Guid("6fccd473-abae-470e-9368-4ff1e19a432c")]
 
-// 程序集的版本信息由下列四个值组成:
-//
-//      主版本
-//      次版本
-//      内部版本号
-//      修订版本
-//
-// 可以指定所有值，也可以使用“修订号”和“内部版本号”的默认值，
-// 方法是按如下所示使用 "*":
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
