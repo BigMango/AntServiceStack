@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{784FA50B-61E6-441A-B090-5D7DCD4E6384}</ProjectGuid>
+    <ProjectGuid>{D6E6252B-38DE-46CD-BA37-CCD4C8765BB0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AntServiceStack.DbModel</RootNamespace>
@@ -37,17 +37,13 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\GlobalAssemblyInfo.cs">
-      <Link>Properties\GlobalAssemblyInfo.cs</Link>
-    </Compile>
-    <Compile Include="Mysql\EntityRobotForMysql1.generated.cs">
+    <Compile Include="Mysql\EntityRobotForMysql.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>EntityRobotForMysql.tt</DependentUpon>
@@ -55,31 +51,27 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-    <None Include="Templates\DataModel.ttinclude" />
-    <None Include="Templates\LinqToDB.MySql.Tools.ttinclude" />
-    <None Include="Templates\LinqToDB.MySql.ttinclude" />
-    <None Include="Templates\LinqToDB.Oracle.Tools.ttinclude" />
-    <None Include="Templates\LinqToDB.Oracle.ttinclude" />
-    <None Include="Templates\LinqToDB.SqlServer.Tools.ttinclude" />
-    <None Include="Templates\LinqToDB.SqlServer.ttinclude" />
-    <None Include="Templates\LinqToDB.Tools.ttinclude" />
-    <None Include="Templates\LinqToDB.ttinclude" />
-    <None Include="Templates\PluralizationService.ttinclude" />
-    <None Include="Templates\T4Model.ttinclude" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="code.gen\tools\Arch.Data.ORM.CodeGen.dll" />
     <Content Include="code.gen\tools\MySql.Data.dll" />
-    <Content Include="code.gen\tools\Oracle.ManagedDataAccess.dll" />
     <Content Include="Mysql\EntityRobotForMysql.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>EntityRobotForMysql1.generated.cs</LastGenOutput>
+      <LastGenOutput>EntityRobotForMysql.generated.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Templates\DataModel.ttinclude" />
+    <None Include="Templates\LinqToDB.MySql.Tools.ttinclude" />
+    <None Include="Templates\LinqToDB.MySql.ttinclude" />
+    <None Include="Templates\LinqToDB.Tools.ttinclude" />
+    <None Include="Templates\LinqToDB.ttinclude" />
+    <None Include="Templates\PluralizationService.ttinclude" />
+    <None Include="Templates\T4Model.ttinclude" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
