@@ -106,6 +106,12 @@ namespace AntServiceStack.DbModel
 		[Column("FullName",            DataType=DataType.VarChar,  Length=100, Comment="服务发现注册名称"),    Nullable]
 		public string FullName { get; set; } // varchar(100)
 
+		/// <summary>
+		/// 是否可用
+		/// </summary>
+		[Column("isActive",            DataType=DataType.Boolean,  Comment="是否可用"), NotNull]
+		public bool IsActive { get; set; } // tinyint(1)
+
 		#endregion
 
 		#region Field

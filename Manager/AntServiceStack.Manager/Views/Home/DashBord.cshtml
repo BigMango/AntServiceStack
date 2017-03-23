@@ -5,7 +5,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consul服务列表</title>
+    <title>服务列表</title>
     <link rel="shortcut icon" href="~/favicon.ico">
     <link href="~/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
     <link href="~/css/font-awesome.css?v=4.4.0" rel="stylesheet">
@@ -17,14 +17,28 @@
     <link href="~/js/plugins/select2/select2.css" rel="stylesheet" />
     <link href="~/js/plugins/comboTree/jquery.treeComboBox.css" rel="stylesheet" />
     <link href="~/css/plugins/switchery/switchery.css" rel="stylesheet">
+    <style type="text/css">
+        .layer-date-customer {
+            max-width: 240px;
+            background-color: #FFFFFF;
+            background-image: none;
+            border: 1px solid #e5e6e7;
+            border-radius: 1px;
+            color: inherit;
+            text-align: center;
+        }
 
+        .modal-body {
+            padding: 10px !important;
+        }
+    </style>
 </head>
 <body class="gray-bg">
 
     <div class="wrapper wrapper-content animated fadeInRight">
         <div class="ibox float-e-margins">
             <div class="ibox-title">
-                <h5>Consul服务列表</h5>
+                <h5>服务列表</h5>
             </div>
             <div class="ibox-content">
                 <div class="row row-lg">
@@ -35,6 +49,7 @@
                                     <button type="button" class="btn btn-w-m btn-success" style="margin-right: 10px" v-on:click="_ConsulAdd">添加服务</button>
                                     <button type="button"  class="btn btn-w-m btn-success" style="margin-right: 10px" v-on:click="_ConsulUpdate">修改服务</button>
                                     <button type="button" class="btn btn-w-m btn-success" style="margin-right: 10px" v-on:click="_ConsulDelete">删除服务</button>
+                                    <input placeholder="请输入名称" class="layer-date-customer" id="name" style="margin-left: 10px;">
                                 </div>
                                 <table id="ConsulTable" data-side-pagination="server" data-sort-order="desc" data-mobile-responsive="true"></table>
                             </div>
@@ -57,24 +72,19 @@
                 <div class="modal-body">
 
                     <div class="form-group">
-                        <label class="control-label">活动标题：</label>
-                        <input v-model="currentRow.Title" class="form-control" type="text" placeholder="请输入活动标题">
+                        <label class="control-label">服务名称：</label>
+                        <input v-model="currentRow.ServiceName" class="form-control" type="text" placeholder="请输入服务名称">
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label">描述：</label>
-                        <input v-model="currentRow.Description" class="form-control" type="text" placeholder="请输入描述">
+                        <label class="control-label">命名空间：</label>
+                        <input v-model="currentRow.Namespace" class="form-control" type="text" placeholder="请输入命名空间">
                     </div>
 
-                    <div class="form-group">
-                        <label class="control-label">优惠策略ID：</label>
-                        <input v-model="currentRow.PromId" class="form-control" type="text" placeholder="请输入优惠策略ID">
-                    </div>
-
-                    <div class="form-group">
-                        <label class="control-label">排序：</label>
-                        <input v-model="currentRow.OrderRule" class="form-control" type="number" placeholder="请输入排序">
-                    </div>
+                    @*<div class="form-group">
+                        <label class="control-label">部门：</label>
+                        <input v-model="currentRow.Domain" class="form-control" type="text" placeholder="请输入部门">
+                    </div>*@
 
                     <div class="form-group">
                         <label class="control-label">是否有效：&nbsp;&nbsp;&nbsp;</label>
@@ -136,7 +146,15 @@
                 changeSwitcheryState('isActive', false);
             },
             _Save: function () {
-                if (!vm.currentRow.Title) {
+                if (!vm.currentRow.ServiceName) {
+                    swal({
+                        title: "",
+                        text: "请输入服务名称！",
+                        type: "error"
+                    });
+                    return;
+                }
+                if (!vm.currentRow.Namespace) {
                     swal({
                         title: "",
                         text: "请输入活动标题！",
@@ -144,33 +162,8 @@
                     });
                     return;
                 }
-                if (!vm.currentRow.Description) {
-                    swal({
-                        title: "",
-                        text: "请输入活动标题！",
-                        type: "error"
-                    });
-                    return;
-                }
-                if (!vm.currentRow.PromId) {
-                    swal({
-                        title: "",
-                        text: "请输入策略ID！",
-                        type: "error"
-                    });
-                    return;
-                }
-                if (!vm.currentRow.OrderRule) {
-                    swal({
-                        title: "",
-                        text: "请输入排序！",
-                        type: "error"
-                    });
-                    return;
-                }
-                vm.currentRow.Title = Base64.encode(vm.currentRow.Title);
-                vm.currentRow.Description = Base64.encode(vm.currentRow.Description);
-                QQT.ajax('/Consul/AddConsul', 'Post', vm.currentRow)
+                
+                QQT.ajax('/Service/ModifyService', 'Post', vm.currentRow)
                     .done(function (response) {
                         $('#ConsulTable').bootstrapTable('refresh', { silent: true });
                         swal("成功啦！", "操作成功!", "success");
@@ -218,7 +211,7 @@
                     },
                     function (isConfirm) {
                         if (isConfirm) {
-                            QQT.ajax('/Consul/DelConsul',
+                            QQT.ajax('/Service/DelService',
                                     'Post',
                                     {tid:tid})
                                 .done(function (response) {
@@ -275,41 +268,20 @@
 						},
 
 						{
-							field: 'Title',
-							title: '活动标题',
+						    field: 'ServiceName',
+							title: '服务名称',
 						},
 
 						{
-							field: 'Description',
-							title: '描述',
+						    field: 'Namespace',
+							title: '命名空间',
 						},
 
 						{
 							field: 'IsActive',
 							title: '是否可用',
 							sortable: true
-						},
-                        {
-                            field: 'OrderRule',
-                            title: '排序',
-                            sortable: true
-                        },
-
-						{
-							field: 'CreateUser',
-							title: '最后更新者',
-							sortable: true
-						},
-
-						{
-							field: 'PromId',
-							title: '优惠策略ID',
-							sortable: true
-						},
-				        {
-				            field: 'CouponName',
-				            title: '优惠策略',
-				        },
+						}
 
                 ],
                 onLoadSuccess: function () {
@@ -359,13 +331,14 @@
         var pageIndex = params.data.offset / params.data.limit + 1;
         var orderBy = params.data.sort;
         var orderSequence = params.data.order;
-        QQT.ajax('/Consul/GetConsulList',
+        QQT.ajax('/Service/GetServiveList',
                 'POST',
                 {
                     pageIndex: pageIndex,
                     pageSize: pageSize,
                     orderBy: orderBy,
-                    orderSequence: orderSequence
+                    orderSequence: orderSequence,
+                    ServiceName: $.trim($('#name').val())
                 })
             .done(function (response) {
                 params.success({

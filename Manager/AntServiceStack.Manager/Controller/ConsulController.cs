@@ -16,7 +16,7 @@ namespace AntServiceStack.Manager.Controller
     {
 
         /// <summary>
-        /// 根据serviceName获取一个服务
+        /// 获取consul里面的服务
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
