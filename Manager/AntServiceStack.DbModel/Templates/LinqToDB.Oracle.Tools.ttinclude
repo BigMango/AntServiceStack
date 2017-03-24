@@ -1,3 +1,0 @@
-<#@ assembly name="$(ProjectDir)\code.gen\tools\Oracle.ManagedDataAccess.dll" #>
-<#@ include file="LinqToDB.Tools.ttinclude" #>
-<#@ include file="LinqToDB.Oracle.ttinclude" #>
