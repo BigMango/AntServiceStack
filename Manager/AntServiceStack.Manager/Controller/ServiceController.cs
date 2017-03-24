@@ -15,6 +15,20 @@ namespace AntServiceStack.Manager.Controller
 {
     public class ServiceController : BaseController
     {
+
+        /// <summary>
+        /// 远程获取所有的服务
+        /// </summary>
+        /// <returns></returns>
+        public async Task<JsonResult> GetAllRemoteServices()
+        {
+            //RemoteServices
+            ServiceRepository rep = new ServiceRepository();
+            var respositoryResult = await rep.GetAllRemoteServices();
+            return Json(respositoryResult, JsonRequestBehavior.AllowGet);
+        }
+
+
         /// <summary>
         /// 获取活动列表
         /// </summary>
@@ -29,7 +43,7 @@ namespace AntServiceStack.Manager.Controller
             result.Info = ResultConfig.SuccessfulMessage;
             result.Rows = respositoryResult.Item2;
             result.Total = respositoryResult.Item1;
-            return Json(result);
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>

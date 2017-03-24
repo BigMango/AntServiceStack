@@ -39,7 +39,7 @@ namespace Ant.Tools.SOA.WsdlWizard
             Unregistered
         }
 
-        private string RepositryRegisteredServiceInterfaceUrl = "http://repository.soa.ant.com/servicelookup";
+        private string RepositryRegisteredServiceInterfaceUrl = "";
         private Dictionary<string, Dictionary<string, List<string>>> _serviceRegistryData;
         private CodeGenerationConfig _config;
 
@@ -76,7 +76,10 @@ namespace Ant.Tools.SOA.WsdlWizard
             {
                 serviceRegistryDataText = SyncServiceRegistryData();
                 if (serviceRegistryDataText != null)
+                {
                     SaveServiceRegistryData(serviceRegistryDataText);
+                    SaveCodeGenerationConfig(false);
+                }
             }
 
             if (serviceRegistryDataText != null)
@@ -91,6 +94,7 @@ namespace Ant.Tools.SOA.WsdlWizard
             tbServiceName.Text = _config.LatestUsedServiceName;
             tbNamespace.Text = _config.LatestUsedServiceNamespance;
             tbServiceDoc.Text = _config.LatestUsedServiceDescription;
+            urlText.Text = _config.RepositryRegisteredServiceInterfaceUrl;
         }
 
         protected ServiceStateEnum TargetServiceState
@@ -182,6 +186,7 @@ namespace Ant.Tools.SOA.WsdlWizard
                     {
                         _config = (CodeGenerationConfig)serializer.Deserialize(reader);
                         RepositryRegisteredServiceInterfaceUrl = _config.RepositryRegisteredServiceInterfaceUrl;
+                        urlText.Text = RepositryRegisteredServiceInterfaceUrl;
                     }
                 }
                 catch (Exception ex)
@@ -251,6 +256,7 @@ namespace Ant.Tools.SOA.WsdlWizard
 
         protected string SyncServiceRegistryData()
         {
+           
             string serviceRegistryDataText = null;
             try
             {
@@ -283,9 +289,9 @@ namespace Ant.Tools.SOA.WsdlWizard
                             {
                                 foreach (Service service in domain.Services)
                                 {
-                                    if (!serviceRegistryData[domain.Name].ContainsKey(service.Name))
-                                        serviceRegistryData[domain.Name].Add(service.Name, new List<string>());
-                                    serviceRegistryData[domain.Name][service.Name].Add(service.Namespace);
+                                    if (!serviceRegistryData[domain.Name].ContainsKey(service.ServiceName))
+                                        serviceRegistryData[domain.Name].Add(service.ServiceName, new List<string>());
+                                    serviceRegistryData[domain.Name][service.ServiceName].Add(service.Namespace);
                                 }
                             }
                         }
@@ -388,12 +394,20 @@ namespace Ant.Tools.SOA.WsdlWizard
 
         private void btnSyncServiceRegistryData_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(urlText.Text))
+            {
+                MessageBox.Show(string.Format(ServiceRegistrySyncFailMessage, RepositryRegisteredServiceInterfaceUrl));
+                return;
+            }
+            RepositryRegisteredServiceInterfaceUrl = urlText.Text;
+
             this.Enabled = false;
 
             string serviceRegistryDataText = SyncServiceRegistryData();
             if (serviceRegistryDataText != null)
             {
                 SaveServiceRegistryData(serviceRegistryDataText);
+                SaveCodeGenerationConfig(false);
                 ServiceRegistryData = ParseServiceRegistryData(serviceRegistryDataText);
                 FillServiceDomainCombolBox();
             }
@@ -427,7 +441,7 @@ namespace Ant.Tools.SOA.WsdlWizard
 
         public class Service
         {
-            public string Name { get; set; }
+            public string ServiceName { get; set; }
             public string Namespace { get; set; }
         }
 

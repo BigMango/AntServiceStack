@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Web;
 using AntData.ORM;
 using AntServiceStack.DbModel;
+using AntServiceStack.Manager.Common;
 using AntServiceStack.Manager.Model.Request;
 
 namespace AntServiceStack.Manager.Repository
@@ -58,10 +59,10 @@ namespace AntServiceStack.Manager.Repository
                 return Tip.BadRequest;
             }
 
-
+            //服务名称 + 命名空间 是uniq的
             if (model.Tid > 0)
             {
-                var district = await this.Entity.FirstOrDefaultAsync(r => r.ServiceName.Equals(model.ServiceName) && !r.Tid.Equals(model.Tid));
+                var district = await this.Entity.FirstOrDefaultAsync(r => (r.ServiceName.Equals(model.ServiceName) && r.Namespace.Equals(model.Namespace)) && !r.Tid.Equals(model.Tid));
                 if (district != null)
                 {
                     return Tip.IsExist;
@@ -76,7 +77,7 @@ namespace AntServiceStack.Manager.Repository
             }
             else
             {
-                var district = await this.Entity.FirstOrDefaultAsync(r => r.ServiceName.Equals(model.ServiceName));
+                var district = await this.Entity.FirstOrDefaultAsync(r => (r.ServiceName.Equals(model.ServiceName) && r.Namespace.Equals(model.Namespace)));
                 if (district != null)
                 {
                     return Tip.IsExist;
@@ -100,6 +101,26 @@ namespace AntServiceStack.Manager.Repository
         {
             var result = await this.Entity.Where(r => r.Tid.Equals(tid)).DeleteAsync() > 0;
             return !result ? Tip.DeleteError : string.Empty;
+        }
+
+        /// <summary>
+        /// 远程获取所有的服务
+        /// </summary>
+        /// <returns></returns>
+        public async Task<RemoteServices> GetAllRemoteServices()
+        {
+            var result = new RemoteServices()
+            {
+                Success = true
+            };
+
+            var list = await this.Entity.Where(r => r.IsActive).ToListAsync();
+            result.Domains = list.GroupBy(r => r.Domain, y => y).Select(r => new Domain()
+            {
+                Name = r.Key,
+                Services = AutoMapperUtil.MapperToList<Service, ServiceRemote>(r.ToList())
+            }).ToList();
+            return result;
         }
     }
 }

@@ -95,6 +95,7 @@ namespace Ant.Tools.SOA.WsdlWizard
         private LinkLabel llAddFolder;
         private CheckBox cbGenerateAsyncOperations;
         private TextBox textOpToadd;
+        private TextBox urlText;
         private OperationsCollection oldOperations =
             new OperationsCollection(); // Holds a list of old operations configured by the user.
 
@@ -319,6 +320,7 @@ namespace Ant.Tools.SOA.WsdlWizard
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.toolTipPath = new System.Windows.Forms.ToolTip(this.components);
+            this.urlText = new System.Windows.Forms.TextBox();
             this.wsdlWizardCtrl.SuspendLayout();
             this.wizardPageBasicMetadata.SuspendLayout();
             this.ServiceSettingTabs.SuspendLayout();
@@ -388,6 +390,7 @@ namespace Ant.Tools.SOA.WsdlWizard
             // 
             // Registered
             // 
+            this.Registered.Controls.Add(this.urlText);
             this.Registered.Controls.Add(this.btnSyncServiceRegistryData);
             this.Registered.Controls.Add(this.tbServiceDocumentation);
             this.Registered.Controls.Add(this.lblServiceDocumentation);
@@ -420,7 +423,7 @@ namespace Ant.Tools.SOA.WsdlWizard
             this.tbServiceDocumentation.Location = new System.Drawing.Point(108, 99);
             this.tbServiceDocumentation.Multiline = true;
             this.tbServiceDocumentation.Name = "tbServiceDocumentation";
-            this.tbServiceDocumentation.Size = new System.Drawing.Size(291, 101);
+            this.tbServiceDocumentation.Size = new System.Drawing.Size(291, 39);
             this.tbServiceDocumentation.TabIndex = 7;
             // 
             // lblServiceDocumentation
@@ -904,6 +907,14 @@ namespace Ant.Tools.SOA.WsdlWizard
             // toolTipPath
             // 
             this.toolTipPath.AutomaticDelay = 1000;
+            // 
+            // urlText
+            // 
+            this.urlText.Location = new System.Drawing.Point(107, 175);
+            this.urlText.Multiline = true;
+            this.urlText.Name = "urlText";
+            this.urlText.Size = new System.Drawing.Size(291, 23);
+            this.urlText.TabIndex = 9;
             // 
             // WsdlWizardForm
             // 
@@ -2862,5 +2873,6 @@ namespace Ant.Tools.SOA.WsdlWizard
         }
 
         #endregion
+
     }
 }

@@ -112,6 +112,18 @@ namespace AntServiceStack.DbModel
 		[Column("isActive",            DataType=DataType.Boolean,  Comment="是否可用"), NotNull]
 		public bool IsActive { get; set; } // tinyint(1)
 
+		/// <summary>
+		/// 描述
+		/// </summary>
+		[Column("Description",         DataType=DataType.VarChar,  Length=200, Comment="描述"),    Nullable]
+		public string Description { get; set; } // varchar(200)
+
+		/// <summary>
+		/// 产线
+		/// </summary>
+		[Column("SubDomain",           DataType=DataType.VarChar,  Length=50, Comment="产线"),    Nullable]
+		public string SubDomain { get; set; } // varchar(50)
+
 		#endregion
 
 		#region Field

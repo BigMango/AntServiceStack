@@ -71,26 +71,63 @@
                 </div>
                 <div class="modal-body">
 
+
                     <div class="form-group">
                         <label class="control-label">服务名称：</label>
-                        <input v-model="currentRow.ServiceName" class="form-control" type="text" placeholder="请输入服务名称">
+                        <input v-model="currentRow.ServiceName" class="form-control" v-bind:readonly="!add" type="text" placeholder="请输入服务名称">
                     </div>
+
+                    <template v-if="add">
+                        <div class="form-group">
+                            <label class="control-label">命名空间：</label>
+                            <input id="namespace" v-model="currentRow.NamespaceDefault+'/'+currentRow.Domain+'/'+currentRow.SubDomain+'/'+currentRow.Suffix" class="form-control" type="text" readonly="readonly" placeholder="请输入命名空间">
+                        </div>
+                    </template>
+                    <template v-else>
+                        <div class="form-group">
+                            <label class="control-label">命名空间：</label>
+                            <input v-model="currentRow.Namespace" class="form-control" type="text" readonly="readonly" placeholder="请输入命名空间">
+                        </div>
+                    </template>
+
+                   
 
                     <div class="form-group">
-                        <label class="control-label">命名空间：</label>
-                        <input v-model="currentRow.Namespace" class="form-control" type="text" placeholder="请输入命名空间">
-                    </div>
-
-                    @*<div class="form-group">
                         <label class="control-label">部门：</label>
-                        <input v-model="currentRow.Domain" class="form-control" type="text" placeholder="请输入部门">
-                    </div>*@
+                        <input v-model="currentRow.Domain" class="form-control" v-bind:readonly="!add" type="text" placeholder="请输入部门(英文)">
+                    </div>
 
                     <div class="form-group">
+                        <label class="control-label">产线：</label>
+                        <input v-model="currentRow.SubDomain" class="form-control" v-bind:readonly="!add" type="text" placeholder="请输入产线(英文)">
+                    </div>
+
+                    <template v-if="add">
+
+                        <div class="form-group">
+                            <label class="control-label">命名空间后缀：</label>
+                            <input v-model="currentRow.Suffix" class="form-control" type="text" placeholder="格式为：v{intNumber}">
+                        </div>
+                    </template>
+                   
+
+
+                    <div class="form-group">
+                        <label class="control-label">服务描述：</label>
+                        <input v-model="currentRow.Description" class="form-control" type="text" placeholder="请输入服务描述">
+                    </div>
+
+                    @*<template v-if="add">
+                       
+                    </template>
+                    <template v-else>
+                      
+                    </template>*@
+                    <div class="form-group" v-show="!add">
                         <label class="control-label">是否有效：&nbsp;&nbsp;&nbsp;</label>
                         <input type="checkbox" class="js-switch" v-model="currentRow.IsActive" id="isActive" />&nbsp;&nbsp;{{currentRow.IsActive ? "是" : "否"}}
                     </div>
-
+                   
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-white" id="close-model" v-on:click="_Close">关闭</button>
@@ -125,12 +162,12 @@
     <script src="~/js/plugins/switchery/switchery.js"></script>
     <script src="~/js/jquery.base64.min.js"></script>
     <script type="text/javascript">
-
+        
     var vm = new Vue({
         el: 'body',
         data: {
             add: true,
-            currentRow: {}
+            currentRow: { NamespaceDefault: "http://soa.ant.com", Suffix: '', Domain: '', SubDomain: '' }
         },
         computed: {},
         methods: {
@@ -141,7 +178,7 @@
                 $('#myModal').modal('show');
             },
             _Close: function () {
-                vm.currentRow = {};
+                vm.currentRow = { NamespaceDefault: "http://soa.ant.com", Suffix: '', Domain: '', SubDomain: '' };
                 $('#myModal').modal('hide');
                 changeSwitcheryState('isActive', false);
             },
@@ -154,15 +191,32 @@
                     });
                     return;
                 }
-                if (!vm.currentRow.Namespace) {
+                if (!vm.currentRow.Domain) {
                     swal({
                         title: "",
-                        text: "请输入活动标题！",
+                        text: "请输入部门(英文)!",
                         type: "error"
                     });
                     return;
                 }
-                
+                if (!vm.currentRow.SubDomain) {
+                    swal({
+                        title: "",
+                        text: "请输入产线(英文)！",
+                        type: "error"
+                    });
+                    return;
+                }
+                if (vm.add && !vm.currentRow.Suffix) {
+                    swal({
+                        title: "",
+                        text: "请输入后缀！",
+                        type: "error"
+                    });
+                    return;
+                }
+
+                vm.currentRow.NameSpace = $('#namespace').val();
                 QQT.ajax('/Service/ModifyService', 'Post', vm.currentRow)
                     .done(function (response) {
                         $('#ConsulTable').bootstrapTable('refresh', { silent: true });
@@ -183,6 +237,7 @@
                 }
                 vm.currentRow = selectRow[0];
                 changeSwitcheryState('isActive', vm.currentRow.IsActive);
+               
                 $('#myModal').modal({ backdrop: 'static', keyboard: false });
                 $('#myModal').modal('show');
             },
@@ -276,7 +331,18 @@
 						    field: 'Namespace',
 							title: '命名空间',
 						},
-
+                        {
+                            field: 'Domain',
+                            title: '部门',
+                        },
+                        {
+                            field: 'SubDomain',
+                            title: '产线',
+                        },
+                        {
+                            field: 'Description',
+                            title: '描述',
+                        },
 						{
 							field: 'IsActive',
 							title: '是否可用',
@@ -289,6 +355,16 @@
                         function (element) {
                             return "<strong>" + $(element).data('content') + "</strong>";
                         });
+                },
+                rowStyle: function (row, index) {
+                    //这里有5个取值代表5中颜色['active', 'success', 'info', 'warning', 'danger'];
+                    var strclass = "";
+                    if (row.IsActive) {
+                        strclass = 'success'; //还有一个active
+                    }  else {
+                        strclass = 'danger';
+                    }
+                    return { classes: strclass }
                 },
                 onToggle: function () {
                     tipReCreate();
