@@ -11,7 +11,7 @@ namespace AntServiceStack.DbModel
 	/// <summary>
 	/// Database       : antsoa
 	/// Data Source    : 127.0.0.1
-	/// Server Version : 5.6.26-log
+	/// Server Version : 5.1.49-community
 	/// </summary>
 	public partial class Entitys : IEntity
 	{
