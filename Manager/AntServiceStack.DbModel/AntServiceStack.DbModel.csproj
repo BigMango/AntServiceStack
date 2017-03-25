@@ -30,8 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AntData.ORM">
-      <HintPath>..\..\packages\AntData.ORM.1.2.1\lib\AntData.ORM.dll</HintPath>
+    <Reference Include="AntData.ORM, Version=1.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AntData.ORM.1.2.2\lib\AntData.ORM.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

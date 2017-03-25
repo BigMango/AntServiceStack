@@ -11,7 +11,7 @@
     IsCompactColumns = false;
     BaseDataContextClass = "IEntity";
     BaseEntityClass = "BaseEntity";
-	LoadMySqlMetadata("127.0.0.1","3306", "antsoa", "root", "p@ssw0rd");
+	LoadMySqlMetadata("127.0.0.1","28747", "antsoa", "root", "123456");
 
 	//SetTableSharding("orders_{0}","orders_0","orders_1");
 	GenerateModel();

@@ -11,18 +11,22 @@ namespace AntServiceStack.DbModel
 	/// <summary>
 	/// Database       : antsoa
 	/// Data Source    : 127.0.0.1
-	/// Server Version : 5.1.49-community
+	/// Server Version : 5.6.26-log
 	/// </summary>
 	public partial class Entitys : IEntity
 	{
 		/// <summary>
+		/// 服务节点
+		/// </summary>
+		public IQueryable<Node>    Nodes    { get { return this.Get<Node>(); } }
+		/// <summary>
 		/// 服务表
 		/// </summary>
-		public ITable<Service> Services { get { return this.Get<Service>(); } }
+		public IQueryable<Service> Services { get { return this.Get<Service>(); } }
 
 		private readonly IDataContext con;
 
-		public ITable<T> Get<T>()
+		public IQueryable<T> Get<T>()
 			 where T : class
 		{
 			return this.con.GetTable<T>();
@@ -32,6 +36,63 @@ namespace AntServiceStack.DbModel
 		{
 			this.con = con;
 		}
+	}
+
+	/// <summary>
+	/// 服务节点
+	/// </summary>
+	[Table(Comment="服务节点", Name="nodes")]
+	public partial class Node : BaseEntity
+	{
+		#region Column
+
+		/// <summary>
+		/// 主键
+		/// </summary>
+		[Column("Tid",                 DataType=DataType.Int64,    Comment="主键"), PrimaryKey, Identity]
+		public long Tid { get; set; } // bigint(20)
+
+		/// <summary>
+		/// 最后更新时间
+		/// </summary>
+		[Column("DataChange_LastTime", DataType=DataType.DateTime, Comment="最后更新时间"), NotNull]
+		public DateTime DataChangeLastTime // datetime
+		{
+			get { return _DataChangeLastTime; }
+			set { _DataChangeLastTime = value; }
+		}
+
+		/// <summary>
+		/// 地址
+		/// </summary>
+		[Column("Url",                 DataType=DataType.VarChar,  Length=100, Comment="地址"),    Nullable]
+		public string Url { get; set; } // varchar(100)
+
+		/// <summary>
+		/// 说明
+		/// </summary>
+		[Column("Description",         DataType=DataType.VarChar,  Length=200, Comment="说明"),    Nullable]
+		public string Description { get; set; } // varchar(200)
+
+		/// <summary>
+		/// 是否可用
+		/// </summary>
+		[Column("IsActive",            DataType=DataType.Boolean,  Comment="是否可用"), NotNull]
+		public bool IsActive { get; set; } // tinyint(1)
+
+		/// <summary>
+		/// 服务全名称
+		/// </summary>
+		[Column("ServiceFullName",     DataType=DataType.VarChar,  Length=100, Comment="服务全名称"),    Nullable]
+		public string ServiceFullName { get; set; } // varchar(100)
+
+		#endregion
+
+		#region Field
+
+		private DateTime _DataChangeLastTime = System.Data.SqlTypes.SqlDateTime.MinValue.Value;
+
+		#endregion
 	}
 
 	/// <summary>
@@ -109,7 +170,7 @@ namespace AntServiceStack.DbModel
 		/// <summary>
 		/// 是否可用
 		/// </summary>
-		[Column("isActive",            DataType=DataType.Boolean,  Comment="是否可用"), NotNull]
+		[Column("IsActive",            DataType=DataType.Boolean,  Comment="是否可用"), NotNull]
 		public bool IsActive { get; set; } // tinyint(1)
 
 		/// <summary>
@@ -135,13 +196,25 @@ namespace AntServiceStack.DbModel
 
 	public static partial class TableExtensions
 	{
-		public static Service FindByBk(this ITable<Service> table, long Tid)
+		public static Node FindByBk(this IQueryable<Node> table, long Tid)
 		{
 			return table.FirstOrDefault(t =>
 				t.Tid == Tid);
 		}
 
-		public static async Task<Service> FindByBkAsync(this ITable<Service> table, long Tid)
+		public static async Task<Node> FindByBkAsync(this IQueryable<Node> table, long Tid)
+		{
+			return await table.FirstOrDefaultAsync(t =>
+				t.Tid == Tid);
+		}
+
+		public static Service FindByBk(this IQueryable<Service> table, long Tid)
+		{
+			return table.FirstOrDefault(t =>
+				t.Tid == Tid);
+		}
+
+		public static async Task<Service> FindByBkAsync(this IQueryable<Service> table, long Tid)
 		{
 			return await table.FirstOrDefaultAsync(t =>
 				t.Tid == Tid);

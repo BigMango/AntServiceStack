@@ -10,7 +10,10 @@ namespace AntServiceStack.Manager.Model.Request
     {
         public string ServiceName { get; set; }
     }
-
+    public class ServiceNodeVm : ConditionBase
+    {
+        public string ServiceFullName { get; set; }
+    }
     #region 所有的服务
 
     public class RemoteServices

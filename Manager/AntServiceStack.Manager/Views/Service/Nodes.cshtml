@@ -5,7 +5,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>服务列表</title>
+    <title>服务发现</title>
     <link rel="shortcut icon" href="~/favicon.ico">
     <link href="~/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
     <link href="~/css/font-awesome.css?v=4.4.0" rel="stylesheet">
@@ -38,20 +38,23 @@
     <div class="wrapper wrapper-content animated fadeInRight">
         <div class="ibox float-e-margins">
             <div class="ibox-title">
-                <h5>服务列表</h5>
+                <h5>服务发现</h5>
             </div>
             <div class="ibox-content">
                 <div class="row row-lg">
                     <div class="col-sm-12">
                         <div>
                             <div>
-                                <div class="btn-group hidden-xs" id="ConsulEventsToolbar" role="group">
-                                    <button type="button" class="btn btn-w-m btn-success" style="margin-right: 10px" v-on:click="_ConsulAdd">添加服务</button>
-                                    <button type="button"  class="btn btn-w-m btn-success" style="margin-right: 10px" v-on:click="_ConsulUpdate">修改服务</button>
-                                    <button type="button" class="btn btn-w-m btn-danger" style="margin-right: 10px" v-on:click="_ConsulDelete">删除服务</button>
-                                    <input placeholder="请输入名称" class="layer-date-customer" id="name" style="margin-left: 10px;">
+                                
+                                <div class="btn-group hidden-xs" id="NodeEventsToolbar" role="group">
+
+                                    @Html.Partial("_ServicesList")
+                                    <button type="button" class="btn btn-w-m btn-success" style="margin-right: 10px" v-on:click="_NodeAdd">添加节点</button>
+                                    <button type="button" class="btn btn-w-m btn-success" style="margin-right: 10px" v-on:click="_NodeUpdate">修改节点</button>
+                                    <button type="button" class="btn btn-w-m btn-danger" style="margin-right: 10px" v-on:click="_NodeDelete">删除节点</button>
+
                                 </div>
-                                <table id="ConsulTable" data-side-pagination="server" data-sort-order="desc" data-mobile-responsive="true"></table>
+                                <table id="NodeTable" data-side-pagination="server" data-sort-order="desc" data-mobile-responsive="true"></table>
                             </div>
                         </div>
                     </div>
@@ -66,64 +69,28 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 v-if="add" class="modal-title">添加服务</h4>
-                    <h1 v-else class="modal-title" style="color: red">修改服务</h1>
+                    <h4 v-if="add" class="modal-title">添加节点</h4>
+                    <h1 v-else class="modal-title" style="color: red">修改节点</h1>
                 </div>
                 <div class="modal-body">
 
 
                     <div class="form-group">
-                        <label class="control-label">服务名称：</label>
-                        <input v-model="currentRow.ServiceName" class="form-control" v-bind:readonly="!add" type="text" placeholder="请输入服务名称">
-                    </div>
-
-                    <template v-if="add">
-                        <div class="form-group">
-                            <label class="control-label">命名空间：</label>
-                            <input id="namespace" v-model="currentRow.NamespaceDefault+'/'+currentRow.Domain+'/'+currentRow.SubDomain+'/'+currentRow.Suffix" class="form-control" type="text" readonly="readonly" placeholder="请输入命名空间">
-                        </div>
-                    </template>
-                    <template v-else>
-                        <div class="form-group">
-                            <label class="control-label">命名空间：</label>
-                            <input v-model="currentRow.Namespace" class="form-control" type="text" readonly="readonly" placeholder="请输入命名空间">
-                        </div>
-                    </template>
-
-                   
-
-                    <div class="form-group">
-                        <label class="control-label">部门：</label>
-                        <input v-model="currentRow.Domain" class="form-control" v-bind:readonly="!add" type="text" placeholder="请输入部门(英文)">
+                        <label class="control-label">服务：</label>
+                        <input v-model="currentRow.ServiceFullName" class="form-control" readonly="readonly" type="text" >
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label">产线：</label>
-                        <input v-model="currentRow.SubDomain" class="form-control" v-bind:readonly="!add" type="text" placeholder="请输入产线(英文)">
+                        <label class="control-label">Url：</label>
+                        <input v-model="currentRow.Url" class="form-control" v-bind:readonly="!add" type="text" placeholder="请输入服务地址">
                     </div>
 
-                    <template v-if="add">
-
-                        <div class="form-group">
-                            <label class="control-label">命名空间后缀：</label>
-                            <input v-model="currentRow.Suffix" class="form-control" type="text" placeholder="格式为：v{intNumber}">
-                        </div>
-                    </template>
-                   
-
-
                     <div class="form-group">
-                        <label class="control-label">服务描述：</label>
+                        <label class="control-label">描述：</label>
                         <input v-model="currentRow.Description" class="form-control" type="text" placeholder="请输入服务描述">
                     </div>
 
-                    @*<template v-if="add">
-                       
-                    </template>
-                    <template v-else>
-                      
-                    </template>*@
-                    <div class="form-group" v-show="!add">
+                    <div class="form-group">
                         <label class="control-label">是否有效：&nbsp;&nbsp;&nbsp;</label>
                         <input type="checkbox" class="js-switch" v-model="currentRow.IsActive" id="isActive" />&nbsp;&nbsp;{{currentRow.IsActive ? "是" : "否"}}
                     </div>
@@ -167,13 +134,22 @@
         el: 'body',
         data: {
             add: true,
-            currentRow: { NamespaceDefault: "http://soa.ant.com", Suffix: '', Domain: '', SubDomain: '' }
+            currentRow: { ServiceFullName: "" }
         },
         computed: {},
         methods: {
 
-            _ConsulAdd: function () {
+            _NodeAdd: function () {
                 vm.add = true;
+                if (!$('#ServiceCombox').select2('data')) {
+                    swal({
+                        title: "",
+                        text: "请选择服务！",
+                        type: "error"
+                    });
+                    return;
+                }
+                vm.currentRow.ServiceFullName = $('#ServiceCombox').select2('data').id;
                 $('#myModal').modal({ backdrop: 'static', keyboard: false });
                 $('#myModal').modal('show');
             },
@@ -183,7 +159,7 @@
                 changeSwitcheryState('isActive', false);
             },
             _Save: function () {
-                if (!vm.currentRow.ServiceName) {
+                if (!vm.currentRow.ServiceFullName) {
                     swal({
                         title: "",
                         text: "请输入服务名称！",
@@ -191,42 +167,25 @@
                     });
                     return;
                 }
-                if (!vm.currentRow.Domain) {
+                if (!vm.currentRow.Url) {
                     swal({
                         title: "",
-                        text: "请输入部门(英文)!",
-                        type: "error"
-                    });
-                    return;
-                }
-                if (!vm.currentRow.SubDomain) {
-                    swal({
-                        title: "",
-                        text: "请输入产线(英文)！",
-                        type: "error"
-                    });
-                    return;
-                }
-                if (vm.add && !vm.currentRow.Suffix) {
-                    swal({
-                        title: "",
-                        text: "请输入后缀！",
+                        text: "请输入服务地址!",
                         type: "error"
                     });
                     return;
                 }
 
-                vm.currentRow.NameSpace = $('#namespace').val();
-                QQT.ajax('/Service/ModifyService', 'Post', vm.currentRow)
+                QQT.ajax('/Service/ModifyServiceNode', 'Post', vm.currentRow)
                     .done(function (response) {
-                        $('#ConsulTable').bootstrapTable('refresh', { silent: true });
+                        $('#NodeTable').bootstrapTable('refresh', { silent: true });
                         swal("成功啦！", "操作成功!", "success");
                         vm._Close();
                     });
             },
-            _ConsulUpdate: function () {
+            _NodeUpdate: function () {
                 vm.add = false;
-                var selectRow = $('#ConsulTable').bootstrapTable('getSelections');
+                var selectRow = $('#NodeTable').bootstrapTable('getSelections');
                 if (selectRow.length < 1) {
                     swal({
                         title: "",
@@ -241,8 +200,8 @@
                 $('#myModal').modal({ backdrop: 'static', keyboard: false });
                 $('#myModal').modal('show');
             },
-            _ConsulDelete: function () {
-                var selectRow = $('#ConsulTable').bootstrapTable('getSelections');
+            _NodeDelete: function () {
+                var selectRow = $('#NodeTable').bootstrapTable('getSelections');
                 if (selectRow.length < 1) {
                     swal({
                         title: "",
@@ -266,11 +225,11 @@
                     },
                     function (isConfirm) {
                         if (isConfirm) {
-                            QQT.ajax('/Service/DelService',
+                            QQT.ajax('/Service/DelServiceNode',
                                     'Post',
                                     {tid:tid})
                                 .done(function (response) {
-                                    $('#ConsulTable').bootstrapTable('refresh', { silent: true });
+                                    $('#NodeTable').bootstrapTable('refresh', { silent: true });
                                     swal("成功啦！", "操作成功!", "success");
                                 });
                         }
@@ -281,7 +240,7 @@
     });
 
     $(function () {
-        $('#ConsulTable')
+        $('#NodeTable')
             .bootstrapTable({
                 ajax: ajaxRequest,
                 pageNumber: 1,
@@ -303,7 +262,7 @@
                 // showPaginationSwitch:true,
                 dataType: "json",
                 iconSize: 'outline',
-                toolbar: '#ConsulEventsToolbar',
+                toolbar: '#NodeEventsToolbar',
                 icons: {
                     refresh: 'glyphicon-repeat',
                     toggle: 'glyphicon-list-alt',
@@ -323,22 +282,14 @@
 						},
 
 						{
-						    field: 'ServiceName',
+						    field: 'ServiceFullName',
 							title: '服务名称',
 						},
 
 						{
-						    field: 'Namespace',
-							title: '命名空间',
+						    field: 'Url',
+							title: '服务地址',
 						},
-                        {
-                            field: 'Domain',
-                            title: '部门',
-                        },
-                        {
-                            field: 'SubDomain',
-                            title: '产线',
-                        },
                         {
                             field: 'Description',
                             title: '描述',
@@ -407,14 +358,14 @@
         var pageIndex = params.data.offset / params.data.limit + 1;
         var orderBy = params.data.sort;
         var orderSequence = params.data.order;
-        QQT.ajax('/Service/GetServiveList',
+        QQT.ajax('/Service/GetServiveNodeList',
                 'POST',
                 {
                     pageIndex: pageIndex,
                     pageSize: pageSize,
                     orderBy: orderBy,
                     orderSequence: orderSequence,
-                    ServiceName: $.trim($('#name').val())
+                    ServiceName: $('#ServiceCombox').select2('data').id
                 })
             .done(function (response) {
                 params.success({
