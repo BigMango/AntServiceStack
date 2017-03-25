@@ -56,7 +56,10 @@
 
     function InitServicesCombobox(data) {
         var searchList = new Array();
-
+        searchList.push({
+            id: '',
+            text: '全部'
+        });
         $.each(data,
             function (index, item) {
                 searchList.push({
@@ -65,7 +68,7 @@
             });
             });
 
-
+       
         $('#ServiceCombox').select2({
             data: searchList,
             placeholder: '请选择服务',

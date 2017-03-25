@@ -79,6 +79,15 @@ namespace AntServiceStack.Manager.Repository {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 有存活节点!.
+        /// </summary>
+        internal static string HaveActiveNode {
+            get {
+                return ResourceManager.GetString("HaveActiveNode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 插入数据库失败!.
         /// </summary>
         internal static string InsertError {
@@ -93,6 +102,15 @@ namespace AntServiceStack.Manager.Repository {
         internal static string IsExist {
             get {
                 return ResourceManager.GetString("IsExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 不存在!.
+        /// </summary>
+        internal static string NotFound {
+            get {
+                return ResourceManager.GetString("NotFound", resourceCulture);
             }
         }
         

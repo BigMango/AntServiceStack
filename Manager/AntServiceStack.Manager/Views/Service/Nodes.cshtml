@@ -150,6 +150,14 @@
                     return;
                 }
                 vm.currentRow.ServiceFullName = $('#ServiceCombox').select2('data').id;
+                if (vm.currentRow.ServiceFullName === '') {
+                    swal({
+                        title: "",
+                        text: "请选择服务！",
+                        type: "error"
+                    });
+                    return;
+                }
                 $('#myModal').modal({ backdrop: 'static', keyboard: false });
                 $('#myModal').modal('show');
             },
@@ -365,7 +373,7 @@
                     pageSize: pageSize,
                     orderBy: orderBy,
                     orderSequence: orderSequence,
-                    ServiceName: $('#ServiceCombox').select2('data').id
+                    ServiceName: $('#ServiceCombox').select2('data') && $('#ServiceCombox').select2('data').id
                 })
             .done(function (response) {
                 params.success({

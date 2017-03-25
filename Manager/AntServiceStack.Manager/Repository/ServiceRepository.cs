@@ -101,8 +101,33 @@ namespace AntServiceStack.Manager.Repository
         /// <returns></returns>
         public async Task<string> DelServiceAsync(long tid)
         {
-            var result = await this.Entity.Where(r => r.Tid.Equals(tid)).DeleteAsync() > 0;
-            return !result ? Tip.DeleteError : string.Empty;
+            var service = await this.Entity.FindByBkAsync(tid);
+            if (service == null)
+            {
+                return Tip.NotFound;
+            }
+            //如果有节点则不能删除
+            var haveNode = this.Entitys.Nodes.Any(r => r.IsActive && r.ServiceFullName.Equals(service.FullName));
+            if (haveNode)
+            {
+                return Tip.HaveActiveNode;
+            }
+            try
+            {
+
+                this.DB.UseTransaction(con =>
+                {
+                    con.Tables.Nodes.Where(r => r.ServiceFullName.Equals(service.FullName)).Delete();
+                    con.Tables.Services.Where(r => r.Tid.Equals(tid)).Delete();
+                    return true;
+                });
+
+            }
+            catch (Exception)
+            {
+                return Tip.DeleteError ;
+            }
+            return string.Empty;
         }
 
         /// <summary>
