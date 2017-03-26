@@ -1,6 +1,8 @@
 ﻿
 <script type="text/javascript">
-    var appUrl = "@Url.Content("~/")";
+    var appUrl = "@Url.Content("~/")" === '/' ? (window.location.protocol +
+                '//' +
+                window.location.host + "/") : "@Url.Content("~/")";
 
     var QQT = {
         ajax: function(path, method, data,isJsonNet,async, isFile) {

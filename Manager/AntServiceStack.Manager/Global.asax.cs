@@ -9,6 +9,11 @@ using System.Web.Security;
 using System.Web.SessionState;
 using AntServiceStack.Manager.Controller;
 using AntServiceStack.Manager.Model.JsonNet;
+using AntServiceStack.Manager.SignalR;
+using Autofac;
+using Autofac.Integration.SignalR;
+using Microsoft.AspNet.SignalR;
+using Microsoft.AspNet.SignalR.Hubs;
 
 namespace AntServiceStack.Manager
 {
@@ -17,7 +22,26 @@ namespace AntServiceStack.Manager
 
         protected void Application_Start(object sender, EventArgs e)
         {
-         
+            #region Signalr
+            var builder = new ContainerBuilder();
+            builder.RegisterHubs(Assembly.GetExecutingAssembly()).PropertiesAutowired();
+            builder.RegisterType<DebugLogger>().As<IHubLogger>();
+            var container = builder.Build();
+            var resolver = new AutofacDependencyResolver(container);
+            GlobalHost.HubPipeline.AddModule(new LoggingPipelineModule(resolver.Resolve<IHubLogger>()));
+            GlobalHost.HubPipeline.AddModule(new ErrorHandlingPipelineModule(resolver.Resolve<IHubLogger>()));
+            var authorizer = new HubAuthorizeAttribute();
+            var module = new AuthorizeModule(authorizer, authorizer);
+            GlobalHost.HubPipeline.AddModule(module);
+            GlobalHost.HubPipeline.RequireAuthentication();
+            GlobalHost.DependencyResolver = new AutofacDependencyResolver(container); 
+            #endregion
+
+            //var aTimer = new System.Timers.Timer();
+
+            //aTimer.Elapsed += aTimer_Elapsed;
+            //aTimer.Interval = 20000;
+            //aTimer.Enabled = true;
 
             ValueProviderFactories.Factories.Remove(ValueProviderFactories.Factories.OfType<JsonValueProviderFactory>().FirstOrDefault());
             ValueProviderFactories.Factories.Add(new JsonNetValueProviderFactory());
@@ -28,7 +52,12 @@ namespace AntServiceStack.Manager
             ModelBundle.RegisterBindles(ModelBinders.Binders);
         }
 
-        
+        void aTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            var context = GlobalHost.ConnectionManager.GetHubContext<AntSoaHub>();
+            context.Clients.All.Heartbeat();
+            
+        }
 
         protected void Application_Error(object sender, EventArgs e)
         {

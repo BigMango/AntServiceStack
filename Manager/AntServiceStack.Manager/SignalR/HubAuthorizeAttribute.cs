@@ -14,15 +14,16 @@ namespace AntServiceStack.Manager.SignalR
 {
     public class HubAuthorizeAttribute : AuthorizeAttribute
     {
+        public const string EnvironmentUser = "server.User";
         public override bool AuthorizeHubConnection(HubDescriptor hubDescriptor, IRequest request)
         {
-            var token = request.Headers.Get("token");
+            var token = GetToken(request);
             if (!string.IsNullOrEmpty(token))
             {
                 var claims = new List<Claim>();
                 claims.Add(new Claim(ClaimTypes.Authentication, token));
                 var identity = new ClaimsIdentity(claims,"signalr");
-                request.Environment["server.User"] = new ClaimsPrincipal(identity);
+                request.Environment[EnvironmentUser] = new ClaimsPrincipal(identity);
                 return true;
             }
             else
@@ -36,7 +37,7 @@ namespace AntServiceStack.Manager.SignalR
             var connectionId = hubIncomingInvokerContext.Hub.Context.ConnectionId;
             // check the authenticated user principal from environment
             var environment = hubIncomingInvokerContext.Hub.Context.Request.Environment;
-            var principal = environment["server.User"] as ClaimsPrincipal;
+            var principal = environment[EnvironmentUser] as ClaimsPrincipal;
             if (principal != null && principal.Identity != null && principal.Identity.IsAuthenticated)
             {
                 // create a new HubCallerContext instance with the principal generated from token
@@ -48,6 +49,12 @@ namespace AntServiceStack.Manager.SignalR
             {
                 return false;
             }
+        }
+
+        public static string GetToken(IRequest request)
+        {
+            var token = request.Headers.Get("token");
+            return token;
         }
     }
 }

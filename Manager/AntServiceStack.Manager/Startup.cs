@@ -21,27 +21,15 @@ namespace AntServiceStack.Manager
     {
         public void Configuration(IAppBuilder app)
         {
-            var builder = new ContainerBuilder();
-            builder.RegisterHubs(Assembly.GetExecutingAssembly()).PropertiesAutowired();
-            builder.RegisterType<DebugLogger>().As<IHubLogger>();
-            var container = builder.Build();
-            app.UseAutofacMiddleware(container);
-            var resolver = new AutofacDependencyResolver(container);
-            GlobalHost.HubPipeline.AddModule(new LoggingPipelineModule(resolver.Resolve<IHubLogger>()));
-            GlobalHost.HubPipeline.AddModule(new ErrorHandlingPipelineModule(resolver.Resolve<IHubLogger>()));
-            var authorizer = new HubAuthorizeAttribute();
-            var module = new AuthorizeModule(authorizer, authorizer);
-            GlobalHost.HubPipeline.AddModule(module);
-            GlobalHost.HubPipeline.RequireAuthentication();
+           
             //GlobalHost.DependencyResolver.UseRedis("localhost", 6379, string.Empty, "myApp");
             app.MapSignalR("/antsoa",new HubConfiguration
             {
-                Resolver = resolver,
                 EnableDetailedErrors = true,
-                EnableJavaScriptProxies = false
+                EnableJavaScriptProxies = true
             });
             
-            builder.RegisterInstance(resolver.Resolve<IConnectionManager>());
+          
            
         }
     }
