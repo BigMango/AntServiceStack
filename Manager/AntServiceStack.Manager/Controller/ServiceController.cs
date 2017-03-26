@@ -172,15 +172,5 @@ namespace AntServiceStack.Manager.Controller
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
-        public async Task<JsonResult> Test()
-        {
-            var aa = "AntSoaHub";
-            var context = GlobalHost.ConnectionManager.GetHubContext<AntSoaHub>();
-            context.Clients.All.SendMessage("","");
-            var result = new ResultJsonNoDataInfo();
-            result.Status = ResultConfig.Ok;
-            result.Info = ResultConfig.SuccessfulMessage;
-            return Json(result, JsonRequestBehavior.AllowGet);
-        }
     }
 }

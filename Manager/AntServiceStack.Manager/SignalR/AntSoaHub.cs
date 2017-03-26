@@ -23,7 +23,7 @@ namespace AntServiceStack.Manager.SignalR
         }
         public void Heartbeat()
         {
-            Clients.Caller.SendMessage("", "");
+            Clients.Caller.Heartbeat();
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace AntServiceStack.Manager.SignalR
             else
             {
                 //有服务才加组
-                //SubscribeGroup(serviceFullName);
+                SubscribeGroup(serviceFullName);
             }
             Clients.Caller.GetMyServer(respositoryResult);
         }
@@ -56,9 +56,9 @@ namespace AntServiceStack.Manager.SignalR
         /// 加入组  client加入group
         /// </summary>
         /// <param name="groupName"></param>
-        public Task SubscribeGroup()
+        public Task SubscribeGroup(string groupName)
         {
-            return Groups.Add(Context.ConnectionId, GetServiceFullName());
+            return Groups.Add(Context.ConnectionId, groupName);
         }
 
         /// <summary>
@@ -80,8 +80,8 @@ namespace AntServiceStack.Manager.SignalR
             if (!string.IsNullOrEmpty(serviceFullName))
             {
                 //GetMyServer();
-               // Heartbeat();
-                //SubscribeGroup(serviceFullName);
+                Heartbeat();
+                SubscribeGroup(serviceFullName);
             }
             _slabLogger.Info("OnConnected", Context.ConnectionId);
             return (base.OnConnected());
@@ -105,6 +105,7 @@ namespace AntServiceStack.Manager.SignalR
             if (!string.IsNullOrEmpty(serviceFullName))
             {
                 //GetMyServer();
+                //SubscribeGroup(serviceFullName);
                 Heartbeat();
             }
             _slabLogger.Info("OnReconnected", Context.ConnectionId);

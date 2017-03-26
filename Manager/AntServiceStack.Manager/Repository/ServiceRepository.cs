@@ -4,10 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using AntData.ORM;
+using AntServiceStack.Common.Consul;
 using AntServiceStack.Common.Utils;
 using AntServiceStack.DbModel;
 using AntServiceStack.Manager.Common;
 using AntServiceStack.Manager.Model.Request;
+using Node = AntServiceStack.DbModel.Node;
 
 namespace AntServiceStack.Manager.Repository
 {
@@ -191,6 +193,24 @@ namespace AntServiceStack.Manager.Repository
             return new Tuple<long, List<Node>>(await total, list);
         }
 
+        public List<ConsulServiceResponse> GetServerNodeList(string name)
+        {
+            var result = new List<ConsulServiceResponse>();
+            var list = this.Entitys.Nodes.Where(r => r.ServiceFullName.Equals(name) && r.IsActive).ToList();
+            foreach (var server in list)
+            {
+                ConsulServiceResponse c = new ConsulServiceResponse
+                {
+                    ServiceAddress = server.Url,
+                    ServiceID = name
+                };
+
+                result.Add(c);
+            }
+
+            return result;
+        }
+
         /// <summary>
         /// 添加或修改节点
         /// </summary>
@@ -231,7 +251,7 @@ namespace AntServiceStack.Manager.Repository
                     return Tip.InsertError;
                 }
             }
-
+            SignalRUtil.PushServerToGroup(model.ServiceFullName, GetServerNodeList(model.ServiceFullName));
             return string.Empty;
         }
 
@@ -242,8 +262,15 @@ namespace AntServiceStack.Manager.Repository
         /// <returns></returns>
         public async Task<string> DelServiceNodeAsync(long tid)
         {
-            var result = await this.Entitys.Nodes.Where(r => r.Tid.Equals(tid)).DeleteAsync() > 0;
-            return !result ? Tip.DeleteError : string.Empty;
+            var node = await this.Entitys.Nodes.FindByBkAsync(tid);
+            var result =  this.DB.Delete(node) > 0;
+            if (result )
+            {
+                SignalRUtil.PushServerToGroup(node.ServiceFullName, GetServerNodeList(node.ServiceFullName));
+                return string.Empty;
+            }
+           
+            return Tip.DeleteError;
         }
     }
 }

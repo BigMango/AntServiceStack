@@ -52,7 +52,6 @@
                                     <button type="button" class="btn btn-w-m btn-success" style="margin-right: 10px" v-on:click="_NodeAdd">添加节点</button>
                                     <button type="button" class="btn btn-w-m btn-success" style="margin-right: 10px" v-on:click="_NodeUpdate">修改节点</button>
                                     <button type="button" class="btn btn-w-m btn-danger" style="margin-right: 10px" v-on:click="_NodeDelete">删除节点</button>
-                                    <button type="button" class="btn btn-w-m btn-danger" style="margin-right: 10px" v-on:click="_NodeTest">删除节点</button>
                                 </div>
                                 <table id="NodeTable" data-side-pagination="server" data-sort-order="desc" data-mobile-responsive="true"></table>
                             </div>
@@ -245,11 +244,11 @@
 
             },
             _NodeTest:function() {
-                QQT.ajax('/Service/Test', 'Get')
-                   .done(function (response) {
-                       swal("成功啦！", "操作成功!", "success");
-                       vm._Close();
-                   });
+                //QQT.ajax('/Service/Test', 'Get')
+                //   .done(function (response) {
+                //       swal("成功啦！", "操作成功!", "success");
+                //       vm._Close();
+                //   });
             }
         }
     });
