@@ -22,7 +22,7 @@ namespace ConsoleServer
     /// <summary>
     /// 
     /// </summary>
-    public class ConsoleSoaController : ICloudBagRestFulApi
+    public class ConsoleSoaController : Ihelloworld
     {
 
         public CheckHealthResponseType CheckHealth(CheckHealthRequestType request)

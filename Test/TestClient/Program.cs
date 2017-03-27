@@ -11,7 +11,7 @@ namespace TestClient
 {
     class Program
     {
-        static CloudBagRestFulApiClient client = CloudBagRestFulApiClient.GetInstance("http://localhost/WebApplication");
+        static helloworldClient client = helloworldClient.GetInstance();
         static void Main(string[] args)
         {
             TestCreateTask();

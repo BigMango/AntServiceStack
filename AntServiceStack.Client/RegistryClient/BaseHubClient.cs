@@ -34,7 +34,7 @@ namespace AntServiceStack.Client.RegistryClient
             _hubConnection.Error += _hubConnection_Error;
             _hubConnection.ConnectionSlow += _hubConnection_ConnectionSlow;
             _hubConnection.Closed += _hubConnection_Closed;
-            
+            _hubConnection.Headers.Add("token", GetToken());
 
         }
 
@@ -59,6 +59,7 @@ namespace AntServiceStack.Client.RegistryClient
         }
 
         public abstract void StartHub();
+        public abstract string GetToken();
 
         void _hubConnection_Closed()
         {

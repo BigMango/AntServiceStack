@@ -44,7 +44,7 @@ namespace AntServiceStack.Client.RegistryClient
         public override void StartHub()
         {
             _hubConnection.Dispose();
-            _hubConnection.Headers.Add("token", fullName);
+            
             Init();
         }
 
@@ -54,7 +54,11 @@ namespace AntServiceStack.Client.RegistryClient
         /// <param name="servers"></param>
         public void Recieve_GetMyServer(List<ConsulServiceResponse> servers)
         {
-            _server = servers.ToArray();
+            lock (Server)
+            {
+                _server = servers.ToArray();
+            }
+            
         }
 
         /// <summary>
@@ -63,7 +67,10 @@ namespace AntServiceStack.Client.RegistryClient
         /// <param name="servers"></param>
         public void Recieve_UpdateServerList(List<ConsulServiceResponse> servers)
         {
-            _server = servers.ToArray();
+            lock (Server)
+            {
+                _server = servers.ToArray();
+            }
         }
 
         #region impl
@@ -80,7 +87,13 @@ namespace AntServiceStack.Client.RegistryClient
         public void MarkServerUnavailable()
         {
             throw new NotImplementedException();
-        } 
+        }
+
+        public override string GetToken()
+        {
+            return fullName;
+        }
+
         #endregion
     }
 }

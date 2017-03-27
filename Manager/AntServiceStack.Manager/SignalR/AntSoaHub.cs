@@ -29,16 +29,17 @@ namespace AntServiceStack.Manager.SignalR
         /// <summary>
         /// client主动获取服务
         /// </summary>
-        public void GetMyServer()
+        public void GetMyServer(string fullName = null)
         {
             var result = new List<ConsulServiceResponse>();
-            var serviceFullName = GetServiceFullName();
-            if (!string.IsNullOrEmpty(serviceFullName))
+            var serviceFullName = fullName ?? GetServiceFullName();
+            if (string.IsNullOrEmpty(serviceFullName))
             {
                 _slabLogger.Error("GetMyServer", "get serviceFullName error :" +　Context.ConnectionId);
                 Clients.Caller.GetMyServer(result);
             }
-            var respositoryResult = ConsulClient.GetServices(serviceFullName).ToList();
+            var res = new ServiceRepository();
+            var respositoryResult = res.GetServerNodeList(serviceFullName);
             if (respositoryResult.Count < 1)
             {
                 _slabLogger.Error("GetMyServer",
@@ -79,9 +80,9 @@ namespace AntServiceStack.Manager.SignalR
             var serviceFullName = GetServiceFullName(true);
             if (!string.IsNullOrEmpty(serviceFullName))
             {
-                //GetMyServer();
-                Heartbeat();
-                SubscribeGroup(serviceFullName);
+                GetMyServer(serviceFullName);
+                //Heartbeat();
+                //SubscribeGroup(serviceFullName);
             }
             _slabLogger.Info("OnConnected", Context.ConnectionId);
             return (base.OnConnected());
@@ -104,9 +105,9 @@ namespace AntServiceStack.Manager.SignalR
             var serviceFullName = GetServiceFullName(true);
             if (!string.IsNullOrEmpty(serviceFullName))
             {
-                //GetMyServer();
+                GetMyServer(serviceFullName);
                 //SubscribeGroup(serviceFullName);
-                Heartbeat();
+                //Heartbeat();
             }
             _slabLogger.Info("OnReconnected", Context.ConnectionId);
             return (base.OnReconnected());

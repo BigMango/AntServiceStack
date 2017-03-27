@@ -42,8 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CloudBagRestFulApiServiceClient.cs" />
-    <Compile Include="ICloudBagRestFulApiService.cs" />
+    <Compile Include="helloworldServiceClient.cs" />
+    <Compile Include="IhelloworldService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -53,10 +53,10 @@
     <None Include="AntSOAMobileCommonTypes_V1.1.0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="CloudBagRestFulApi.wsdl" />
     <None Include="HelloWord.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="helloworld.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\AntServiceStack.Baiji\AntServiceStack.Baiji.csproj">
