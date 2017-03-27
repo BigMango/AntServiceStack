@@ -22,16 +22,37 @@ namespace ConsulClientTest
             {
                 using (var client = new ConsulClient())
                 {
-
                     var result = await client.Catalog.Services();
-
-                    result = await client.Catalog.Services(new QueryOptions
+                    while (true)
                     {
-                        WaitIndex = result.LastIndex
-                    });
 
-                    Console.WriteLine(result.Response.Keys);
-                    Console.WriteLine("get new value");
+                        try
+                        {
+                            //默认是5分钟 一次 long polling
+                            result = await client.Catalog.Services(new QueryOptions
+                            {
+                                WaitIndex = result.LastIndex
+                            });
+
+                            if (result.Response != null)
+                            {
+                                foreach (var item in result.Response)
+                                {
+                                    Console.WriteLine(item.Key + "=>" );
+                                    Console.WriteLine(string.Join("<=>",item.Value) );
+                                }
+                            }
+                            
+                            
+                            Console.WriteLine("get new value");
+                        }
+                        catch (Exception)
+                        {
+                            //ignore
+                        }
+                    }
+
+
                 }
 
             }).Wait();

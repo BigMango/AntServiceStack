@@ -26,9 +26,15 @@ namespace AntServiceStack.Manager.Common
             {
                 using (var client = new ConsulClient(configuration => configuration.Address = new Uri(url)))
                 {
+                    var firstInit = false;
                     while (true)
                     {
+                        
                         var result = await client.Catalog.Services();
+                        if (!firstInit)
+                        {
+                            firstInit = true;
+                        }
                         try
                         {
                             //默认是5分钟 一次 long polling
