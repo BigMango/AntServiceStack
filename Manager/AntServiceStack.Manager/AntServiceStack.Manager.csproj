@@ -1362,6 +1362,7 @@
     <Compile Include="App_Start\ModelBundle.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Common\AutoMapperUtil.cs" />
+    <Compile Include="Common\ConfigUtil.cs" />
     <Compile Include="Common\SignalRUtil.cs" />
     <Compile Include="Controller\BaseController.cs" />
     <Compile Include="Controller\ConsulController.cs" />
