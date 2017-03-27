@@ -57,6 +57,7 @@ namespace AntServiceStack.Manager.Common
             });
         }
 
+
         /// <summary>
         /// consul 上的 service的变更实时推送给client
         /// </summary>
@@ -91,8 +92,9 @@ namespace AntServiceStack.Manager.Common
                     toAddList = consulUrls.Where(rr => !dbNodeUrls.Contains(rr)).ToList();
                     if (toDelList.Count > 0)
                     {
+                        var delIds = toDelList.Select(tt => tt.Tid).ToList();
                         isChange = _serviceRepository.Entitys.Nodes.Where(
-                            rr => toDelList.Select(tt => tt.Tid).ToList().Contains(rr.Tid)).Delete() > 0;
+                            rr => delIds.Contains(rr.Tid)).Delete() > 0;
                         
                     }
                 }

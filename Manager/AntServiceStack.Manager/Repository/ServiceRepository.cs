@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using AntData.ORM;
+using AntData.ORM.Common;
 using AntServiceStack.Common.Consul;
 using AntServiceStack.Common.Utils;
 using AntServiceStack.DbModel;
@@ -270,10 +271,23 @@ namespace AntServiceStack.Manager.Repository
             var result =  this.DB.Delete(node) > 0;
             if (result )
             {
-                SignalRUtil.PushServerToGroup(node.ServiceFullName, GetServerNodeList(node.ServiceFullName));
+                if (node.Type.Equals((int) NodeTypeEnum.Consul))
+                {
+                    //N:innovationwork.cloudbag.v1.cloudbagrestfulapi|A:[http://192.168.1.2:8088/]
+                    //注销服务
+                    var service = ConsulClient.GetService(node.ServiceFullName,
+                        "N:{0}|A:[{1}]".Args(node.ServiceFullName, node.Url));
+                    if (service != null)
+                    {
+                        ConsulClient.UnregisterService(service.ServiceID);
+                    }
+                }
+                else
+                {
+                    SignalRUtil.PushServerToGroup(node.ServiceFullName, GetServerNodeList(node.ServiceFullName));
+                }
                 return string.Empty;
             }
-           
             return Tip.DeleteError;
         }
     }

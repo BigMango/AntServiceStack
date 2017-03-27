@@ -202,6 +202,14 @@
                     return;
                 }
                 vm.currentRow = selectRow[0];
+                if (vm.currentRow.Type === 1) {
+                    swal({
+                        title: "",
+                        text: "consul类型不能修改!",
+                        type: "error"
+                    });
+                    return;
+                }
                 changeSwitcheryState('isActive', vm.currentRow.IsActive);
                
                 $('#myModal').modal({ backdrop: 'static', keyboard: false });
