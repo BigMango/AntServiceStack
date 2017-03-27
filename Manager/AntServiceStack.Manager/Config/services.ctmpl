@@ -1,0 +1,6 @@
+{{range services}}
+{{range .Tags}}
+
+{{.}}
+{{end}}
+{{end}}

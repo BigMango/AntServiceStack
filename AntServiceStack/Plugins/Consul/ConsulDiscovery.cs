@@ -10,6 +10,7 @@ using AntServiceStack.Common.Consul.Discovery;
 using AntServiceStack.Common.Consul.Dtos;
 using AntServiceStack.Common.Extensions;
 using AntServiceStack.ServiceHost;
+using AntServiceStack.Text;
 using AntServiceStack.WebHost.Endpoints;
 
 namespace AntServiceStack.Plugins.Consul
@@ -44,7 +45,7 @@ namespace AntServiceStack.Plugins.Consul
                 baseUrl = "http://" + (appHost.Config.WebHostIP + (string.IsNullOrEmpty(appHost.Config.WebHostPort) ? ":80" : ":" + appHost.Config.WebHostPort)).CombineWith(appHost.Config.ServiceStackHandlerFactoryPath);
             }
            
-            var dtoTypes = GetRequestTypes(appHost);
+            //var dtoTypes = GetRequestTypes(appHost);
             var customSetting = appHost.GetPlugin<ConsulFeature>().Settings;
             var customTags = customSetting.GetCustomTags();
             foreach (ServiceMetadata metadata in EndpointHost.Config.MetadataMap.Values)
@@ -57,15 +58,14 @@ namespace AntServiceStack.Plugins.Consul
                 var registration = new ServiceRegistration
                 {
                     Name = metadata.RefinedFullServiceName,
-                    Id = $"ss-{host}--{metadata.ServiceName}",
+                    Id = $"soa-{host}/{port}--{metadata.ServiceName}",
                     Address = baseUrl,
-                    Version = 1,
-                    Port = port
+                    Port = port//Ìîport
                 };
 
                 // build the service tags
-                var tags = new List<string> { $"ss-version-{registration.Version}" };
-                tags.AddRange(dtoTypes.Select(x => x.Name));
+                var tags = new List<string> ();
+                tags.Add("N:{0}|A:[{1}]".Fmt(registration.Name, registration.Address));
                 tags.AddRange(customTags);
                 registration.Tags = tags.ToArray();
 
@@ -75,16 +75,6 @@ namespace AntServiceStack.Plugins.Consul
                 ConsulClient.RegisterHealthChecks(heathChecks);
                 registration.HealthChecks = heathChecks;
 
-                // TODO Generate warnings if dto's have [Restrict(RequestAttributes.Secure)] 
-                // but are being registered without an https:// baseUri
-
-                // TODO for sorting by versioning to work, any registered version tag must be numeric
-                // option 1: use ApiVersion but throw exception to stop host if it is not numeric
-                // option 2: use a dedicated numeric version property which defaults to 1.0
-                // option 3: use the appost's assembly version
-                //var version = "v{0}".Fmt(host.Config?.ApiVersion?.Replace('.', '-'));
-
-                // assign if self-registration was successful
                 Registration.Add(registration);
             }
            
@@ -149,7 +139,7 @@ namespace AntServiceStack.Plugins.Consul
             if (settings.IncludeDefaultServiceHealth)
             {
                 //×¢²áÐÄÌø
-                var heartbeatCheck = CreateHeartbeatCheck(baseUrl, serviceId);
+                var heartbeatCheck = CreateHeartbeatCheck(baseUrl + registration.Port, serviceId);
                 checks.Add(heartbeatCheck);
 
                 //var redisCheck = CreateRedisCheck(serviceId);
@@ -237,10 +227,10 @@ namespace AntServiceStack.Plugins.Consul
             {
                 Id = "SS-Heartbeat",
                 ServiceId = serviceId,
-                IntervalInSeconds = 30,
+                IntervalInSeconds = 10,
                 Http = baseUrl.CombineWith("/json/consul/heartbeat"),
                 Notes = "A heartbeat service to check if the service is reachable, expects 200 response",
-                DeregisterCriticalServiceAfterInMinutes = 10
+                DeregisterCriticalServiceAfterInMinutes = 1
             };
         }
     }
