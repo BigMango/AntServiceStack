@@ -51,6 +51,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EntityRobotForMysql.tt</DependentUpon>
     </Compile>
+    <Compile Include="Mysql\EnumClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

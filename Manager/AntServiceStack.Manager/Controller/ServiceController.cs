@@ -118,7 +118,7 @@ namespace AntServiceStack.Manager.Controller
         /// <returns></returns>
         public async Task<JsonResult> GetServiveNodeList([FromUri] ServiceNodeVm model)
         {
-            var result = new SearchResult<List<Node>>();
+            var result = new SearchResult<List<NodeSm>>();
             ServiceRepository rep = new ServiceRepository();
             var respositoryResult = await rep.GetServiveNodeListAsync(model);
             result.Status = ResultConfig.Ok;

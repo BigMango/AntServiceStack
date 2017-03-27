@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using AntServiceStack.DbModel;
+using AntServiceStack.DbModel.Mysql;
+using AntServiceStack.Manager.Common;
 using AntServiceStack.Manager.Model.Condition;
+using CloudBag.Infrastructure.StaticExt;
 
 namespace AntServiceStack.Manager.Model.Request
 {
@@ -33,6 +37,24 @@ namespace AntServiceStack.Manager.Model.Request
         public string ServiceName { get; set; }
         public string Namespace { get; set; }
     } 
+
     #endregion
 
+    public class NodeSm:Node,IMapFrom<Node>
+    {
+        public string TypeStr {
+            get
+            {
+                try
+                {
+                    var str = EnumUtil.IntToEnum<NodeTypeEnum>(this.Type).GetDescription();
+                    return str;
+                }
+                catch (Exception)
+                {
+                    return string.Empty;
+                }
+            }
+        }
+    }
 }

@@ -86,6 +86,12 @@ namespace AntServiceStack.DbModel
 		[Column("ServiceFullName",     DataType=DataType.VarChar,  Length=100, Comment="服务全名称"),    Nullable]
 		public string ServiceFullName { get; set; } // varchar(100)
 
+		/// <summary>
+		/// 服务类型(0自注册 1consu)
+		/// </summary>
+		[Column("Type",                DataType=DataType.Int32,    Comment="服务类型(0自注册 1consu)"), NotNull]
+		public int Type { get; set; } // int(1)
+
 		#endregion
 
 		#region Field

@@ -7,8 +7,10 @@ using AntData.ORM;
 using AntServiceStack.Common.Consul;
 using AntServiceStack.Common.Utils;
 using AntServiceStack.DbModel;
+using AntServiceStack.DbModel.Mysql;
 using AntServiceStack.Manager.Common;
 using AntServiceStack.Manager.Model.Request;
+using AutoMapper.QueryableExtensions;
 using Node = AntServiceStack.DbModel.Node;
 
 namespace AntServiceStack.Manager.Repository
@@ -163,11 +165,11 @@ namespace AntServiceStack.Manager.Repository
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public async Task<Tuple<long, List<Node>>> GetServiveNodeListAsync(ServiceNodeVm model)
+        public async Task<Tuple<long, List<NodeSm>>> GetServiveNodeListAsync(ServiceNodeVm model)
         {
             if (model == null)
             {
-                return new Tuple<long, List<Node>>(0, new List<Node>());
+                return new Tuple<long, List<NodeSm>>(0, new List<NodeSm>());
             }
 
             var totalQuery = this.Entitys.Nodes;
@@ -189,8 +191,9 @@ namespace AntServiceStack.Manager.Repository
                            model.OrderSequence)
                            .Skip((model.PageIndex - 1) * model.PageSize)
                            .Take(model.PageSize)
+                           .MappperTo<NodeSm>()
                            .ToListAsync();
-            return new Tuple<long, List<Node>>(await total, list);
+            return new Tuple<long, List<NodeSm>>(await total, list);
         }
 
         public List<ConsulServiceResponse> GetServerNodeList(string name)
@@ -245,6 +248,7 @@ namespace AntServiceStack.Manager.Repository
                 {
                     return Tip.IsExist;
                 }
+                model.Type = (int) NodeTypeEnum.SelfRegister;
                 var result = this.DB.Insert(model);
                 if (result < 1)
                 {

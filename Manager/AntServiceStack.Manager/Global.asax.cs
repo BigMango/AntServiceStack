@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
+using AntServiceStack.Manager.Common;
 using AntServiceStack.Manager.Controller;
 using AntServiceStack.Manager.Model.JsonNet;
 using AntServiceStack.Manager.SignalR;
@@ -34,9 +35,10 @@ namespace AntServiceStack.Manager
             var module = new AuthorizeModule(authorizer, authorizer);
             GlobalHost.HubPipeline.AddModule(module);
             GlobalHost.HubPipeline.RequireAuthentication();
-            GlobalHost.DependencyResolver = new AutofacDependencyResolver(container); 
+            GlobalHost.DependencyResolver = new AutofacDependencyResolver(container);
             #endregion
 
+            AutoMapperUtil.Execute();
             //var aTimer = new System.Timers.Timer();
 
             //aTimer.Elapsed += aTimer_Elapsed;
@@ -50,6 +52,8 @@ namespace AntServiceStack.Manager
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             ModelBundle.RegisterBindles(ModelBinders.Binders);
+
+            ConsulUtil.StartWatchConsulServices();
         }
 
         void aTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
