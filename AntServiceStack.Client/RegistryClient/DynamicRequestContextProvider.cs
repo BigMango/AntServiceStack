@@ -12,6 +12,9 @@ namespace AntServiceStack.Client.RegistryClient
         {
             return new ConsulLoadBalancerRequestContext(serviceKey, version);
         }
-       
+        public static ILoadBalancerRequestContext LoadSignalRRequestContext(string serviceKey, string version = null)
+        {
+            return new ClientHubClient(serviceKey);
+        }
     }
 }

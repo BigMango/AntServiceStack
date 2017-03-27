@@ -429,12 +429,12 @@ namespace AntServiceStack.ServiceClient
 
             int count = -1;
           
-            requestContext= DynamicRequestContextProvider.LoadBalancerRequestContext(ServiceFullName);
+            requestContext= DynamicRequestContextProvider.LoadSignalRRequestContext(ServiceFullName);
             while (count++ < initUrlRetryTimesProperty && (requestContext == null || requestContext.Server == null))
             {
                 log.Info("Service url is null or empty, will retry after 100 ms", GetClientInfo());
                 Thread.Sleep(100);
-                requestContext = DynamicRequestContextProvider.LoadBalancerRequestContext(ServiceFullName, TestSubEnv);
+                requestContext = DynamicRequestContextProvider.LoadSignalRRequestContext(ServiceFullName, TestSubEnv);
             }
             if (count >= initUrlRetryTimesProperty)
             {
