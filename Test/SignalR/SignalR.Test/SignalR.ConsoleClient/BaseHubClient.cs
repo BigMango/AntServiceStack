@@ -12,6 +12,7 @@ namespace SignalR.ConsoleClient
         protected HubConnection _hubConnection;
         protected IHubProxy _myHubProxy;
 
+        public string Token { get; set; }
         public string HubConnectionUrl { get; set; }
         public string HubProxyName { get; set; }
         public TraceLevels HubTraceLevel { get; set; }
@@ -38,7 +39,7 @@ namespace SignalR.ConsoleClient
             _hubConnection.Error += _hubConnection_Error;
             _hubConnection.ConnectionSlow += _hubConnection_ConnectionSlow;
             _hubConnection.Closed += _hubConnection_Closed;
-            _hubConnection.Headers.Add("token","aaa");
+            _hubConnection.Headers.Add("token",Token);
 
         }
 

@@ -13,12 +13,11 @@ namespace AntServiceStack.Client.RegistryClient
 {
     internal class ClientHubClient : BaseHubClient,ILoadBalancerRequestContext,IDisposable
     {
-        public static ClientHubClient Instance { get; private set; }
-
-        static ClientHubClient()
+        public static ClientHubClient CreateInstance()
         {
-            Instance = new ClientHubClient();
+            return new ClientHubClient();
         }
+
 
         private static readonly ILog _logger = LogManager.GetLogger(typeof(ClientHubClient));
         public string fullName { get; set; }

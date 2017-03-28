@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="HelloYuzd"
+    targetNamespace="http://tempuri.org/HelloYuzd.xsd"
+    xmlns="http://tempuri.org/HelloYuzd.xsd"
+    xmlns:mstns="http://tempuri.org/HelloYuzd.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:common="http://soa.ant.com/common/types/v1"
+>
+  <xs:import id="SOACommonTypes" schemaLocation="AntSOACommonTypes_V1.0.0.xsd"
+  namespace="http://soa.ant.com/common/types/v1"/>
+
+  
+  <xs:element name="HelloWorldRequest" type="HelloWorldRequestType" />
+  <xs:complexType name="HelloWorldRequestType">
+    <xs:annotation>
+      <xs:documentation>Helloworld Request</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="AckEnum" type="TestEnum">
+        <xs:annotation>
+          <xs:documentation>
+            返回类型
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HelloWorldResponse" type="HelloWorldResponseType" />
+  <xs:complexType name="HelloWorldResponseType">
+    <xs:annotation>
+      <xs:documentation>Helloworld Response</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Response"  type="xs:string"   >
+        <xs:annotation>
+          <xs:documentation>返回信息</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ResponseStatus" type="common:ResponseStatusType">
+        <xs:annotation>
+          <xs:documentation>框架公共Response</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="TestEnum">
+    <xs:annotation>
+      <xs:documentation>
+        测试enum类型
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="Success" >
+        <xs:annotation>
+          <xs:appinfo>1</xs:appinfo>
+          <xs:documentation>
+            成功
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Failure">
+        <xs:annotation>
+          <xs:appinfo>2</xs:appinfo>
+          <xs:documentation>
+            失败
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Warning" >
+        <xs:annotation>
+          <xs:appinfo>3</xs:appinfo>
+          <xs:documentation>
+            警告
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+
+  <xs:element name="HelloWorldAsyncRequest" type="HelloWorldRequestType" />
+  <xs:element name="HelloWorldAsyncResponse" type="HelloWorldResponseType" />
+</xs:schema>

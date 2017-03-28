@@ -14,7 +14,7 @@ namespace AntServiceStack.Client.RegistryClient
         }
         public static ILoadBalancerRequestContext LoadSignalRRequestContext(string serviceKey, string version = null)
         {
-            return ClientHubClient.Instance.Start(serviceKey);
+            return ClientHubClient.CreateInstance().Start(serviceKey);
         }
     }
 }

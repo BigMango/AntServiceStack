@@ -15,7 +15,8 @@ namespace SignalR.ConsoleClient
 
             string name = "AA";
 
-            var myHubClient = new MyHubClient();
+            var myHubClient = new MyHubClient("test1");
+            var myHubClient2 = new MyHubClient("test2");
             while (true)
             {
                 string key = Console.ReadLine();

@@ -7,32 +7,44 @@ using System.Web;
 using AntServiceStack.Common.Types;
 using AntServiceStack.ServiceHost;
 using TestContract;
+using TestContract.Yuzd.Client;
 
 namespace WebApplication
 {
-    public class SoaController : ICloudBagRestFulApi
+    public class SoaController : Ihelloworld
     {
 
 
      
 
         [Route("/HelloWorld", Summary = "HelloWorld")]
-        public HelloWorldResponseType HelloWorld(HelloWorldRequestType request)
+        public TestContract.HelloWorldResponseType HelloWorld(TestContract.HelloWorldRequestType request)
         {
-            //if (!File.Exists(@"H:\1.txt"))
-            //{
-            //    throw new Exception("no file");
-            //}
-            return new HelloWorldResponseType
+
+            try
             {
-                Response = Environment.MachineName  
-            };
+                var client = helloyuzdClient.GetInstance();
+                var re = new TestContract.Yuzd.Client.HelloWorldRequestType();
+                var rep = client.HelloWorld(re);
+                return new TestContract.HelloWorldResponseType
+                {
+                    Response = rep.Response
+                };
+            }
+            catch (Exception ex)
+            {
+
+                return new TestContract.HelloWorldResponseType
+                {
+                    Response = ex.Message
+                };
+            }
 
         }
 
-        public async Task<HelloWorldResponseType> HelloWorldAsync(HelloWorldRequestType request)
+        public async Task<TestContract.HelloWorldResponseType> HelloWorldAsync(TestContract.HelloWorldRequestType request)
         {
-            return new HelloWorldResponseType
+            return new TestContract.HelloWorldResponseType
             {
                 Response = Environment.MachineName
             };

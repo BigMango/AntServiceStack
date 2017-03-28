@@ -10,14 +10,15 @@ namespace SignalR.ConsoleClient
 {
     public class MyHubClient : BaseHubClient
     {
-        public MyHubClient()
+        public MyHubClient(string token)
         {
+            Token = token;
             Init();
         }
 
         public new void Init()
         {
-            HubConnectionUrl = "http://localhost:29332/antsoa";
+            HubConnectionUrl = "http://localhost/AntServiceStack.Manager/antsoa";
             HubProxyName = "AntSoaHub";
             HubTraceLevel = TraceLevels.None;
             HubTraceWriter = Console.Out;

@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Web;
+using AntServiceStack.Manager.Common;
 
 namespace AntServiceStack.Manager.SignalR
 {
@@ -64,7 +65,7 @@ namespace AntServiceStack.Manager.SignalR
             {
                 sb.AppendLine("exception:" + exception.ToString());
             }
-            Debug.Write(sb);
+            LogUtil.WriteInfoLog(sb.ToString());
         }
     }
 }

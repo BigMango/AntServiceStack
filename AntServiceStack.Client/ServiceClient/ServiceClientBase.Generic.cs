@@ -430,7 +430,7 @@ namespace AntServiceStack.ServiceClient
             int count = -1;
           
             requestContext= DynamicRequestContextProvider.LoadSignalRRequestContext(ServiceFullName);
-            while (count++ < initUrlRetryTimesProperty && (requestContext == null || requestContext.Servers == null))
+            while (count++ < initUrlRetryTimesProperty && (requestContext == null || requestContext.Servers == null || requestContext.Servers.Length < 1))
             {
                 log.Info("Service url is null or empty, will retry after 200 ms", GetClientInfo());
                 Thread.Sleep(200);
@@ -460,15 +460,14 @@ namespace AntServiceStack.ServiceClient
             }
         }
 
-        private string GetServiceUrl(ILoadBalancerRequestContext requestContext)
+        private string GetServiceUrl(ILoadBalancerRequestContext _requestContext)
         {
-            if (requestContext == null)
+            if (_requestContext == null)
                 return null;
 
-            var server = requestContext.Servers;
+            var server = _requestContext.Servers;
             if (server == null || server.Length < 1)
             {
-                log.Error("Got null or empty service url.", GetClientInfo());
                 throw new Exception("Got null or empty service url.");
             }
 

@@ -12,7 +12,7 @@ namespace ConsoleServer
         static void Main(string[] args)
         {
             //序列化日期
-            var appHost = new Host();
+            var appHost = new Host2();
             appHost.Init();
             Console.WriteLine("Service is running");
             Console.WriteLine("Started Time: {0}", DateTime.Now);

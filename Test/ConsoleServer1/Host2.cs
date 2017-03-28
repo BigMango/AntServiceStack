@@ -23,7 +23,7 @@ namespace ConsoleServer
     /// <summary>
     /// 
     /// </summary>
-    public class Host : AppHostHttpListenerBase
+    public class Host2 : AppHostHttpListenerBase
     {
 
 
@@ -31,7 +31,7 @@ namespace ConsoleServer
         /// <summary>
         /// Initializes a new instance of the Host class.
         /// </summary>
-        public Host() : base(typeof(ConsoleSoaController).Assembly)
+        public Host2() : base(typeof(ConsoleSoaController2).Assembly)
         {
         }
 
@@ -41,7 +41,7 @@ namespace ConsoleServer
         public override void Configure(Container container)
         {
             //根据域名
-            UpdateConfig(r => r.WebHostUrl, "http://192.168.1.2:8088/");
+            UpdateConfig(r => r.WebHostUrl, "http://192.168.1.2:8089/");
 
             //根据服务器IP
             
