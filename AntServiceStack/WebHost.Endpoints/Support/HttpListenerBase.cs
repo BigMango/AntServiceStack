@@ -37,7 +37,7 @@ namespace AntServiceStack.WebHost.Endpoints.Support
         protected HttpListener Listener;
         protected bool IsStarted = false;
 
-        private readonly DateTime startTime;
+        internal DateTime StartUpTime { get; private set; }
 
         public static HttpListenerBase Instance { get; protected set; }
 
@@ -51,7 +51,7 @@ namespace AntServiceStack.WebHost.Endpoints.Support
 
         protected HttpListenerBase()
         {
-            this.startTime = DateTime.UtcNow;
+            this.StartUpTime = DateTime.UtcNow;
             Log.Info("Begin Initializing Application...", new Dictionary<string, string>() { { "ErrorCode", "FXD300065" } });
 
             EndpointHostConfig.SkipPathValidation = true;
@@ -120,7 +120,7 @@ namespace AntServiceStack.WebHost.Endpoints.Support
             EndpointHost.AfterInit();
             SetAppDomainData();
 
-            var elapsed = DateTime.UtcNow - this.startTime;
+            var elapsed = DateTime.UtcNow - this.StartUpTime;
             Log.Info(string.Format("Initializing Application took {0}ms", elapsed.TotalMilliseconds), 
                 new Dictionary<string, string>() { { "ErrorCode", "FXD300066" } });
 

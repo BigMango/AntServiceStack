@@ -15,6 +15,7 @@ using AntServiceStack.WebHost.Endpoints.Extensions;
 using AntServiceStack.Common.Hystrix;
 using AntServiceStack.Common.Message;
 using AntServiceStack.Common.Hystrix.Atomic;
+using AntServiceStack.WebHost.Endpoints.Config;
 
 namespace AntServiceStack.ServiceHost
 {
@@ -104,6 +105,7 @@ namespace AntServiceStack.ServiceHost
             if (!bool.TryParse(ConfigUtils.GetNullableAppSetting(DefaultEnableMetadataFeatureConfigKey), out DefaultMetadataFeatureEnabled))
                 DefaultMetadataFeatureEnabled = true;
 
+            DefaultServiceTestSubEnv = ServiceConfig.Instance.ConfigurationManager.GetPropertyValue(SERVICE_REGISTRY_ENV_KEY, "");
             DefaultServiceTestSubEnv = string.IsNullOrWhiteSpace(DefaultServiceTestSubEnv) ? null : DefaultServiceTestSubEnv.Trim().ToLower();
             if (string.IsNullOrWhiteSpace(DefaultServiceTestSubEnv))
                 DefaultServiceTestSubEnv = "dev";

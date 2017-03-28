@@ -60,7 +60,15 @@ namespace AntServiceStack.Plugins.ConfigInfo
 
             List<KeyValuePair<string, object>> configInfo = new List<KeyValuePair<string, object>>();
 
-            configInfo.Add(new KeyValuePair<string,object>("StartUpTime", AppHostBase.Instance.StartUpTime));
+            if (AppHostBase.Instance != null)
+            {
+                configInfo.Add(new KeyValuePair<string, object>("StartUpTime", AppHostBase.Instance.StartUpTime));
+            }
+
+            if (AppHostHttpListenerBase.Instance != null)
+            {
+                configInfo.Add(new KeyValuePair<string, object>("StartUpTime", AppHostHttpListenerBase.Instance.StartUpTime));
+            }
 
             configInfo.Add(new KeyValuePair<string, object>("AppId", ServiceUtils.AppId));
 

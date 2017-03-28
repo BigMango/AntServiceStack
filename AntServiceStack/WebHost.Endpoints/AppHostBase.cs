@@ -113,7 +113,7 @@ namespace AntServiceStack.WebHost.Endpoints
             }
         }
 
-        internal DateTime StartUpTime { get; set; }
+        internal DateTime StartUpTime { get; private set; }
 
         public Container Container
         {

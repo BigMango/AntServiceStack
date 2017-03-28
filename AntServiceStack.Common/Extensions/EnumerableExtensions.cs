@@ -9,6 +9,17 @@ namespace AntServiceStack.Common.Extensions
 {
     public static class EnumerableExtensions
     {
+        public static void Foreach(this IEnumerable items, Action<object> action)
+        {
+            foreach (object obj in items)
+                action(obj);
+        }
+
+        public static void Foreach<T>(this IEnumerable<T> items, Action<T> action)
+        {
+            foreach (T obj in items)
+                action(obj);
+        }
         public static bool IsEmpty<T>(this ICollection<T> collection)
         {
             return collection == null || collection.Count == 0;
