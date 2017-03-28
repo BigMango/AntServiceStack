@@ -22,17 +22,17 @@ namespace AntServiceStack.Client.RegistryClient
             if (string.IsNullOrEmpty(version))
             {
                 //_server = ConsulClient.GetServices(serviceKey);
-                _server = ConsulClient.GetServices(serviceKey).GroupBy(r => r.ServiceAddress, y => y).Select(r => r.First()).ToArray();
+                _servers = ConsulClient.GetServices(serviceKey).GroupBy(r => r.ServiceAddress, y => y).Select(r => r.First()).ToArray();
             }
             else
             {
-                _server =new []{ ConsulClient.GetService(serviceKey,version)};
+                _servers =new []{ ConsulClient.GetService(serviceKey,version)};
             }
 
         }
 
-        private ConsulServiceResponse[] _server;
-        public ConsulServiceResponse[] Server { get {return _server; } }
+        private ConsulServiceResponse[] _servers;
+        public ConsulServiceResponse[] Servers { get {return _servers; } }
         public void MarkServerAvailable()
         {
             throw new NotImplementedException();

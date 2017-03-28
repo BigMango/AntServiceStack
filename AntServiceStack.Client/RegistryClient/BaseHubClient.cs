@@ -40,8 +40,11 @@ namespace AntServiceStack.Client.RegistryClient
 
         public void CloseHub()
         {
-            _hubConnection.Stop();
-            _hubConnection.Dispose();
+            if (_hubConnection!=null)
+            {
+                _hubConnection.Stop();
+                _hubConnection.Dispose();
+            }
         }
 
         protected void StartHubInternal()

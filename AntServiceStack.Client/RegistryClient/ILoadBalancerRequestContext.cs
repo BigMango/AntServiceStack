@@ -8,7 +8,7 @@ namespace AntServiceStack.Client.RegistryClient
 {
     public interface ILoadBalancerRequestContext
     {
-        ConsulServiceResponse[] Server { get; }
+        ConsulServiceResponse[] Servers { get; }
 
         void MarkServerAvailable();
 

@@ -419,22 +419,21 @@ namespace AntServiceStack.ServiceClient
         protected ServiceClientBase(string serviceName, string serviceNamespace, string subEnv) 
             : this(ConnectionMode.Indirect)
         {
-            
-            //string settingKey = GetServiceSettingKey(SERVICE_REGISTRY_SUBENV_KEY, ServiceName, ServiceNamespace);
-            //TestSubEnv = ConfigUtils.GetNullableAppSetting(settingKey);
-            //if (string.IsNullOrWhiteSpace(TestSubEnv))
-            //    TestSubEnv = ServiceRegistryTestSubEnv;
-            //else
-            //    TestSubEnv = TestSubEnv.Trim().ToLower();
+
+            string settingKey = GetServiceSettingKey(SERVICE_REGISTRY_SUBENV_KEY, ServiceName, ServiceNamespace);
+            TestSubEnv = ConfigUtils.GetNullableAppSetting(settingKey);
+            if (string.IsNullOrWhiteSpace(TestSubEnv))
+                TestSubEnv = ServiceRegistryTestSubEnv;
+            else
+                TestSubEnv = TestSubEnv.Trim().ToLower();
 
             int count = -1;
           
             requestContext= DynamicRequestContextProvider.LoadSignalRRequestContext(ServiceFullName);
-            while (count++ < initUrlRetryTimesProperty && (requestContext == null || requestContext.Server == null))
+            while (count++ < initUrlRetryTimesProperty && (requestContext == null || requestContext.Servers == null))
             {
-                log.Info("Service url is null or empty, will retry after 100 ms", GetClientInfo());
-                Thread.Sleep(100);
-                requestContext = DynamicRequestContextProvider.LoadSignalRRequestContext(ServiceFullName, TestSubEnv);
+                log.Info("Service url is null or empty, will retry after 200 ms", GetClientInfo());
+                Thread.Sleep(200);
             }
             if (count >= initUrlRetryTimesProperty)
             {
@@ -446,6 +445,7 @@ namespace AntServiceStack.ServiceClient
                 if (string.IsNullOrWhiteSpace(serviceUrl))
                 {
                     log.Error("Got null or empty service url.", GetClientInfo());
+                    throw new Exception("Got null or empty service url.");
                 }
                 else
                 {
@@ -465,11 +465,14 @@ namespace AntServiceStack.ServiceClient
             if (requestContext == null)
                 return null;
 
-            var server = requestContext.Server;
-            if (server == null)
-                return null;
+            var server = requestContext.Servers;
+            if (server == null || server.Length < 1)
+            {
+                log.Error("Got null or empty service url.", GetClientInfo());
+                throw new Exception("Got null or empty service url.");
+            }
 
-            if (!server.Any(r=>r.ServiceName.Equals(this.ServiceFullName)))
+            if (!server.Any(r => r.ServiceName.Equals(this.ServiceFullName)))
             {
                 Dictionary<string, string> addtionalInfo = GetClientInfo();
                 log.Error(ArtemisConstants.MetadataIsNullOrUrlNotExisted, server.ToString(), addtionalInfo);
@@ -479,7 +482,7 @@ namespace AntServiceStack.ServiceClient
             {
                 return server.First().ServiceAddress;
             }
-            return server[ThreadLocalRandom.Current.Next(0, server.Length)].ServiceAddress; 
+            return server[ThreadLocalRandom.Current.Next(0, server.Length)].ServiceAddress;
         }
 
         private int GetCHystrixCommandMaxConcurrentCount(string operation)

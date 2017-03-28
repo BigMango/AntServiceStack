@@ -10,7 +10,7 @@ namespace AntServiceStack.Client.RegistryClient
     {
         public StaticRequestContext(string serverKey, string address)
         {
-            Server = new[]
+            Servers = new[]
             {
                 ConsulServiceResponse.Create(new ConsulHealthResponse
                 {
@@ -24,7 +24,7 @@ namespace AntServiceStack.Client.RegistryClient
                 })
             };
         }
-        public ConsulServiceResponse[] Server { get; }
+        public ConsulServiceResponse[] Servers { get; }
         public void MarkServerAvailable()
         {
             throw new NotImplementedException();

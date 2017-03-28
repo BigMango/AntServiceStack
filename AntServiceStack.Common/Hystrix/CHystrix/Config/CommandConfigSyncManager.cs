@@ -54,7 +54,7 @@
             {
                 if (string.IsNullOrWhiteSpace(HystrixCommandBase.ConfigServiceUrl))
                 {
-                    CommonUtils.Log.Log(LogLevelEnum.Warning, "Config Service Url is empty.", new Dictionary<string, string>().AddLogTagData("FXD303011"));
+                    CommonUtils.Log.Log(LogLevelEnum.Warning, " Config Service Url is empty. so can not to SyncConfig from remote server", new Dictionary<string, string>().AddLogTagData("FXD303011"));
                 }
                 else
                 {

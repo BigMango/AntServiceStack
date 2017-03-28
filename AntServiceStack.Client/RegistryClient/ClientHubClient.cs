@@ -6,25 +6,36 @@ using System.Text;
 using System.Threading.Tasks;
 using AntServiceStack.Common.Configuration;
 using AntServiceStack.Common.Consul;
+using Freeway.Logging;
 using Microsoft.AspNet.SignalR.Client;
 
 namespace AntServiceStack.Client.RegistryClient
 {
-    public class ClientHubClient : BaseHubClient,ILoadBalancerRequestContext
+    public class ClientHubClient : BaseHubClient,ILoadBalancerRequestContext,IDisposable
     {
-        private readonly string fullName;
-        public ClientHubClient(string _fullName)
+        public static ClientHubClient Instance { get; private set; }
+
+        static ClientHubClient()
         {
-            if (string.IsNullOrEmpty(_fullName))
-            {
-                throw new ArgumentException("_fullName");
-            }
-            fullName = _fullName;
-            Init();
+            Instance = new ClientHubClient();
         }
 
+        private static readonly ILog _logger = LogManager.GetLogger(typeof(ClientHubClient));
+        public string fullName { get; set; }
+
+        public ClientHubClient()
+        {
+        }
+
+        public ClientHubClient Start(string _fullName)
+        {
+            fullName = _fullName;
+            Init();
+            return this;
+        }
         public new void Init()
         {
+            
             HubConnectionUrl = ConfigUtils.GetAppSetting("SOA.ant.url");
             if (string.IsNullOrEmpty(HubConnectionUrl))
             {
@@ -54,11 +65,8 @@ namespace AntServiceStack.Client.RegistryClient
         /// <param name="servers"></param>
         public void Recieve_GetMyServer(List<ConsulServiceResponse> servers)
         {
-            lock (Server)
-            {
-                _server = servers.ToArray();
-            }
-            
+            _logger.Info("Recieve_GetMyServer raising :" + string.Join("||", servers.Select(r => r.ServiceAddress).ToArray()));
+            Servers = servers.ToArray();
         }
 
         /// <summary>
@@ -67,17 +75,35 @@ namespace AntServiceStack.Client.RegistryClient
         /// <param name="servers"></param>
         public void Recieve_UpdateServerList(List<ConsulServiceResponse> servers)
         {
-            lock (Server)
-            {
-                _server = servers.ToArray();
-            }
+            _logger.Info("Recieve_UpdateServerList raising :" + string.Join("||", servers.Select(r => r.ServiceAddress).ToArray()));
+            Servers = servers.ToArray();
         }
 
         #region impl
 
-        private ConsulServiceResponse[] _server;
-        public ConsulServiceResponse[] Server {
-            get { return _server; } 
+        private List<ConsulServiceResponse> _servers;
+        public ConsulServiceResponse[] Servers {
+            get
+            {
+                if (_servers == null)
+                    _servers = new List<ConsulServiceResponse>();
+                return _servers.ToArray();
+            }
+            private set
+            {
+                _servers = new List<ConsulServiceResponse>(value);
+                //if (OnChange != null)
+                //{
+                //    try
+                //    {
+                //        OnChange(this, new EventArgs());
+                //    }
+                //    catch (Exception ex)
+                //    {
+                //        _logger.Warn("Error occurred while raising \"OnServerChange\" event!", ex);
+                //    }
+                //}
+            }
         }
         public void MarkServerAvailable()
         {
@@ -95,5 +121,10 @@ namespace AntServiceStack.Client.RegistryClient
         }
 
         #endregion
+
+        public void Dispose()
+        {
+           this.CloseHub();
+        }
     }
 }
