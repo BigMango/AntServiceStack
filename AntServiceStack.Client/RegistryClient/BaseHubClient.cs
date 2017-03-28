@@ -64,10 +64,17 @@ namespace AntServiceStack.Client.RegistryClient
 
         public void CloseHub()
         {
-            if (_hubConnection!=null)
+            try
             {
-                _hubConnection.Stop();
-                _hubConnection.Dispose();
+                if (_hubConnection != null)
+                {
+                    _hubConnection.Stop();
+                    _hubConnection.Dispose();
+                }
+            }
+            catch (Exception)
+            {
+                //ignore
             }
         }
 

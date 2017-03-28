@@ -25,6 +25,16 @@ namespace AntServiceStack.Client.RegistryClient
 
         public ClientHubClient()
         {
+            if (AppDomain.CurrentDomain.IsDefaultAppDomain())
+                AppDomain.CurrentDomain.ProcessExit += TerminationHandler;
+            else
+                AppDomain.CurrentDomain.DomainUnload += TerminationHandler;
+        }
+
+        private void TerminationHandler(object sender, EventArgs e)
+        {
+            this.CloseHub();
+            this.Dispose();
         }
 
         public ClientHubClient Start(string _fullName)
