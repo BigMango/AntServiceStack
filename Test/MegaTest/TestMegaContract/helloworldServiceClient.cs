@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TestContract.Client
+namespace TestMegaContract.Client
 {
     using System;
     using System.Diagnostics;
@@ -299,23 +299,23 @@ namespace TestContract.Client
     /// 
     /// 
     /// </summary>
-    public class CloudBagRestFulApiClient : ServiceClientBase<CloudBagRestFulApiClient>
+    public class helloworldClient : ServiceClientBase<helloworldClient>
     {
         
         public const string CodeGeneratorVersion = "1.0.0.0";
         
-        public const string OriginalServiceName = "CloudBagRestFulApi";
+        public const string OriginalServiceName = "helloworld";
         
-        public const string OriginalServiceNamespace = "http://soa.ant.com/innovationwork/CloudBag/v1";
+        public const string OriginalServiceNamespace = "http://soa.ant.com/ctrip/ship/v1";
         
         public const string OriginalServiceType = "NonSLB";
         
-        private CloudBagRestFulApiClient(string baseUri) : 
+        private helloworldClient(string baseUri) : 
                 base(baseUri)
         {
         }
         
-        private CloudBagRestFulApiClient(string serviceName, string serviceNamespace, string subEnv) : 
+        private helloworldClient(string serviceName, string serviceNamespace, string subEnv) : 
                 base(serviceName, serviceNamespace, subEnv)
         {
         }

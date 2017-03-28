@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 using System.Web;
 using AntServiceStack.Common.Types;
 using AntServiceStack.ServiceHost;
-using TestContract;
+using TestMegaContract;
 
 namespace MegaApplication
 {
-    public class SoaController : ICloudBagRestFulApi
+    public class SoaController : Ihelloworld
     {
 
 

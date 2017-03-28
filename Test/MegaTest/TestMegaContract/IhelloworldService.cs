@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TestContract
+namespace TestMegaContract
 {
     using System;
     using System.Diagnostics;
@@ -305,8 +305,8 @@ namespace TestContract
     /// 
     /// 
     /// </summary>
-    [AntServiceInterface("CloudBagRestFulApi", "http://soa.ant.com/innovationwork/CloudBag/v1", "1.0.0.0")]
-    public interface ICloudBagRestFulApi
+    [AntServiceInterface("helloworld", "http://soa.ant.com/ctrip/ship/v1", "1.0.0.0")]
+    public interface Ihelloworld
     {
         
         HelloWorldResponseType HelloWorld(HelloWorldRequestType request);

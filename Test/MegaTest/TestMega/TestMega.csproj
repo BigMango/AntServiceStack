@@ -37,8 +37,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Mega\bin\Debug\AntServiceStack.Merge.dll</HintPath>
     </Reference>
-    <Reference Include="CloudBagRestFulApiServiceClient">
-      <HintPath>..\TestMegaContract\CloudBagRestFulApiServiceClient.dll</HintPath>
+    <Reference Include="helloworldServiceClient">
+      <HintPath>..\TestMegaContract\helloworldServiceClient.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

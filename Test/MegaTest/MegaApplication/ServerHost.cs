@@ -16,12 +16,12 @@ namespace MegaApplication
         public override void Configure(Container container)
         {
             //根据域名
-            //UpdateConfig(r => r.WebHostUrl, "http://localhost/MegaApplication");
+            UpdateConfig(r => r.WebHostUrl, "http://localhost/MegaApplication");
 
             //根据服务器IP
 
-            UpdateConfig(r => r.ServiceStackHandlerFactoryPath, "MegaApplication");
-            UpdateConfig(r => r.UseConsulDiscovery, false);
+            //UpdateConfig(r => r.ServiceStackHandlerFactoryPath, "MegaApplication");
+            UpdateConfig(r => r.UseConsulDiscovery, true);
             //UpdateConfig(r => r.WebHostPort, "5683");
 
             Plugins.Add(new ProtoBufFormat());

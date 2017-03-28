@@ -38,6 +38,9 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.AspNet.SignalR.Client">
+      <HintPath>..\RefDll\Microsoft.AspNet.SignalR.Client.2.2.1\lib\net40\Microsoft.AspNet.SignalR.Client.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\RefDll\Newtonsoft.Json\Newtonsoft.Json.dll</HintPath>
@@ -93,7 +96,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>del /f /s /q merge* &amp; "$(SolutionDir)\Tools\ILMerge\ILMerge.exe" /t:dll /ndebug /targetplatform:v4 /log /out:AntServiceStack.Mega.Temp.dll AntServiceStack.Mega.dll AntServiceStack.dll AntServiceStack.Client.dll AntServiceStack.Log.dll AntServiceStack.Common.dll AntServiceStack.Text.dll AntServiceStack.ProtoBuf.dll AntServiceStack.Baiji.dll AntServiceStack.Plugins.ProtoBuf.dll &gt; merge.log &amp; del /f /s /q AntServiceStack.Mega.dll &amp; del /f /s /q AntServiceStack.Mega.pdb &amp; "$(SolutionDir)\Tools\ILMerge\ILMerge.exe" /t:dll /targetplatform:v4 /log /ndebug /internalize /out:AntServiceStack.Merge.dll AntServiceStack.Mega.Temp.dll Newtonsoft.Json.dll &gt;&gt; merge.log &amp; del /f /s /q AntServiceStack.Mega.Temp*</PostBuildEvent>
+    <PostBuildEvent>del /f /s /q merge* &amp; "$(SolutionDir)\Tools\ILMerge\ILMerge.exe" /t:dll /ndebug /targetplatform:v4 /log /out:AntServiceStack.Mega.Temp.dll AntServiceStack.Mega.dll AntServiceStack.dll AntServiceStack.Client.dll AntServiceStack.Log.dll AntServiceStack.Common.dll AntServiceStack.Text.dll AntServiceStack.ProtoBuf.dll AntServiceStack.Baiji.dll AntServiceStack.Plugins.ProtoBuf.dll &gt; merge.log &amp; del /f /s /q AntServiceStack.Mega.dll &amp; del /f /s /q AntServiceStack.Mega.pdb &amp; "$(SolutionDir)\Tools\ILMerge\ILMerge.exe" /t:dll /targetplatform:v4 /log /ndebug /internalize /out:AntServiceStack.Merge.dll AntServiceStack.Mega.Temp.dll Newtonsoft.Json.dll Microsoft.AspNet.SignalR.Client.dll&gt;&gt; merge.log &amp; del /f /s /q AntServiceStack.Mega.Temp*</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

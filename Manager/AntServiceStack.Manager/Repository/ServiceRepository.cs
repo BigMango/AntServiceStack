@@ -206,7 +206,7 @@ namespace AntServiceStack.Manager.Repository
                 ConsulServiceResponse c = new ConsulServiceResponse
                 {
                     ServiceAddress = server.Url,
-                    ServiceID = name
+                    ServiceName = name
                 };
 
                 result.Add(c);
