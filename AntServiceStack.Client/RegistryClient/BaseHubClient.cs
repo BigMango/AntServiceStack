@@ -22,6 +22,7 @@ namespace AntServiceStack.Client.RegistryClient
             get { return _hubConnection.State; }
         }
 
+        private bool isConnected = false;
         protected void Init()
         {
             _hubConnection = new HubConnection(HubConnectionUrl);
@@ -33,7 +34,30 @@ namespace AntServiceStack.Client.RegistryClient
             _hubConnection.StateChanged += _hubConnection_StateChanged;
             _hubConnection.Error += _hubConnection_Error;
             _hubConnection.ConnectionSlow += _hubConnection_ConnectionSlow;
-            _hubConnection.Closed += _hubConnection_Closed;
+
+
+            //Closed will be called when reconnecting have failed (When IIS have been down for a longer period than accepted by Reconnect timeout).
+            Action start = () =>
+            {
+                Task.Factory.StartNew(() =>
+                {
+                    try
+                    {
+                        _hubConnection.Start().Wait();
+                        if (isConnected)
+                            _hubConnection_Reconnected();
+                        else
+                        {
+                            isConnected = true;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        _hubConnection_Error(ex);
+                    }
+                });
+            };
+            _hubConnection.Closed += start;
             _hubConnection.Headers.Add("token", GetToken());
 
         }
@@ -52,6 +76,7 @@ namespace AntServiceStack.Client.RegistryClient
             try
             {
                 _hubConnection.Start().Wait();
+                isConnected = true;
             }
             catch (Exception ex)
             {
