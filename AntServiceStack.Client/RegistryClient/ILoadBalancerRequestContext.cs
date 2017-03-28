@@ -6,7 +6,7 @@ using AntServiceStack.Common.Consul;
 
 namespace AntServiceStack.Client.RegistryClient
 {
-    public interface ILoadBalancerRequestContext
+    internal interface ILoadBalancerRequestContext
     {
         ConsulServiceResponse[] Servers { get; }
 

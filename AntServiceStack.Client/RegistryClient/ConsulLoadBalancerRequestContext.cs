@@ -8,7 +8,7 @@ using AntServiceStack.Common.Consul;
 
 namespace AntServiceStack.Client.RegistryClient
 {
-    public class ConsulLoadBalancerRequestContext: ILoadBalancerRequestContext
+    internal class ConsulLoadBalancerRequestContext: ILoadBalancerRequestContext
     {
 
         public ConsulLoadBalancerRequestContext(string serviceKey,string version = null)

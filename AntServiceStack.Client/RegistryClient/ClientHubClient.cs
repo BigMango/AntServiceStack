@@ -11,7 +11,7 @@ using Microsoft.AspNet.SignalR.Client;
 
 namespace AntServiceStack.Client.RegistryClient
 {
-    public class ClientHubClient : BaseHubClient,ILoadBalancerRequestContext,IDisposable
+    internal class ClientHubClient : BaseHubClient,ILoadBalancerRequestContext,IDisposable
     {
         public static ClientHubClient Instance { get; private set; }
 

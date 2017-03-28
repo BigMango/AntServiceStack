@@ -5,7 +5,7 @@ using System.Text;
 
 namespace AntServiceStack.Client.RegistryClient
 {
-    public class DynamicRequestContextProvider
+    internal class DynamicRequestContextProvider
     {
        
         public static ILoadBalancerRequestContext LoadBalancerRequestContext(string serviceKey, string version = null)

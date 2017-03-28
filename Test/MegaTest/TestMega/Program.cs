@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Bson;
 using TestMegaContract.Client;
-
 namespace TestMega
 {
     class Program
@@ -17,7 +16,7 @@ namespace TestMega
             re = client.StartIOCPTaskOfHelloWorld(new HelloWorldRequestType()).Result;
             re = client.CreateAsyncTaskOfHelloWorld(new HelloWorldRequestType()).Result;
             Console.WriteLine(re.Response);
-
+            
         }
     }
 }

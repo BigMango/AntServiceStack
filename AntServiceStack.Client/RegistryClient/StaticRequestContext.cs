@@ -6,7 +6,7 @@ using AntServiceStack.Common.Consul;
 
 namespace AntServiceStack.Client.RegistryClient
 {
-    public class StaticRequestContext: ILoadBalancerRequestContext
+    internal class StaticRequestContext: ILoadBalancerRequestContext
     {
         public StaticRequestContext(string serverKey, string address)
         {

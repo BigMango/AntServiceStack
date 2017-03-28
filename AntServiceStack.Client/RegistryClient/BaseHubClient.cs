@@ -8,7 +8,7 @@ using Microsoft.AspNet.SignalR.Client;
 
 namespace AntServiceStack.Client.RegistryClient
 {
-    public abstract class BaseHubClient
+    internal abstract class BaseHubClient
     {
         private static readonly ILog log = LogManager.GetLogger(typeof(BaseHubClient));
         protected HubConnection _hubConnection;
