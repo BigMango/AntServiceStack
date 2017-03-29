@@ -23,9 +23,6 @@ namespace MegaApplication
             //UpdateConfig(r => r.ServiceStackHandlerFactoryPath, "MegaApplication");
             UpdateConfig(r => r.UseConsulDiscovery, true);
             //UpdateConfig(r => r.WebHostPort, "5683");
-
-            Plugins.Add(new ProtoBufFormat());
-            Plugins.Add(new ValidationFeature());
            
         }
     }

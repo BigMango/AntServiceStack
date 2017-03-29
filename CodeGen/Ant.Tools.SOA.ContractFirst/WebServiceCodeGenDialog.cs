@@ -550,9 +550,9 @@ namespace Ant.Tools.SOA.ContractFirst
             this.cbEnableBaijiSerialization.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbEnableBaijiSerialization.Location = new System.Drawing.Point(12, 442);
             this.cbEnableBaijiSerialization.Name = "cbEnableBaijiSerialization";
-            this.cbEnableBaijiSerialization.Size = new System.Drawing.Size(138, 16);
+            this.cbEnableBaijiSerialization.Size = new System.Drawing.Size(144, 16);
             this.cbEnableBaijiSerialization.TabIndex = 14;
-            this.cbEnableBaijiSerialization.Text = "Baiji Serialization";
+            this.cbEnableBaijiSerialization.Text = "Custom Serialization";
             this.cbEnableBaijiSerialization.UseVisualStyleBackColor = true;
             // 
             // cbAddCustomRequestInterface

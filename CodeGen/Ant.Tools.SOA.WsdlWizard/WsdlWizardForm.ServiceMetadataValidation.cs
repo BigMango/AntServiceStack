@@ -256,7 +256,10 @@ namespace Ant.Tools.SOA.WsdlWizard
 
         protected string SyncServiceRegistryData()
         {
-           
+            if (string.IsNullOrEmpty(RepositryRegisteredServiceInterfaceUrl))
+            {
+                return null;
+            }
             string serviceRegistryDataText = null;
             try
             {

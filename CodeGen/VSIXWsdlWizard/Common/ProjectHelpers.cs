@@ -19,7 +19,6 @@ using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Editor;
 using Microsoft.VisualStudio.TextManager.Interop;
-using VsWebSite;
 using VSIXProject2;
 using VSLangProj80;
 
@@ -113,6 +112,7 @@ namespace VSIXWsdlWizard.Common
         ///<summary>Indicates whether a Project is a Web Application, Web Site, or WinJS project.</summary>
         public static bool IsWebProject(this Project project)
         {
+           
             // Web site project
             if (project.Kind.Equals("{E24C65DC-7377-472B-9ABA-BC803B73C61A}", StringComparison.OrdinalIgnoreCase))
                 return true;
@@ -197,27 +197,23 @@ namespace VSIXWsdlWizard.Common
                 return string.Empty;
             }
         }
-        public static bool IsWebProject2(Project prj)
-        {
-             return prj.Object is VSWebSite;
-        }
 
         public static void AddAssemblyReferences(Project prj)
         {
-            if (prj.IsWebProject())
-            {
-                VSWebSite website = prj.Object as VSWebSite;
-                if (website==null)
-                {
-                    return;
-                }
-                website.References.AddFromGAC("System");
-                website.References.AddFromGAC("System.Xml");
-                website.References.AddFromGAC("System.Runtime.Serialization");
-                website.References.AddFromGAC("System.ServiceModel");
-                website.References.AddFromGAC("System.Configuration");
-                return;
-            }
+            //if (prj.IsWebProject())
+            //{
+            //    VSWebSite website = prj.Object as VSWebSite;
+            //    if (website==null)
+            //    {
+            //        return;
+            //    }
+            //    website.References.AddFromGAC("System");
+            //    website.References.AddFromGAC("System.Xml");
+            //    website.References.AddFromGAC("System.Runtime.Serialization");
+            //    website.References.AddFromGAC("System.ServiceModel");
+            //    website.References.AddFromGAC("System.Configuration");
+            //    return;
+            //}
             var project = prj.Object as VSProject2;
             if (project == null)
             {

@@ -285,6 +285,7 @@
     <None Include="Plugins\Swagger\swagger-ui\fonts\droid-sans-v6-latin-regular.woff" />
     <None Include="Plugins\Swagger\swagger-ui\fonts\droid-sans-v6-latin-regular.woff2" />
     <None Include="Plugins\Swagger\swagger-ui\lib\underscore-min.map" />
+    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Funq\License.txt" />

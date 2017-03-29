@@ -18,7 +18,6 @@ using Ant.Tools.SOA.WsdlWizard;
 using EnvDTE;
 using EnvDTE80;
 using Microsoft.VisualStudio.Shell;
-using VsWebSite;
 using VSIXWsdlWizard.Common;
 
 namespace VSIXWsdlWizard
@@ -137,12 +136,32 @@ namespace VSIXWsdlWizard
                             ProjectHelpers.AddError(_package, dllPath + " not found");
                             return;
                         }
-                        refDll.Add(dllPath);
+                        refDll.Add("\"" + dllPath + "\"");
                     }
                     else if (s.Trim().Contains("<HintPath>") && s.Trim().Contains("AntServiceStack") && s.Trim().Contains("dll"))
                     {
                         var dllPath = s.Trim().Split('>')[1].Split('<')[0];
-                        refDll.Add(dllPath);
+                        if (dllPath.StartsWith(".."))
+                        {
+                            var s2 = dllPath.Split('\\');
+                            var dotCount = s2.Count(r => r.Equals(".."));
+                            for (int i = 0; i < dotCount; i++)
+                            {
+                                folder = Directory.GetParent(folder).FullName;
+                            }
+                            for (int i = 0; i < s2.Length; i++)
+                            {
+                                var ss = s2[i];
+                                if (ss.Equals(".."))
+                                {
+                                    continue;
+                                }
+                                folder = Path.Combine(folder, ss);
+                            }
+                            dllPath = folder;
+                        }
+                        
+                        refDll.Add("\"" + dllPath + "\"" );
                     }
 
                 }
@@ -296,6 +315,14 @@ namespace VSIXWsdlWizard
                 if (!project.IsWebProject())
                 {
                     dialogForm.Namespace = project.GetProjectProperty("DefaultNamespace");
+                    if (string.IsNullOrEmpty(dialogForm.Namespace))
+                    {
+                        dialogForm.Namespace = Path.GetFileNameWithoutExtension(_file);
+                    }
+                }
+                else
+                {
+                    dialogForm.Namespace = Path.GetFileNameWithoutExtension(_file);
                 }
                 dialogForm.TargetFileName = ProjectHelpers.GetDefaultDestinationFilename(_file);
                 if (dialogForm.ShowDialog() == DialogResult.Cancel)
@@ -429,6 +456,14 @@ namespace VSIXWsdlWizard
                 if (!project.IsWebProject())
                 {
                     dialog.DestinationNamespace = project.GetProjectProperty("DefaultNamespace");
+                    if (string.IsNullOrEmpty(dialog.DestinationNamespace))
+                    {
+                        dialog.DestinationNamespace = Path.GetFileNameWithoutExtension(_file);
+                    }
+                }
+                else
+                {
+                    dialog.DestinationNamespace = Path.GetFileNameWithoutExtension(_file);
                 }
                 dialog.DestinationFilename = ProjectHelpers.GetDefaultDestinationFilename(_file);
                 dialog.WsdlLocation = _file;
