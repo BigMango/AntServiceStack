@@ -15,6 +15,7 @@ using AntServiceStack.Common.Types;
 using AntServiceStack.Common.Configuration;
 using ExecutionContext = AntServiceStack.Common.Execution.ExecutionContext;
 using AntServiceStack.Client.CHystrix;
+using AntServiceStack.Client.Config;
 using AntServiceStack.Common.ServiceClient;
 
 namespace AntServiceStack.ServiceClient
@@ -132,6 +133,7 @@ namespace AntServiceStack.ServiceClient
             callFormat = new BaijiBinaryClientCallFormat();
             CallFormats[callFormat.Format] = callFormat;
 
+            ServiceRegistryTestSubEnv = ClientConfig.Instance.ConfigurationManager.GetPropertyValue(SERVICE_REGISTRY_SUBENV_KEY, "");
             ServiceRegistryTestSubEnv = string.IsNullOrWhiteSpace(ServiceRegistryTestSubEnv) ? null : ServiceRegistryTestSubEnv.Trim().ToLower();
 
             bool.TryParse(ConfigurationManager.AppSettings[LogErrorWithRequestInfoSettingKey], out DefaultLogErrorWithRequestInfo);

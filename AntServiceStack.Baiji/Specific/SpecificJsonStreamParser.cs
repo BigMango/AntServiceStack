@@ -264,6 +264,10 @@ namespace AntServiceStack.Baiji.Specific
                     return readItem = (jr) => ReadValue(jr, typeof(bool), JsonToken.Boolean);
                 case SchemaType.Long:
                     return readItem = (jr) => ReadValue(jr, typeof(long), NumberTokenPredicate, value => Convert.ToInt64(value));
+                case SchemaType.Short:
+                    return readItem = (jr) => ReadValue(jr, typeof(long), NumberTokenPredicate, value => Convert.ToInt16(value));
+                case SchemaType.Byte:
+                    return readItem = (jr) => ReadValue(jr, typeof(long), NumberTokenPredicate, value => Convert.ToByte(value));
                 case SchemaType.Double:
                     return readItem = (jr) => ReadValue(jr, typeof(double), NumberTokenPredicate, value => Convert.ToDouble(value));
                 case SchemaType.Decimal:

@@ -23,6 +23,8 @@ namespace AntServiceStack.Baiji.Schema
             _types.Add("string", SchemaType.String);
             _types.Add("datetime", SchemaType.DateTime);
             _types.Add("decimal", SchemaType.Decimal);
+            _types.Add("short", SchemaType.Short);
+            _types.Add("byte", SchemaType.Byte);
         }
 
         /// <summary>

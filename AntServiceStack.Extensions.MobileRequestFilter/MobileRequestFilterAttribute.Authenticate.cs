@@ -17,6 +17,7 @@ namespace AntServiceStack.Extensions.MobileRequestFilter
 {
     public partial class MobileRequestFilterAttribute : RequestFilterAttribute
     {
+        private const string AuthWiki = "";
         public override void Execute(IHttpRequest req, IHttpResponse res, object requestDto)
         {
             if (IsH5OnlyMode && !req.IsGatewayRequest())
@@ -147,13 +148,13 @@ namespace AntServiceStack.Extensions.MobileRequestFilter
                 case 0:
                     break;
                 case 1001:
-                    throw new MobileRequestFilterException("OperationName: " + req.OperationName + ". No auth for authentication. Message: " + response.Message);
+                    throw new MobileRequestFilterException("OperationName: " + req.OperationName + ". No auth for authentication. Message: " + response.Message + ". \nReference document: " + AuthWiki);
                 case 2001:
-                    throw new MobileRequestFilterException("OperationName: " + req.OperationName + ". Invalid token for authentication. Message: " + response.Message);
+                    throw new MobileRequestFilterException("OperationName: " + req.OperationName + ". " + ServiceUtils.InvalidTokenExceptionMessage + " Message: " + response.Message + ". \nReference document: " + AuthWiki);
                 case 9000:
-                    throw new MobileRequestFilterException("OperationName: " + req.OperationName + ". Mobile Auth Service Internal Exception. Message: " + response.Message);
+                    throw new MobileRequestFilterException("OperationName: " + req.OperationName + ". Mobile Auth Service Internal Exception. Message: " + response.Message + ". \nReference document: " + AuthWiki);
                 default:
-                    throw new MobileRequestFilterException("OperationName: " + req.OperationName + ". Unknown Auth Service Return Code: " + response.ReturnCode + ". Message: " + response.Message);
+                    throw new MobileRequestFilterException("OperationName: " + req.OperationName + ". Unknown Auth Service Return Code: " + response.ReturnCode + ". Message: " + response.Message + ". \nReference document: " + AuthWiki);
             }
 
             if (string.IsNullOrWhiteSpace(response.NewToken))
@@ -208,19 +209,19 @@ namespace AntServiceStack.Extensions.MobileRequestFilter
                         break;
                     case 101:
                         throw new MobileRequestFilterException("OperationName: " + req.OperationName
-                            + ". No second auth for authentication. Message: " + checkSecondTokenResponse.Message);
+                            + ". No second auth for authentication. Message: " + checkSecondTokenResponse.Message + ". \nReference document: " + AuthWiki);
                     case 102:
                         throw new MobileRequestFilterException("OperationName: " + req.OperationName
-                            + ". No first auth for authentication. Message: " + checkSecondTokenResponse.Message);
+                            + ". No first auth for authentication. Message: " + checkSecondTokenResponse.Message + ". \nReference document: " + AuthWiki);
                     case 201:
                         throw new MobileRequestFilterException("OperationName: " + req.OperationName
-                            + ". Invalid token for authentication. Message: " + checkSecondTokenResponse.Message);
+                            + ". " + ServiceUtils.InvalidTokenExceptionMessage + " Message: " + checkSecondTokenResponse.Message + ". \nReference document: " + AuthWiki);
                     case 900:
                         throw new MobileRequestFilterException("OperationName: " + req.OperationName
-                            + ". Authorization Service Internal Exception. Message: " + checkSecondTokenResponse.Message);
+                            + ". Authorization Service Internal Exception. Message: " + checkSecondTokenResponse.Message + ". \nReference document: " + AuthWiki);
                     default:
                         throw new MobileRequestFilterException("OperationName: " + req.OperationName + ". Unknown Authorization Service Return Code: "
-                            + checkSecondTokenResponse.ReturnCode + ". Message: " + checkSecondTokenResponse.Message);
+                            + checkSecondTokenResponse.ReturnCode + ". Message: " + checkSecondTokenResponse.Message + ". \nReference document: " + AuthWiki);
                 }
 
                 if (string.IsNullOrWhiteSpace(checkSecondTokenResponse.Uid))
@@ -276,16 +277,16 @@ namespace AntServiceStack.Extensions.MobileRequestFilter
                     break;
                 case 101:
                     throw new MobileRequestFilterException("OperationName: " + req.OperationName
-                        + ". No auth for authentication. Message: " + genSecondAuthorizationTokenResponse.Message);
+                        + ". No auth for authentication. Message: " + genSecondAuthorizationTokenResponse.Message + ". \nReference document: " + AuthWiki);
                 case 201:
                     throw new MobileRequestFilterException("OperationName: " + req.OperationName
-                        + ". Invalid token for authentication. Message: " + genSecondAuthorizationTokenResponse.Message);
+                        + ". " + ServiceUtils.InvalidTokenExceptionMessage + " Message: " + genSecondAuthorizationTokenResponse.Message + ". \nReference document: " + AuthWiki);
                 case 900:
                     throw new MobileRequestFilterException("OperationName: " + req.OperationName
-                        + ". Authorization Service Internal Exception. Message: " + genSecondAuthorizationTokenResponse.Message);
+                        + ". Authorization Service Internal Exception. Message: " + genSecondAuthorizationTokenResponse.Message + ". \nReference document: " + AuthWiki);
                 default:
                     throw new MobileRequestFilterException("OperationName: " + req.OperationName + ". Unknown Authorization Service Return Code: "
-                        + genSecondAuthorizationTokenResponse.ReturnCode + ". Message: " + genSecondAuthorizationTokenResponse.Message);
+                        + genSecondAuthorizationTokenResponse.ReturnCode + ". Message: " + genSecondAuthorizationTokenResponse.Message + ". \nReference document: " + AuthWiki);
             }
 
             if (string.IsNullOrWhiteSpace(genSecondAuthorizationTokenResponse.Token))

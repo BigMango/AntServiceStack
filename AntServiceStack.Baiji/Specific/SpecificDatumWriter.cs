@@ -81,12 +81,16 @@ namespace AntServiceStack.Baiji.Specific
                     return obj is long;
                 case SchemaType.Float:
                     return obj is float;
+                case SchemaType.Short:
+                    return obj is short;
                 case SchemaType.Double:
                     return obj is double;
                 case SchemaType.Decimal:
                     return obj is decimal;
                 case SchemaType.Bytes:
                     return obj is byte[];
+                case SchemaType.Byte:
+                    return obj is byte;
                 case SchemaType.DateTime:
                     return obj is DateTime;
                 case SchemaType.String:

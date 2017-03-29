@@ -16,6 +16,7 @@ using AntServiceStack.Common.Utils;
 using AntServiceStack.Common.Configuration;
 using ExecutionContext = AntServiceStack.Common.Execution.ExecutionContext;
 using AntServiceStack.Client.CHystrix;
+using AntServiceStack.Client.Config;
 using AntServiceStack.Client.RegistryClient;
 using AntServiceStack.Client.ServiceClient;
 using AntServiceStack.Common.Config;
@@ -29,8 +30,8 @@ namespace AntServiceStack.ServiceClient
         private static readonly ILog log = LogManager.GetLogger(typeof(ServiceClientBase<DerivedClient>));
 
         private static readonly string clientTypeName = typeof(DerivedClient).Name;
-        
 
+        //private static IProperty<int> initUrlRetryTimesProperty1 = ClientConfig.Instance.ConfigurationManager.GetProperty("soa.client.net.init-url-retry-times", 10);
 
         /// <summary>
         /// 获取客户实例单件，直连模式，用于开发测试。

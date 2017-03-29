@@ -21,6 +21,8 @@ namespace AntServiceStack.Baiji.Generic
                 case SchemaType.Double:
                 case SchemaType.Decimal:
                 case SchemaType.Boolean:
+                case SchemaType.Short:
+                case SchemaType.Byte:
                 case SchemaType.Int:
                 case SchemaType.Long:
                 case SchemaType.Float:

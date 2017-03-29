@@ -174,6 +174,16 @@ namespace AntServiceStack.Baiji.Specific
                         readItem = (rec) => Convert.ToSingle(ReadValue(rec));
                         return readItem;
                     }
+                case SchemaType.Short:
+                    {
+                        readItem = (rec) => Convert.ToInt16(ReadValue(rec));
+                        return readItem;
+                    }
+                case SchemaType.Byte:
+                    {
+                        readItem = (rec) => Convert.ToByte(ReadValue(rec));
+                        return readItem;
+                    }
                 case SchemaType.Double:
                     {
                         readItem = (rec) => Convert.ToDouble(ReadValue(rec));

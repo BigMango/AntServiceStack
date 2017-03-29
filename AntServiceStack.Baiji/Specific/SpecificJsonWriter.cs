@@ -47,6 +47,8 @@ namespace AntServiceStack.Baiji.Specific
                 case SchemaType.Double:
                 case SchemaType.Decimal:
                 case SchemaType.String:
+                case SchemaType.Short:
+                case SchemaType.Byte:
                 case SchemaType.Bytes:
                     return writeItem = (src, wr) => WriteValue(src, wr);
                 case SchemaType.DateTime:

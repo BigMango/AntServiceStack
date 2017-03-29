@@ -25,6 +25,8 @@ namespace AntServiceStack.Baiji.Specific
                 case SchemaType.Boolean:
                 case SchemaType.Int:
                 case SchemaType.Long:
+                case SchemaType.Short:
+                case SchemaType.Byte:
                 case SchemaType.Float:
                 case SchemaType.Bytes:
                 case SchemaType.Enumeration:

@@ -5,8 +5,8 @@ using System.Text;
 using System.Web;
 using AntServiceStack;
 using AntServiceStack.Common;
+using AntServiceStack.Common.Config;
 using AntServiceStack.Common.Configuration;
-using AntServiceStack.Common.Web;
 using AntServiceStack.ServiceModel.Serialization;
 using AntServiceStack.ServiceHost;
 using AntServiceStack.WebHost.Endpoints;
@@ -106,8 +106,8 @@ namespace AntServiceStack.Plugins.ConfigInfo
             configInfo.Add(new KeyValuePair<string, object>(
                 ServiceMetadata.DefaultUseChunkedTransferEncodingSettingKey, metadata.UseChunkedTransferEncoding));
 
-            configInfo.Add(new KeyValuePair<string, object>("SOA.FxConfigWebServiceUtils.Enabled", FxConfigWebServiceUtils.Enabled));
-            configInfo.Add(new KeyValuePair<string, object>("SOA.FxConfigWebServiceUtils.ApiUrl", FxConfigWebServiceUtils.ConfigWebServiceApiUrl));
+            configInfo.Add(new KeyValuePair<string, object>("SOA.FxConfigWebServiceUtils.Enabled", AntFxConfigWebServiceUtils.Enabled));
+            configInfo.Add(new KeyValuePair<string, object>("SOA.FxConfigWebServiceUtils.ApiUrl", AntFxConfigWebServiceUtils.ConfigWebServiceApiUrl));
 
             configInfo.Add(new KeyValuePair<string, object>(
                 "SOA.MinGlobalDefaultTimeout", HystrixCommandHelper.MinGlobalDefaultCircuitBreakerTimeoutSetting.TotalMilliseconds.ToString()));

@@ -79,7 +79,6 @@
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="CacheAccess.Providers\MemoryCacheClient.cs" />
-    <Compile Include="EnvironmentUtility.cs" />
     <Compile Include="Funq\Action.cs" />
     <Compile Include="Funq\Container.Adapter.cs" />
     <Compile Include="Funq\Container.cs" />

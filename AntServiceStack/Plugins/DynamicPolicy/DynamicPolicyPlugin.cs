@@ -74,12 +74,12 @@ namespace AntServiceStack.Plugins.DynamicPolicy
             _policyServiceUrl = ConfigurationManager.AppSettings[PolicyServiceUrlSettingKey];
             if (string.IsNullOrWhiteSpace(_policyServiceUrl))
             {
-                if (!FxConfigWebServiceUtils.Enabled)
+                if (!AntFxConfigWebServiceUtils.Enabled)
                     return;
 
                 SyncPolicyServiceUrl();
                 if (string.IsNullOrWhiteSpace(_policyServiceUrl))
-                    FxConfigWebServiceUtils.SubscribeFxWebServiceConfigUpdateEvent(SyncPolicyServiceUrl);
+                    AntFxConfigWebServiceUtils.SubscribeFxWebServiceConfigUpdateEvent(SyncPolicyServiceUrl);
             }
 
             Enabled = true;
@@ -98,7 +98,7 @@ namespace AntServiceStack.Plugins.DynamicPolicy
             if (!string.IsNullOrWhiteSpace(_policyServiceUrl))
                 return;
 
-            string value = FxConfigWebServiceUtils.GetConfigItemValue(FxConfigWebServicePolicyServiceUrlSettingKey);
+            string value = AntFxConfigWebServiceUtils.GetConfigItemValue(FxConfigWebServicePolicyServiceUrlSettingKey);
             if (!string.IsNullOrWhiteSpace(value))
                 _policyServiceUrl = value.Trim();
         }
@@ -167,7 +167,7 @@ namespace AntServiceStack.Plugins.DynamicPolicy
             try
             {
                 if (string.IsNullOrWhiteSpace(_policyServiceUrl))
-                    FxConfigWebServiceUtils.SyncConfig();
+                    AntFxConfigWebServiceUtils.SyncConfig();
 
                 if (string.IsNullOrWhiteSpace(_policyServiceUrl))
                     return;

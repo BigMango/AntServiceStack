@@ -14,12 +14,12 @@ using AntServiceStack.Text;
 
 namespace AntServiceStack.Common.Configuration
 {
-    public static class FxConfigWebServiceUtils
+    public static class AntFxConfigWebServiceUtils
     {
-        private static readonly ILog Log = LogManager.GetLogger(typeof(FxConfigWebServiceUtils));
+        private static readonly ILog Log = LogManager.GetLogger(typeof(AntFxConfigWebServiceUtils));
 
-        const string ConfigWebServiceUrlSettingKey = "FxConfigServiceUrl";
-        const string ConfigWebServiceUrlSuffix = "ServiceConfig/ConfigInfoes/Get/921803";
+        const string ConfigWebServiceUrlSettingKey = "AntFxConfigServiceUrl";
+        const string ConfigWebServiceUrlSuffix = "";//预留
 
         public static string ConfigWebServiceApiUrl { get; private set; }
 
@@ -39,7 +39,7 @@ namespace AntServiceStack.Common.Configuration
             OnFxWebServiceConfigUpdated += onUpdate;
         }
 
-        static FxConfigWebServiceUtils()
+        static AntFxConfigWebServiceUtils()
         {
             try
             {

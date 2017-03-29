@@ -155,7 +155,11 @@ namespace AntServiceStack.ServiceHost
                 isCritical = false;
                 errorCode = "FXD300001";
             }
-            LogError("SOA Framework Exception", httpReq, ex, isCritical, errorCode ?? "FXD300000");
+
+            if (ex.Message != null && ex.Message.Contains(ServiceUtils.InvalidTokenExceptionMessage))
+                LogError("SOA Framework Exception", httpReq, ex, errorCode ?? "FXD300000", LogLevel.INFO);
+            else
+                LogError("SOA Framework Exception", httpReq, ex, isCritical, errorCode ?? "FXD300000");
 
             error.StackTrace = string.Empty; // clear stack trace after log exception
             var errorResponse = CreateErrorResponseDto(errors, responseType);

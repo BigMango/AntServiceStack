@@ -222,12 +222,16 @@ namespace AntServiceStack.Baiji.Specific
                     return typeof(long);
                 case SchemaType.Float:
                     return typeof(float);
+                case SchemaType.Short:
+                    return typeof(short);
                 case SchemaType.Double:
                     return typeof(double);
                 case SchemaType.Decimal:
                     return typeof(decimal);
                 case SchemaType.Bytes:
                     return typeof(byte[]);
+                case SchemaType.Byte:
+                    return typeof(byte);
                 case SchemaType.String:
                     return typeof(string);
                 case SchemaType.DateTime:

@@ -77,13 +77,15 @@
     <Compile Include="CAT\CatTransactionBase.cs" />
     <Compile Include="CAT\CatFabricTransaction.cs" />
     <Compile Include="CAT\CommonCatConstants.cs" />
-    <Compile Include="Configuration\FxConfigWebServiceUtils.cs" />
+    <Compile Include="Configuration\AntFxConfigWebServiceUtils.cs" />
     <Compile Include="Config\AppSettingsConfiguration.cs" />
     <Compile Include="Config\DefaultConfigurationManager.cs" />
     <Compile Include="Config\DefaultConfigurationSource.cs" />
     <Compile Include="Config\DefaultDynamicConfigurationSource.cs" />
+    <Compile Include="Config\EnvironmentUtility.cs" />
     <Compile Include="Config\IConfiguration.cs" />
     <Compile Include="Config\IConfigurationManager.cs" />
+    <Compile Include="Config\IConfigurationManagerExtensions.cs" />
     <Compile Include="Config\IConfigurationSource.cs" />
     <Compile Include="Config\IDynamicConfiguration.cs" />
     <Compile Include="Config\IDynamicConfigurationSource.cs" />

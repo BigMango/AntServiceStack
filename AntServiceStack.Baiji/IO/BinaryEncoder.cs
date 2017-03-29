@@ -124,7 +124,7 @@ namespace AntServiceStack.Baiji.IO
 
         public void WriteDateTime(DateTime value)
         {
-            WriteLong(DateTimeUtils.GetTimeInterval(value));
+            WriteLong(DateTimeUtils.GetTimeIntervalLongValue(value));
             WriteLong(DateTimeUtils.GetTimeOffsetTotalMinutes(value));
         }
 

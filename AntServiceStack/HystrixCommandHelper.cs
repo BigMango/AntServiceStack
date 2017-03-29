@@ -30,7 +30,7 @@ namespace AntServiceStack
         {
             try
             {
-                string value = FxConfigWebServiceUtils.GetConfigItemValue(FxConfigWebServiceSOAServiceCircuitBreakerTimeoutSettingKey);
+                string value = AntFxConfigWebServiceUtils.GetConfigItemValue(FxConfigWebServiceSOAServiceCircuitBreakerTimeoutSettingKey);
                 int timeout = 0;
                 int.TryParse(value, out timeout);
                 TimeSpan globalTimeout = TimeSpan.FromMilliseconds(timeout);

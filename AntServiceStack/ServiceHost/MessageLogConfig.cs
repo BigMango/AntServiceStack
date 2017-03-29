@@ -2,10 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using AntServiceStack.Common.Message;
-using AntServiceStack.Common.Utils;
-using AntServiceStack.Common.Configuration;
-using AntServiceStack.WebHost.Endpoints;
+using AntServiceStack.Common.Config;
 
 namespace AntServiceStack.ServiceHost
 {

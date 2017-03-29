@@ -77,6 +77,8 @@ namespace AntServiceStack.Common.Utils
 
         public const string AsyncOperationReturnedNullTask = "Async operation returned null task!";
 
+        public const string InvalidTokenExceptionMessage = "Invalid token for authentication.";
+
         public static string AppId { get; private set; }
 
         public static string HostIP { get; private set; }

@@ -183,10 +183,11 @@ namespace AntServiceStack.WebHost.Endpoints
             if (!Plugins.Exists(p => p is SwaggerServicePlugin))
                 Plugins.Add(new SwaggerServicePlugin());
 
-            if (FxConfigWebServiceUtils.Enabled)
+            //这里先预留 留着获取动态配置用的
+            if (AntFxConfigWebServiceUtils.Enabled)
             {
                 HystrixCommandHelper.SyncGlobalSetting();
-                FxConfigWebServiceUtils.SubscribeFxWebServiceConfigUpdateEvent(HystrixCommandHelper.SyncGlobalSetting);
+                AntFxConfigWebServiceUtils.SubscribeFxWebServiceConfigUpdateEvent(HystrixCommandHelper.SyncGlobalSetting);
             }
 
             ConfigurePlugins();

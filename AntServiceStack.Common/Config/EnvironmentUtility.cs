@@ -11,7 +11,7 @@ using System.IO;
 using System.Xml;
 using Freeway.Logging;
 
-namespace AntServiceStack
+namespace AntServiceStack.Common.Config
 {
     using System;
     using System.Collections.Generic;

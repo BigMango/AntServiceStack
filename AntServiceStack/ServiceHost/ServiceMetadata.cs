@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Text.RegularExpressions;
-using AntServiceStack.Common;
+using AntServiceStack.Common.Config;
 using AntServiceStack.Common.Extensions;
 using AntServiceStack.Common.Configuration;
 using AntServiceStack.Common.Utils;
