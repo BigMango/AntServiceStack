@@ -64,21 +64,10 @@
 <div class="container">
     <img src="~/img/403.png">
     <h1>403</h1>
-    <p><small>啊哦，这个页面您暂时无权访问,请<a href="mailto:zdyu@Ctrip.com?subject=[CB]后台申请权限 @ViewBag.userInfo" onclick="clickMe()">点我</a>申请权限</small>
+    <p><small>啊哦，这个页面您暂时无权访问</small>
     </p>
-    <p id="clc" style="display: none">
-        <small>"点我"没有任何反应?请发送邮件给zdyu@ctrip.com来申请权限并在邮件内容里备注您当前的登录账号!</small>
-    </p>
+    
 </div>
-    <script src="~/js/jquery.min.js?v=2.1.4"></script>
-<script type="text/javascript">
-    var click = 0;
-    function clickMe() {
-        click++;
-        if (click > 1) {
-            $('#clc').show();
-        }
-    }
-</script>
+
 </body>
 </html>
